@@ -1,3 +1,49 @@
+# Yêu cầu dự án Góc Desk
+
+## 1. Mục tiêu dự án
+
+Xây dựng website bán phụ kiện góc học tập và làm việc, kết nối việc tìm sản phẩm, thử bố trí trong không gian 3D và đặt hàng. Khách hàng mục tiêu là sinh viên và người mới đi làm sử dụng laptop, có không gian và ngân sách mua phụ kiện giới hạn.
+
+Các mục tiêu kinh doanh và giá trị mang lại cho khách hàng:
+
+- Hỗ trợ lựa chọn các phụ kiện đồng bộ về màu sắc, công năng, kích thước và phù hợp nhu cầu sử dụng.
+- Giúp khách hình dung vị trí và mức độ chiếm chỗ khi đặt nhiều món trên cùng một bàn thông qua góc mẫu 3D.
+- Cập nhật danh sách sản phẩm và tổng giá khi thêm, bỏ hoặc thay món để khách kiểm soát ngân sách.
+- Hỗ trợ kiểm tra kết nối, hệ điều hành hoặc dải kích thước tương thích khi có dữ liệu; đánh dấu rõ trường hợp chưa xác minh.
+- Cho phép lưu bộ setup và đưa các món đã chọn vào giỏ, giảm thao tác ghi nhớ và tìm lại từng sản phẩm.
+- Tạo ảnh AI minh họa phong cách từ bố cục đã chọn ở phạm vi giới hạn, hỗ trợ tham khảo trước khi mua.
+- Cung cấp chức năng quản trị sản phẩm, giá, tồn kho, đơn hàng, voucher và Dashboard phục vụ hoạt động cửa hàng.
+
+Các khó khăn của khách hàng và mức độ khác biệt với website tương tự là giả định cần được kiểm chứng bằng khảo sát, không được xem là kết quả khảo sát đã hoàn tất.
+
+## 2. Phạm vi
+
+### 2.1. Trong phạm vi đề xuất
+
+- Kinh doanh phụ kiện học tập, làm việc bằng laptop và đồ trang trí nhỏ trên bàn: chuột, bàn phím, giá đỡ laptop, đèn bàn và các vật dụng phù hợp.
+- Danh mục khoảng 30–40 sản phẩm mẫu; chọn 8–10 sản phẩm có mô hình phù hợp cho công cụ bố trí 3D. Tường và sàn là bối cảnh mẫu.
+- **F01–F03:** Danh mục, tìm kiếm, sắp xếp, bộ lọc; chi tiết sản phẩm; tài khoản, hồ sơ, địa chỉ, sản phẩm đã xem, lịch sử mua và yêu thích.
+- **F04–F07:** Giỏ hàng, voucher, đặt hàng, phí vận chuyển theo bảng phí khu vực, thanh toán qua một cổng sandbox, email xác nhận và theo dõi đơn hàng.
+- **F08–F09:** Quản trị dữ liệu cửa hàng, tài nguyên 3D và Dashboard cơ bản theo dữ liệu đơn hàng.
+- **F10:** Một góc mẫu 3D; thêm, di chuyển, xoay, xóa và đổi góc nhìn; giới hạn vị trí trên mặt bàn và giữ kích thước theo dữ liệu sản phẩm.
+- **F11:** Lưu và mở lại bố cục; cập nhật tổng giá; kiểm tra điều kiện tương thích có dữ liệu; mua từng món hoặc thêm các món đã chọn của bộ setup vào giỏ.
+- **F12:** Tạo ảnh minh họa từ ảnh chụp bố cục, danh sách sản phẩm và lựa chọn phong cách; ba phong cách, một ảnh mỗi yêu cầu; giới hạn lượt, trạng thái xử lý và cách xử lý lỗi.
+- Giao diện desktop và mobile; kiểm tra đầu vào, phân quyền và xác minh giá, tồn kho, voucher, thanh toán ở máy chủ; kiểm thử luồng chính, dữ liệu biên và trường hợp lỗi.
+
+Đây là phạm vi dự kiến của bài nộp. Mức độ ưu tiên, điều kiện khả thi và các nội dung chờ nhóm xác nhận được nêu chi tiết tại mục 4 và mục 6; F10–F12 cần được đối chiếu các điều kiện đó trước khi cam kết triển khai.
+
+Thứ tự triển khai dự kiến: hoàn thiện luồng mua hàng, tiếp đến công cụ 3D và lưu thiết kế, sau đó tích hợp AI tạo ảnh. Khi dịch vụ AI lỗi, khách vẫn tiếp tục chỉnh sửa bố cục và mua hàng. Bố cục và mã sản phẩm là dữ liệu gốc; ảnh AI chỉ minh họa, không thay thế thông số kích thước hoặc căn cứ tính tiền.
+
+### 2.2. Ngoài phạm vi phiên bản đầu theo bài nộp
+
+- Chatbot tư vấn và gợi ý setup bằng AI.
+- Tìm kiếm bằng ảnh và dựng phòng từ ảnh thật.
+- AR, tích điểm và flash sale nâng cao.
+
+Các chức năng này được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử.
+
+**Điểm cần nhóm thống nhất:** Chatbot được xếp ngoài phiên bản đầu trong bài nộp, nhưng [PROJECT_PLAN.md](PROJECT_PLAN.md) và [docs/business-workflow.md](docs/business-workflow.md) đang đưa chatbot vào phiên bản đầu. Cần thống nhất phạm vi giữa các tài liệu trước khi triển khai.
+
 ## 3. Người dùng
 
 | Vai trò | Nhiệm vụ chính | Quyền hạn và giới hạn |
