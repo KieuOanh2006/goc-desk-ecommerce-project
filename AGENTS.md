@@ -1,12 +1,12 @@
 # **AGENTS.md — Project Instructions for AI**
 
-## **1\. Project Context**
+## **1\. Bối cảnh dự án**
 
 Đây là dự án website thương mại điện tử của sinh viên, có tên **Góc Desk**, chuyên kinh doanh phụ kiện học tập và làm việc. Website hỗ trợ khách hàng tìm kiếm sản phẩm, bố trí góc làm việc trong không gian 3D, lưu bộ setup và đặt hàng.
 
 AI đóng vai trò hỗ trợ nhóm trong quá trình phân tích yêu cầu, phát triển giao diện, lập trình chức năng, kiểm thử và hoàn thiện tài liệu dự án.
 
-## **2\. Scope and Requirements**
+## **2\. Phạm vi và yêu cầu**
 
 * Chỉ triển khai các chức năng đã được nhóm thống nhất trong REQUIREMENTS.md.  
 * Đọc và đối chiếu yêu cầu liên quan trước khi thực hiện bất kỳ thay đổi nào.  
@@ -15,7 +15,7 @@ AI đóng vai trò hỗ trợ nhóm trong quá trình phân tích yêu cầu, ph
 * Các chức năng F01–F12 được triển khai theo phạm vi và thứ tự ưu tiên đã thống nhất trong tài liệu yêu cầu.  
 * Không tự ý đưa chức năng ngoài phạm vi phiên bản đầu vào triển khai nếu chưa được nhóm phê duyệt.
 
-## **3\. Coding Principles**
+## **3\. Nguyên tắc lập trình**
 
 * Viết mã nguồn rõ ràng, dễ đọc, dễ bảo trì và kiểm thử.  
 * Tuân thủ công nghệ, cấu trúc thư mục, quy ước đặt tên và phong cách lập trình hiện có.  
@@ -26,9 +26,9 @@ AI đóng vai trò hỗ trợ nhóm trong quá trình phân tích yêu cầu, ph
 * Đảm bảo dữ liệu giữa giao diện, máy chủ và cơ sở dữ liệu nhất quán.  
 * Không tự ý thay đổi cấu trúc cơ sở dữ liệu, API hoặc quy tắc nghiệp vụ nếu chưa đánh giá ảnh hưởng và được nhóm xác nhận.
 
-## **4\. Workflow**
+## **4\. Quy trình thực hiện**
 
-### **4.1. Before Making Changes**
+### **4.1. Trước khi thực hiện thay đổi**
 
 Trước khi sửa mã nguồn, AI phải thực hiện các bước sau:
 
@@ -38,7 +38,7 @@ Trước khi sửa mã nguồn, AI phải thực hiện các bước sau:
 4. Đề xuất phương án xử lý, nêu rõ các file dự kiến thay đổi, phạm vi sửa đổi, rủi ro và cách kiểm thử.  
 5. Chờ nhóm xác nhận trước khi tiến hành sửa mã nguồn.
 
-### **4.2. After Making Changes**
+### **4.2. Sau khi thực hiện thay đổi**
 
 Sau khi được nhóm xác nhận và hoàn tất thay đổi, AI phải:
 
@@ -49,7 +49,7 @@ Sau khi được nhóm xác nhận và hoàn tất thay đổi, AI phải:
 5. Nêu rõ các giới hạn, lỗi chưa xử lý và vấn đề cần nhóm kiểm tra thêm.  
 6. Thông báo nếu phát hiện thay đổi làm ảnh hưởng đến các chức năng khác hoặc không còn phù hợp với tài liệu yêu cầu.
 
-## **5\. Security**
+## **5\. Bảo mật**
 
 * Không đưa mật khẩu, API key, access token hoặc thông tin bí mật vào mã nguồn hay repository.  
 * Sử dụng biến môi trường hoặc cơ chế cấu hình phù hợp để quản lý thông tin nhạy cảm.  
@@ -61,7 +61,7 @@ Sau khi được nhóm xác nhận và hoàn tất thay đổi, AI phải:
 * Không ghi thông tin đăng nhập, token hoặc dữ liệu nhạy cảm vào log và báo cáo.  
 * Không tự ý thay đổi cơ chế bảo mật chỉ để làm cho chức năng chạy được.
 
-## **6\. Project-Specific Instructions**
+## **6\. Hướng dẫn riêng cho dự án**
 
 * Ưu tiên hoàn thiện luồng mua hàng cốt lõi theo yêu cầu của dự án.  
 * Triển khai công cụ thiết kế 3D và chức năng lưu bộ setup theo phạm vi đã thống nhất.  
@@ -72,7 +72,7 @@ Sau khi được nhóm xác nhận và hoàn tất thay đổi, AI phải:
 * Ưu tiên sử dụng dữ liệu mẫu; không giả định dữ liệu chưa được xác minh là dữ liệu thực tế.  
 * Nếu cần tích hợp dịch vụ bên ngoài, phải xem xét khả năng triển khai, hạn mức sử dụng, chi phí và phương án xử lý lỗi.
 
-## **7\. Communication**
+## **7\. Giao tiếp**
 
 * Giao tiếp rõ ràng, ngắn gọn và ưu tiên tiếng Việt.  
 * Nếu yêu cầu chưa rõ, hãy hỏi lại trước khi triển khai.  
@@ -81,7 +81,7 @@ Sau khi được nhóm xác nhận và hoàn tất thay đổi, AI phải:
 * Khi có nhiều phương án, hãy trình bày ưu điểm, hạn chế, rủi ro và mức độ phù hợp với thời gian thực hiện.  
 * Phân biệt rõ nội dung đã triển khai, nội dung mới đề xuất và nội dung cần xác nhận.
 
-## **8\. Final Principle**
+## **8\. Nguyên tắc cuối cùng**
 
 **AI chỉ hỗ trợ phân tích, đề xuất, lập trình và kiểm thử trong phạm vi được giao. Nhóm dự án là bên quyết định yêu cầu, phê duyệt thay đổi và xác nhận kết quả cuối cùng.**
 
