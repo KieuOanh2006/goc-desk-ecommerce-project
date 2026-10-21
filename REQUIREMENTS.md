@@ -11,7 +11,8 @@ Các mục tiêu kinh doanh và giá trị mang lại cho khách hàng:
 - Cập nhật danh sách sản phẩm và tổng giá khi thêm, bỏ hoặc thay món để khách kiểm soát ngân sách.
 - Hỗ trợ kiểm tra kết nối, hệ điều hành hoặc dải kích thước tương thích khi có dữ liệu; đánh dấu rõ trường hợp chưa xác minh.
 - Cho phép lưu bộ setup và đưa các món đã chọn vào giỏ, giảm thao tác ghi nhớ và tìm lại từng sản phẩm.
-- Tạo ảnh AI minh họa phong cách từ bố cục đã chọn ở phạm vi giới hạn, hỗ trợ tham khảo trước khi mua.
+- Tư vấn theo nhu cầu, ngân sách và phong cách bằng chatbot AI; gợi ý sản phẩm hoặc bộ setup từ danh mục cửa hàng, kèm giá, liên kết và lý do lựa chọn.
+- Hỗ trợ tích điểm khi đơn hoàn tất, xem số dư và lịch sử điểm, đổi điểm giảm giá và hoàn điểm đã dùng khi đơn bị hủy theo quy tắc.
 - Cung cấp chức năng quản trị sản phẩm, giá, tồn kho, đơn hàng, voucher và Dashboard phục vụ hoạt động cửa hàng.
 
 Các khó khăn của khách hàng và mức độ khác biệt với website tương tự là giả định cần được kiểm chứng bằng khảo sát, không được xem là kết quả khảo sát đã hoàn tất.
@@ -23,26 +24,26 @@ Các khó khăn của khách hàng và mức độ khác biệt với website t�
 - Kinh doanh phụ kiện học tập, làm việc bằng laptop và đồ trang trí nhỏ trên bàn: chuột, bàn phím, giá đỡ laptop, đèn bàn và các vật dụng phù hợp.
 - Danh mục khoảng 30–40 sản phẩm mẫu; chọn 8–10 sản phẩm có mô hình phù hợp cho công cụ bố trí 3D. Tường và sàn là bối cảnh mẫu.
 - **F01–F03:** Danh mục, tìm kiếm, sắp xếp, bộ lọc; chi tiết sản phẩm; tài khoản, hồ sơ, địa chỉ, sản phẩm đã xem, lịch sử mua và yêu thích.
-- **F04–F07:** Giỏ hàng, voucher, đặt hàng, phí vận chuyển theo bảng phí khu vực, thanh toán qua một cổng sandbox, email xác nhận và theo dõi đơn hàng.
+- **F04–F07:** Giỏ hàng, voucher, tích điểm, đặt hàng, phí vận chuyển theo bảng phí khu vực, thanh toán qua một cổng sandbox, email xác nhận và theo dõi đơn hàng. Điểm được cộng khi đơn hoàn tất; khách xem số dư và lịch sử điểm, đổi điểm giảm giá và được hoàn điểm đã dùng khi đơn bị hủy theo quy tắc.
 - **F08–F09:** Quản trị dữ liệu cửa hàng, tài nguyên 3D và Dashboard cơ bản theo dữ liệu đơn hàng.
 - **F10:** Một góc mẫu 3D; thêm, di chuyển, xoay, xóa và đổi góc nhìn; giới hạn vị trí trên mặt bàn và giữ kích thước theo dữ liệu sản phẩm.
 - **F11:** Lưu và mở lại bố cục; cập nhật tổng giá; kiểm tra điều kiện tương thích có dữ liệu; mua từng món hoặc thêm các món đã chọn của bộ setup vào giỏ.
-- **F12:** Tạo ảnh minh họa từ ảnh chụp bố cục, danh sách sản phẩm và lựa chọn phong cách; ba phong cách, một ảnh mỗi yêu cầu; giới hạn lượt, trạng thái xử lý và cách xử lý lỗi.
+- **F12:** Chatbot AI tư vấn nhu cầu, ngân sách và phong cách; gợi ý sản phẩm hoặc bộ setup từ danh mục cửa hàng, kèm giá, liên kết và lý do lựa chọn.
 - Giao diện desktop và mobile; kiểm tra đầu vào, phân quyền và xác minh giá, tồn kho, voucher, thanh toán ở máy chủ; kiểm thử luồng chính, dữ liệu biên và trường hợp lỗi.
 
-Đây là phạm vi dự kiến của bài nộp. Mức độ ưu tiên, điều kiện khả thi và các nội dung chờ nhóm xác nhận được nêu chi tiết tại mục 4 và mục 6; F10–F12 cần được đối chiếu các điều kiện đó trước khi cam kết triển khai.
+Đây là phạm vi dự kiến theo bản cập nhật Nhiệm vụ 1, gồm 12 chức năng F01–F12. Mức độ ưu tiên, tiêu chí nghiệm thu và giới hạn triển khai được nêu chi tiết tại mục 4 và mục 6.
 
-Thứ tự triển khai dự kiến: hoàn thiện luồng mua hàng, tiếp đến công cụ 3D và lưu thiết kế, sau đó tích hợp AI tạo ảnh. Khi dịch vụ AI lỗi, khách vẫn tiếp tục chỉnh sửa bố cục và mua hàng. Bố cục và mã sản phẩm là dữ liệu gốc; ảnh AI chỉ minh họa, không thay thế thông số kích thước hoặc căn cứ tính tiền.
+Thứ tự triển khai dự kiến: hoàn thiện luồng mua hàng, tiếp đến công cụ 3D và lưu thiết kế, sau đó tích hợp chatbot AI gợi ý. Khi dịch vụ AI lỗi, khách vẫn có thể tìm kiếm sản phẩm, chỉnh sửa bố cục và mua hàng. Bố cục và mã sản phẩm là dữ liệu gốc để tính tiền và đặt hàng.
 
 ### 2.2. Ngoài phạm vi phiên bản đầu theo bài nộp
 
-- Chatbot tư vấn và gợi ý setup bằng AI.
+- Tạo ảnh AI minh họa phong cách từ bố cục đã chọn.
 - Tìm kiếm bằng ảnh và dựng phòng từ ảnh thật.
-- AR, tích điểm và flash sale nâng cao.
+- AR và flash sale nâng cao.
 
-Các chức năng này được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử.
+Các chức năng này được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử. Nếu tích hợp tạo ảnh, hệ thống gửi ảnh chụp bố cục 3D, danh sách sản phẩm và phong cách lựa chọn đến dịch vụ AI; hiển thị trạng thái xử lý và cho phép thử lại khi có lỗi. Ảnh chỉ minh họa, có thể khác chi tiết hoặc vị trí so với thiết kế và không thay thế thông số kích thước hoặc căn cứ tính tiền.
 
-**Điểm cần nhóm thống nhất:** Chatbot được xếp ngoài phiên bản đầu trong bài nộp, nhưng [PROJECT_PLAN.md](PROJECT_PLAN.md) và [docs/business-workflow.md](docs/business-workflow.md) đang đưa chatbot vào phiên bản đầu. Cần thống nhất phạm vi giữa các tài liệu trước khi triển khai.
+**Điểm cần nhóm thống nhất:** Bản cập nhật Nhiệm vụ 1 xếp tạo ảnh AI minh họa vào giai đoạn sau, trong khi [PROJECT_PLAN.md](PROJECT_PLAN.md) vẫn đưa chức năng này vào phiên bản đầu. [Quy trình nghiệp vụ](docs/business-workflow.md) coi đây là hạng mục tích hợp bổ sung sau khi kiểm tra luồng mua hàng và 3D. Cần đồng bộ kế hoạch trước khi cam kết triển khai chức năng tạo ảnh.
 
 ## 3. Người dùng
 
