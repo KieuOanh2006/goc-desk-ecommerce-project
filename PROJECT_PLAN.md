@@ -88,3 +88,65 @@ Bảng 4. Đánh giá rủi ro và phương án xử lý
 | Thanh toán sandbox không ổn định         | Không hoàn thành luồng đặt hàng | Tích hợp và thử nghiệm trước Tuần 7, kiểm thử thành công, thất bại và hủy                                                    | Lê Bảo Ngọc, Nguyễn Huy Hoàng           |
 | Xung đột mã nguồn hoặc chậm cập nhật     | Ảnh hưởng tiến độ nhóm          | Dùng nhánh riêng, Pull Request, Issues và cập nhật tiến độ định kỳ                                                           | Nguyễn Kiều Oanh                        |
 | Giao diện lỗi trên mobile                | Trải nghiệm không tốt khi demo  | Kiểm thử responsive theo từng giai đoạn và sửa lỗi trước Tuần 8                                                              | Sạch Thị Phương Trinh, Nguyễn Hoàng Nhi |
+
+## 6. Kế hoạch triển khai Buổi 2 – HTML5 và CSS3
+
+### 6.1. Mục tiêu
+
+Kế thừa yêu cầu và kết quả Buổi 1 để xây dựng giao diện website Góc Desk bằng HTML5 và CSS3. Website cần có giao diện nhất quán, liên kết điều hướng giữa các trang và hiển thị phù hợp trên máy tính, máy tính bảng và điện thoại.
+
+Phạm vi Buổi 2 tập trung vào giao diện. Chưa triển khai JavaScript, backend, cơ sở dữ liệu, giỏ hàng hoạt động hoặc thanh toán trực tuyến.
+
+### 6.2. Danh sách trang
+
+| Trang | File | Nội dung chính |
+|---|---|---|
+| Trang chủ | `index.html` | Logo, menu, banner và sản phẩm nổi bật |
+| Danh sách sản phẩm | `products.html` | Tối thiểu 8 sản phẩm, hình ảnh, tên, giá và liên kết xem chi tiết |
+| Chi tiết sản phẩm | `product-detail.html` | Hình ảnh, tên, giá, mô tả, thuộc tính và nút mua hàng dạng giao diện |
+| Giới thiệu cửa hàng | `about.html` | Giới thiệu Góc Desk, khách hàng mục tiêu, điểm nổi bật và thông tin liên hệ |
+| Thiết kế góc làm việc | `setup-3d.html` | Giao diện tĩnh minh họa không gian bàn làm việc, danh sách phụ kiện và thông tin bộ setup |
+
+Lưu ý: Bốn trang đầu là yêu cầu của bài tập Buổi 2. Trang `setup-3d.html` là phần mở rộng do nhóm đề xuất, chỉ làm giao diện minh họa bằng HTML5 và CSS3, chưa triển khai 3D tương tác thực tế.
+
+### 6.3. Thành phần dùng chung
+
+- Header gồm tên thương hiệu và menu điều hướng.
+- Footer gồm thông tin cửa hàng và các liên kết phù hợp.
+- Bảng màu, kiểu chữ, khoảng cách và kiểu nút được thống nhất.
+- Thẻ sản phẩm có cách trình bày nhất quán.
+- CSS dùng chung trong `css/style.css`.
+- Bổ sung hover, focus và responsive.
+
+### 6.4. Thứ tự thực hiện
+
+1. Rà soát yêu cầu Buổi 1 và chốt thiết kế giao diện.
+2. Tổ chức cấu trúc thư mục và tạo các file HTML, CSS, hình ảnh.
+3. Xây dựng nội dung và bố cục từng trang.
+4. Hoàn thiện CSS chung, Flexbox/Grid, hover và focus.
+5. Kiểm tra giao diện ở độ rộng 1366 px, 768 px và 390 px.
+6. Tích hợp các trang, kiểm tra liên kết và hình ảnh.
+7. Cập nhật README, tài liệu kiểm thử và mã nguồn GitHub.
+
+### 6.5. Tiêu chí hoàn thành
+
+- Có đủ bốn trang HTML bắt buộc và trang giao diện tĩnh mở rộng nếu nhóm thực hiện.
+- Trang danh sách có ít nhất 8 sản phẩm.
+- Các trang có phong cách thống nhất và liên kết điều hướng đúng.
+- Giao diện có hover, focus và được kiểm tra responsive.
+- Có ảnh minh chứng, danh sách lỗi và kết quả kiểm thử.
+- Mã nguồn và tài liệu được cập nhật trên repository GitHub.
+
+### 6.6. Rủi ro và phương án xử lý
+
+| Rủi ro | Phương án xử lý |
+|---|---|
+| Các trang không thống nhất giao diện | Thống nhất thiết kế và CSS chung trước khi hoàn thiện |
+| Sai đường dẫn ảnh hoặc liên kết | Thống nhất tên file và kiểm tra đường dẫn tương đối |
+| Xung đột CSS khi tích hợp | Thống nhất tên class và trao đổi trước khi sửa CSS chung |
+| Giao diện lỗi trên điện thoại | Kiểm thử ở ba kích thước và sửa lỗi responsive |
+| Chậm tiến độ | Chia nhỏ công việc, cập nhật Issues và tích hợp sớm |
+
+### 6.7. Nguyên tắc phối hợp
+
+Mỗi công việc có người phụ trách chính, sản phẩm bàn giao và tiêu chí hoàn thành. Các thành viên theo dõi nhiệm vụ bằng GitHub Issues, cập nhật mã nguồn lên repository chung và phối hợp kiểm thử trước khi bàn giao.
