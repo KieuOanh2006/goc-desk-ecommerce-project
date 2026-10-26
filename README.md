@@ -65,7 +65,6 @@ Phiên bản đầu dự kiến hoàn thiện chức năng mua hàng và quản 
 | F09 | Dashboard cơ bản | Thống kê doanh thu đơn hoàn tất, loại trừ đơn hủy; số đơn, sản phẩm bán chạy, đơn chờ giao và số khách hàng. |
 | F10 | Thiết kế góc 3D | Một góc mẫu và 8–10 sản phẩm có mô hình; thêm, di chuyển, xoay, xóa, đổi góc nhìn và giới hạn vùng đặt. |
 | F11 | Lưu và mua bộ setup | Lưu và mở lại bố cục, xem tổng giá, kiểm tra điều kiện tương thích có dữ liệu và thêm các món đã chọn vào giỏ. |
-| F12 | Chatbot AI gợi ý | Tư vấn nhu cầu, ngân sách và phong cách; gợi ý sản phẩm hoặc bộ setup từ danh mục cửa hàng, kèm giá, liên kết và lý do lựa chọn. |
 
 Chi tiết yêu cầu, mức độ ưu tiên, các điều kiện chờ nhóm chốt và tiêu chí nghiệm thu nằm trong [REQUIREMENTS.md](REQUIREMENTS.md). Các nội dung trên mô tả chức năng dự kiến, chưa phải xác nhận đã triển khai.
 
@@ -81,9 +80,20 @@ Theo bản cập nhật Nhiệm vụ 1, tạo ảnh AI minh họa, dựng phòng
 
 ## 4. Công nghệ dự kiến
 
-Bài nộp chưa xác định tên công nghệ cụ thể. Theo [giới hạn và giả định](REQUIREMENTS.md#6-giới-hạn-và-giả-định), nhóm cần thống nhất công nghệ frontend, backend, cơ sở dữ liệu, thư viện 3D, nhà cung cấp AI và cổng thanh toán sandbox trước khi cập nhật lựa chọn chính thức.
-
-Repository hiện chứa tài liệu phân tích và kế hoạch; hướng dẫn cài đặt, cấu hình và chạy ứng dụng sẽ được bổ sung khi có mã nguồn và công nghệ đã thống nhất.
+| STT | Hạng mục | Công nghệ | Vai trò và chức năng trong Góc Desk |
+|:---:|---|---|---|
+| 1 | Frontend – Cấu trúc website | HTML5 | Xây dựng cấu trúc các trang như Trang chủ, Danh sách sản phẩm, Chi tiết sản phẩm, Tích điểm, Bảo hành, Tin tức và Thiết kế góc làm việc. Hiển thị văn bản, hình ảnh, giá sản phẩm, menu và các thành phần giao diện. |
+| 2 | Frontend – Thiết kế giao diện | CSS3 | Thiết kế màu sắc thương hiệu, font chữ, kích thước, khoảng cách, bố cục, thẻ sản phẩm và hiệu ứng hover. Hỗ trợ giao diện responsive trên máy tính, máy tính bảng và điện thoại. |
+| 3 | Frontend – Xử lý tương tác | JavaScript thuần | Xử lý sự kiện người dùng, thao tác với sản phẩm, thay đổi số lượng, cập nhật giỏ hàng và tính tổng tiền ở phía trình duyệt. |
+| 4 | Công cụ phát triển frontend | Vite | Khởi chạy máy chủ phát triển cục bộ, hỗ trợ cập nhật trang khi mã nguồn thay đổi và đóng gói frontend khi triển khai. |
+| 5 | Backend – Xử lý nghiệp vụ | Node.js + Express.js | Xây dựng máy chủ và API để tiếp nhận yêu cầu từ frontend, xử lý đăng nhập, truy xuất sản phẩm, tạo đơn hàng và lưu cấu hình thiết kế góc làm việc. |
+| 6 | Hệ quản trị cơ sở dữ liệu | MySQL | Lưu trữ dữ liệu có cấu trúc, bao gồm tài khoản, danh mục, sản phẩm, giá bán, giỏ hàng, đơn hàng, chi tiết đơn hàng và thông tin thiết kế. |
+| 7 | Thư viện kết nối cơ sở dữ liệu | mysql2 | Kết nối backend Node.js với MySQL, hỗ trợ thực hiện các truy vấn đọc, thêm, sửa và xóa dữ liệu. |
+| 8 | Dịch vụ triển khai cơ sở dữ liệu | Railway – MySQL | Dự kiến sử dụng để triển khai cơ sở dữ liệu trực tuyến, cho phép backend truy cập dữ liệu khi website hoạt động trên môi trường mạng. Railway là dịch vụ triển khai, không phải hệ quản trị cơ sở dữ liệu riêng. |
+| 9 | Công nghệ không gian 3D | Three.js | Xây dựng không gian làm việc 3D, hiển thị bàn và phụ kiện, hỗ trợ xoay góc nhìn, lựa chọn vật dụng và thay đổi cách bố trí trong không gian. |
+| 10 | Quản lý mã nguồn và cộng tác | GitHub | Lưu trữ mã nguồn, quản lý lịch sử commit, theo dõi lỗi và công việc thông qua Issues, đồng thời hỗ trợ các thành viên phối hợp phát triển dự án. |
+| 11 | Môi trường viết mã | Visual Studio Code | Soạn thảo HTML, CSS, JavaScript và mã backend; quản lý tệp dự án, sử dụng terminal và kiểm tra lỗi trong quá trình phát triển. |
+| 12 | Kiểm thử giao diện | Google Chrome | Kiểm tra giao diện website, khả năng responsive, liên kết và các chức năng tương tác; sử dụng Developer Tools để hỗ trợ phát hiện lỗi. |
 
 ## 5. Thành viên và vai trò
 
