@@ -6,7 +6,7 @@
 
 Góc Desk kinh doanh phụ kiện phục vụ học tập, làm việc bằng laptop và đồ trang trí nhỏ đặt trên bàn. Các nhóm sản phẩm chủ yếu gồm vật dụng trang trí bàn làm việc và các sản phẩm công năng như chuột, bàn phím, giá đỡ laptop, đèn bàn. Góc tường và sàn trong công cụ 3D là bối cảnh mẫu để khách bố trí sản phẩm.
 
-Website cho phép mua từng món hoặc mua những sản phẩm đã chọn trong một bộ setup. Trong phiên bản đầu, nhóm dự kiến xây dựng danh mục khoảng 30–40 sản phẩm, chọn 8–10 sản phẩm có mô hình 3D phù hợp để đưa vào công cụ bố trí. Công cụ thiết kế hỗ trợ khách hình dung cách sử dụng các sản phẩm trước khi quyết định mua; tạo ảnh AI minh họa là hướng phát triển sau.
+Website cho phép mua từng món hoặc mua những sản phẩm đã chọn trong một bộ setup. Trong phiên bản đầu, nhóm dự kiến xây dựng danh mục khoảng 30–40 sản phẩm, chọn 8–10 sản phẩm có mô hình 3D phù hợp để đưa vào công cụ bố trí. Công cụ thiết kế hỗ trợ khách hình dung cách sử dụng các sản phẩm trước khi quyết định mua.
 
 ### Vấn đề kinh doanh
 
@@ -24,12 +24,9 @@ Góc Desk kết nối quá trình tìm sản phẩm, bố trí không gian và �
 1. **Tìm đúng nhóm sản phẩm:** Tìm kiếm và lọc theo loại sản phẩm, giá, thương hiệu, màu sắc và nhu cầu sử dụng; bổ sung bộ lọc kỹ thuật theo từng danh mục.
 2. **Thử bố trí trong không gian 3D:** Thêm sản phẩm từ thư viện vào góc mẫu, di chuyển, xoay, xóa và đổi góc nhìn. Mô hình giữ kích thước theo dữ liệu; vị trí đặt được giới hạn trên mặt bàn.
 3. **Kiểm soát lựa chọn và ngân sách:** Danh sách sản phẩm và tổng tiền cập nhật khi thêm hoặc bỏ món. Chỉ kiểm tra điều kiện tương thích có dữ liệu; thông tin thiếu được đánh dấu chưa xác minh.
-4. **Chatbot AI gợi ý:** Tư vấn theo nhu cầu, ngân sách và phong cách; gợi ý sản phẩm hoặc bộ setup từ danh mục cửa hàng, kèm giá, liên kết và lý do lựa chọn.
-5. **Lưu thiết kế và mua hàng:** Lưu bộ setup vào tài khoản hoặc thêm các món đã chọn vào giỏ. Kiểm tra lại giá và tồn kho trước khi xác nhận đơn hàng.
+4. **Lưu thiết kế và mua hàng:** Lưu bộ setup vào tài khoản hoặc thêm các món đã chọn vào giỏ. Kiểm tra lại giá và tồn kho trước khi xác nhận đơn hàng.
 
 Ví dụ: Một sinh viên chọn chuột, bàn phím, giá đỡ và cây trang trí với ngân sách sản phẩm 1,5 triệu đồng. Sau khi bố trí trên góc mẫu, khách có thể thay một món, xem tổng giá mới và thêm bộ đã chọn vào giỏ. Khi chức năng tạo ảnh được triển khai ở giai đoạn sau, khách có thể tạo thêm ảnh theo phong cách tối giản để tham khảo. Voucher và phí giao hàng được hiển thị rõ ở bước thanh toán.
-
-Bố cục 3D và mã sản phẩm được lưu là dữ liệu gốc để tính tiền và đặt hàng. Nếu được tích hợp, chức năng tạo ảnh gửi ảnh chụp bố cục 3D, danh sách sản phẩm và phong cách lựa chọn đến dịch vụ AI; giao diện hiển thị trạng thái xử lý và cho phép thử lại khi có lỗi. Ảnh AI chỉ minh họa phong cách, có thể khác chi tiết hoặc vị trí so với thiết kế. Việc kiểm tra kích thước dựa trên thông số sản phẩm và số đo người dùng cung cấp; hình ảnh minh họa không thay thế các dữ liệu này.
 
 ### Điểm khác biệt dự kiến
 
@@ -75,8 +72,6 @@ Thứ tự triển khai dự kiến: luồng mua hàng → công cụ 3D và lư
 ### Hướng phát triển sau
 
 Theo bản cập nhật Nhiệm vụ 1, tạo ảnh AI minh họa, dựng phòng từ ảnh thật và AR được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử. Nếu tích hợp tạo ảnh, hệ thống sử dụng ảnh chụp bố cục 3D, danh sách sản phẩm và phong cách lựa chọn để tạo ảnh tham khảo. Tìm kiếm bằng ảnh và flash sale nâng cao vẫn nằm ngoài phạm vi phiên bản đầu theo [quy trình nghiệp vụ](docs/business-workflow.md#6-phạm-vi-phiên-bản-đầu-và-giới-hạn).
-
-**Điểm cần nhóm thống nhất:** Bản cập nhật Nhiệm vụ 1 xếp tạo ảnh AI minh họa vào giai đoạn sau, trong khi [PROJECT_PLAN.md](PROJECT_PLAN.md) vẫn đưa chức năng này vào phiên bản đầu. [Quy trình nghiệp vụ](docs/business-workflow.md) coi đây là hạng mục tích hợp bổ sung sau khi kiểm tra luồng mua hàng và 3D. Cần đồng bộ kế hoạch trước khi cam kết triển khai chức năng tạo ảnh.
 
 ## 4. Công nghệ dự kiến
 
