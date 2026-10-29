@@ -502,3 +502,22 @@ button {
     gap: 22px;
   }
 }
+
+/* 12. ẢNH TRANG TÍCH ĐIỂM */
+.points-banner-image {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+    margin: 24px auto 0;
+}
+
+.points-benefits-image {
+    width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+    margin: 24px auto 0;
+}

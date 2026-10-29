@@ -1,1 +1,1068 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tìm hiểu chính sách và quy trình tiếp nhận yêu cầu bảo hành tại Góc Desk.">
+    <title>Góc Desk - Chính sách bảo hành</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            background: var(--gd-cream, #F7F5F2);
+            color: var(--gd-text, #302820);
+        }
+
+        h1, h2, h3, p {
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--gd-sage, #809B7D);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(1200px, calc(100% - 64px));
+            margin-inline: auto;
+        }
+
+        /* HEADER */
+        .warranty-header {
+            position: relative;
+            z-index: 10;
+            padding: 18px 0;
+            background: #fff;
+            border-bottom: 1px solid var(--gd-border, #E6DED5);
+        }
+
+        .warranty-header-inner {
+            display: grid;
+            grid-template-columns: minmax(148px, 1fr) minmax(0, 600px) minmax(148px, 1fr);
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .warranty-brand {
+            justify-self: start;
+            flex-shrink: 0;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .warranty-brand span {
+            display: block;
+            margin-top: 3px;
+            color: var(--gd-muted, #756B63);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .warranty-nav {
+            grid-column: 1 / -1;
+            width: 100%;
+            padding-top: 18px;
+            border-top: 1px solid var(--gd-border, #E6DED5);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        .warranty-nav a {
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            color: var(--gd-text, #302820);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .warranty-nav a:hover,
+        .warranty-nav a.active {
+            color: var(--gd-brown, #4E3B2E);
+            border-bottom-color: var(--gd-wood, #B08968);
+        }
+
+        .warranty-search {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid var(--gd-border, #E6DED5);
+            border-radius: 10px;
+            background: #F7F5F2;
+        }
+
+        .warranty-search input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px 18px;
+            border: 0;
+            background: transparent;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .warranty-search button {
+            padding: 12px 22px;
+            border: 0;
+            background: var(--gd-brown, #4E3B2E);
+            color: white;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .warranty-search button:hover { background: #392a20; }
+        .warranty-search :focus-visible { outline-offset: -3px; }
+
+        /* HERO */
+        .warranty-hero {
+            position: relative;
+            margin-top: 30px;
+            padding: 54px 56px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: var(--gd-brown, #4E3B2E);
+            color: white;
+        }
+
+        .warranty-hero::after {
+            content: "✓";
+            position: absolute;
+            top: 10px;
+            right: 55px;
+            color: #ffffff18;
+            font-size: 200px;
+            font-weight: 800;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .warranty-eyebrow {
+            margin-bottom: 14px;
+            color: #D9C9B3;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .warranty-hero h1 {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin-bottom: 16px;
+            color: white;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .warranty-hero p {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            margin-bottom: 25px;
+            color: #F2EAE1;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .warranty-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 12px 21px;
+            border: 1px solid transparent;
+            border-radius: 7px;
+            background: #F7F0E7;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 13px;
+            font-weight: 700;
+            transition: background 180ms, transform 180ms;
+            cursor: pointer;
+        }
+
+        .warranty-btn:hover {
+            transform: translateY(-2px);
+            background: #E6D7C5;
+        }
+
+        /* SECTION */
+        .warranty-section {
+            padding-top: 55px;
+        }
+
+        .warranty-section-heading {
+            margin-bottom: 25px;
+        }
+
+        .warranty-section-heading .eyebrow {
+            margin-bottom: 8px;
+            color: var(--gd-wood, #B08968);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        .warranty-section-heading h2 {
+            margin-bottom: 10px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: clamp(23px, 3vw, 31px);
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .warranty-section-heading p {
+            max-width: 760px;
+            margin-bottom: 0;
+            color: var(--gd-muted, #756B63);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* QUY TRÌNH */
+        .warranty-steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .warranty-step {
+            min-width: 0;
+            padding: 25px;
+            border: 1px solid var(--gd-border, #E6DED5);
+            border-radius: 13px;
+            background: white;
+        }
+
+        .warranty-step-number {
+            display: grid;
+            place-items: center;
+            width: 43px;
+            height: 43px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: #F1ECE5;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .warranty-step h3 {
+            margin-bottom: 10px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 17px;
+        }
+
+        .warranty-step p {
+            margin-bottom: 0;
+            color: var(--gd-muted, #756B63);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* CHÍNH SÁCH */
+        .warranty-policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .warranty-policy-card {
+            min-width: 0;
+            padding: 26px;
+            border: 1px solid var(--gd-border, #E6DED5);
+            border-radius: 14px;
+            background: white;
+        }
+
+        .warranty-policy-icon {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background: #F1ECE5;
+            color: var(--gd-wood, #B08968);
+            font-size: 22px;
+        }
+
+        .warranty-policy-card h3 {
+            margin-bottom: 12px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 17px;
+        }
+
+        .warranty-policy-card p {
+            margin-bottom: 0;
+            color: var(--gd-muted, #756B63);
+            font-size: 13px;
+            line-height: 1.85;
+        }
+
+        .warranty-notice {
+            margin-top: 20px;
+            padding: 16px 19px;
+            border-left: 3px solid var(--gd-sage, #809B7D);
+            border-radius: 0 8px 8px 0;
+            background: #EDF1E9;
+            color: #56634F;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* FORM */
+        .warranty-form-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .warranty-form-intro {
+            padding: 30px;
+            border-radius: 15px;
+            background: #E4EADF;
+        }
+
+        .warranty-form-intro h3 {
+            margin-bottom: 13px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 23px;
+            line-height: 1.4;
+        }
+
+        .warranty-form-intro p {
+            color: #65705E;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .warranty-form-intro ul {
+            padding-left: 20px;
+            color: #56634F;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .warranty-form {
+            padding: 30px;
+            border: 1px solid var(--gd-border, #E6DED5);
+            border-radius: 15px;
+            background: white;
+        }
+
+        .warranty-form h3 {
+            margin-bottom: 8px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 22px;
+        }
+
+        .warranty-form-description {
+            margin-bottom: 25px;
+            color: var(--gd-muted, #756B63);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .warranty-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .warranty-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .warranty-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .warranty-field label {
+            color: var(--gd-text, #302820);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .warranty-field input,
+        .warranty-field select,
+        .warranty-field textarea {
+            width: 100%;
+            min-height: 44px;
+            padding: 11px 12px;
+            border: 1px solid var(--gd-border, #E6DED5);
+            border-radius: 7px;
+            background: #FFFEFC;
+            color: var(--gd-text, #302820);
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .warranty-field textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        .warranty-field input::placeholder,
+        .warranty-field textarea::placeholder {
+            color: #A39A91;
+        }
+
+        .warranty-submit {
+            margin-top: 22px;
+            border: 0;
+            background: var(--gd-brown, #4E3B2E);
+            color: white;
+        }
+
+        .warranty-submit:hover {
+            background: #392A20;
+        }
+
+        .warranty-form-note {
+            margin-top: 14px;
+            margin-bottom: 0;
+            color: var(--gd-muted, #756B63);
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        .warranty-footer {
+            margin-top: 65px;
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--gd-border, #E6DED5);
+            background: white;
+        }
+
+        .warranty-footer-grid {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .warranty-footer h3 {
+            margin-bottom: 10px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 23px;
+        }
+
+        .warranty-footer h4 {
+            margin-bottom: 14px;
+            color: var(--gd-brown, #4E3B2E);
+            font-size: 13px;
+        }
+
+        .warranty-footer p,
+        .warranty-footer a {
+            color: var(--gd-muted, #756B63);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .warranty-footer p {
+            max-width: 330px;
+        }
+
+        .warranty-footer ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .warranty-footer li {
+            margin-bottom: 7px;
+        }
+
+        .warranty-footer a:hover {
+            color: var(--gd-wood, #B08968);
+        }
+
+        .warranty-footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid var(--gd-border, #E6DED5);
+        }
+
+        .warranty-footer-bottom p {
+            margin: 0;
+            font-size: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .warranty-header-inner {
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .warranty-nav {
+                gap: 18px;
+            }
+
+            .warranty-policy-grid,
+            .warranty-steps {
+                gap: 14px;
+            }
+
+            .warranty-policy-card,
+            .warranty-step {
+                padding: 20px;
+            }
+
+            .warranty-hero {
+                padding: 42px 32px;
+            }
+
+            .warranty-form-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .warranty-footer-grid {
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: calc(100% - 32px);
+            }
+
+            .warranty-nav {
+                width: 100%;
+                gap: 15px;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .warranty-nav a {
+                flex-shrink: 0;
+                font-size: 12px;
+            }
+
+            .warranty-hero {
+                margin-top: 20px;
+                padding: 32px 23px;
+            }
+
+            .warranty-hero::after {
+                right: 8px;
+                font-size: 115px;
+            }
+
+            .warranty-hero h1 {
+                font-size: 31px;
+            }
+
+            .warranty-hero p {
+                font-size: 13px;
+            }
+
+            .warranty-section {
+                padding-top: 38px;
+            }
+
+            .warranty-policy-grid,
+            .warranty-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .warranty-step {
+                display: grid;
+                grid-template-columns: 43px 1fr;
+                column-gap: 15px;
+                padding: 20px;
+            }
+
+            .warranty-step-number {
+                grid-row: span 2;
+                margin-bottom: 0;
+            }
+
+            .warranty-step h3 {
+                margin-bottom: 6px;
+            }
+
+            .warranty-form,
+            .warranty-form-intro {
+                padding: 22px;
+            }
+
+            .warranty-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .warranty-field.full-width {
+                grid-column: auto;
+            }
+
+            .warranty-footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+
+            .warranty-footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .warranty-footer-bottom {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+        /* Nhận diện và minh họa cho trang hỗ trợ. */
+        .warranty-brand { display: inline-flex; flex-direction: column; align-items: center; }
+        .warranty-brand-art { width: 148px; height: 72px; display: block; mix-blend-mode: multiply; }
+        .warranty-nav { justify-content: center; }
+        .warranty-hero { background: linear-gradient(120deg, #38291F, #604733 70%, #806044); box-shadow: 0 18px 45px #4e3b2e15; }
+        .warranty-hero::after { content: none; }
+        .warranty-hero-main { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; padding: 64px 56px; min-height: 400px; }
+        .warranty-hero-main h1 { font-size: clamp(34px, 4.2vw, 54px); line-height: 1.12; }
+        .warranty-hero-main .warranty-eyebrow { font-size: 11px; color: #E7C89F; }
+        .warranty-hero-main .warranty-btn { margin-top: 8px; background: #F7E9D4; min-height: 48px; }
+        .warranty-hero-art { position: relative; display: grid; place-items: center; min-width: 0; }
+        .warranty-hero-art::before { content: ''; position: absolute; width: 95%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #F6DFB624; box-shadow: 0 0 0 24px #F6DFB608, 0 0 0 48px #F6DFB605; }
+        .warranty-shield { position: relative; width: min(100%, 300px); height: auto; filter: drop-shadow(0 20px 18px #1d130f55); transform: rotate(7deg); }
+        .warranty-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+        .warranty-hero-main .warranty-hero-actions .warranty-btn { margin-top: 0; }
+        .warranty-art-note { display: flex; align-items: center; gap: 9px; margin: 0; color: #F8EEDD; font-size: 12px; line-height: 1.6; }
+        .warranty-art-note svg { width: 20px; height: 20px; }
+        .warranty-section-heading h2 { letter-spacing: -.6px; font-size: clamp(25px, 3vw, 32px); }
+        .warranty-step { position: relative; padding: 22px 26px 28px; border-radius: 20px; box-shadow: 0 8px 24px #4e3b2e05; }
+        .warranty-step-art { display: grid; place-items: center; height: 190px; margin-bottom: 24px; border-radius: 14px; background: radial-gradient(ellipse at 50% 35%, #FFFDF8, #F1E6D7); }
+        .warranty-step:nth-child(2) .warranty-step-art { background: radial-gradient(ellipse at 50% 35%, #FCFCF7, #E2E8DC); }
+        .warranty-step:nth-child(3) .warranty-step-art { background: radial-gradient(ellipse at 50% 35%, #FFFBF2, #EDDBC1); }
+        .warranty-step-art svg { width: 140px; height: 140px; filter: drop-shadow(0 12px 8px #69513c22); }
+        .warranty-step-number { position: absolute; top: 34px; left: 38px; width: 32px; height: 32px; border-radius: 50%; background: white; font-size: 12px; box-shadow: 0 3px 10px #4e3b2e0a; }
+        .warranty-policy-card { border-radius: 18px; border-top: 3px solid #B59775; }
+        .warranty-form-intro { background: linear-gradient(145deg, #EBEEDF, #DCE5D4); border: 1px solid #CCD5C2; }
+        .warranty-form { box-shadow: 0 12px 32px #4e3b2e06; border-radius: 20px; }
+        .warranty-footer { background: var(--gd-brown, #4E3B2E); }
+        .warranty-footer h3, .warranty-footer h4 { color: white; }
+        .warranty-footer p, .warranty-footer a { color: #F7F5F2D1; }
+        .warranty-footer a:hover { color: #E7C89F; }
+        .warranty-footer-bottom { border-color: #ffffff33; }
+        @media (max-width: 850px) {
+            .warranty-hero-main { gap: 24px; padding: 40px 32px; grid-template-columns: 1.2fr 1fr; }
+            .warranty-step { padding: 18px; }
+            .warranty-step-art { height: 155px; }
+            .warranty-step-art svg { width: 110px; height: 110px; }
+            .warranty-step-number { top: 28px; left: 28px; }
+        }
+        @media (max-width: 600px) {
+            .warranty-hero-main { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; }
+            .warranty-hero-art { width: min(100%, 280px); justify-self: center; }
+            .warranty-shield { width: 220px; }
+            .warranty-art-note { font-size: 11px; }
+            .warranty-step { display: block; padding: 20px; }
+            .warranty-step-art { height: 170px; }
+            .warranty-step-art svg { width: 130px; height: 130px; }
+            .warranty-step-number { top: 32px; left: 32px; }
+            .warranty-step h3 { margin-bottom: 10px; }
+        }
+        /* Chính sách, biểu mẫu và khối khám phá. */
+        #warranty-request { scroll-margin-top: 28px; }
+        .warranty-policy-card { position: relative; padding: 30px; background: linear-gradient(145deg, #FFFFFF, #FAF7F1); }
+        .warranty-policy-icon { width: 58px; height: 58px; border-radius: 16px; background: #F0E5D6; color: #987447; box-shadow: inset 0 1px 0 #fff; }
+        .warranty-policy-icon svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+        .warranty-policy-card:nth-child(2) { border-top-color: #8B9B80; }
+        .warranty-policy-card:nth-child(2) .warranty-policy-icon { background: #E9EEDF; color: #64765B; }
+        .warranty-policy-card:nth-child(3) { border-top-color: #BF977E; }
+        .warranty-policy-card:nth-child(3) .warranty-policy-icon { background: #F4E7DE; color: #A0775B; }
+        .warranty-notice { padding: 22px 24px; border: 1px solid #D7DFCD; border-left: 4px solid #809B7D; border-radius: 14px; }
+        .warranty-form-layout { gap: 26px; }
+        .warranty-form-intro { padding: 34px; border-radius: 20px; background: linear-gradient(145deg, #F1E8DB, #E6D5BF); border-color: #DDCBB3; }
+        .warranty-form-intro p, .warranty-form-intro ul { color: #75604B; }
+        .warranty-preparation-art { display: block; width: 130px; height: 130px; margin: 0 auto 28px; filter: drop-shadow(0 12px 10px #77583122); }
+        .warranty-form-intro ul { list-style: none; padding: 0; margin: 24px 0 0; }
+        .warranty-form-intro li { position: relative; padding: 12px 0 12px 30px; border-top: 1px solid #A48B6933; font-size: 13px; line-height: 1.6; }
+        .warranty-form-intro li::before { content: '✓'; position: absolute; left: 0; color: #6B7F59; font-weight: 700; }
+        .warranty-form { padding: 36px; border-top: 4px solid #B08968; }
+        .warranty-field input, .warranty-field select, .warranty-field textarea { min-height: 48px; padding: 13px 14px; border-radius: 10px; background: #FAF8F4; }
+        .warranty-field textarea { min-height: 140px; }
+        .warranty-submit { min-height: 48px; padding-inline: 28px; background: #4E3B2E; color: white; border-radius: 10px; }
+        .warranty-submit:hover { background: #38291F; }
+        .warranty-form-note { padding: 14px 16px; border-radius: 10px; background: #F5F1EA; line-height: 1.8; }
+        .warranty-discover { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 40px; padding: 40px; overflow: hidden; border: 1px solid #E1D4C1; border-radius: 22px; background: #EEE3D4; }
+        .warranty-discover h2 { color: #4E3B2E; font-size: clamp(26px, 3vw, 36px); line-height: 1.25; letter-spacing: -.7px; }
+        .warranty-discover .warranty-eyebrow { color: #96734F; }
+        .warranty-discover p { color: #75604B; font-size: 14px; line-height: 1.8; }
+        .warranty-discover .warranty-btn { background: #4E3B2E; color: white; }
+        .warranty-discover img { width: 100%; height: 260px; object-fit: cover; border-radius: 15px; }
+        @media (max-width: 600px) {
+            .warranty-policy-card, .warranty-form, .warranty-form-intro { padding: 24px; }
+            .warranty-discover { grid-template-columns: 1fr; gap: 24px; padding: 25px; }
+            .warranty-discover img { height: 210px; }
+            .warranty-submit { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute; overflow:hidden;">
+        <defs>
+            <linearGradient id="w-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFE8A4"/><stop offset=".5" stop-color="#DBA34C"/><stop offset="1" stop-color="#A76A28"/></linearGradient>
+            <linearGradient id="w-paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF9E9"/><stop offset="1" stop-color="#DECAA7"/></linearGradient>
+            <symbol id="w-shield" viewBox="0 0 240 240">
+                <ellipse cx="120" cy="211" rx="77" ry="17" fill="#AD8150"/>
+                <path d="M43 197c0-20 154-20 154 0v14c0 20-154 20-154 0Z" fill="url(#w-paper)"/>
+                <ellipse cx="120" cy="197" rx="77" ry="17" fill="#F0DBB4"/>
+                <path d="m125 19 70 28v59c0 51-36 78-70 96-35-18-71-45-71-96V47Z" fill="#A66A28"/>
+                <path d="m116 13 70 28v59c0 51-36 78-70 96-35-18-71-45-71-96V41Z" fill="url(#w-gold)" stroke="#FFE5A4" stroke-width="4"/>
+                <path d="m116 32 52 21v48c0 39-26 61-52 77-26-16-53-38-53-77V53Z" fill="none" stroke="#FFE5A4" stroke-width="3"/>
+                <path d="m86 101 21 22 42-45" fill="none" stroke="#965D22" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="m84 97 21 22 42-45" fill="none" stroke="#FFF0BE" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            </symbol>
+            <symbol id="w-clipboard" viewBox="0 0 160 160">
+                <rect x="34" y="26" width="100" height="124" rx="13" fill="#B78D57"/>
+                <rect x="28" y="20" width="100" height="124" rx="13" fill="url(#w-paper)" stroke="#BC945E" stroke-width="3"/>
+                <rect x="57" y="12" width="42" height="23" rx="7" fill="url(#w-gold)"/>
+                <g fill="none" stroke="#A8793D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m44 60 5 6 10-12m-15 34 5 6 10-12m-15 34 5 6 10-12M73 60h35M73 88h35M73 116h35"/></g>
+            </symbol>
+            <symbol id="w-request" viewBox="0 0 160 160">
+                <rect x="19" y="39" width="122" height="87" rx="12" fill="url(#w-paper)" stroke="#B7966E" stroke-width="3"/>
+                <path d="m22 45 58 43 58-43M22 119l38-32m78 32-38-32" fill="none" stroke="#B7966E" stroke-width="3"/>
+                <circle cx="120" cy="116" r="27" fill="#7B9271" stroke="#F4F2DE" stroke-width="4"/>
+                <path d="M109 117h21m-8-8 8 8-8 8" fill="none" stroke="#FFF7E7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </symbol>
+            <symbol id="w-review" viewBox="0 0 160 160">
+                <path d="m23 48 57-22 57 22v76l-57 24-57-24Z" fill="url(#w-paper)" stroke="#B7966E" stroke-width="2"/>
+                <path d="m23 48 57 24 57-24M80 72v76M52 37l57 24v24" fill="none" stroke="#B7966E" stroke-width="3"/>
+                <path d="m118 77 29 11v24c0 21-15 32-29 40-14-8-29-19-29-40V88Z" fill="#7B9271" stroke="#E6EDDD" stroke-width="3"/>
+                <path d="m104 111 10 10 18-21" fill="none" stroke="#FFF6DC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </symbol>
+        </defs>
+    </svg>
+    <!-- HEADER -->
+    <header class="warranty-header">
+        <div class="container warranty-header-inner">
+            <a href="index.html" class="warranty-brand" aria-label="Góc Desk - Trang chủ">
+                <svg class="warranty-brand-art" viewBox="65 85 250 121" role="img" aria-label="Logo Góc Desk"><image href="images/goc-desk-brand-kit.png" width="1065" height="1024"/></svg>
+                <span>GÓC NHỎ · CẢM HỨNG LỚN</span>
+            </a>
+
+            <form class="warranty-search" action="products.html" method="get" role="search">
+                <input type="search" name="q" placeholder="Tìm bàn phím, đèn bàn, giá đỡ..." aria-label="Tìm kiếm sản phẩm">
+                <button type="submit">Tìm</button>
+            </form>
+
+            <nav class="warranty-nav" aria-label="Menu điều hướng chính">
+                <a href="index.html">Trang chủ</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="points.html">Tích điểm</a>
+                <a href="warranty.html" class="active" aria-current="page">Bảo hành</a>
+                <a href="news.html">Tin tức</a>
+                <a href="setup-3d.html">Thiết kế 3D</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- HERO -->
+            <section class="warranty-hero warranty-hero-main" aria-labelledby="warranty-title">
+                <div class="warranty-hero-copy">
+                <p class="warranty-eyebrow">Góc Desk Support</p>
+                <h1 id="warranty-title">Chính sách bảo hành</h1>
+                <p>
+                    Góc Desk hướng đến trải nghiệm mua sắm rõ ràng và thuận tiện.
+                    Tìm hiểu quy trình tiếp nhận yêu cầu và chuẩn bị thông tin
+                    sản phẩm khi cần hỗ trợ bảo hành.
+                </p>
+                <div class="warranty-hero-actions">
+                <a class="warranty-btn" href="#warranty-request">
+                    Gửi yêu cầu bảo hành →
+                </a>
+                <div class="warranty-art-note"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#w-shield"/></svg>Đồng hành cùng góc riêng của bạn</div>
+                </div>
+                </div>
+                <div class="warranty-hero-art" aria-hidden="true">
+                    <svg class="warranty-shield" viewBox="0 0 240 240"><use href="#w-shield"/></svg>
+                </div>
+            </section>
+
+            <!-- QUY TRÌNH -->
+            <section class="warranty-section" aria-labelledby="warranty-steps-title">
+                <div class="warranty-section-heading">
+                    <p class="eyebrow">Quy trình hỗ trợ</p>
+                    <h2 id="warranty-steps-title">Các bước yêu cầu bảo hành</h2>
+                    <p>
+                        Chuẩn bị thông tin cần thiết để nhóm có thể tiếp nhận
+                        và xem xét yêu cầu của bạn.
+                    </p>
+                </div>
+
+                <div class="warranty-steps">
+                    <article class="warranty-step">
+                        <div class="warranty-step-art" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#w-clipboard"/></svg></div>
+                        <div class="warranty-step-number">01</div>
+                        <h3>Chuẩn bị thông tin</h3>
+                        <p>
+                            Chuẩn bị thông tin đơn hàng, tên sản phẩm và mô tả
+                            tình trạng cần hỗ trợ.
+                        </p>
+                    </article>
+
+                    <article class="warranty-step">
+                        <div class="warranty-step-art" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#w-request"/></svg></div>
+                        <div class="warranty-step-number">02</div>
+                        <h3>Gửi yêu cầu</h3>
+                        <p>
+                            Cung cấp thông tin liên hệ và nội dung yêu cầu
+                            theo biểu mẫu bên dưới.
+                        </p>
+                    </article>
+
+                    <article class="warranty-step">
+                        <div class="warranty-step-art" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#w-review"/></svg></div>
+                        <div class="warranty-step-number">03</div>
+                        <h3>Chờ xác nhận</h3>
+                        <p>
+                            Yêu cầu cần được kiểm tra và xác nhận theo quy trình
+                            hỗ trợ của cửa hàng.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CHÍNH SÁCH -->
+            <section class="warranty-section" aria-labelledby="warranty-policy-title">
+                <div class="warranty-section-heading">
+                    <p class="eyebrow">Thông tin cần biết</p>
+                    <h2 id="warranty-policy-title">Thông tin bảo hành</h2>
+                    <p>
+                        Các nội dung dưới đây là phần giới thiệu giao diện.
+                        Điều khoản cụ thể cần được nhóm xác nhận trước khi công bố.
+                    </p>
+                </div>
+
+                <div class="warranty-policy-grid">
+                    <article class="warranty-policy-card">
+                        <div class="warranty-policy-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m16 3 10 4v9c0 6-5 10-10 13C11 26 6 22 6 16V7Z"/><path d="m11 15 4 4 7-8"/></svg></div>
+                        <h3>Điều kiện áp dụng</h3>
+                        <p>
+                            Cung cấp thông tin sản phẩm và đơn hàng để được
+                            kiểm tra điều kiện tiếp nhận yêu cầu bảo hành.
+                            Điều kiện chính thức sẽ được cập nhật sau.
+                        </p>
+                    </article>
+
+                    <article class="warranty-policy-card">
+                        <div class="warranty-policy-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l5 3"/></svg></div>
+                        <h3>Thời hạn bảo hành</h3>
+                        <p>
+                            Thời hạn áp dụng cần căn cứ vào chính sách được
+                            công bố cho từng sản phẩm. Vui lòng kiểm tra thông tin
+                            sản phẩm hoặc xác nhận với cửa hàng.
+                        </p>
+                    </article>
+
+                    <article class="warranty-policy-card">
+                        <div class="warranty-policy-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 14v9M16 9v1"/></svg></div>
+                        <h3>Trường hợp không áp dụng</h3>
+                        <p>
+                            Việc tiếp nhận và xử lý yêu cầu cần được đánh giá
+                            theo điều khoản bảo hành chính thức của sản phẩm.
+                            Các trường hợp loại trừ sẽ được công bố sau.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="warranty-notice">
+                    <strong>Lưu ý:</strong> Đây là giao diện minh họa cho đồ án.
+                    Thời hạn, điều kiện, phạm vi và trường hợp loại trừ bảo hành
+                    chưa được xác định tại trang này. Không sử dụng nội dung
+                    này thay cho chính sách bảo hành chính thức.
+                </div>
+            </section>
+
+            <!-- FORM YÊU CẦU -->
+            <section class="warranty-section" id="warranty-request" aria-labelledby="warranty-form-title">
+                <div class="warranty-section-heading">
+                    <p class="eyebrow">Tiếp nhận hỗ trợ</p>
+                    <h2 id="warranty-form-title">Gửi yêu cầu bảo hành</h2>
+                    <p>
+                        Điền thông tin minh họa bên dưới để thể hiện giao diện
+                        tiếp nhận yêu cầu bảo hành của Góc Desk.
+                    </p>
+                </div>
+
+                <div class="warranty-form-layout">
+                    <aside class="warranty-form-intro">
+                        <svg class="warranty-preparation-art" viewBox="0 0 160 160" aria-hidden="true"><use href="#w-clipboard"/></svg>
+                        <h3>Bạn cần chuẩn bị gì?</h3>
+                        <p>
+                            Để việc kiểm tra thuận tiện hơn, hãy chuẩn bị
+                            những thông tin liên quan đến sản phẩm cần hỗ trợ.
+                        </p>
+                        <ul>
+                            <li>Họ tên người mua hàng</li>
+                            <li>Email hoặc số điện thoại liên hệ</li>
+                            <li>Mã đơn hàng hoặc tên sản phẩm</li>
+                            <li>Mô tả tình trạng sản phẩm</li>
+                        </ul>
+                    </aside>
+
+                    <form class="warranty-form" action="#" method="get"
+                          onsubmit="return false;">
+                        <h3>Thông tin yêu cầu</h3>
+                        <p class="warranty-form-description">
+                            Các trường có dấu * là trường bắt buộc trong giao diện.
+                        </p>
+
+                        <div class="warranty-form-grid">
+                            <div class="warranty-field">
+                                <label for="customer-name">Họ và tên *</label>
+                                <input
+                                    type="text"
+                                    id="customer-name"
+                                    name="customer-name"
+                                    placeholder="Nhập họ và tên"
+                                    autocomplete="name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="warranty-field">
+                                <label for="customer-contact">Email hoặc số điện thoại *</label>
+                                <input
+                                    type="text"
+                                    id="customer-contact"
+                                    name="customer-contact"
+                                    placeholder="Thông tin liên hệ"
+                                    required
+                                >
+                            </div>
+
+                            <div class="warranty-field full-width">
+                                <label for="order-code">Mã đơn hàng hoặc tên sản phẩm *</label>
+                                <input
+                                    type="text"
+                                    id="order-code"
+                                    name="order-code"
+                                    placeholder="Nhập mã đơn hàng hoặc tên sản phẩm"
+                                    required
+                                >
+                            </div>
+
+                            <div class="warranty-field full-width">
+                                <label for="issue-type">Vấn đề cần hỗ trợ *</label>
+                                <select id="issue-type" name="issue-type" required>
+                                    <option value="">-- Chọn vấn đề --</option>
+                                    <option value="product-defect">Sản phẩm có dấu hiệu bất thường</option>
+                                    <option value="operation">Sản phẩm hoạt động không ổn định</option>
+                                    <option value="warranty-policy">Hỏi về chính sách bảo hành</option>
+                                    <option value="other">Vấn đề khác</option>
+                                </select>
+                            </div>
+
+                            <div class="warranty-field full-width">
+                                <label for="issue-description">Mô tả chi tiết *</label>
+                                <textarea
+                                    id="issue-description"
+                                    name="issue-description"
+                                    placeholder="Mô tả tình trạng sản phẩm và nội dung cần hỗ trợ..."
+                                    required
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <button class="warranty-btn warranty-submit" type="submit">
+                            Gửi yêu cầu →
+                        </button>
+
+                        <p class="warranty-form-note">
+                            Lưu ý: Form hiện chỉ minh họa giao diện HTML.
+                            Chưa có chức năng lưu dữ liệu hoặc gửi yêu cầu đến cửa hàng.
+                        </p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="warranty-section">
+                <div class="warranty-discover">
+                    <div>
+                    <p class="warranty-eyebrow">Góc Desk</p>
+                    <h2>
+                        Khám phá phụ kiện cho góc riêng của bạn
+                    </h2>
+                    <p>
+                        Tìm các sản phẩm hỗ trợ học tập và làm việc tại Góc Desk.
+                    </p>
+                    <a href="products.html" class="warranty-btn">
+                        Xem sản phẩm →
+                    </a>
+                    </div>
+                    <img src="images/hero-laptop-neutral.jpg" alt="Góc bàn làm việc với laptop và phụ kiện" loading="lazy">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="warranty-footer">
+        <div class="container">
+            <div class="warranty-footer-grid">
+                <div class="warranty-footer-brand">
+                    <h3>Góc Desk</h3>
+                    <p>
+                        Phụ kiện và cảm hứng cho góc học tập, làm việc của bạn.
+                        Không gian làm việc theo phong cách của bạn.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="warranty.html">Chính sách bảo hành</a></li>
+                        <li><a href="news.html">Hướng dẫn mua hàng</a></li>
+                        <li><a href="warranty.html#warranty-request">Gửi yêu cầu hỗ trợ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Khám phá</h4>
+                    <ul>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="points.html">Tích điểm</a></li>
+                        <li><a href="news.html">Tin tức</a></li>
+                        <li><a href="setup-3d.html">Thiết kế 3D</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warranty-footer-bottom">
+                <p>&copy; 2026 Góc Desk — Đồ án Phát triển ứng dụng TMĐT UEH.</p>
+                <p>Một góc riêng. Nhiều cảm hứng.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
