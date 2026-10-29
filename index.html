@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Góc Desk - Trang chủ | Góc nhỏ, cảm hứng lớn</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Menu điều hướng của trang chủ */
+        .main-nav {
+            overflow-x: auto;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: clamp(16px, 3vw, 36px);
+            margin: 0;
+            padding: 12px 0;
+            list-style: none;
+        }
+
+        .nav-list > li {
+            flex-shrink: 0;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            font-size: 0.94rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: color var(--gd-transition), border-color var(--gd-transition);
+        }
+
+        .nav-list a:hover,
+        .nav-list a:focus-visible,
+        .nav-list a.active {
+            color: var(--gd-wood);
+            border-bottom-color: var(--gd-wood);
+        }
+    </style>
 </head>
 <body>
 
