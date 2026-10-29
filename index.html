@@ -3,27 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Góc Desk - Trang chủ</title>
+    <title>Góc Desk - Trang chủ | Góc nhỏ, cảm hứng lớn</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <a href="index.html">Góc Desk</a>
-        <nav>
-            <a href="index.html">Trang chủ</a>
-            <a href="products.html">Sản phẩm</a>
-            <a href="about.html">Giới thiệu</a>
-            <a href="setup-3d.html">Thiết kế góc làm việc</a>
-        </nav>
+
+    <!-- 1. KHU VỰC HEADER & ĐIỀU HƯỚNG -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="brand-logo">
+                    <div class="logo-icon">G</div>
+                    <div class="logo-text">
+                        <strong>Góc Desk</strong>
+                        <span>Góc nhỏ - Cảm hứng lớn</span>
+                    </div>
+                </a>
+
+                <form class="search-bar" action="products.html">
+                    <input type="text" placeholder="Tìm bàn phím, đèn bàn, giá đỡ..." aria-label="Tìm kiếm sản phẩm">
+                    <button type="submit">Tìm</button>
+                </form>
+
+                <div class="header-icons">
+                    <a href="products.html" class="icon-btn" title="Yêu thích" aria-label="Yêu thích">♡</a>
+                    <a href="cart.html" class="icon-btn" title="Giỏ hàng" aria-label="Giỏ hàng">🛒</a>
+                    <a href="points.html" class="icon-btn" title="Tài khoản & Tích điểm" aria-label="Tài khoản">👤</a>
+                </div>
+            </div>
+
+            <nav class="main-nav" aria-label="Menu điều hướng chính">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="points.html">Tích điểm</a></li>
+                    <li><a href="warranty.html">Bảo hành</a></li>
+                    <li><a href="news.html">Tin tức</a></li>
+                    <li><a href="setup-3d.html">Thiết kế 3D</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <h1>Chào mừng đến với Góc Desk</h1>
-        <!-- Thành viên phụ trách sẽ bổ sung nội dung trang -->
+        <!-- 2. KHU VỰC HERO BANNER -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-card">
+                    <div class="hero-content">
+                        <div class="hero-tags">
+                            <span class="tag-badge">GÓC HỌC TẬP</span>
+                            <span class="tag-badge sub">GÓC LÀM VIỆC</span>
+                        </div>
+                        <h1>Sắp xếp góc riêng.<br>Khơi nguồn cảm hứng.</h1>
+                        <p class="text-light-desc">
+                            Đa dạng phụ kiện, tối ưu không gian làm việc hiện đại và tiện nghi hơn mỗi ngày. Khám phá phụ kiện bàn làm việc và tự thiết kế không gian của bạn với Góc Desk.
+                        </p>
+                        <div class="hero-features">
+                            <div class="feature-item"><span class="feature-dot"></span>Đa dạng phụ kiện</div>
+                            <div class="feature-item"><span class="feature-dot"></span>Thiết kế hiện đại</div>
+                            <div class="feature-item"><span class="feature-dot"></span>Chất lượng bền bỉ</div>
+                            <div class="feature-item"><span class="feature-dot"></span>Giao hàng nhanh chóng</div>
+                        </div>
+                        <div class="hero-actions">
+                            <a href="products.html" class="btn btn-primary">Khám phá sản phẩm →</a>
+                            <a href="setup-3d.html" class="btn btn-outline">Thử thiết kế 3D</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-image-box">
+                        <img src="images/banner.png" onerror="this.src='https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1000&q=80'" alt="Banner Góc Desk Phụ kiện bàn làm việc">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. KHU VỰC MUA SẮM THEO DANH MỤC -->
+        <section class="section-block">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Mua sắm theo danh mục</h2>
+                        <p class="text-light-desc">Phân loại phụ kiện thiết yếu cho góc học tập và làm việc</p>
+                    </div>
+                    <a href="products.html" class="link-arrow">Xem tất cả →</a>
+                </div>
+
+                <div class="grid-4">
+                    <a href="products.html" class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80" alt="Danh mục Bàn phím">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Danh mục sản phẩm</span>
+                            <h3 class="card-title">Bàn phím</h3>
+                        </div>
+                    </a>
+
+                    <a href="products.html" class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80" alt="Danh mục Chuột máy tính">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Danh mục sản phẩm</span>
+                            <h3 class="card-title">Chuột máy tính</h3>
+                        </div>
+                    </a>
+
+                    <a href="products.html" class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80" alt="Danh mục Đèn bàn">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Danh mục sản phẩm</span>
+                            <h3 class="card-title">Đèn bàn</h3>
+                        </div>
+                    </a>
+
+                    <a href="products.html" class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" alt="Danh mục Giá đỡ và phụ kiện">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Danh mục sản phẩm</span>
+                            <h3 class="card-title">Giá đỡ &amp; phụ kiện</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. KHU VỰC SẢN PHẨM NỔI BẬT -->
+        <section class="section-block">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Sản phẩm nổi bật</h2>
+                        <p class="text-light-desc">Gợi ý phụ kiện nhỏ gọn, thẩm mỹ và tối ưu ngân sách sinh viên</p>
+                    </div>
+                    <a href="products.html" class="link-arrow">Xem tất cả sản phẩm →</a>
+                </div>
+
+                <div class="grid-4">
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80" alt="Bàn phím không dây">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Bàn phím không dây</h3>
+                            <p class="card-price">350.000₫</p>
+                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
+                        </div>
+                    </article>
+
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80" alt="Chuột máy tính">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Chuột máy tính</h3>
+                            <p class="card-price">250.000₫</p>
+                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
+                        </div>
+                    </article>
+
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80" alt="Đèn bàn LED">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Đèn bàn LED</h3>
+                            <p class="card-price">420.000₫</p>
+                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
+                        </div>
+                    </article>
+
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=600&q=80" alt="Giá đỡ laptop">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Giá đỡ laptop</h3>
+                            <p class="card-price">290.000₫</p>
+                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. KHU VỰC CTA TỰ THIẾT KẾ GÓC LÀM VIỆC 3D -->
+        <section class="container">
+            <div class="cta-banner">
+                <div>
+                    <h2>Tự thiết kế góc làm việc của bạn</h2>
+                    <p>Thử sắp xếp bàn và phụ kiện trong không gian 3D.</p>
+                </div>
+                <a href="setup-3d.html" class="btn btn-accent">Bắt đầu thiết kế →</a>
+            </div>
+        </section>
+
+        <!-- 6. KHU VỰC TIN TỨC (MỚI TỪ GÓC DESK) -->
+        <section class="section-block">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2>Mới từ Góc Desk</h2>
+                        <p class="text-light-desc">Cảm hứng bài trí và mẹo chọn phụ kiện bàn học</p>
+                    </div>
+                    <a href="news.html" class="link-arrow">Đọc tin tức →</a>
+                </div>
+
+                <div class="grid-3">
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=600&q=80" alt="5 cách sắp xếp góc học tập gọn gàng">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Setup</span>
+                            <h3 class="card-title">5 cách sắp xếp góc học tập gọn gàng</h3>
+                            <a href="news.html" class="card-link">Đọc bài viết →</a>
+                        </div>
+                    </article>
+
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=600&q=80" alt="Chọn đèn bàn phù hợp cho góc làm việc">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Phụ kiện</span>
+                            <h3 class="card-title">Chọn đèn bàn phù hợp cho góc làm việc</h3>
+                            <a href="news.html" class="card-link">Đọc bài viết →</a>
+                        </div>
+                    </article>
+
+                    <article class="card-item">
+                        <div class="card-thumb">
+                            <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80" alt="Bắt đầu xây dựng góc desk của riêng bạn">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category-label">Hướng dẫn</span>
+                            <h3 class="card-title">Bắt đầu xây dựng góc desk của riêng bạn</h3>
+                            <a href="news.html" class="card-link">Đọc bài viết →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>Góc Desk - Phụ kiện góc học tập và làm việc</p>
+    <!-- 7. KHU VỰC FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Góc Desk</h3>
+                    <p>Phụ kiện và cảm hứng cho góc học tập, làm việc của bạn. Không gian làm việc theo phong cách của bạn.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="warranty.html">Chính sách bảo hành</a></li>
+                        <li><a href="news.html">Hướng dẫn mua hàng</a></li>
+                        <li><a href="warranty.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Khám phá</h4>
+                    <ul>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="points.html">Tích điểm</a></li>
+                        <li><a href="news.html">Tin tức</a></li>
+                        <li><a href="setup-3d.html">Thiết kế 3D</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Góc Desk — Đồ án Phát triển ứng dụng TMĐT UEH.</p>
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>
