@@ -156,3 +156,22 @@ Use case: stylized-concept. Asset type: conceptual editorial image for a static 
 ### Kiểm tra thực tế
 
 Đã mở trang trên Chrome tại các độ rộng 1366, 768 và 390 px. Cả bảy ảnh nạp thành công; chiều rộng nội dung bằng chiều rộng khung nhìn nên không có tràn ngang. Bộ lọc trả về 2 bài cảm hứng, 2 bài hướng dẫn, 1 bài chọn phụ kiện và 1 bài trải nghiệm; Tất cả trả đủ 6 thẻ. Phần đọc tiếp mở được, liên kết trải nghiệm dẫn đến setup-3d.html và không ghi nhận lỗi JavaScript trên trang. Đã xem lại ảnh chụp giao diện; ảnh tải trễ cần cuộn qua các khu vực trước khi chụp toàn trang.
+
+
+# Lần sử dụng 4 — Tạo ảnh nền riêng cho trang Tin tức và Thiết kế 3D (30/10/2026)
+
+### Công cụ và mục đích
+
+Ảnh được tạo bằng imagegen tích hợp trong Codex để bổ sung banner đầu trang cho hai trang được phân công. Hai ảnh dùng hai phong cách tách biệt; không lấy ảnh mẫu của trang thành viên. Chúng chỉ là ảnh nền minh họa, không thể hiện chức năng 3D đang hoạt động.
+
+### Ảnh trang Tin tức: `images/news-hero-background.png`
+
+> Use case: photorealistic-natural. Asset type: extra-wide website hero background for the Góc Desk editorial news page. Create a premium independent design-magazine photograph of a compact creative workspace in a modern Vietnamese apartment, clearly distinct from a generic beige desk setup: rich terracotta-red wall accent, dark walnut desk, cobalt-blue articulated task lamp, a single open sketchbook, sculptural charcoal keyboard, and one framed abstract art print. Late-afternoon directional sunlight creates expressive geometric shadows across the wall. Compose as a wide panoramic 16:7 background; keep the main furnishings low in the frame and reserve the upper-middle wall area as clean negative space for centered white website text. Contemporary editorial photography, tactile materials, bold but refined contrast, subtle film grain, authentic proportions. No people, no text, no lettering, no brand marks, no watermark, no collage. This is only a decorative page background, not a product listing.
+
+### Ảnh trang Thiết kế 3D: `images/setup-3d-hero-background.png`
+
+> Use case: stylized-concept. Asset type: wide website hero background for the Góc Desk desk-planning page. Create a polished isometric architectural visualization of a modular workspace planning concept, not a photograph: a floating pale stone desk platform seen from above at a 30-degree angle, with simple geometric monitor, keyboard, task lamp, laptop stand and cable tray arranged as movable components. Surround it with thin blueprint guide lines, subtle grid marks without numerals, and a midnight-indigo studio environment with cobalt-blue and muted lime accents. Dramatically different from a warm lifestyle photograph: precise, graphic, technical, spacious, premium product-design render. Extra-wide panoramic 16:7 composition; keep the central upper half deep navy and uncluttered for white title text, arrange the isometric desk low across the frame. Dimensional shadows, elegant rim lighting, crisp material edges. No words, labels, numbers, UI panels, logos, watermark, people, AR/camera motifs, or collage. Decorative background for a static HTML/CSS mockup, not a claim of real 3D functionality.
+
+### Cách sử dụng
+
+Ảnh được lưu trong `images/` và gắn làm nền cho riêng phần mở đầu của từng trang bằng CSS. Lớp phủ tối giúp chữ dễ đọc; vị trí nền được điều chỉnh ở màn hình nhỏ. Nội dung trên trang Thiết kế 3D vẫn mô tả đúng đây là mô phỏng CSS.
