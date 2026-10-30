@@ -20,7 +20,7 @@
             padding: 10px 18px; background: var(--gd-brown); color: white; border-radius: 8px;
         }
         .skip-link:focus { top: 12px; }
-        /* Header trên ảnh: nền tối chuyển nhẹ, logo chuẩn đặt trong ô sáng. */
+        /* Header trên ảnh: logo chữ trắng, nền trong suốt. */
         .site-header {
             position: absolute; inset: 0 0 auto; z-index: 100; padding: 16px 0 30px;
             border: 0; backdrop-filter: none;
@@ -32,14 +32,12 @@
         }
         .header-top { display: contents; }
         .brand-logo {
-            display: inline-flex; flex-direction: column; align-items: center; gap: 5px;
-            flex-shrink: 0; width: 174px; padding: 10px 12px;
-            background: #f7f5f2; border: 1px solid #ffffffb3; border-radius: 4px;
-            box-shadow: 0 3px 16px rgba(0, 0, 0, .12);
+            display: inline-flex; align-items: center;
+            flex-shrink: 0; width: 120px; padding: 0;
+            background: transparent; border: 0; box-shadow: none;
         }
-        /* Hiển thị đúng bản logo chính từ bộ nhận diện, không vẽ lại biểu tượng. */
-        .brand-art { display: block; width: 148px; height: 72px; mix-blend-mode: multiply; }
-        .brand-slogan { color: var(--gd-brown); font-size: 10.5px; line-height: 1.4; font-weight: 700; letter-spacing: .15px; white-space: nowrap; }
+        /* Giữ nét logo gốc; bộ lọc SVG loại nền sáng và chuyển chữ sang trắng. */
+        .brand-art { display: block; width: 120px; height: auto; aspect-ratio: 250 / 121; }
         .search-bar {
             order: 2; display: flex; align-items: center; width: 100%; margin: 0;
             border: 1px solid #d8dcd9; border-radius: 999px; background: #ffffffed;
@@ -175,9 +173,8 @@
             .container { width: calc(100% - 32px); }
             .site-header { padding: 12px 0 24px; }
             .site-header > .container { width: calc(100% - 32px); grid-template-columns: 1fr auto; gap: 13px; }
-            .brand-logo { width: 162px; gap: 4px; padding: 8px 10px; }
-            .brand-art { width: 136px; height: 66px; }
-            .brand-slogan { font-size: 10px; letter-spacing: .1px; }
+            .brand-logo { width: 108px; }
+            .brand-art { width: 108px; }
             .header-icons { order: 1; margin-left: auto; gap: 6px; }
             .icon-btn { width: 35px; height: 35px; border-radius: 8px; }
             .ui-icon { width: 18px; height: 18px; }
@@ -228,9 +225,17 @@
             <div class="header-top">
                 <a href="index.html" class="brand-logo" aria-label="Góc Desk — Trang chủ">
                     <svg class="brand-art" viewBox="65 85 250 121" role="img" aria-label="Logo Góc Desk">
-                        <image href="images/goc-desk-brand-kit.png" width="1065" height="1024"/>
+                        <defs>
+                            <filter id="brand-remove-background" color-interpolation-filters="sRGB">
+                                <feColorMatrix type="matrix" values="
+                                    0 0 0 0 1
+                                    0 0 0 0 1
+                                    0 0 0 0 1
+                                    -2 -2 -2 0 4.5"/>
+                            </filter>
+                        </defs>
+                        <image href="images/goc-desk-brand-kit.png" width="1065" height="1024" filter="url(#brand-remove-background)"/>
                     </svg>
-                    <span class="brand-slogan">Góc nhỏ – Cảm hứng lớn</span>
                 </a>
 
                 <form class="search-bar" action="products.html">
