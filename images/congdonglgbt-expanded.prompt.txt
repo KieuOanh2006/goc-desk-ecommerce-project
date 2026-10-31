@@ -1,0 +1,6 @@
+Built-in image_gen edit. Source: congdonglgbt.jpg.
+
+Use case: identity-preserve, canvas outpainting.
+Asset type: wide website community banner background, 2.5:1 landscape composition about 1920x768.
+Input image 1 is the EDIT TARGET. Preserve the original diverse smiling group of people leaning inward and gathering their hands, their faces, clothes, gestures, camera angle and arrangement. Move the entire unchanged original photo area to the RIGHT 50–55% of a wider canvas. Extend the canvas only to the LEFT with seamless photorealistic continuation of the existing pale blue/white sky, softly lit daylight, and subtle unobtrusive blurred outdoor backdrop at the very bottom. The LEFT 45–50% must be empty low-detail negative space for later website copy.
+This is OUTPAINTING, not zooming. Do not enlarge, stretch, crop, replace or rearrange the group. Do not add any additional people, hands or objects. Keep the people and all original details on the right as faithful to the input as possible. Extend the surrounding sky naturally to meet the original photo without a visible seam. The output itself should have natural daylight; a black transparent overlay will be added later in CSS, so do not bake in a black gradient. No text, lettering, logo, watermark, frame or UI.

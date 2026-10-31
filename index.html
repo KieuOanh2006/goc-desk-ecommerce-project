@@ -20,7 +20,7 @@
             padding: 10px 18px; background: var(--gd-brown); color: white; border-radius: 8px;
         }
         .skip-link:focus { top: 12px; }
-        /* Header trên ảnh: logo chữ trắng, nền trong suốt. */
+        /* Header trên ảnh: logo nâu, nền trong suốt. */
         .site-header {
             position: absolute; inset: 0 0 auto; z-index: 100; padding: 16px 0 30px;
             border: 0; backdrop-filter: none;
@@ -36,8 +36,8 @@
             flex-shrink: 0; width: 120px; padding: 0;
             background: transparent; border: 0; box-shadow: none;
         }
-        /* Giữ nét logo gốc; bộ lọc SVG loại nền sáng và chuyển chữ sang trắng. */
-        .brand-art { display: block; width: 120px; height: auto; aspect-ratio: 250 / 121; }
+        /* Dùng trực tiếp logo nâu có nền trong suốt. */
+        .brand-art { display: block; width: 120px; height: auto; }
         .search-bar {
             order: 2; display: flex; align-items: center; width: 100%; margin: 0;
             border: 1px solid #d8dcd9; border-radius: 999px; background: #ffffffed;
@@ -215,8 +215,9 @@
             .footer-bottom { flex-direction: column; gap: 6px; }
         }
     </style>
+    <link rel="stylesheet" href="css/home.css">
 </head>
-<body>
+<body class="home-page">
     <a class="skip-link" href="#main-content">Đến nội dung chính</a>
 
     <!-- 1. KHU VỰC HEADER & ĐIỀU HƯỚNG -->
@@ -224,18 +225,7 @@
         <div class="container">
             <div class="header-top">
                 <a href="index.html" class="brand-logo" aria-label="Góc Desk — Trang chủ">
-                    <svg class="brand-art" viewBox="65 85 250 121" role="img" aria-label="Logo Góc Desk">
-                        <defs>
-                            <filter id="brand-remove-background" color-interpolation-filters="sRGB">
-                                <feColorMatrix type="matrix" values="
-                                    0 0 0 0 1
-                                    0 0 0 0 1
-                                    0 0 0 0 1
-                                    -2 -2 -2 0 4.5"/>
-                            </filter>
-                        </defs>
-                        <image href="images/goc-desk-brand-kit.png" width="1065" height="1024" filter="url(#brand-remove-background)"/>
-                    </svg>
+                    <img class="brand-art" src="images/logo1.png" width="1632" height="964" alt="Góc Desk — Góc nhỏ, cảm hứng lớn">
                 </a>
 
                 <form class="search-bar" action="products.html">
@@ -293,116 +283,100 @@
             </div>
         </section>
 
-        <!-- 3. KHU VỰC MUA SẮM THEO DANH MỤC -->
-        <section class="section-block categories" id="shop-categories">
+
+        <nav class="section-shortcuts" aria-label="Khám phá trang chủ"><a href="#shop-categories">Danh mục sản phẩm</a><a href="#new-arrivals">Mới lên kệ</a><a href="#bestsellers">Bán chạy</a><a href="#community">Cộng đồng</a><a href="#faq">Câu hỏi thường gặp</a></nav>
+
+        <!-- DANH MỤC SẢN PHẨM -->
+        <section class="section-block categories" id="shop-categories" aria-labelledby="categories-title">
             <div class="container">
                 <div class="section-header">
-                    <div>
-                        <h2>Mua sắm theo danh mục</h2>
-                        <p class="text-light-desc">Phân loại phụ kiện thiết yếu cho góc học tập và làm việc</p>
-                    </div>
-                    <a href="products.html" class="link-arrow">Xem tất cả →</a>
+                    <div><p class="section-eyebrow">Chúng tôi có gì?</p><h2 id="categories-title">Danh mục sản phẩm</h2></div>
+                    <a href="products.html" class="link-arrow">Khám phá tất cả <span aria-hidden="true">↗</span></a>
                 </div>
-
-                <div class="grid-4">
-                    <a href="products.html" class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/bp2.jpg" alt="Danh mục Bàn phím" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <span class="card-category-label">Danh mục sản phẩm</span>
-                            <h3 class="card-title">Bàn phím</h3>
-                        </div>
+                <div class="category-grid">
+                    <a href="products.html#catalog" class="category-tile">
+                        <div class="category-image"><img src="images/bp2.jpg" alt="Bàn phím cho góc học tập và làm việc" loading="lazy" decoding="async"></div>
+                        <h3>Bàn phím <span aria-hidden="true">↗</span></h3>
                     </a>
-
-                    <a href="products.html" class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/chuot1-square.png" class="thumb-expanded" alt="Danh mục Chuột máy tính" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <span class="card-category-label">Danh mục sản phẩm</span>
-                            <h3 class="card-title">Chuột máy tính</h3>
-                        </div>
+                    <a href="products.html#catalog" class="category-tile">
+                        <div class="category-image"><img src="images/chuot1-square.png" alt="Chuột máy tính không dây" loading="lazy" decoding="async"></div>
+                        <h3>Chuột máy tính <span aria-hidden="true">↗</span></h3>
                     </a>
-
-                    <a href="products.html" class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/den1-square.png" class="thumb-expanded" alt="Danh mục Đèn bàn" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <span class="card-category-label">Danh mục sản phẩm</span>
-                            <h3 class="card-title">Đèn bàn</h3>
-                        </div>
+                    <a href="products.html#catalog" class="category-tile">
+                        <div class="category-image"><img src="images/den1-square.png" alt="Đèn bàn cho góc làm việc" loading="lazy" decoding="async"></div>
+                        <h3>Đèn bàn <span aria-hidden="true">↗</span></h3>
                     </a>
-
-                    <a href="products.html" class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/giado&amp;phukien.jpg" alt="Danh mục Giá đỡ và phụ kiện" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <span class="card-category-label">Danh mục sản phẩm</span>
-                            <h3 class="card-title">Giá đỡ &amp; phụ kiện</h3>
-                        </div>
+                    <a href="products.html#catalog" class="category-tile">
+                        <div class="category-image"><img src="images/giado.jpg" alt="Giá đỡ laptop nhỏ gọn" loading="lazy" decoding="async"></div>
+                        <h3>Giá đỡ laptop <span aria-hidden="true">↗</span></h3>
                     </a>
+                    <a href="products.html#catalog" class="category-tile">
+                        <div class="category-image"><img src="images/product-pages/corepad.jpg" alt="Tấm lót chuột CorePad" loading="lazy" decoding="async"></div>
+                        <h3>Pad chuột &amp; lót bàn <span aria-hidden="true">↗</span></h3>
+                    </a>
+                    <a href="products.html#catalog" class="category-tile">
+                        <div class="category-image"><img src="images/product-pages/ds02.jpg" alt="Kệ màn hình và phụ kiện sắp xếp bàn" loading="lazy" decoding="async"></div>
+                        <h3>Kệ &amp; sắp xếp <span aria-hidden="true">↗</span></h3>
+                    </a>
+                </div>
+                <p class="category-description">Từng món nhỏ, một góc riêng hài hòa. <a href="setup-3d.html">Thử phối bộ setup của bạn <span aria-hidden="true">↗</span></a></p>
+            </div>
+        </section>
+
+        <!-- SẢN PHẨM MỚI -->
+        <section class="section-block new-arrivals" id="new-arrivals" aria-labelledby="arrivals-title">
+            <div class="container">
+                <div class="section-header"><div><h2 id="arrivals-title">Mới lên kệ</h2><p class="text-light-desc">Những món nhỏ, thêm cảm hứng mới cho góc bàn.</p></div><a class="link-arrow" href="products.html">Xem tất cả <span aria-hidden="true">›</span></a></div>
+                <div class="new-product-grid">
+                    <article class="arrival-card"><a href="product-detail.html" class="arrival-image"><img src="images/cart-keyboard.png" width="1254" height="1254" alt="Bàn phím tông kem trên nền be" loading="lazy" decoding="async"><span class="product-badge">Sản phẩm mới</span></a><p class="arrival-type">Bàn phím</p><h3><a href="product-detail.html">Bàn phím tông kem</a></h3><p class="arrival-price">350.000₫</p></article>
+                    <article class="arrival-card"><a href="product-detail.html" class="arrival-image"><img src="images/chuot1-square.png" width="1024" height="1024" alt="Chuột máy tính không dây nhỏ gọn" loading="lazy" decoding="async"><span class="product-badge">Sản phẩm mới</span></a><p class="arrival-type">Chuột máy tính</p><h3><a href="product-detail.html">Chuột không dây</a></h3><p class="arrival-price">250.000₫</p></article>
+                    <article class="arrival-card"><a href="product-detail.html" class="arrival-image"><img src="images/cart-lamp.png" width="1254" height="1254" alt="Đèn bàn màu xanh sage" loading="lazy" decoding="async"><span class="product-badge">Sản phẩm mới</span></a><p class="arrival-type">Đèn bàn</p><h3><a href="product-detail.html">Đèn bàn xanh sage</a></h3><p class="arrival-price">420.000₫</p></article>
+                    <article class="arrival-card"><a href="product-detail.html" class="arrival-image"><img src="images/giado.jpg" alt="Giá đỡ dành cho laptop" loading="lazy" decoding="async"><span class="product-badge">Sản phẩm mới</span></a><p class="arrival-type">Giá đỡ &amp; phụ kiện</p><h3><a href="product-detail.html">Giá đỡ laptop</a></h3><p class="arrival-price">290.000₫</p></article>
+                    <article class="arrival-card"><a href="product-detail.html" class="arrival-image"><img src="images/bp1.jpg" alt="Bàn phím không dây cho bàn làm việc" loading="lazy" decoding="async"><span class="product-badge">Sản phẩm mới</span></a><p class="arrival-type">Bàn phím</p><h3><a href="product-detail.html">Bàn phím không dây</a></h3><p class="arrival-price">350.000₫</p></article>
+                </div>
+                <p class="catalog-note">Sản phẩm, giá và nhãn giới thiệu là dữ liệu mẫu của đồ án.</p>
+            </div>
+        </section>
+
+        <!-- SẢN PHẨM BÁN CHẠY: HAI BANNER LỚN THEO ẢNH THAM KHẢO -->
+        <section class="section-block bestsellers" id="bestsellers" aria-labelledby="bestsellers-title">
+            <div class="container">
+                <div class="section-header"><div><p class="section-eyebrow">Một góc nhỏ. Nhiều yêu thích.</p><h2 id="bestsellers-title">Sản phẩm bán chạy</h2></div><a class="link-arrow" href="products.html">Khám phá thêm <span aria-hidden="true">↗</span></a></div>
+                <div class="bestseller-grid">
+                    <article class="bestseller-banner bestseller-banner--pending">
+                        <span class="bestseller-art-slot" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg><span>Ảnh sản phẩm sẽ được cập nhật</span></span>
+                        <div class="bestseller-copy"><p class="section-eyebrow">Bàn phím không dây</p><h3>Gõ thêm cảm hứng.</h3><p>Sắc kem nhẹ nhàng, dễ phối cùng những món phụ kiện bạn yêu thích.</p><a href="product-detail.html" class="btn btn-primary">Khám phá bàn phím <span aria-hidden="true">&nbsp;↗</span></a></div>
+                    </article>
+                    <article class="bestseller-banner bestseller-banner--lamp bestseller-banner--pending">
+                        <span class="bestseller-art-slot" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg><span>Ảnh sản phẩm sẽ được cập nhật</span></span>
+                        <div class="bestseller-copy"><p class="section-eyebrow">Đèn bàn xanh sage</p><h3>Sáng góc riêng.</h3><p>Một điểm chạm xanh dịu, dành cho những giờ tập trung và sáng tạo.</p><a href="product-detail.html" class="btn btn-primary">Xem thêm <span aria-hidden="true">&nbsp;↗</span></a></div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- 4. KHU VỰC SẢN PHẨM NỔI BẬT -->
-        <section class="section-block featured">
+        <!-- CỘNG ĐỒNG NGƯỜI DÙNG -->
+        <section class="section-block" id="community" aria-labelledby="community-title">
             <div class="container">
-                <div class="section-header">
-                    <div>
-                        <h2>Sản phẩm nổi bật</h2>
-                        <p class="text-light-desc">Gợi ý phụ kiện nhỏ gọn, thẩm mỹ và tối ưu ngân sách sinh viên</p>
+                <div class="community-banner">
+                    <img class="community-photo" src="images/congdonglgbt-expanded.png" width="1983" height="793" alt="Những người bạn mỉm cười, cùng đặt tay vào nhau trong một khoảnh khắc kết nối" loading="lazy" decoding="async">
+                    <div class="community-copy">
+                        <p class="section-eyebrow"><span class="community-live-dot" aria-hidden="true"></span> Kết nối từ những góc riêng</p>
+                        <h2 id="community-title">Cộng đồng người dùng</h2>
+                        <p class="community-lead">Góc riêng của bạn.<br>Cảm hứng của chúng mình.</p>
+                        <p>Mỗi góc bàn đều có một câu chuyện. Cùng chia sẻ ý tưởng setup, tìm những người có chung sở thích và làm mới không gian học tập, làm việc mỗi ngày.</p>
+                        <ul class="community-topics" aria-label="Khám phá trong cộng đồng"><li>Chia sẻ góc setup</li><li>Gợi ý phụ kiện</li><li>Kết nối &amp; truyền cảm hứng</li></ul>
+                        <div class="community-actions">
+                            <a class="community-primary" href="news.html">Khám phá cộng đồng <span aria-hidden="true">↗</span></a>
+                            <a href="setup-3d.html">Tạo góc riêng <span aria-hidden="true">↗</span></a>
+                        </div>
+                        <details class="community-channels">
+                            <summary>Các kênh kết nối <span aria-hidden="true">+</span></summary>
+                            <div class="community-channel-list"><span>Fanpage</span><span>Group</span><span>TikTok</span><span>Zalo OA</span></div>
+                            <p>Các kênh đang được chuẩn bị. Ghé mục Tin tức để cập nhật thông tin kết nối từ Góc Desk.</p>
+                        </details>
                     </div>
-                    <a href="products.html" class="link-arrow">Xem tất cả sản phẩm →</a>
-                </div>
-
-                <div class="grid-4">
-                    <article class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/bp1.jpg" class="thumb-keyboard" alt="Bàn phím không dây" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Bàn phím không dây</h3>
-                            <p class="card-price">350.000₫</p>
-                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
-                        </div>
-                    </article>
-
-                    <article class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/chuotkoday.jpg" class="thumb-mouse" alt="Chuột máy tính không dây màu hồng" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Chuột máy tính</h3>
-                            <p class="card-price">250.000₫</p>
-                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
-                        </div>
-                    </article>
-
-                    <article class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/den2-square.png" class="thumb-expanded" alt="Đèn bàn LED" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Đèn bàn LED</h3>
-                            <p class="card-price">420.000₫</p>
-                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
-                        </div>
-                    </article>
-
-                    <article class="card-item">
-                        <div class="card-thumb">
-                            <img src="images/giado.jpg" alt="Giá đỡ laptop" loading="lazy" decoding="async">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Giá đỡ laptop</h3>
-                            <p class="card-price">290.000₫</p>
-                            <a href="product-detail.html" class="card-link">Nhấn để xem chi tiết →</a>
-                        </div>
-                    </article>
+                    <div class="community-caption" aria-hidden="true"><span>CÙNG NHAU TẠO CẢM HỨNG</span><span>góc desk. ↗</span></div>
                 </div>
             </div>
         </section>
@@ -467,41 +441,181 @@
                 </div>
             </div>
         </section>
+        <section class="section-block faq-section" id="faq" aria-labelledby="faq-title">
+            <div class="container faq-layout">
+                <div class="faq-intro">
+                    <p class="section-eyebrow">GÓC DESK ĐỒNG HÀNH</p>
+                    <h2 id="faq-title">Có câu hỏi?</h2>
+                    <p>Từ chọn phụ kiện đến chăm sóc góc làm việc, tìm câu trả lời cho những điều bạn đang quan tâm.</p>
+                    <a class="faq-support-link" href="warranty.html#warranty-request">Gửi câu hỏi cho Góc Desk <span aria-hidden="true">↗</span></a>
+
+                    <div class="service-grid">
+                        <details class="service-card">
+                            <summary>
+                                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5v9l-9 5-9-5V8l9-5Zm0 10 9-5M12 13 3 8m9 5v9M7 5.8l9 5v4"/></svg>
+                                <strong class="service-title">Vận chuyển an toàn</strong>
+                                <span class="service-description">Lưu ý khi nhận và kiểm tra phụ kiện.</span>
+                            </summary>
+                            <p>Kiểm tra bao bì, đối chiếu số lượng và tên sản phẩm ngay khi nhận. Giữ lại hình ảnh nếu kiện hàng có dấu hiệu hư hỏng để thuận tiện trao đổi.</p>
+                        </details>
+                        <details class="service-card">
+                            <summary>
+                                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6 4 4M3 21l8-8m-1-9 4 4M3 3l5 1 1 3-2 2-3-1-1-5Zm13 11 5 5a1.4 1.4 0 0 1-2 2l-5-5M14 3a5 5 0 0 0-4 7l-7 7a2.8 2.8 0 0 0 4 4l7-7a5 5 0 0 0 7-6l-3 3-4-4 3-3-3-1Z"/></svg>
+                                <strong class="service-title">Hỗ trợ lắp đặt</strong>
+                                <span class="service-description">Chuẩn bị trước khi đặt món mới lên bàn.</span>
+                            </summary>
+                            <p>Đọc hướng dẫn đi kèm và kiểm tra kích thước mặt bàn, thiết bị trước khi lắp phụ kiện. Nếu chưa rõ thao tác, gửi câu hỏi qua mục hỗ trợ trước khi thực hiện.</p>
+                        </details>
+                        <details class="service-card">
+                            <summary>
+                                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20v-7h12v7M8 13V9h8v4M9 9V5h6v4M19 3v4m-2-2h4M3 6v4m-2-2h4"/></svg>
+                                <strong class="service-title">Góc bàn gọn gàng</strong>
+                                <span class="service-description">Sắp xếp dây, bao bì và các món nhỏ.</span>
+                            </summary>
+                            <p>Giữ lại hộp và phụ kiện cần thiết cho việc bảo quản. Gom dây kết nối theo nhóm, dành khoảng trống cho thao tác chuột và các thiết bị tỏa nhiệt.</p>
+                        </details>
+                        <details class="service-card">
+                            <summary>
+                                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h15v18H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 14h15M7 3v14m4-8h5m-2.5-2.5v5"/></svg>
+                                <strong class="service-title">Hướng dẫn sử dụng</strong>
+                                <span class="service-description">Hiểu phụ kiện để dùng thuận tiện hơn.</span>
+                            </summary>
+                            <p>Đối chiếu kiểu kết nối, nguồn điện và thông số tương thích trong hướng dẫn của từng sản phẩm. Khám phá thêm các bài viết về lựa chọn và bố trí phụ kiện tại mục Tin tức.</p>
+                        </details>
+                    </div>
+                    <div class="faq-help-note"><span class="faq-help-mark" aria-hidden="true">?</span><p>Chưa tìm thấy điều bạn cần?<br><a href="warranty.html#warranty-request">Chuẩn bị câu hỏi và gửi đến Góc Desk ↗</a></p></div>
+                </div>
+
+                <div class="faq-panel">
+                    <div class="faq-panel-heading"><span>GIẢI ĐÁP CÙNG GÓC DESK</span><span>06 câu hỏi thường gặp</span></div>
+                    <details class="faq-item" name="home-faq" id="faq-payment" open>
+                        <summary><span class="faq-number" aria-hidden="true">01</span><span class="faq-question">Các hình thức thanh toán?</span><span class="faq-toggle-icon" aria-hidden="true"></span></summary>
+                        <div class="faq-answer">
+                            <p>Góc Desk dự kiến tích hợp một cổng thanh toán sandbox để trải nghiệm quy trình đặt hàng. Khi có bước thanh toán thử nghiệm, hãy sử dụng thông tin kiểm thử theo hướng dẫn trên màn hình.</p>
+                            <p class="faq-demo-note">Đây là giao diện đồ án; thông tin dịch vụ sẽ được xác nhận trước khi cửa hàng vận hành chính thức.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" name="home-faq" id="faq-delivery">
+                        <summary><span class="faq-number" aria-hidden="true">02</span><span class="faq-question">Bao lâu có thể nhận được hàng?</span><span class="faq-toggle-icon" aria-hidden="true"></span></summary>
+                        <div class="faq-answer">
+                            <p>Thời gian và phí giao hàng phụ thuộc vào địa chỉ nhận, sản phẩm và phương án vận chuyển. Các thông tin này cần được xác nhận cùng đơn hàng trước khi bạn quyết định đặt mua.</p>
+                            <p>Khi nhận hàng, hãy đối chiếu sản phẩm với thông tin đơn và kiểm tra tình trạng bao bì.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" name="home-faq" id="faq-warranty">
+                        <summary><span class="faq-number" aria-hidden="true">03</span><span class="faq-question">Kiểm tra, bảo hành sản phẩm thế nào?</span><span class="faq-toggle-icon" aria-hidden="true"></span></summary>
+                        <div class="faq-answer">
+                            <p>Chuẩn bị mã đơn hàng, tên sản phẩm, thông tin liên hệ và mô tả tình trạng cần hỗ trợ. Sau đó vào trang Bảo hành để xem các bước tiếp nhận và biểu mẫu minh họa.</p>
+                            <a href="warranty.html">Xem thông tin bảo hành <span aria-hidden="true">→</span></a>
+                        </div>
+                    </details>
+                    <details class="faq-item" name="home-faq" id="faq-returns">
+                        <summary><span class="faq-number" aria-hidden="true">04</span><span class="faq-question">Tôi cần làm gì khi muốn đổi trả?</span><span class="faq-toggle-icon" aria-hidden="true"></span></summary>
+                        <div class="faq-answer">
+                            <p>Giữ lại sản phẩm, phụ kiện đi kèm, bao bì và thông tin đơn hàng. Ghi rõ lý do cùng hình ảnh thể hiện vấn đề để cửa hàng có thể xem xét theo điều kiện áp dụng cho từng sản phẩm.</p>
+                            <p>Vui lòng xác nhận điều kiện đổi trả qua mục hỗ trợ trước khi gửi hàng.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" name="home-faq" id="faq-bulk">
+                        <summary><span class="faq-number" aria-hidden="true">05</span><span class="faq-question">Mua sản phẩm số lượng lớn?</span><span class="faq-toggle-icon" aria-hidden="true"></span></summary>
+                        <div class="faq-answer">
+                            <p>Bạn có thể chuẩn bị danh sách sản phẩm, số lượng, ngân sách và thời điểm mong muốn nhận hàng để trao đổi với cửa hàng. Giá, khả năng cung ứng và phương án giao hàng cần được xác nhận riêng cho yêu cầu của bạn.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" name="home-faq" id="faq-contact">
+                        <summary><span class="faq-number" aria-hidden="true">06</span><span class="faq-question">Còn bất kỳ câu hỏi nào khác?</span><span class="faq-toggle-icon" aria-hidden="true"></span></summary>
+                        <div class="faq-answer">
+                            <p>Xem mục Tin tức để tìm cảm hứng cho góc bàn hoặc truy cập trang hỗ trợ để chuẩn bị câu hỏi về sản phẩm. Thêm tên phụ kiện và nhu cầu sử dụng sẽ giúp nội dung trao đổi rõ ràng hơn.</p>
+                            <a href="warranty.html#warranty-request">Đến mục hỗ trợ <span aria-hidden="true">→</span></a>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- 7. KHU VỰC FOOTER -->
-    <footer class="site-footer">
+    <!-- FOOTER MỞ RỘNG -->
+    <footer class="site-footer" id="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Góc Desk</h3>
-                    <small>GÓC NHỎ · CẢM HỨNG LỚN</small>
-                    <p>Phụ kiện và cảm hứng cho góc học tập, làm việc của bạn. Không gian làm việc theo phong cách của bạn.</p>
+                <div class="footer-newsletter">
+                    <p class="footer-eyebrow">MỘT CHÚT CẢM HỨNG MỚI</p>
+                    <h2>Hẹn bạn ở<br>bản tin Góc Desk.</h2>
+                    <p>Ý tưởng setup, mẹo chọn phụ kiện và những món mới dành cho góc riêng của bạn.</p>
+                    <div class="newsletter-signup">
+                        <label class="visually-hidden" for="newsletter-email">Địa chỉ email</label>
+                        <div class="newsletter-input">
+                            <input id="newsletter-email" type="email" name="email" placeholder="Email của bạn" autocomplete="email" aria-describedby="newsletter-status">
+                            <button type="button" popovertarget="newsletter-info" aria-label="Thông tin đăng ký nhận bản tin"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+                        </div>
+                        <p class="newsletter-status" id="newsletter-status">Bản tin sẽ sớm được mở đăng ký.</p>
+                    </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Hỗ trợ</h4>
+                    <h3>Góc Desk &amp; bạn</h3>
                     <ul>
-                        <li><a href="warranty.html">Chính sách bảo hành</a></li>
-                        <li><a href="news.html">Hướng dẫn mua hàng</a></li>
-                        <li><a href="warranty.html">Liên hệ</a></li>
+                        <li><a href="#community">Cộng đồng người dùng</a></li>
+                        <li><a href="news.html">Cảm hứng góc làm việc</a></li>
+                        <li><a href="news.html">Mẹo chọn phụ kiện</a></li>
+                        <li><a href="setup-3d.html">Góc Desk Studio</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Khám phá</h4>
+                    <h3>Khám phá sản phẩm</h3>
                     <ul>
-                        <li><a href="products.html">Sản phẩm</a></li>
-                        <li><a href="points.html">Tích điểm</a></li>
-                        <li><a href="news.html">Tin tức</a></li>
-                        <li><a href="setup-3d.html">Thiết kế 3D</a></li>
+                        <li><a href="#shop-categories">Danh mục sản phẩm</a></li>
+                        <li><a href="#new-arrivals">Sản phẩm mới</a></li>
+                        <li><a href="#bestsellers">Sản phẩm bán chạy</a></li>
+                        <li><a href="products.html">Tất cả sản phẩm</a></li>
+                        <li><a href="points.html">Ưu đãi tích điểm</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Hỗ trợ khách hàng</h3>
+                    <ul>
+                        <li><a href="warranty.html#warranty-request">Liên hệ hỗ trợ</a></li>
+                        <li><a href="#faq-payment">Thông tin thanh toán</a></li>
+                        <li><a href="#faq-delivery">Thông tin giao hàng</a></li>
+                        <li><a href="#faq-returns">Hướng dẫn đổi trả</a></li>
+                        <li><a href="warranty.html">Chính sách bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Đồng hành cùng bạn</h3>
+                    <ul>
+                        <li><a href="setup-3d.html">Thiết kế góc 3D</a></li>
+                        <li><a href="news.html">Tin tức &amp; bài viết</a></li>
+                        <li><a href="#faq">Câu hỏi thường gặp</a></li>
+                        <li><a href="#faq-bulk">Mua số lượng lớn</a></li>
                     </ul>
                 </div>
             </div>
+
+            <div class="footer-identity">
+                <div class="footer-about">
+                    <a class="footer-wordmark" href="index.html" aria-label="Góc Desk — trang chủ">góc desk<span aria-hidden="true">.</span></a>
+                    <p class="footer-tagline">Góc nhỏ, cảm hứng lớn.</p>
+                    <p>Phụ kiện và ý tưởng cho một góc học tập, làm việc mang dấu ấn của bạn.</p>
+                </div>
+                <a class="footer-connect" href="#community">
+                    <span class="footer-connect-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m1-17a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/></svg></span>
+                    <span><strong>Kết nối từ góc riêng</strong><span>Khám phá cộng đồng Góc Desk</span></span>
+                    <svg class="ui-icon footer-connect-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg>
+                </a>
+                <a class="footer-connect" href="warranty.html#warranty-request">
+                    <span class="footer-connect-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a9 9 0 0 1-9 9H4l-3 2 2-6a9 9 0 1 1 18-5Z"/><path d="M7 11h.01M12 11h.01M17 11h.01"/></svg></span>
+                    <span><strong>Bạn cần thêm hỗ trợ?</strong><span>Trao đổi cùng Góc Desk</span></span>
+                    <svg class="ui-icon footer-connect-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg>
+                </a>
+            </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2026 Góc Desk — Đồ án Phát triển ứng dụng TMĐT UEH.</p>
-                <p>Một góc riêng. Nhiều cảm hứng.</p>
+                <p>&copy; 2026 Góc Desk · Đồ án Phát triển ứng dụng TMĐT UEH.</p>
+                <div class="footer-bottom-links"><span>Được chăm chút cho góc riêng của bạn.</span><a href="#main-content">Về đầu trang <span aria-hidden="true">↑</span></a></div>
             </div>
         </div>
     </footer>
+    <div class="newsletter-feedback" id="newsletter-info" popover><h3>Cảm ơn bạn đã quan tâm!</h3><p>Đăng ký nhận bản tin sẽ sớm được mở. Email của bạn chưa được gửi hoặc lưu lại.</p><button type="button" popovertarget="newsletter-info" popovertargetaction="hide">Đã hiểu</button></div>
 
 </body>
 </html>
