@@ -376,21 +376,20 @@
                             <p>Các kênh đang được chuẩn bị. Ghé mục Tin tức để cập nhật thông tin kết nối từ Góc Desk.</p>
                         </details>
                     </div>
-                    <div class="community-caption" aria-hidden="true"><span>CÙNG NHAU TẠO CẢM HỨNG</span><span>góc desk. ↗</span></div>
+                    <a class="community-caption" href="news.html" aria-label="Khám phá tin tức và cảm hứng từ Góc Desk"><span>CÙNG NHAU TẠO CẢM HỨNG</span><span>góc desk. <span aria-hidden="true">↗</span></span></a>
                 </div>
             </div>
         </section>
 
         <!-- 5. KHU VỰC CTA TỰ THIẾT KẾ GÓC LÀM VIỆC 3D -->
-        <section class="container">
-            <div class="cta-banner">
-                <div class="cta-copy">
-                    <svg class="ui-icon cta-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="m24 3 19 11v21L24 46 5 35V14L24 3Zm0 22 19-11M24 25 5 14m19 11v21M14 9l19 11v11"/></svg>
-                    <span class="cta-eyebrow">GÓC DESK STUDIO</span>
-                    <h2>Tự thiết kế góc làm việc của bạn</h2>
-                    <p>Thử sắp xếp bàn và phụ kiện trong không gian 3D.</p>
+        <section class="section-block studio-section" id="desk-studio" aria-labelledby="studio-title">
+            <div class="container">
+                <div class="home-studio">
+                    <p class="home-studio-eyebrow">TÍNH NĂNG TRẢI NGHIỆM</p>
+                    <h2 id="studio-title">Tự thiết kế góc làm việc 3D</h2>
+                    <p class="home-studio-description">Khám phá cách bố trí phụ kiện trong góc mẫu và tham khảo chi phí của bộ setup. Từng lựa chọn, một không gian mang dấu ấn của bạn.</p>
+                    <a href="setup-3d.html" class="home-studio-button">Khám phá Góc Desk Studio <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a>
                 </div>
-                <a href="setup-3d.html" class="btn btn-accent">Bắt đầu thiết kế →</a>
             </div>
         </section>
 
@@ -539,15 +538,15 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-newsletter">
-                    <p class="footer-eyebrow">MỘT CHÚT CẢM HỨNG MỚI</p>
-                    <h2>Hẹn bạn ở<br>bản tin Góc Desk.</h2>
-                    <p>Ý tưởng setup, mẹo chọn phụ kiện và những món mới dành cho góc riêng của bạn.</p>
+                    <p class="footer-eyebrow">ĐĂNG KÝ NHẬN THÔNG BÁO</p>
+                    <h2>Một chút cảm hứng<br>mỗi tuần.</h2>
+                    <p>Điền email của bạn để nhận thông báo về sản phẩm mới, ưu đãi và những ý tưởng cho góc riêng.</p>
                     <div class="newsletter-signup">
-                        <label class="visually-hidden" for="newsletter-email">Địa chỉ email</label>
+                        <label class="newsletter-label" for="newsletter-email">Email nhận thông báo</label>
                         <div class="newsletter-input">
-                            <input id="newsletter-email" type="email" name="email" placeholder="Email của bạn" autocomplete="email" aria-describedby="newsletter-status">
-                            <button type="button" popovertarget="newsletter-info" aria-label="Thông tin đăng ký nhận bản tin"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+                            <input id="newsletter-email" type="email" name="email" placeholder="Nhập email của bạn" autocomplete="email" aria-describedby="newsletter-status">
                         </div>
+                        <button class="newsletter-submit" type="button" popovertarget="newsletter-info">Đăng ký nhận tin <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
                         <p class="newsletter-status" id="newsletter-status">Bản tin sẽ sớm được mở đăng ký.</p>
                     </div>
                 </div>

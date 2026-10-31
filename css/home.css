@@ -79,13 +79,25 @@
 .community-channel-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
 .community-channel-list span { padding: 5px 11px; border: 1px solid #ffffff35; border-radius: 30px; color: #e2ded5; font-size: 10px; }
 .community-channels p { margin: 9px 0 0; color: #c7c8be; font-size: 10px; line-height: 1.8; }
-.community-caption { position: absolute; right: 27px; bottom: 23px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; color: #f0eee4; opacity: .8; transition: opacity 300ms, transform 300ms; }
+.community-caption { position: absolute; right: 23px; bottom: 19px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 6px; min-height: 52px; padding: 5px; border-radius: 6px; color: #f0eee4; opacity: .8; transition: opacity 300ms, transform 300ms; }
 .community-caption > span:first-child { font-size: 8px; letter-spacing: 1.5px; }
 .community-caption > span:last-child { font-size: 20px; font-weight: 600; letter-spacing: -.5px; }
 .community-banner:hover .community-caption { opacity: 1; transform: translateY(-3px); }
+.community-caption:hover > span:last-child { text-decoration: underline; text-underline-offset: 5px; }
+.community-caption:focus-visible { opacity: 1; outline-color: #d6e6ba; }
 @keyframes community-pulse { 50% { box-shadow: 0 0 0 8px #bdd3af05; opacity: .65; } }
 .home-page summary:focus-visible { outline: 3px solid var(--gd-sage); outline-offset: 4px; }
-.home-page .cta-banner { margin-top: 80px; padding: 38px; }
+/* Banner trải nghiệm 3D dùng cùng ảnh nền với trang Studio. */
+.home-studio { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 480px; padding: 70px 40px 160px; overflow: hidden; border: 1px solid #5277cc70; border-radius: 26px; color: #fff; text-align: center; background: linear-gradient(180deg, #06112b55, #06112b18 55%, #06112b55), url('../images/setup-3d-hero-background.png') center 58% / cover; box-shadow: 0 20px 44px #0b163328; transition: box-shadow 300ms, border-color 300ms; }
+.home-studio:hover { border-color: #88aaf4b3; box-shadow: 0 24px 50px #0b16333d; }
+.home-studio-eyebrow { margin: 0 0 21px; color: #c9eb8c; font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.home-studio h2 { max-width: 940px; margin: 0 0 20px; color: #fff; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.2; letter-spacing: -1px; text-wrap: balance; text-shadow: 0 2px 18px #07102680; }
+.home-studio-description { max-width: 690px; margin: 0 0 25px; color: #f1f4fe; font-size: 14px; line-height: 1.85; text-wrap: pretty; text-shadow: 0 1px 8px #071026; }
+.home-studio-button { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 46px; padding: 12px 24px; border: 1px solid #d5f2a4; border-radius: 30px; color: #132343; background: #d1eea0; font-size: 12px; font-weight: 700; transition: transform 220ms, background 220ms, box-shadow 220ms; }
+.home-studio-button .ui-icon { width: 18px; height: 18px; transition: transform 220ms; }
+.home-studio-button:hover { transform: translateY(-3px); color: #132343; background: #e0f8b9; box-shadow: 0 8px 20px #02071945; }
+.home-studio-button:hover .ui-icon { transform: translateX(3px); }
+.home-studio-button:focus-visible { outline-color: #fff; }
 .home-page .grid-3 .card-thumb img { aspect-ratio: 4 / 3; }
 .home-page .grid-3 .card-body { padding: 23px; }
 .home-page .grid-3 .card-title { font-size: 18px; }
@@ -147,9 +159,12 @@
 .newsletter-input { display: flex; align-items: center; overflow: hidden; padding: 5px; border: 1px solid #ffffff38; border-radius: 9px; }
 .newsletter-input input { width: 100%; min-width: 0; padding: 12px; color: white; border: 0; border-radius: 5px; background: transparent; font-size: 13px; }
 .newsletter-input input::placeholder { color: #c8beb3; }
-.newsletter-input button { display: grid; width: 31px; height: 31px; flex-shrink: 0; margin-right: 8px; place-items: center; border: 0; border-radius: 50%; color: white; background: #51473e; font-size: 20px; }
-.newsletter-input button:hover { background: #8b735a; }
 .newsletter-status { min-height: 20px; margin: 10px 0 0; color: #c4b9aa; font-size: 11px; line-height: 1.6; }
+.newsletter-label { display: block; margin-bottom: 8px; color: #d3c7b8; font-size: 11px; }
+.newsletter-submit { display: flex; align-items: center; justify-content: space-between; gap: 15px; width: 100%; min-height: 43px; margin-top: 10px; padding: 11px 16px; border: 1px solid #bfa17e; border-radius: 8px; color: #2d241d; background: #d7bea0; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 200ms, transform 200ms; }
+.newsletter-submit .ui-icon { width: 17px; height: 17px; transition: transform 200ms; }
+.newsletter-submit:hover { background: #ebd6bb; transform: translateY(-2px); }
+.newsletter-submit:hover .ui-icon { transform: translateX(3px); }
 .newsletter-feedback { max-width: min(420px, calc(100% - 40px)); padding: 28px; color: var(--gd-brown); border: 1px solid var(--gd-border); border-radius: 16px; background: var(--gd-cream); box-shadow: var(--gd-shadow); }
 .newsletter-feedback::backdrop { background: #17130f75; }
 .newsletter-feedback h3 { color: var(--gd-brown); font-size: 21px; }
@@ -222,7 +237,11 @@
     .community-topics { gap: 5px; margin-bottom: 20px; }
     .community-topics li { padding: 5px 7px; font-size: 8px; }
     .community-caption { right: 23px; bottom: 24px; }
-    .home-page .cta-banner { margin-top: 48px; padding: 27px; }
+    .home-studio { min-height: 470px; padding: 48px 23px 140px; border-radius: 18px; background-position: center bottom; }
+    .home-studio-eyebrow { margin-bottom: 18px; font-size: 9px; letter-spacing: 1.5px; }
+    .home-studio h2 { margin-bottom: 17px; font-size: 31px; letter-spacing: -.7px; }
+    .home-studio-description { margin-bottom: 22px; font-size: 12px; }
+    .home-studio-button { padding: 11px 17px; gap: 12px; font-size: 11px; }
     .service-card summary { min-height: 158px; padding: 18px 15px; }
     .service-card strong { font-size: 13px; }
     .service-card summary span { font-size: 10px; }
@@ -250,7 +269,6 @@
 .home-page .footer-col a:hover { padding-left: 4px; }
 .newsletter-input { transition: border-color 180ms, background 180ms, box-shadow 180ms; }
 .newsletter-input:focus-within { border-color: #bc9973; background: #ffffff06; box-shadow: 0 0 0 3px #bc99731a; }
-.newsletter-input button .ui-icon { width: 17px; height: 17px; }
 .footer-identity { display: grid; grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 1fr)); align-items: center; gap: 30px; margin-top: 45px; padding-block: 35px; border-top: 1px solid #ffffff20; }
 .footer-about { max-width: 315px; }
 .home-page .footer-identity .footer-wordmark { display: inline-block; color: #f3e4cd; font-size: 42px; font-weight: 700; line-height: 1.1; letter-spacing: -2px; }
