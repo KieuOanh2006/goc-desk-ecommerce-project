@@ -1,0 +1,1 @@
+Chức năng dùng chung
