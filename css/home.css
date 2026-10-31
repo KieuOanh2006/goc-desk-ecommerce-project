@@ -90,7 +90,7 @@
 /* Banner trải nghiệm 3D dùng cùng ảnh nền với trang Studio. */
 .home-studio { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 480px; padding: 70px 40px 160px; overflow: hidden; border: 1px solid #5277cc70; border-radius: 26px; color: #fff; text-align: center; background: linear-gradient(180deg, #06112b55, #06112b18 55%, #06112b55), url('../images/setup-3d-hero-background.png') center 58% / cover; box-shadow: 0 20px 44px #0b163328; transition: box-shadow 300ms, border-color 300ms; }
 .home-studio:hover { border-color: #88aaf4b3; box-shadow: 0 24px 50px #0b16333d; }
-.home-studio-eyebrow { margin: 0 0 21px; color: #c9eb8c; font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.home-studio-eyebrow { margin: 0 0 21px; color: #c9eb8c; font-family: "Roboto", Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; }
 .home-studio h2 { max-width: 940px; margin: 0 0 20px; color: #fff; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.2; letter-spacing: -1px; text-wrap: balance; text-shadow: 0 2px 18px #07102680; }
 .home-studio-description { max-width: 690px; margin: 0 0 25px; color: #f1f4fe; font-size: 14px; line-height: 1.85; text-wrap: pretty; text-shadow: 0 1px 8px #071026; }
 .home-studio-button { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 46px; padding: 12px 24px; border: 1px solid #d5f2a4; border-radius: 30px; color: #132343; background: #d1eea0; font-size: 12px; font-weight: 700; transition: transform 220ms, background 220ms, box-shadow 220ms; }
