@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open warranty.html",
-            "file": "c:\\Users\\admin\\goc-desk-ecommerce-project\\warranty.html"
+            "name": "Open GÓC Desk",
+            "file": "${workspaceFolder}/index.html"
         }
     ]
 }
