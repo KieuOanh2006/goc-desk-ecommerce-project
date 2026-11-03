@@ -1,0 +1,13 @@
+/* Banner sản phẩm theo ảnh tham khảo, giữ nguyên danh mục và các bộ lọc. */
+body.page-products .subpage-hero { justify-content: center; padding-top: 145px; padding-bottom: 50px; }
+.page-products .subpage-hero-image { object-position: center; }
+.page-products .subpage-hero::before { background: #0009; }
+.page-products .subpage-hero-content { text-align: center; }
+.page-products .subpage-eyebrow { margin-bottom: 24px; color: #fff; font-size: 17px; letter-spacing: 0; text-transform: none; }
+.page-products .subpage-title { max-width: none; margin: 0; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -1.2px; }
+@media (max-width: 1200px) { body.page-products .subpage-hero { padding-top: 200px; } }
+@media (max-width: 700px) {
+  body.page-products .subpage-hero { padding-top: 235px; padding-bottom: 65px; }
+  .page-products .subpage-eyebrow { margin-bottom: 16px; font-size: 14px; }
+  .page-products .subpage-title { font-size: 37px; }
+}

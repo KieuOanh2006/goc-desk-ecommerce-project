@@ -1,0 +1,1650 @@
+
+/* ==========================================================================
+   GÓC DESK — HOMEPAGE
+   Chỉ áp dụng cho body.home-page.
+   Sử dụng màu và font chung từ style.css / site-shell.css.
+   ========================================================================== */
+
+/* 1. NỀN TẢNG & KHUNG NỘI DUNG */
+.home-page {
+    --home-content-width: 1520px;
+    --home-gutter: clamp(22px, 4vw, 64px);
+    --home-section-space: clamp(48px, 4vw, 68px);
+    --home-card-radius: 16px;
+
+    --home-bg: #ffffff;
+    --home-brown: #4e3b2e;
+    --home-sage: #e8eee5;
+    --home-divider: #ded6ca;
+
+    background: var(--home-bg);
+    color: var(--gd-text, #302820);
+    overflow-x: clip;
+}
+
+/* Khoảng cách thống nhất giữa các section */
+.home-page .section-block {
+    padding-top: var(--home-section-space);
+}
+
+/* Các khu vực sử dụng cùng chiều rộng */
+.home-page .home-promo-section > .container {
+    width: min(
+        var(--home-content-width),
+        calc(100% - var(--home-gutter) * 2)
+    );
+}
+
+.home-page main > section:not(.hero-section) > .container {
+    width: min(var(--home-content-width), calc(100% - var(--home-gutter) * 2));
+    max-width: none;
+    margin-inline: auto;
+}
+
+.home-page main { padding-bottom: 0; }
+.home-page section[id] { scroll-margin-top: 32px; }
+.home-page a { text-decoration: none; }
+
+.home-page img,
+.home-page video { display: block; max-width: 100%; }
+
+.home-page button,
+.home-page input { font: inherit; }
+
+.home-page :is(a, button, input, summary):focus-visible {
+    outline: 3px solid var(--gd-sage, #809b7d);
+    outline-offset: 4px;
+}
+
+.home-page .section-block {
+    padding-top: var(--home-section-space);
+}
+
+.home-page .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 0 0 28px;
+}
+
+.home-page .section-header h2,
+.home-page .faq-intro h2 {
+    margin: 0;
+    color: var(--gd-brown, #4e3b2e);
+    font-size: clamp(27px, 2.35vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.8px;
+}
+
+.home-page .section-header p {
+    margin: 8px 0 0;
+    color: var(--gd-muted, #756b63);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.home-page .section-eyebrow {
+    margin: 0 0 10px;
+    color: #8a7158;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.home-page .link-arrow {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    color: #795d43;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.home-page .link-arrow span {
+    display: grid;
+    width: 29px;
+    height: 29px;
+    place-items: center;
+    border-radius: 50%;
+    background: #eee8df;
+    font-size: 17px;
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.home-page .link-arrow:hover span {
+    transform: translate(2px, -2px);
+    background: #e5d9c9;
+}
+
+/* 3. HERO — GIỮ HÌNH ẢNH CHÍNH */
+.home-page .hero-section { padding: 0; }
+
+.home-page .hero-section > .container {
+    width: 100%;
+    max-width: none;
+}
+
+.home-page .hero-card {
+    position: relative;
+    display: flex;
+    min-height: 560px;
+    height: clamp(560px, calc(100svh - 115px), 780px);
+    align-items: flex-end;
+    overflow: hidden;
+    background: #77786c;
+}
+
+.home-page .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.home-page .hero-card::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(
+        0deg,
+        rgb(18 22 19 / 75%),
+        transparent 60%
+    );
+    content: "";
+    pointer-events: none;
+}
+
+.home-page .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: min(
+        var(--home-content-width),
+        calc(100% - var(--home-gutter) * 2)
+    );
+    justify-content: flex-end;
+    margin-inline: auto;
+    padding: 210px 0 95px;
+}
+
+.home-page .hero-copy {
+    width: min(55%, 760px);
+}
+
+.home-page .hero-content h1 {
+    margin: 0 0 20px;
+    color: #fff;
+    font-size: clamp(44px, 4vw, 68px);
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: -1.3px;
+    text-shadow: 0 2px 14px rgb(0 0 0 / 25%);
+}
+
+.home-page .hero-copy > p {
+    max-width: 700px;
+    margin: 0 0 27px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.85;
+    text-shadow: 0 1px 5px #0008;
+}
+
+.home-page .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.home-page .tag-badge {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-shadow: 0 1px 5px #0008;
+}
+
+.home-page .tag-badge.sub::before {
+    margin-right: 10px;
+    content: "·";
+}
+
+.home-page .hero-copy > p {
+    max-width: 570px;
+    margin: 0 0 27px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.85;
+    text-shadow: 0 1px 5px #0008;
+}
+
+.home-page .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+}
+
+.home-page .hero-actions .btn {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.home-page .hero-actions .btn-primary {
+    color: #3f3328;
+    background: #fff;
+}
+
+.home-page .hero-actions .btn-outline {
+    border-color: rgb(255 255 255 / 75%);
+    color: #fff;
+    background: rgb(30 35 31 / 24%);
+}
+
+.home-page .hero-actions .btn:hover { transform: translateY(-2px); }
+
+.home-page .hero-scroll {
+    position: absolute;
+    z-index: 2;
+    right: max(
+        var(--home-gutter),
+        calc((100% - var(--home-content-width)) / 2)
+    );
+    bottom: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+}
+
+.home-page .hero-scroll .ui-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* 4. BANNER PHỤ CAROUSEL */
+.home-page .home-promo-section {
+    padding-top: clamp(35px, 4vw, 58px);
+}
+
+.home-page .home-promo-section > .container {
+    width: min(1680px, calc(100% - var(--home-gutter) * 2));
+}
+
+.home-page .home-promo-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.home-page .home-promo-heading .section-eyebrow { margin: 0; }
+
+.home-page .home-promo-heading > span {
+    color: #8a7a69;
+    font-size: 12px;
+}
+
+.home-page .home-promo-viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.home-page .home-promo-viewport::-webkit-scrollbar { display: none; }
+
+.home-page .home-promo-track {
+    display: flex;
+    align-items: stretch;
+    gap: 22px;
+    padding: 0 8%;
+}
+
+.home-page .home-promo-slide {
+    flex: 0 0 84%;
+    min-width: 0;
+    scroll-snap-align: center;
+}
+
+.home-page .home-promo-card {
+    position: relative;
+    display: flex;
+    min-height: clamp(250px, 26vw, 390px);
+    align-items: flex-end;
+    overflow: hidden;
+    border: 1px solid #e4d9ca;
+    border-radius: var(--home-card-radius);
+    background: #ded5c8;
+    isolation: isolate;
+}
+
+.home-page .home-promo-card > img {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+}
+
+.home-page .home-promo-card:hover > img {
+    transform: scale(1.025);
+}
+
+.home-page .home-promo-shade {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgb(29 29 24 / 64%), rgb(29 29 24 / 10%) 78%),
+        linear-gradient(0deg, rgb(0 0 0 / 18%), transparent 60%);
+}
+
+.home-page .home-promo-copy {
+    display: grid;
+    max-width: 690px;
+    gap: 12px;
+    padding: clamp(25px, 4vw, 55px);
+    color: white;
+}
+
+.home-page .home-promo-kicker {
+    color: #f0e5d5;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.home-page .home-promo-copy strong {
+    max-width: 640px;
+    font-size: clamp(26px, 3.4vw, 48px);
+    line-height: 1.14;
+    letter-spacing: -.8px;
+}
+
+.home-page .home-promo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.home-page .home-promo-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 17px;
+}
+
+.home-page .home-promo-arrow {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid #d8cbbb;
+    border-radius: 50%;
+    color: #5e4b39;
+    background: #f7f4eb;
+    font-size: 17px;
+    transition: color 180ms ease, background 180ms ease;
+}
+
+.home-page .home-promo-arrow:hover {
+    color: #fff;
+    background: var(--gd-brown, #4e3b2e);
+}
+
+.home-page .home-promo-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.home-page .home-promo-dots button {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 20px;
+    background: #c9bba9;
+    transition: width 180ms ease, background 180ms ease;
+}
+
+.home-page .home-promo-dots button.is-active {
+    width: 23px;
+    background: #80664d;
+}
+
+/* 5. DANH MỤC SẢN PHẨM */
+.home-page .categories {
+    padding-top: clamp(45px, 5vw, 75px);
+}
+
+.home-page .category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.home-page .category-tile {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid #e8e1d7;
+    border-radius: var(--home-card-radius);
+    background: #fffdfa;
+    box-shadow: 0 3px 12px rgb(78 59 46 / 3%);
+    transition:
+        transform 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.home-page .category-image {
+    overflow: hidden;
+    border-radius: 11px;
+    background: #f0ede7;
+}
+
+.home-page .category-tile img {
+    width: 100%;
+    aspect-ratio: 1.72;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 350ms ease;
+}
+
+.home-page .category-tile h3 {
+    display: flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0;
+    padding: 13px 5px 2px;
+    color: #4e3b2e;
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.home-page .category-tile h3 span {
+    flex: 0 0 auto;
+    color: #a38b70;
+    font-size: 18px;
+    transition: transform 180ms ease;
+}
+
+.home-page .category-tile:hover,
+.home-page .category-tile:focus-visible {
+    transform: translateY(-4px);
+    border-color: #c6b49d;
+    box-shadow: 0 13px 28px rgb(78 59 46 / 8%);
+}
+
+.home-page .category-tile:hover img { transform: scale(1.035); }
+
+.home-page .category-tile:hover h3 span {
+    transform: translate(2px, -2px);
+}
+
+.home-page .category-description {
+    margin: 17px 0 0;
+    color: var(--gd-muted, #756b63);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.home-page .category-description a {
+    margin-left: 7px;
+    color: #795d43;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* 6. SẢN PHẨM MỚI */
+.home-page .new-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px 20px;
+}
+
+.home-page .arrival-card { min-width: 0; }
+
+.home-page .arrival-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 13px;
+    background: #eeeae3;
+}
+
+.home-page .arrival-image img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 350ms ease;
+}
+
+.home-page .arrival-image:hover img { transform: scale(1.045); }
+
+.home-page .product-badge {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    padding: 5px 10px;
+    border-radius: 99px;
+    color: #fff;
+    background: #806348;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.home-page .arrival-type {
+    margin: 14px 0 4px;
+    color: #887967;
+    font-size: 11px;
+}
+
+.home-page .arrival-card h3 {
+    margin: 0 0 6px;
+    color: var(--gd-brown, #4e3b2e);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.home-page .arrival-card h3 a:hover { color: #9a633f; }
+
+.home-page .arrival-price {
+    margin: 0;
+    color: #9a5739;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.home-page .catalog-note {
+    margin: 18px 0 0;
+    color: #958777;
+    font-size: 11px;
+}
+
+/* 7. SẢN PHẨM BÁN CHẠY */
+.home-page .bestseller-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.home-page .bestseller-banner {
+    position: relative;
+    display: flex;
+    min-height: 330px;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #e5dccf;
+    border-radius: var(--home-card-radius);
+    background: #f0e8dc;
+    isolation: isolate;
+}
+
+.home-page .bestseller-banner--lamp {
+    border-color: #dce4d6;
+    background: #e9eee5;
+}
+
+.home-page .bestseller-copy {
+    position: relative;
+    z-index: 1;
+    width: 61%;
+    padding: 30px 0 30px 32px;
+}
+
+.home-page .bestseller-copy .section-eyebrow {
+    margin-bottom: 13px;
+    font-size: 10px;
+}
+
+.home-page .bestseller-copy h3 {
+    margin: 0 0 12px;
+    color: #44372b;
+    font-size: clamp(24px, 2vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -.7px;
+}
+
+.home-page .bestseller-copy > p:not(.section-eyebrow) {
+    max-width: 320px;
+    margin: 0 0 19px;
+    color: #786958;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.home-page .bestseller-copy .btn {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 17px;
+    border-radius: 7px;
+    color: white;
+    background: var(--gd-brown, #4e3b2e);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.home-page .bestseller-photo {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    right: 13px;
+    width: 39%;
+    max-height: 86%;
+    object-fit: contain;
+    transform: translateY(-50%);
+    border-radius: 12px;
+}
+
+.home-page .bestseller-banner .bestseller-variant-note {
+    margin: 12px 0 0;
+    color: #93816d;
+    font-size: 9px;
+}
+
+/* 8. THIẾT KẾ 3D */
+.home-page .home-studio-section {
+    position: relative;
+
+    margin: 0;
+    padding-block: var(--home-section-space);
+
+    background: transparent;
+
+    border-top: 1px solid var(--home-divider);
+    border-bottom: 1px solid var(--home-divider);
+}
+
+.home-page .home-studio-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(350px, .8fr);
+    align-items: center;
+    gap: clamp(34px, 4vw, 65px);
+}
+
+.home-page .home-studio-preview {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #d9d0c3;
+    border-radius: 17px;
+    color: var(--gd-brown, #4e3b2e);
+    background: #f8f6f0;
+    box-shadow: 0 16px 38px rgb(68 54 39 / 8%);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.home-page .home-studio-preview:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 44px rgb(68 54 39 / 12%);
+}
+
+.home-page .home-studio-preview-topbar,
+.home-page .home-studio-preview-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 19px;
+}
+
+.home-page .home-studio-preview-topbar {
+    border-bottom: 1px solid #e9e3d9;
+    color: #746452;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.home-page .home-studio-preview-icon {
+    margin-right: 6px;
+    color: #9a8266;
+    font-size: 17px;
+}
+
+.home-page .home-studio-preview-label {
+    padding: 5px 9px;
+    border-radius: 99px;
+    color: #63745d;
+    background: #e7eee2;
+    font-size: 9px;
+}
+
+.home-page .home-studio-illustration {
+    display: grid;
+    min-height: 290px;
+    place-items: center;
+    padding: 20px;
+    background: radial-gradient(
+        ellipse at 50% 73%,
+        #e6ddcf,
+        #f6f3ec 68%
+    );
+}
+
+.home-page .home-studio-illustration svg {
+    width: 100%;
+    max-height: 340px;
+    overflow: visible;
+}
+
+.home-page .home-studio-preview-bottom {
+    border-top: 1px solid #e9e3d9;
+    color: #8b7c6c;
+    font-size: 10px;
+}
+
+.home-page .home-studio-preview-open {
+    color: #71583f;
+    font-weight: 700;
+}
+
+.home-page .home-studio-copy { max-width: 580px; }
+
+.home-page .home-studio-eyebrow {
+    margin: 0 0 15px;
+    color: #7c8e73;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    line-height: 1.6;
+}
+
+.home-page .home-studio-copy h2 {
+    margin: 0 0 17px;
+    color: var(--gd-brown, #4e3b2e);
+    font-size: clamp(34px, 3.2vw, 49px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -1.2px;
+}
+
+.home-page .home-studio-description {
+    margin: 0 0 23px;
+    color: #766b5e;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.home-page .home-studio-steps {
+    display: grid;
+    gap: 12px;
+    margin: 0 0 26px;
+    padding: 0;
+    list-style: none;
+}
+
+.home-page .home-studio-steps li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #5d5144;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.home-page .home-studio-steps li span {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #cdd7c6;
+    border-radius: 50%;
+    color: #64795c;
+    background: #f8f9f4;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.home-page .home-studio-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 12px 20px;
+    border-radius: 7px;
+    color: white;
+    background: #4e3b2e;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.home-page .home-studio-button:hover {
+    transform: translateY(-2px);
+    background: #392b22;
+}
+
+.home-page .home-studio-button .ui-icon {
+    width: 17px;
+    height: 17px;
+}
+
+.home-page .home-studio-note {
+    margin: 12px 0 0;
+    color: #968977;
+    font-size: 10px;
+}
+
+/* 9. CỘNG ĐỒNG — VIDEO TRÁI, NỘI DUNG PHẢI */
+.home-page .home-community-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+    align-items: center;
+    gap: clamp(35px, 5vw, 78px);
+}
+
+.home-page .home-community-media {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #ded8cd;
+    box-shadow: 0 13px 34px rgb(78 59 46 / 9%);
+}
+
+.home-page .home-community-video {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: #e5dfd5;
+}
+
+.home-page .home-community-video-tag {
+    position: absolute;
+    bottom: 17px;
+    left: 18px;
+    padding: 7px 11px;
+    border: 1px solid rgb(255 255 255 / 55%);
+    border-radius: 5px;
+    color: white;
+    background: rgb(35 33 28 / 38%);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    backdrop-filter: blur(8px);
+}
+
+.home-page .home-community-copy { max-width: 540px; }
+
+.home-page .home-community-eyebrow {
+    margin: 0 0 15px;
+    color: #8a7158;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.home-page .home-community-copy h2 {
+    margin: 0 0 15px;
+    color: var(--gd-brown, #4e3b2e);
+    font-size: clamp(32px, 3vw, 45px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.home-page .home-community-lead {
+    margin: 0 0 13px;
+    color: #8b765e;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.home-page .home-community-copy > p:not(
+    .home-community-eyebrow
+):not(.home-community-lead) {
+    margin: 0 0 23px;
+    color: #756b63;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.home-page .home-community-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #b99c7c;
+    color: #6e5339;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.home-page .home-community-link span {
+    transition: transform 180ms ease;
+}
+
+.home-page .home-community-link:hover span {
+    transform: translate(3px, -3px);
+}
+
+/* 10. TIN TỨC / BÀI VIẾT */
+.home-page .home-news-section {
+    padding-bottom: var(--home-section-space);
+}
+
+.home-page .home-news-header { align-items: flex-end; }
+
+.home-page .home-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.home-page .home-news-card { min-width: 0; }
+
+.home-page .home-news-image {
+    display: block;
+    overflow: hidden;
+    border-radius: 13px;
+    background: #e9e2d8;
+}
+
+.home-page .home-news-image img {
+    width: 100%;
+    aspect-ratio: 1.55;
+    object-fit: cover;
+    transition: transform 400ms ease;
+}
+
+.home-page .home-news-card:hover .home-news-image img {
+    transform: scale(1.04);
+}
+
+.home-page .home-news-meta {
+    margin: 16px 0 8px;
+    color: #99836a;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.home-page .home-news-card h3 {
+    margin: 0 0 13px;
+    color: #4e3b2e;
+    font-size: clamp(15px, 1.2vw, 18px);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.home-page .home-news-card h3 a:hover { color: #9a633f; }
+
+.home-page .home-news-read {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #795d43;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* 11. FAQ & HỖ TRỢ */
+.home-page .faq-section {
+    padding-bottom: clamp(45px, 5vw, 70px);
+}
+.home-page .faq-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+    align-items: start;
+    gap: clamp(28px, 4vw, 58px);
+}
+
+.home-page .faq-intro h2 { margin: 0 0 16px; }
+
+.home-page .faq-intro > p {
+    max-width: 490px;
+    margin: 0 0 19px;
+    color: var(--gd-muted, #756b63);
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.home-page .faq-intro > .faq-support-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #805d40;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.home-page .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 11px;
+}
+
+.home-page .service-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #e8e1d7;
+    border-radius: 11px;
+    background: #f8f6f1;
+    transition:
+        border-color 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.home-page .service-card:hover {
+    border-color: #c2ad91;
+    box-shadow: 0 8px 20px rgb(78 59 46 / 6%);
+}
+
+.home-page .service-card[open] {
+    border-color: #b7a489;
+    background: #fffdfa;
+}
+
+.home-page .service-card summary {
+    position: relative;
+    min-height: 145px;
+    padding: 17px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.home-page .service-card summary::-webkit-details-marker { display: none; }
+
+.home-page .service-card summary::after {
+    position: absolute;
+    top: 13px;
+    right: 14px;
+    color: #86725e;
+    font-size: 18px;
+    content: "+";
+    transition: transform 180ms ease;
+}
+
+.home-page .service-card[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.home-page .service-card .ui-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 12px;
+    color: #8d775e;
+}
+
+.home-page .service-card strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--gd-brown, #4e3b2e);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.home-page .service-card summary span {
+    display: block;
+    color: var(--gd-muted, #756b63);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.home-page .service-card > p {
+    margin: 0 15px 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e9e1d5;
+    color: #6f6052;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.home-page .faq-help-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.home-page .faq-help-mark {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #dcd2c5;
+    border-radius: 50%;
+    color: #9a8266;
+    font-size: 14px;
+}
+
+.home-page .faq-help-note p {
+    margin: 0;
+    color: #938371;
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.home-page .faq-help-note a {
+    color: #745940;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.home-page .faq-panel {
+    padding: 22px 17px 13px;
+    border: 1px solid #e9e2d8;
+    border-radius: 16px;
+    background: #f5f2ec;
+}
+
+.home-page .faq-panel-heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 11px 15px;
+    color: #95836c;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.home-page .faq-panel-heading > span:last-child {
+    color: #a19381;
+    letter-spacing: 0;
+}
+
+.home-page .faq-item {
+    padding-inline: 13px;
+    border: 1px solid transparent;
+    border-bottom-color: #e6e0d6;
+    border-radius: 9px;
+    transition: border-color 180ms ease, background 180ms ease;
+}
+
+.home-page .faq-item + .faq-item { margin-top: 4px; }
+.home-page .faq-item:last-child { border-bottom-color: transparent; }
+.home-page .faq-item:hover { background: rgb(255 255 255 / 55%); }
+
+.home-page .faq-item[open] {
+    border-color: #e8dfd1;
+    background: #fff;
+    box-shadow: inset 3px 0 #a18a6a;
+}
+
+.home-page .faq-item > summary {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) 25px;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 0;
+    color: var(--gd-brown, #4e3b2e);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    cursor: pointer;
+    list-style: none;
+}
+
+.home-page .faq-item > summary::-webkit-details-marker { display: none; }
+
+.home-page .faq-number {
+    color: #a9967d;
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.home-page .faq-toggle-icon {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: #7d6a53;
+    background: #ebe6de;
+    transition:
+        transform 180ms ease,
+        color 180ms ease,
+        background 180ms ease;
+}
+
+.home-page .faq-toggle-icon::before,
+.home-page .faq-toggle-icon::after {
+    position: absolute;
+    top: 12px;
+    left: 7px;
+    width: 10px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+}
+
+.home-page .faq-toggle-icon::after { transform: rotate(90deg); }
+
+.home-page .faq-item[open] .faq-toggle-icon {
+    transform: rotate(180deg);
+    color: #fff;
+    background: #6b5741;
+}
+
+.home-page .faq-item[open] .faq-toggle-icon::after { opacity: 0; }
+.home-page .faq-answer { padding-left: 30px; }
+
+.home-page .faq-item p,
+.home-page .faq-item ul {
+    margin: 0 0 16px;
+    color: #81725f;
+    font-size: 12px;
+    line-height: 1.85;
+}
+
+.home-page .faq-item .faq-demo-note {
+    color: #a18e76;
+    font-size: 10px;
+}
+
+.home-page .faq-item a {
+    color: #805d40;
+    font-size: 11px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.home-page .faq-answer > a {
+    display: inline-block;
+    margin-bottom: 17px;
+}
+
+/* 12. CTA TRƯỚC FOOTER */
+.home-page .home-cta-section { padding: 25px 0 0; }
+
+.home-page .home-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: clamp(25px, 3.2vw, 43px) clamp(25px, 4vw, 58px);
+    border: 1px solid #e7d6c5;
+    border-radius: 15px 15px 0 0;
+    background: #f0e2d4;
+}
+
+.home-page .home-cta-eyebrow {
+    margin: 0 0 9px;
+    color: #96775b;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.home-page .home-cta-copy h2 {
+    margin: 0 0 7px;
+    color: #4e3b2e;
+    font-size: clamp(21px, 2vw, 29px);
+    line-height: 1.25;
+}
+
+.home-page .home-cta-copy > p:last-child {
+    margin: 0;
+    color: #786657;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.home-page .home-cta-button {
+    display: inline-flex;
+    min-height: 44px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 11px 18px;
+    border-radius: 7px;
+    color: white;
+    background: #4e3b2e;
+    font-size: 11px;
+    font-weight: 700;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.home-page .home-cta-button:hover {
+    transform: translateY(-2px);
+    background: #392b22;
+}
+
+/* 14. TABLET */
+@media (max-width: 1100px) {
+    .home-page { --home-gutter: 34px; }
+
+    .home-page .home-studio-layout,
+    .home-page .home-community-layout { gap: 30px; }
+
+    .home-page .new-product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .home-page .bestseller-banner { min-height: 300px; }
+}
+
+/* 15. TABLET NHỎ */
+@media (max-width: 900px) {
+
+    .home-page .hero-card { min-height: 670px; height: 86svh; }
+    .home-page .hero-copy { width: 58%; }
+
+    .home-page .home-studio-layout,
+    .home-page .home-community-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+    }
+
+    .home-page .home-studio-illustration { min-height: 245px; }
+}
+
+/* 16. MOBILE */
+@media (max-width: 640px) {
+    .home-page {
+        --home-gutter: 18px;
+        --home-section-space: 48px;
+    }
+
+    .home-page .hero-card { min-height: 700px; height: 88svh; }
+    .home-page .hero-photo { object-position: 32% center; }
+
+    .home-page .hero-content {
+        width: calc(100% - 36px);
+        justify-content: flex-start;
+        padding: 0 0 83px;
+    }
+
+    .home-page .hero-copy {
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .home-page .hero-content h1 {
+        font-size: clamp(32px, 9vw, 43px);
+        letter-spacing: -.8px;
+    }
+
+    .home-page .hero-copy > p { font-size: 13px; }
+    .home-page .hero-actions { gap: 8px; }
+
+    .home-page .hero-actions .btn {
+        min-height: 43px;
+        padding: 10px 13px;
+        font-size: 10px;
+    }
+
+    .home-page .hero-scroll { right: 18px; bottom: 22px; }
+
+    .home-page .home-promo-section { padding-top: 32px; }
+    .home-page .home-promo-heading { display: block; }
+
+    .home-page .home-promo-heading > span {
+        display: block;
+        margin-top: 5px;
+        font-size: 11px;
+    }
+
+    .home-page .home-promo-track {
+        gap: 12px;
+        padding-inline: 5%;
+    }
+
+    .home-page .home-promo-slide { flex-basis: 90%; }
+
+    .home-page .home-promo-card {
+        min-height: 245px;
+        border-radius: 12px;
+    }
+
+    .home-page .home-promo-copy {
+        gap: 9px;
+        padding: 20px;
+    }
+
+    .home-page .home-promo-copy strong {
+        font-size: clamp(23px, 7vw, 32px);
+    }
+
+    .home-page .home-promo-kicker { font-size: 8px; }
+    .home-page .home-promo-link { font-size: 10px; }
+
+    .home-page .section-header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-bottom: 19px;
+    }
+
+    .home-page .section-header h2,
+    .home-page .faq-intro h2 {
+        font-size: 26px;
+        letter-spacing: -.5px;
+    }
+
+    .home-page .section-header p { font-size: 12px; }
+    .home-page .link-arrow { font-size: 11px; }
+
+    .home-page .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .home-page .category-tile {
+        padding: 7px;
+        border-radius: 11px;
+    }
+
+    .home-page .category-tile img { aspect-ratio: 1.22; }
+
+    .home-page .category-tile h3 {
+        min-height: 42px;
+        padding: 9px 2px 2px;
+        font-size: 12px;
+    }
+
+    .home-page .category-description { font-size: 10px; }
+
+    .home-page .category-description a {
+        display: inline-block;
+        margin: 3px 0 0;
+    }
+
+    .home-page .new-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 23px 12px;
+    }
+
+    .home-page .product-badge {
+        top: 8px;
+        left: 8px;
+        padding: 4px 8px;
+        font-size: 9px;
+    }
+
+    .home-page .arrival-type { margin-top: 10px; font-size: 10px; }
+    .home-page .arrival-card h3 { font-size: 13px; }
+    .home-page .arrival-price { font-size: 14px; }
+
+    .home-page .bestseller-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .home-page .bestseller-banner { min-height: 280px; }
+
+    .home-page .bestseller-copy {
+        width: 62%;
+        padding: 22px 0 22px 20px;
+    }
+
+    .home-page .bestseller-copy h3 { font-size: 25px; }
+
+    .home-page .bestseller-copy > p:not(.section-eyebrow) { font-size: 10px; }
+
+    .home-page .bestseller-photo {
+        right: 8px;
+        width: 38%;
+    }
+
+    .home-page .home-studio-section { padding-block: 48px; }
+
+    .home-page .home-studio-layout,
+    .home-page .home-community-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .home-page .home-studio-illustration {
+        min-height: 210px;
+        padding: 12px;
+    }
+
+    .home-page .home-studio-preview-topbar,
+    .home-page .home-studio-preview-bottom {
+        padding: 11px 13px;
+        font-size: 9px;
+    }
+
+    .home-page .home-studio-copy h2,
+    .home-page .home-community-copy h2 { font-size: 33px; }
+
+    .home-page .home-studio-description,
+    .home-page .home-community-copy > p:not(
+        .home-community-eyebrow
+    ):not(.home-community-lead) { font-size: 12px; }
+
+    .home-page .home-community-video { aspect-ratio: 4 / 3; }
+
+    .home-page .home-news-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .home-page .home-news-image img { aspect-ratio: 1.55; }
+    .home-page .home-news-meta { margin-top: 12px; }
+    .home-page .home-news-card h3 { font-size: 16px; }
+
+    .home-page .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 27px;
+    }
+
+    .home-page .service-grid { gap: 9px; }
+
+    .home-page .service-card summary {
+        min-height: 140px;
+        padding: 14px 12px;
+    }
+
+    .home-page .service-card strong { font-size: 12px; }
+    .home-page .service-card summary span { font-size: 9px; }
+
+    .home-page .service-card > p {
+        margin-inline: 12px;
+        font-size: 10px;
+    }
+
+    .home-page .faq-panel { padding: 18px 10px 10px; }
+    .home-page .faq-item { padding-inline: 9px; }
+
+    .home-page .faq-item > summary {
+        gap: 7px;
+        padding-block: 15px;
+        font-size: 11px;
+    }
+
+    .home-page .faq-answer { padding-left: 26px; }
+    .home-page .faq-item p { font-size: 11px; }
+
+    .home-page .home-cta-banner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+        padding: 24px 20px;
+    }
+
+    .home-page .home-cta-copy h2 { font-size: 22px; }
+    .home-page .home-cta-copy > p:last-child { font-size: 11px; }
+}
+
+/* 17. MÀN HÌNH RẤT NHỎ */
+@media (max-width: 380px) {
+
+    .home-page .hero-actions .btn { padding-inline: 10px; font-size: 9px; }
+    .home-page .category-tile h3 { font-size: 11px; }
+    .home-page .service-grid { grid-template-columns: 1fr; }
+    .home-page .service-card summary { min-height: 0; }
+}
+
+/* 18. GIẢM CHUYỂN ĐỘNG THEO THIẾT LẬP TRÌNH DUYỆT */
+@media (prefers-reduced-motion: reduce) {
+    .home-page *,
+    .home-page *::before,
+    .home-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+    
+/* FIX: TÁCH BIỆT SECTION THIẾT KẾ 3D */
+
+.home-page .home-studio-section {
+    position: relative;
+    margin-top: clamp(65px, 7vw, 100px);
+    padding-top: clamp(75px, 7vw, 105px);
+    padding-bottom: clamp(75px, 7vw, 105px);
+
+    background: #e8eee5;
+    border-top: 1px solid #d7e0d2;
+    border-bottom: 1px solid #d7e0d2;
+}
+
+.home-page .home-studio-layout {
+    gap: clamp(40px, 5vw, 80px);
+}
+
+@media (max-width: 640px) {
+    .home-page .home-studio-section {
+        margin-top: 48px;
+        padding-block: 48px;
+    }
+}
+
+}

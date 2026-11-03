@@ -1,0 +1,90 @@
+[
+  {
+    "product": "hyperone-gen-2",
+    "original": "images/product-pages/hyperone-gen-2.jpg",
+    "generated": {
+      "id": "cream",
+      "name": "Kem",
+      "hex": "#e8dfcf",
+      "image": "images/product-pages/variants/hyperone-gen-2-cream.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "silentium-gen-2",
+    "original": "images/product-pages/silentium-gen-2.jpg",
+    "generated": {
+      "id": "cream",
+      "name": "Kem",
+      "hex": "#e8dfcf",
+      "image": "images/product-pages/variants/silentium-gen-2-cream.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "nova-dl02",
+    "original": "images/product-pages/nova-dl02.jpg",
+    "generated": {
+      "id": "sage",
+      "name": "Xanh sage",
+      "hex": "#879b83",
+      "image": "images/product-pages/variants/nova-dl02-sage.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "lh01",
+    "original": "images/product-pages/lh01.jpg",
+    "generated": {
+      "id": "oak",
+      "name": "Gỗ sáng",
+      "hex": "#caa777",
+      "image": "images/product-pages/variants/lh01-oak.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "corepad",
+    "original": "images/product-pages/corepad.jpg",
+    "generated": {
+      "id": "sage",
+      "name": "Xanh sage",
+      "hex": "#879b83",
+      "image": "images/product-pages/variants/corepad-sage.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "ds02",
+    "original": "images/product-pages/ds02.jpg",
+    "generated": {
+      "id": "oak",
+      "name": "Gỗ sáng",
+      "hex": "#caa777",
+      "image": "images/product-pages/variants/ds02-oak.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "hs01",
+    "original": "images/product-pages/hs01.jpg",
+    "generated": {
+      "id": "oak",
+      "name": "Gỗ sáng",
+      "hex": "#caa777",
+      "image": "images/product-pages/variants/hs01-oak.png",
+      "generated": true
+    }
+  },
+  {
+    "product": "cm02",
+    "original": "images/product-pages/cm02.jpg",
+    "generated": {
+      "id": "cream",
+      "name": "Kem",
+      "hex": "#e8dfcf",
+      "image": "images/product-pages/variants/cm02-cream.png",
+      "generated": true
+    }
+  }
+]

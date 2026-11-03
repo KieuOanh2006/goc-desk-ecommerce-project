@@ -1,0 +1,46 @@
+{
+  "mode": "built-in image_gen",
+  "purpose": "Concept color variants, not manufacturer colors",
+  "assets": [
+    {
+      "product": "hyperone-gen-2",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of hyperone-gen-2. Change ONLY the product material color as follows: warm ivory / cream keycaps and pale champagne aluminum frame; retain orange Fn key, dark charcoal key legends, precise original keyboard layout. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/hyperone-gen-2-cream.png"
+    },
+    {
+      "product": "silentium-gen-2",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of silentium-gen-2. Change ONLY the product material color as follows: warm ivory / cream main mouse shell instead of black; retain silver trim, metallic scroll wheels, orange side buttons. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/silentium-gen-2-cream.png"
+    },
+    {
+      "product": "nova-dl02",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of nova-dl02. Change ONLY the product material color as follows: muted sage green lamp body, stem and base instead of white; retain orange hinge ring and warm LED strip. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/nova-dl02-sage.png"
+    },
+    {
+      "product": "lh01",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of lh01. Change ONLY the product material color as follows: pale natural oak wood clamp instead of walnut brown; retain wood grain, black metal base, silver laptop unchanged. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/lh01-oak.png"
+    },
+    {
+      "product": "corepad",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of corepad. Change ONLY the product material color as follows: muted sage green textile mouse pad instead of black, subtle darker sage wavy line pattern, matching sage stitched border. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/corepad-sage.png"
+    },
+    {
+      "product": "ds02",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of ds02. Change ONLY the product material color as follows: pale natural oak upper wood shelf instead of dark brown; retain black metal drawer legs and removable tray. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/ds02-oak.png"
+    },
+    {
+      "product": "hs01",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of hs01. Change ONLY the product material color as follows: pale natural oak wood base tray instead of walnut brown; retain black metal vertical headphone stand. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/hs01-oak.png"
+    },
+    {
+      "product": "cm02",
+      "prompt": "Use case: precise-object-edit. Asset type: product color variant for an ecommerce gallery. Edit the attached reference photo of cm02. Change ONLY the product material color as follows: matte warm ivory powder coated metal cable tray instead of black; preserve HyperWork logo in dark gray. Preserve exact product identity, form, proportions, camera angle, mechanical details, lighting, shadows and plain light gray studio background. Do not add accessories, decorative objects, captions or new text. Produce one polished square product photo, entire product visible and centered, product occupies about 75% of frame. For LH01 leave the laptop unchanged; only recolor the wooden clamp. This is a concept color variant, not a new product.",
+      "output": "images/product-pages/variants/cm02-cream.png"
+    }
+  ]
+}

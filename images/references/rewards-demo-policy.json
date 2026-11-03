@@ -1,0 +1,92 @@
+{
+  "status": "Illustrative proposal; not active entitlements",
+  "tiers": [
+    {
+      "id": "bronze",
+      "name": "Bronze",
+      "threshold": "500",
+      "benefits": [
+        "Miễn phí vận chuyển đơn đầu tiên từ 500.000 ₫",
+        "Giảm 5% cho đơn hàng từ 500.000 ₫"
+      ]
+    },
+    {
+      "id": "silver",
+      "name": "Silver",
+      "threshold": "10.000",
+      "benefits": [
+        "Tặng cuộn dây dán cáp cho góc bàn",
+        "Miễn phí vận chuyển đơn đầu tiên từ 500.000 ₫, tối đa 50.000 ₫",
+        "Giảm 5% cho đơn hàng từ 1.000.000 ₫",
+        "Tặng 1.000 điểm vào ví"
+      ]
+    },
+    {
+      "id": "gold",
+      "name": "Gold",
+      "threshold": "20.000",
+      "benefits": [
+        "Tặng chai vệ sinh màn hình",
+        "Miễn phí vận chuyển đơn đầu tiên từ 500.000 ₫, tối đa 50.000 ₫",
+        "Giảm 5% cho đơn hàng từ 500.000 ₫",
+        "Tặng 2.000 điểm vào ví"
+      ]
+    },
+    {
+      "id": "titan",
+      "name": "Titan",
+      "threshold": "30.000",
+      "benefits": [
+        "Tặng khay đựng đồ cho góc làm việc",
+        "Miễn phí vận chuyển đơn hàng đầu tiên",
+        "Giảm 10% cho đơn hàng đầu tiên",
+        "Tặng 5.000 điểm vào ví",
+        "Hỗ trợ kỹ thuật ưu tiên"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "cable-wrap",
+      "type": "gift",
+      "name": "Cuộn dây dán cáp Góc Desk",
+      "points": 5000,
+      "icon": "wrap"
+    },
+    {
+      "id": "cleaning-kit",
+      "type": "gift",
+      "name": "Chai vệ sinh màn hình",
+      "points": 8000,
+      "icon": "bottle"
+    },
+    {
+      "id": "shipping-50",
+      "type": "voucher",
+      "name": "Giảm 50.000 ₫ phí vận chuyển",
+      "points": 4000,
+      "icon": "truck"
+    },
+    {
+      "id": "shipping-100",
+      "type": "voucher",
+      "name": "Giảm 100.000 ₫ phí vận chuyển",
+      "points": 8000,
+      "icon": "truck"
+    },
+    {
+      "id": "voucher-50",
+      "type": "voucher",
+      "name": "Voucher giảm 50.000 ₫",
+      "points": 4000,
+      "icon": "gift50"
+    },
+    {
+      "id": "voucher-100",
+      "type": "voucher",
+      "name": "Voucher giảm 100.000 ₫",
+      "points": 8000,
+      "icon": "gift100"
+    }
+  ]
+}

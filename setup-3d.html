@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tự lên ý tưởng bố trí góc học tập, làm việc cùng Góc Desk.">
+    <title>Thiết kế góc làm việc | Góc Desk</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/site-shell.css">
+<script src="js/product-data.js" defer></script>
+<script src="js/catalog-utils.js" defer></script>
+<script src="js/setup-selection.js" defer></script>
+<link rel="stylesheet" href="css/setup-selection.css">
+<script src="js/cart-store.js" defer></script>
+<script src="js/cart-badge.js" defer></script>
+<link rel="stylesheet" href="css/page-hero.css">
+<link rel="stylesheet" href="css/setup-3d-scene.css">
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js" defer></script>
+<script src="js/setup-3d-scene.js" defer></script>
+</head>
+<body class="has-photo-header page-studio">
+    <a class="site-skip-link" href="#main-content">Đến nội dung chính</a>
+    <div id="site-header-slot"></div>
+    <script src="js/layout.js"></script>
+
+    <main id="main-content">
+<section class="subpage-hero" aria-labelledby="setup-page-title"><img class="subpage-hero-image" src="images/setup-3d-hero-background.png" alt="" fetchpriority="high" decoding="async"><div class="subpage-hero-content"><p class="subpage-eyebrow">Tính năng trải nghiệm</p><h1 class="subpage-title" id="setup-page-title">Tự thiết kế góc làm việc 3D</h1><p class="subpage-description">Sản phẩm trong giỏ sẽ nằm sẵn trong tủ. Kéo món bạn muốn ra bàn để thử cách sắp xếp trong không gian 3D.</p><div class="subpage-actions"><a class="subpage-action" href="#setup-workspace">Bắt đầu bố trí <span aria-hidden="true">&nbsp;↗</span></a></div></div></section>
+<div class="subpage-body">
+
+
+        <section id="setup-workspace" class="studio-workspace container" aria-label="Sắp xếp sản phẩm trong không gian làm việc 3D">
+            <aside class="studio-inventory" aria-labelledby="studio-inventory-title">
+                <div class="studio-panel-heading">
+                    <span class="studio-eyebrow">TỦ ĐỒ CỦA BẠN</span>
+                    <h2 id="studio-inventory-title">Sản phẩm trong giỏ</h2>
+                    <span class="studio-count" id="studio-cart-count" aria-live="polite">0 món</span>
+                </div>
+                <p class="studio-help">Kéo món ra bàn hoặc xuống sàn để đặt vào góc phòng. Bố cục được lưu trên thiết bị này.</p>
+                <section id="setup-selection" class="setup-selection" aria-label="Sản phẩm đang xem" hidden></section>
+                <div class="studio-inventory-list" id="studio-inventory-list" aria-live="polite"></div>
+                <a class="studio-cart-link" href="cart.html">Xem giỏ hàng <span aria-hidden="true">↗</span></a>
+                <p class="studio-status" id="studio-status" role="status" aria-live="polite">Đang tải không gian 3D…</p>
+            </aside>
+
+            <section class="studio-scene-panel" aria-labelledby="studio-scene-title">
+                <div class="studio-scene-heading">
+                    <div><span class="studio-eyebrow">KHÔNG GIAN CỦA BẠN</span><h2 id="studio-scene-title">Kéo thả để sắp xếp</h2></div>
+                    <span class="studio-live-badge"><i aria-hidden="true"></i> 3D tương tác</span>
+                </div>
+                <div class="studio-canvas-wrap" id="studio-canvas-wrap">
+                    <canvas id="studio-canvas" aria-label="Không gian làm việc 3D có tủ chứa sản phẩm và mặt bàn để sắp xếp"></canvas>
+                    <div class="studio-canvas-hint" id="studio-canvas-hint" aria-hidden="true">Kéo nền để xoay góc nhìn · Kéo món đồ xuống sàn, kể cả vào góc phòng</div>
+                    <div class="studio-canvas-error" id="studio-canvas-error" hidden>Không thể tải đồ họa 3D. Hãy kiểm tra kết nối mạng rồi tải lại trang.</div>
+                </div>
+                <div class="studio-scene-controls">
+                    <label for="studio-desk-color">Màu mặt bàn</label>
+                    <select id="studio-desk-color">
+                        <option value="oak">Gỗ sáng</option>
+                        <option value="walnut">Gỗ óc chó</option>
+                        <option value="white">Trắng</option>
+                    </select>
+                    <button type="button" id="studio-reset-view">Đặt lại góc nhìn</button>
+                    <button type="button" id="studio-clear-layout">Cất sản phẩm vào tủ</button>
+                </div>
+                <div class="studio-furniture-controls" aria-label="Điều khiển bàn và tủ">
+                    <label for="studio-furniture-select">Chọn vật thể</label>
+                    <select id="studio-furniture-select">
+                        <option value="desk">Bàn làm việc</option>
+                        <option value="cabinet">Tủ đựng đồ</option>
+                    </select>
+                    <button type="button" id="studio-move-mode" aria-pressed="false">Bật kéo vật thể đã chọn</button>
+                    <div class="studio-move-pad" role="group" aria-label="Di chuyển vật thể đã chọn">
+                        <button type="button" data-move="forward" aria-label="Di chuyển ra phía trước">↑</button>
+                        <button type="button" data-move="left" aria-label="Di chuyển sang trái">←</button>
+                        <button type="button" data-move="back" aria-label="Di chuyển ra phía sau">↓</button>
+                        <button type="button" data-move="right" aria-label="Di chuyển sang phải">→</button>
+                    </div>
+                    <button type="button" id="studio-rotate-left">Xoay trái 90°</button>
+                    <button type="button" id="studio-rotate-right">Xoay phải 90°</button>
+                    <button type="button" id="studio-reset-furniture">Đặt lại bàn và tủ</button>
+                </div>
+                <p class="studio-disclaimer">Mô hình 3D tương tác theo tỉ lệ tham khảo; hình dáng và kích thước không thay thế bản vẽ/CAD chính thức của hãng.</p>
+            </section>
+        </section>
+    </div>
+</main>
+
+    <div id="site-footer-slot"></div>
+</body>
+</html>

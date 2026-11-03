@@ -1,0 +1,752 @@
+
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đăng nhập, quản lý hồ sơ, địa chỉ, đơn hàng và không gian cá nhân tại Góc Desk.">
+    <title>Tài khoản thành viên | Góc Desk</title>
+
+    <!-- CSS DÙNG CHUNG CỦA WEBSITE -->
+   <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/account.css">
+<link rel="stylesheet" href="css/site-shell.css">   
+
+    <!-- JAVASCRIPT -->
+    <script src="js/product-data.js" defer></script>
+    <script src="js/cart-store.js" defer></script>
+    <script src="js/cart-badge.js" defer></script>
+    <script src="js/account.js" defer></script>
+</head>
+
+<body class="page-account">
+
+    <a class="site-skip-link" href="#main-content">
+        Đến nội dung chính
+    </a>
+
+    <!-- ================= HEADER (js/layout.js) ================= -->
+    <div id="site-header-slot"></div>
+    <script src="js/layout.js"></script>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main id="main-content" class="account-main">
+
+        <div class="account-container">
+
+            <!-- ĐƯỜNG DẪN -->
+            <nav class="account-breadcrumb" aria-label="Đường dẫn">
+                <a href="index.html">Trang chủ</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">Tài khoản</span>
+            </nav>
+
+            <!-- ================= LOGIN / REGISTER ================= -->
+            <section class="account-auth-layout"
+                     id="account-auth"
+                     aria-label="Đăng nhập hoặc đăng ký">
+
+                <!-- KHỐI FORM -->
+                <div class="account-auth-card">
+
+                    <div class="auth-card-heading">
+
+                        <p class="account-eyebrow">
+                            CHÀO MỪNG BẠN TRỞ LẠI
+                        </p>
+
+                        <h2>
+                            Tiếp tục hành trình<br>
+                            của bạn.
+                        </h2>
+
+                        <p class="auth-card-description">
+                            Đăng nhập để kết nối với không gian Góc Desk
+                            của riêng bạn.
+                        </p>
+
+                    </div>
+
+                    <!-- TAB ĐĂNG NHẬP / ĐĂNG KÝ -->
+                    <div class="account-tabs"
+                         role="tablist"
+                         aria-label="Chọn hình thức tài khoản">
+
+                        <button
+                            type="button"
+                            class="account-tab is-active"
+                            id="login-tab"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="login-panel"
+                            data-auth-tab="login">
+                            Đăng nhập
+                        </button>
+
+                        <button
+                            type="button"
+                            class="account-tab"
+                            id="register-tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="register-panel"
+                            data-auth-tab="register">
+                            Tạo tài khoản
+                        </button>
+
+                    </div>
+
+                    <!-- FORM ĐĂNG NHẬP -->
+                    <div
+                        class="auth-panel"
+                        id="login-panel"
+                        role="tabpanel"
+                        aria-labelledby="login-tab"
+                        data-auth-panel="login">
+
+                        <form class="account-form"
+                              id="login-form"
+                              novalidate>
+
+                            <label for="login-identity">
+                                Email hoặc số điện thoại
+                            </label>
+
+                            <input
+                                id="login-identity"
+                                name="identity"
+                                type="text"
+                                autocomplete="username"
+                                placeholder="Nhập email hoặc số điện thoại"
+                                required>
+
+                            <div class="field-heading">
+
+                                <label for="login-password">
+                                    Mật khẩu
+                                </label>
+
+                                <button
+                                    type="button"
+                                    class="account-text-button"
+                                    data-auth-tab="forgot">
+                                    Quên mật khẩu?
+                                </button>
+
+                            </div>
+
+                            <div class="password-field">
+
+                                <input
+                                    id="login-password"
+                                    name="password"
+                                    type="password"
+                                    autocomplete="current-password"
+                                    placeholder="Nhập mật khẩu"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-toggle-password="login-password"
+                                    aria-label="Hiện mật khẩu"
+                                    aria-pressed="false">
+
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/>
+                                        <circle cx="12" cy="12" r="2.5"/>
+                                    </svg>
+
+                                </button>
+                            </div>
+
+                            <label class="account-check" for="remember-login">
+
+                                <input
+                                    id="remember-login"
+                                    type="checkbox"
+                                    name="remember">
+
+                                <span>
+                                    Ghi nhớ đăng nhập trên thiết bị này
+                                </span>
+
+                            </label>
+
+                            <button class="account-submit" type="submit">
+                                Đăng nhập
+                                <span aria-hidden="true">↗</span>
+                            </button>
+
+                            <p
+                                class="form-status"
+                                id="login-status"
+                                role="status"
+                                aria-live="polite">
+                            </p>
+
+                        </form>
+
+                        <p class="auth-switch-note">
+                            Bạn chưa có tài khoản?
+
+                            <button
+                                type="button"
+                                class="account-text-button"
+                                data-auth-tab="register">
+                                Đăng ký ngay
+                            </button>
+                        </p>
+
+                    </div>
+
+                    <!-- FORM ĐĂNG KÝ -->
+                    <div
+                        class="auth-panel"
+                        id="register-panel"
+                        role="tabpanel"
+                        aria-labelledby="register-tab"
+                        data-auth-panel="register"
+                        hidden>
+
+                        <form class="account-form"
+                              id="register-form"
+                              novalidate>
+
+                            <label for="register-name">
+                                Họ và tên
+                            </label>
+
+                            <input
+                                id="register-name"
+                                name="name"
+                                type="text"
+                                autocomplete="name"
+                                placeholder="Nhập họ tên của bạn"
+                                required
+                                maxlength="100">
+
+                            <div class="account-form-grid">
+
+                                <div>
+                                    <label for="register-email">Email</label>
+
+                                    <input
+                                        id="register-email"
+                                        name="email"
+                                        type="email"
+                                        autocomplete="email"
+                                        placeholder="example@email.com"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label for="register-phone">
+                                        Số điện thoại
+                                    </label>
+
+                                    <input
+                                        id="register-phone"
+                                        name="phone"
+                                        type="tel"
+                                        autocomplete="tel"
+                                        inputmode="tel"
+                                        placeholder="Nhập số điện thoại"
+                                        required>
+                                </div>
+
+                            </div>
+
+                            <label for="register-password">
+                                Mật khẩu
+                                <span class="field-hint">Tối thiểu 8 ký tự</span>
+                            </label>
+
+                            <div class="password-field">
+
+                                <input
+                                    id="register-password"
+                                    name="password"
+                                    type="password"
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                    placeholder="Tạo mật khẩu"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-toggle-password="register-password"
+                                    aria-label="Hiện mật khẩu"
+                                    aria-pressed="false">
+
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/>
+                                        <circle cx="12" cy="12" r="2.5"/>
+                                    </svg>
+
+                                </button>
+
+                            </div>
+
+                            <label for="register-confirm">
+                                Xác nhận mật khẩu
+                            </label>
+
+                            <input
+                                id="register-confirm"
+                                name="confirmPassword"
+                                type="password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                placeholder="Nhập lại mật khẩu"
+                                required>
+
+                            <button class="account-submit" type="submit">
+                                Tạo tài khoản
+                                <span aria-hidden="true">↗</span>
+                            </button>
+
+                            <p
+                                class="form-status"
+                                id="register-status"
+                                role="status"
+                                aria-live="polite">
+                            </p>
+
+                        </form>
+
+                        <p class="auth-switch-note">
+                            Đã có tài khoản?
+
+                            <button
+                                type="button"
+                                class="account-text-button"
+                                data-auth-tab="login">
+                                Đăng nhập
+                            </button>
+                        </p>
+
+                    </div>
+
+                    <!-- FORM QUÊN MẬT KHẨU -->
+                    <div
+                        class="auth-panel"
+                        id="forgot-panel"
+                        role="tabpanel"
+                        aria-label="Khôi phục mật khẩu"
+                        data-auth-panel="forgot"
+                        hidden>
+
+                        <form class="account-form"
+                              id="forgot-form"
+                              novalidate>
+
+                            <p class="forgot-intro">
+                                Nhập email đã đăng ký. Khi hệ thống tài khoản
+                                được kết nối, hướng dẫn khôi phục sẽ được gửi
+                                đến bạn.
+                            </p>
+
+                            <label for="forgot-email">
+                                Email đăng ký
+                            </label>
+
+                            <input
+                                id="forgot-email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                placeholder="Nhập email của bạn"
+                                required>
+
+                            <button class="account-submit" type="submit">
+                                Gửi yêu cầu khôi phục
+                                <span aria-hidden="true">↗</span>
+                            </button>
+
+                            <p
+                                class="form-status"
+                                id="forgot-status"
+                                role="status"
+                                aria-live="polite">
+                            </p>
+
+                        </form>
+
+                        <p class="auth-switch-note">
+                            <button
+                                type="button"
+                                class="account-text-button"
+                                data-auth-tab="login">
+                                ← Quay lại đăng nhập
+                            </button>
+                        </p>
+
+                    </div>
+
+                    <!-- XEM TRƯỚC DASHBOARD -->
+                    <div class="auth-preview-link">
+
+                        <span>
+                            Muốn xem bố cục sau khi đăng nhập?
+                        </span>
+
+                        <button
+                            type="button"
+                            id="preview-dashboard">
+                            Xem giao diện mẫu
+                            <span aria-hidden="true">↗</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ================= ACCOUNT DASHBOARD ================= -->
+            <section
+                class="account-dashboard"
+                id="account-dashboard"
+                aria-labelledby="dashboard-title"
+                hidden>
+
+                <div class="dashboard-heading">
+
+                    <div>
+                        <p class="account-eyebrow">KHÔNG GIAN THÀNH VIÊN</p>
+                        <h2 id="dashboard-title">Tài khoản của bạn</h2>
+                        <p>Quản lý thông tin và những mảnh ghép cho góc làm việc.</p>
+                    </div>
+
+                    <div class="preview-label">
+                        <span></span>
+                        BẢN XEM TRƯỚC GIAO DIỆN
+                    </div>
+
+                </div>
+
+                <div class="dashboard-layout">
+
+                    <!-- SIDEBAR DASHBOARD -->
+                    <aside class="dashboard-sidebar"
+                           aria-label="Điều hướng tài khoản">
+
+                        <div class="dashboard-user-card">
+                            <span class="dashboard-avatar">GD</span>
+
+                            <div>
+                                <strong>Thành viên Góc Desk</strong>
+                                <span>Không gian cá nhân</span>
+                            </div>
+                        </div>
+
+                        <p class="dashboard-nav-label">TÀI KHOẢN</p>
+
+                        <nav class="dashboard-nav">
+
+                            <button
+                                type="button"
+                                class="is-active"
+                                data-account-view="profile"
+                                aria-current="page">
+                                <span class="dashboard-nav-icon">◎</span>
+                                Thông tin cá nhân
+                            </button>
+
+                            <button
+                                type="button"
+                                data-account-view="orders">
+                                <span class="dashboard-nav-icon">▤</span>
+                                Đơn hàng của tôi
+                            </button>
+
+                            <button
+                                type="button"
+                                data-account-view="addresses">
+                                <span class="dashboard-nav-icon">⌖</span>
+                                Địa chỉ giao hàng
+                            </button>
+
+                            <button
+                                type="button"
+                                data-account-view="viewed">
+                                <span class="dashboard-nav-icon">◷</span>
+                                Sản phẩm đã xem
+                            </button>
+
+                            <button
+                                type="button"
+                                data-account-view="points">
+                                <span class="dashboard-nav-icon">✧</span>
+                                Điểm thưởng
+                            </button>
+
+                            <button
+                                type="button"
+                                data-account-view="setups">
+                                <span class="dashboard-nav-icon">▦</span>
+                                Bộ setup đã lưu
+                            </button>
+
+                        </nav>
+
+                        <button
+                            type="button"
+                            class="dashboard-logout"
+                            id="exit-preview">
+                            ← Thoát bản xem trước
+                        </button>
+
+                    </aside>
+
+                    <!-- NỘI DUNG CỦA TỪNG TAB -->
+                    <div class="dashboard-content">
+
+                        <!-- 1. THÔNG TIN CÁ NHÂN -->
+                        <section
+                            class="account-view"
+                            data-account-panel="profile"
+                            aria-labelledby="profile-title">
+
+                            <div class="view-heading">
+
+                                <div>
+                                    <p class="account-eyebrow">HỒ SƠ CỦA BẠN</p>
+                                    <h3 id="profile-title">Thông tin cá nhân</h3>
+                                    <p>Cập nhật thông tin liên hệ để thuận tiện khi mua sắm.</p>
+                                </div>
+
+                                <span class="view-heading-number">01 / 06</span>
+
+                            </div>
+
+                            <form class="dashboard-form" id="profile-form">
+
+                                <div class="dashboard-form-grid">
+
+                                    <div>
+                                        <label for="profile-name">Họ và tên</label>
+                                        <input id="profile-name" name="name" placeholder="Nhập họ tên">
+                                    </div>
+
+                                    <div>
+                                        <label for="profile-email">Email</label>
+                                        <input id="profile-email" name="email" type="email" placeholder="example@email.com">
+                                    </div>
+
+                                    <div>
+                                        <label for="profile-phone">Số điện thoại</label>
+                                        <input id="profile-phone" name="phone" type="tel" placeholder="Nhập số điện thoại">
+                                    </div>
+
+                                </div>
+
+                                <div class="dashboard-form-actions">
+
+                                    <p class="form-status"
+                                       id="profile-status"
+                                       role="status"
+                                       aria-live="polite">
+                                    </p>
+
+                                    <button
+                                        type="submit"
+                                        class="account-submit account-submit-small">
+                                        Lưu thay đổi
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                            <div class="dashboard-note">
+                                <span>i</span>
+                                <p>
+                                    Thông tin tài khoản sẽ được cập nhật sau khi bạn đăng nhập.
+                                </p>
+                            </div>
+
+                        </section>
+
+                        <!-- 2. ĐƠN HÀNG -->
+                        <section
+                            class="account-view"
+                            data-account-panel="orders"
+                            aria-labelledby="orders-title"
+                            hidden>
+
+                            <div class="view-heading">
+                                <div>
+                                    <p class="account-eyebrow">HÀNH TRÌNH MUA SẮM</p>
+                                    <h3 id="orders-title">Đơn hàng của tôi</h3>
+                                    <p>Lịch sử đơn hàng và trạng thái xử lý sẽ được hiển thị tại đây.</p>
+                                </div>
+                                <span class="view-heading-number">02 / 06</span>
+                            </div>
+
+                            <div class="account-empty-state">
+                                <span class="empty-state-icon">▤</span>
+                                <h4>Chưa có dữ liệu đơn hàng</h4>
+                                <p>Khi tài khoản được kết nối, các đơn hàng của bạn sẽ xuất hiện tại đây.</p>
+                                <a href="products.html" class="account-inline-link">
+                                    Khám phá sản phẩm <span aria-hidden="true">↗</span>
+                                </a>
+                            </div>
+
+                        </section>
+
+                        <!-- 3. ĐỊA CHỈ GIAO HÀNG -->
+                        <section
+                            class="account-view"
+                            data-account-panel="addresses"
+                            aria-labelledby="addresses-title"
+                            hidden>
+
+                            <div class="view-heading">
+                                <div>
+                                    <p class="account-eyebrow">THÔNG TIN GIAO HÀNG</p>
+                                    <h3 id="addresses-title">Địa chỉ giao hàng</h3>
+                                    <p>Quản lý địa chỉ nhận hàng thường dùng.</p>
+                                </div>
+                                <span class="view-heading-number">03 / 06</span>
+                            </div>
+
+                            <form class="dashboard-form" id="address-form">
+
+                                <div class="dashboard-form-grid">
+
+                                    <div>
+                                        <label for="address-recipient">Người nhận</label>
+                                        <input id="address-recipient" name="recipient" placeholder="Tên người nhận">
+                                    </div>
+
+                                    <div>
+                                        <label for="address-phone">Số điện thoại</label>
+                                        <input id="address-phone" name="phone" type="tel" placeholder="Số điện thoại nhận hàng">
+                                    </div>
+
+                                    <div class="form-field-full">
+                                        <label for="address-detail">Địa chỉ chi tiết</label>
+                                        <textarea
+                                            id="address-detail"
+                                            name="address"
+                                            rows="3"
+                                            placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="dashboard-form-actions">
+
+                                    <p class="form-status"
+                                       id="address-status"
+                                       role="status"
+                                       aria-live="polite">
+                                        Thông tin chỉ dùng để xem trước bố cục.
+                                    </p>
+
+                                    <button
+                                        type="submit"
+                                        class="account-submit account-submit-small">
+                                        Lưu địa chỉ
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </section>
+
+                        <!-- 4. SẢN PHẨM ĐÃ XEM -->
+                        <section
+                            class="account-view"
+                            data-account-panel="viewed"
+                            aria-labelledby="viewed-title"
+                            hidden>
+
+                            <div class="view-heading">
+                                <div>
+                                    <p class="account-eyebrow">GỢI NHỚ LỰA CHỌN</p>
+                                    <h3 id="viewed-title">Sản phẩm đã xem</h3>
+                                    <p>Quay lại những sản phẩm bạn đã khám phá gần đây.</p>
+                                </div>
+                                <span class="view-heading-number">04 / 06</span>
+                            </div>
+
+                            <div class="account-empty-state">
+                                <span class="empty-state-icon">◷</span>
+                                <h4>Chưa có lịch sử xem</h4>
+                                <p>Lịch sử sản phẩm sẽ được ghi nhận và hiển thị tại đây sau khi tích hợp.</p>
+                                <a href="products.html" class="account-inline-link">
+                                    Khám phá sản phẩm <span aria-hidden="true">↗</span>
+                                </a>
+                            </div>
+
+                        </section>
+
+                        <!-- 5. ĐIỂM THƯỞNG -->
+                        <section
+                            class="account-view"
+                            data-account-panel="points"
+                            aria-labelledby="points-title"
+                            hidden>
+
+                            <div class="view-heading">
+                                <div>
+                                    <p class="account-eyebrow">GÓC DESK REWARDS</p>
+                                    <h3 id="points-title">Điểm thưởng</h3>
+                                    <p>Theo dõi số dư và quyền lợi thành viên của bạn.</p>
+                                </div>
+                                <span class="view-heading-number">05 / 06</span>
+                            </div>
+
+                            <div class="points-preview-card">
+                                <span>ĐIỂM THƯỞNG HIỆN CÓ</span>
+                                <strong>— — —</strong>
+                                <p>Số dư điểm sẽ hiển thị khi dữ liệu tài khoản được kết nối.</p>
+                                <a href="points.html">Tìm hiểu chương trình tích điểm ↗</a>
+                            </div>
+
+                        </section>
+
+                        <!-- 6. BỘ SETUP ĐÃ LƯU -->
+                        <section
+                            class="account-view"
+                            data-account-panel="setups"
+                            aria-labelledby="setups-title"
+                            hidden>
+
+                            <div class="view-heading">
+                                <div>
+                                    <p class="account-eyebrow">GÓC RIÊNG CỦA BẠN</p>
+                                    <h3 id="setups-title">Bộ setup đã lưu</h3>
+                                    <p>Mở lại những cách bố trí bạn đã tạo trong Góc Desk Studio.</p>
+                                </div>
+                                <span class="view-heading-number">06 / 06</span>
+                            </div>
+
+                            <div class="account-empty-state">
+                                <span class="empty-state-icon">▦</span>
+                                <h4>Chưa có bộ setup được lưu</h4>
+                                <p>Đăng nhập và lưu thiết kế để có thể xem lại tại đây.</p>
+                                <a href="setup-3d.html" class="account-inline-link">
+                                    Bắt đầu thiết kế 3D <span aria-hidden="true">↗</span>
+                                </a>
+                            </div>
+
+                        </section>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ================= FOOTER (js/layout.js) ================= -->
+    <div id="site-footer-slot"></div>
+
+</body>
+</html>

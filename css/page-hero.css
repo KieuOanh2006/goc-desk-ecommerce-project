@@ -1,0 +1,304 @@
+/* =========================================================
+   GÓC DESK — SUBPAGE HERO & GLOBAL WIDTH
+   Chỉ xử lý banner và khung nội dung của trang con.
+   Header/footer lấy từ site-shell.css.
+   ========================================================= */
+
+body.has-photo-header {
+    --page-hero-size: 46svh;
+    --page-hero-min: 340px;
+    --gd-page-width: 1520px;
+    --gd-page-gutter: clamp(22px, 4vw, 64px);
+
+    background: #fff;
+}
+
+/* =========================================================
+   1. MAIN LAYOUT
+   ========================================================= */
+
+body.has-photo-header > main {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================================
+   2. SUBPAGE HERO
+   ========================================================= */
+
+.has-photo-header .subpage-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: max(var(--page-hero-min), var(--page-hero-size));
+    height: auto;
+    margin: 0;
+    padding: 60px 0 35px;
+    overflow: hidden;
+    color: #fff;
+    background: #38413d;
+}
+
+.subpage-hero-image {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center 55%;
+}
+
+.subpage-hero::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+        linear-gradient(
+            0deg,
+            #0d1315d9,
+            #0d131563 55%,
+            #0d131526
+        ),
+        linear-gradient(
+            90deg,
+            #0d131557,
+            transparent 90%
+        );
+    content: "";
+    pointer-events: none;
+}
+
+/* Nội dung banner */
+
+.subpage-hero-content {
+    width: min(
+        var(--gd-page-width),
+        calc(100% - var(--gd-page-gutter) - var(--gd-page-gutter))
+    );
+    max-width: none;
+    margin-inline: auto;
+}
+
+.subpage-hero .subpage-eyebrow {
+    margin: 0 0 12px;
+    color: #e9d9bf;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+.subpage-hero .subpage-title {
+    max-width: 850px;
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: clamp(28px, 3.1vw, 44px);
+    font-weight: 700;
+    line-height: 1.16;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 14px #0005;
+}
+
+.subpage-hero .subpage-description {
+    max-width: 720px;
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.8;
+    text-shadow: 0 1px 4px #0008;
+}
+
+/* Nút trên banner */
+
+.subpage-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.subpage-hero .subpage-action {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 17px;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    color: #302820;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 180ms, transform 180ms;
+}
+
+.subpage-hero .subpage-action:hover {
+    transform: translateY(-2px);
+    background: #e9e0d4;
+}
+
+.subpage-hero .subpage-action.secondary {
+    color: #fff;
+    background: #0d13154d;
+}
+
+.subpage-hero .subpage-action.secondary:hover {
+    background: #ffffff26;
+}
+
+.subpage-hero .subpage-action:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   3. CONTENT WIDTH — GIỐNG TRANG CHỦ
+   ========================================================= */
+
+.has-photo-header .subpage-body {
+    width: min(
+        var(--gd-page-width),
+        calc(100% - var(--gd-page-gutter) - var(--gd-page-gutter))
+    );
+    max-width: none;
+    margin-inline: auto;
+    padding-block: 24px 60px;
+}
+
+.has-photo-header .subpage-body > .container {
+    width: 100%;
+    margin-inline: 0;
+}
+
+.has-photo-header .gd-page-heading {
+    justify-content: flex-end;
+    margin-block: 0 28px;
+}
+
+.has-photo-header .product-detail {
+    scroll-margin-top: 160px;
+}
+
+/* Vị trí hình ảnh từng trang */
+
+.page-products .subpage-hero-image {
+    object-position: center 52%;
+}
+
+.page-studio .subpage-hero-image {
+    object-position: center 58%;
+}
+
+.page-news .subpage-hero-image {
+    object-position: center 54%;
+}
+
+.subpage-hero-art {
+    position: absolute;
+    right: max(
+        var(--gd-page-gutter),
+        calc((100% - var(--gd-page-width)) / 2)
+    );
+    bottom: 24px;
+    width: 150px;
+    height: 150px;
+    opacity: .8;
+    pointer-events: none;
+}
+
+.page-warranty .subpage-hero-content {
+    padding-right: 160px;
+}
+
+/* =========================================================
+   4. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    body.has-photo-header {
+        --gd-page-gutter: 34px;
+    }
+}
+
+@media (max-width: 1000px) {
+    body.has-photo-header {
+        --page-hero-size: 47svh;
+        --page-hero-min: 450px;
+    }
+}
+
+@media (max-width: 760px) {
+    .subpage-hero-content,
+    .has-photo-header .subpage-body {
+        width: calc(100% - 40px);
+    }
+
+    .subpage-hero .subpage-title {
+        font-size: 31px;
+        letter-spacing: -.7px;
+    }
+
+    .subpage-hero .subpage-description {
+        font-size: 13px;
+    }
+
+    .subpage-hero-art {
+        display: none;
+    }
+
+    .page-warranty .subpage-hero-content {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    body.has-photo-header {
+        --gd-page-gutter: 18px;
+        --page-hero-min: 470px;
+    }
+
+    .has-photo-header .subpage-hero {
+        padding-top: 45px;
+        padding-bottom: 28px;
+    }
+
+    .subpage-hero .subpage-title {
+        font-size: 29px;
+    }
+
+    .subpage-hero .subpage-eyebrow {
+        margin-bottom: 9px;
+        font-size: 10px;
+    }
+
+    .subpage-hero .subpage-action {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+
+    .subpage-actions {
+        gap: 8px;
+        margin-top: 14px;
+    }
+
+    .has-photo-header .subpage-body {
+        padding-block: 20px 45px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .subpage-hero .subpage-action {
+        transition: none;
+    }
+}
