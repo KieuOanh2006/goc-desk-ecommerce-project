@@ -1,354 +1,836 @@
 <!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="color-scheme" content="light"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
     <title>Sản phẩm | Góc Desk</title>
 
-    <link rel="stylesheet" href="css/product-pages.css"/>
-    <link rel="stylesheet" href="css/site-shell.css"/>
-    <link rel="stylesheet" href="css/product-interactions.css"/>
-    <link rel="stylesheet" href="css/studio-banner.css"/>
-    <link rel="stylesheet" href="css/page-hero.css"/>
-    <link rel="stylesheet" href="css/products-banner.css"/>
+    <link rel="stylesheet" href="css/product-pages.css" />
+    <link rel="stylesheet" href="css/site-shell.css" />
+    <link rel="stylesheet" href="css/product-interactions.css" />
+    <link rel="stylesheet" href="css/studio-banner.css" />
+    <link rel="stylesheet" href="css/page-hero.css" />
+    <link rel="stylesheet" href="css/products-banner.css" />
 
     <script src="js/product-data.js" defer></script>
     <script src="js/catalog-utils.js" defer></script>
     <script src="js/products.js" defer></script>
     <script src="js/cart-store.js" defer></script>
     <script src="js/cart-badge.js" defer></script>
-</head>
 
-<body class="has-photo-header page-products">
+   
+  </head>
 
+  <body class="has-photo-header page-products">
     <a class="site-skip-link" href="#main">Đến nội dung chính</a>
 
     <div id="site-header-slot"></div>
     <script src="js/layout.js"></script>
 
     <main id="main">
-
-        <section class="subpage-hero" aria-labelledby="catalog-page-title">
-            <img
-                class="subpage-hero-image"
-                src="images/references/products-collage.svg"
-                alt=""
-                fetchpriority="high"
-                decoding="async"
-            >
-            <div class="subpage-hero-content">
-                <p class="subpage-eyebrow">All products</p>
-                <h1 class="subpage-title" id="catalog-page-title">
-                    Tất cả sản phẩm
-                </h1>
-            </div>
-        </section>
-
-        <div class="subpage-body">
-
-            <div class="breadcrumb">
-                <span>Góc Desk</span>
-                <span>/</span>
-                <span>Sản phẩm</span>
-            </div>
-
-            <div class="catalog-top" id="catalog">
-                <div>
-                    <span class="eyebrow">ĐƯỢC CHỌN CHO GÓC CỦA BẠN</span>
-                    <h2>Tất cả sản phẩm <span>08</span></h2>
-                </div>
-                <p>Ít bừa bộn hơn. Nhiều cảm hứng hơn.</p>
-            </div>
-
-            <div class="catalog-layout">
-
-                <aside class="filters" aria-label="Lọc sản phẩm">
-                    <form id="catalog-filters">
-
-                        <div class="filter-title">
-                            <h2>Bộ lọc</h2>
-                            <button type="button" class="filter-clear" data-clear-filters>
-                                Xóa lọc
-                            </button>
-                        </div>
-
-                        <fieldset>
-                            <legend>Danh mục</legend>
-                            <label><input type="checkbox" name="category" value="keyboard"> Bàn phím <span>1</span></label>
-                            <label><input type="checkbox" name="category" value="mouse"> Chuột máy tính <span>1</span></label>
-                            <label><input type="checkbox" name="category" value="lamp"> Đèn bàn <span>1</span></label>
-                            <label><input type="checkbox" name="category" value="stand"> Giá đỡ laptop <span>1</span></label>
-                            <label><input type="checkbox" name="category" value="pad"> Pad chuột &amp; lót bàn <span>1</span></label>
-                            <label><input type="checkbox" name="category" value="organize"> Kệ &amp; sắp xếp <span>3</span></label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Khoảng giá</legend>
-                            <label><input type="radio" name="price" value="all" checked> Tất cả mức giá</label>
-                            <label><input type="radio" name="price" value="under300"> Dưới 300.000 ₫</label>
-                            <label><input type="radio" name="price" value="300to700"> 300.000 – 700.000 ₫</label>
-                            <label><input type="radio" name="price" value="over700"> Trên 700.000 ₫</label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Thương hiệu</legend>
-                            <label><input type="checkbox" name="brand" value="HyperWork"> HyperWork</label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Màu sắc</legend>
-                            <label><input type="checkbox" name="color" value="black"><i class="filter-color" style="--swatch:#28292b" aria-hidden="true"></i> Đen</label>
-                            <label><input type="checkbox" name="color" value="cream"><i class="filter-color" style="--swatch:#e8dfcf" aria-hidden="true"></i> Kem</label>
-                            <label><input type="checkbox" name="color" value="white"><i class="filter-color" style="--swatch:#f1f0e9" aria-hidden="true"></i> Trắng</label>
-                            <label><input type="checkbox" name="color" value="sage"><i class="filter-color" style="--swatch:#879b83" aria-hidden="true"></i> Xanh sage</label>
-                            <label><input type="checkbox" name="color" value="brown"><i class="filter-color" style="--swatch:#91613f" aria-hidden="true"></i> Nâu</label>
-                            <label><input type="checkbox" name="color" value="oak"><i class="filter-color" style="--swatch:#caa777" aria-hidden="true"></i> Gỗ sáng</label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Nhu cầu</legend>
-                            <label><input type="checkbox" name="use" value="work"> Làm việc</label>
-                            <label><input type="checkbox" name="use" value="study"> Học tập</label>
-                            <label><input type="checkbox" name="use" value="organize"> Sắp xếp góc bàn</label>
-                        </fieldset>
-
-                    </form>
-                </aside>
-
-                <section class="results" aria-label="Danh sách sản phẩm">
-
-                    <div class="catalog-search">
-                        <label for="catalog-search">Tìm trong bộ sưu tập</label>
-                        <input
-                            id="catalog-search"
-                            type="search"
-                            placeholder="Tên sản phẩm, danh mục…"
-                            autocomplete="off"
-                        >
-                    </div>
-
-                    <div class="results-toolbar">
-                        <p>Hiển thị <strong id="results-count">8</strong> sản phẩm</p>
-                        <label for="catalog-sort">
-                            Sắp xếp:
-                            <select id="catalog-sort">
-                                <option value="default">Mặc định</option>
-                                <option value="price-asc">Giá tăng dần</option>
-                                <option value="price-desc">Giá giảm dần</option>
-                                <option value="name">Tên A–Z</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <p id="catalog-status" class="catalog-status" role="status" aria-live="polite">
-                        8 / 8 sản phẩm
-                    </p>
-
-                    <div class="product-grid" id="catalog-products">
-
-                        <article class="product-card" id="card-hyperone-gen-2">
-                            <a class="card-link" href="product-detail.html#hyperone-gen-2">
-                                <div class="card-image">
-                                    <img src="images/product-pages/hyperone-gen-2.jpg" alt="Bàn phím không dây HyperWork HyperOne Gen 2 - KB1 G2" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Bàn phím · HyperWork</span>
-                                    <h3>HyperOne Gen 2</h3>
-                                    <p class="card-description">Êm ái từng phím gõ</p>
-                                    <p class="price">679.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#28292b"></i>
-                                        <i style="--swatch:#e8dfcf"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-silentium-gen-2">
-                            <a class="card-link" href="product-detail.html#silentium-gen-2">
-                                <div class="card-image">
-                                    <img src="images/product-pages/silentium-gen-2.jpg" alt="Chuột không dây Silentium Gen 2" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Chuột máy tính · HyperWork</span>
-                                    <h3>Silentium Gen 2</h3>
-                                    <p class="card-description">Lướt êm, làm việc tập trung</p>
-                                    <p class="price">649.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#28292b"></i>
-                                        <i style="--swatch:#e8dfcf"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-nova-dl02">
-                            <a class="card-link" href="product-detail.html#nova-dl02">
-                                <div class="card-image">
-                                    <img src="images/product-pages/nova-dl02.jpg" alt="Đèn để bàn HyperWork Nova - DL02" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Đèn bàn · HyperWork</span>
-                                    <h3>Nova DL02</h3>
-                                    <p class="card-description">Ánh sáng cho từng ý tưởng</p>
-                                    <p class="price">570.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#f1f0e9"></i>
-                                        <i style="--swatch:#879b83"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-lh01">
-                            <a class="card-link" href="product-detail.html#lh01">
-                                <div class="card-image">
-                                    <img src="images/product-pages/lh01.jpg" alt="Kẹp laptop để dọc HyperWork LH01" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Giá đỡ laptop · HyperWork</span>
-                                    <h3>Kẹp laptop LH01</h3>
-                                    <p class="card-description">Đặt dọc laptop, gọn mặt bàn</p>
-                                    <p class="price">515.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#91613f"></i>
-                                        <i style="--swatch:#caa777"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-corepad">
-                            <a class="card-link" href="product-detail.html#corepad">
-                                <div class="card-image">
-                                    <img src="images/product-pages/corepad.jpg" alt="Pad chuột HyperWork Core Pad" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Pad chuột &amp; lót bàn · HyperWork</span>
-                                    <h3>CorePad</h3>
-                                    <p class="card-description">Một bề mặt, nhiều cảm hứng</p>
-                                    <p class="price">69.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#28292b"></i>
-                                        <i style="--swatch:#879b83"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-ds02">
-                            <a class="card-link" href="product-detail.html#ds02">
-                                <div class="card-image">
-                                    <img src="images/product-pages/ds02.jpg" alt="Kệ màn hình HyperWork - DS02" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Kệ &amp; sắp xếp · HyperWork</span>
-                                    <h3>Kệ màn hình DS02</h3>
-                                    <p class="card-description">Thêm khoảng trống để sáng tạo</p>
-                                    <p class="price">1.050.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#91613f"></i>
-                                        <i style="--swatch:#caa777"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-hs01">
-                            <a class="card-link" href="product-detail.html#hs01">
-                                <div class="card-image">
-                                    <img src="images/product-pages/hs01.jpg" alt="Giá đỡ tai nghe HyperWork - HS01" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Kệ &amp; sắp xếp · HyperWork</span>
-                                    <h3>Giá đỡ tai nghe HS01</h3>
-                                    <p class="card-description">Một chỗ riêng cho tai nghe</p>
-                                    <p class="price">410.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#91613f"></i>
-                                        <i style="--swatch:#caa777"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                        <article class="product-card" id="card-cm02">
-                            <a class="card-link" href="product-detail.html#cm02">
-                                <div class="card-image">
-                                    <img src="images/product-pages/cm02.jpg" alt="Khay đi dây nam châm HyperWork - CM02" width="600" height="600" loading="lazy">
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <div class="card-copy">
-                                    <span class="eyebrow">Kệ &amp; sắp xếp · HyperWork</span>
-                                    <h3>Khay đi dây CM02</h3>
-                                    <p class="card-description">Giấu dây gọn, giữ góc thoáng</p>
-                                    <p class="price">89.000 ₫</p>
-                                    <span class="variant">2 màu để khám phá</span>
-                                    <span class="card-swatches" aria-hidden="true">
-                                        <i style="--swatch:#28292b"></i>
-                                        <i style="--swatch:#e8dfcf"></i>
-                                    </span>
-                                </div>
-                            </a>
-                        </article>
-
-                    </div>
-
-                    <div id="catalog-empty" class="catalog-empty" hidden>
-                        <h3>Chưa tìm thấy mảnh ghép phù hợp</h3>
-                        <p>Thử đổi từ khóa hoặc bớt một vài điều kiện lọc.</p>
-                        <button type="button" class="btn" data-clear-filters>
-                            Xóa tất cả bộ lọc
-                        </button>
-                    </div>
-
-                    <div class="catalog-end" id="catalog-end">
-                        <span></span>
-                        <p>Khám phá đủ 8 mảnh ghép cho góc bàn</p>
-                        <span></span>
-                    </div>
-
-                    <p class="price-note">
-                        Giá tham khảo cho phiên bản gốc. Phối màu bổ sung là ảnh minh họa thiết kế.
-                    </p>
-
-                </section>
-            </div>
-
-            <section class="home-studio catalog-studio" aria-labelledby="catalog-studio-title">
-                <p class="home-studio-eyebrow">TÍNH NĂNG TRẢI NGHIỆM</p>
-                <h2 id="catalog-studio-title">Tự thiết kế góc làm việc 3D</h2>
-                <p class="home-studio-description">
-                    Khám phá cách bố trí phụ kiện trong góc mẫu và tham khảo chi phí của bộ setup.
-                    Từng lựa chọn, một không gian mang dấu ấn của bạn.
-                </p>
-                <a href="setup-3d.html" class="home-studio-button">
-                    Khám phá Góc Desk Studio
-                    <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4 12h16m-6-6 6 6-6 6"/>
-                    </svg>
-                </a>
-            </section>
-
+      <section class="subpage-hero" aria-labelledby="catalog-page-title">
+        <img
+          class="subpage-hero-image"
+          src="images/references/products-collage.svg"
+          alt=""
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="subpage-hero-content">
+          <p class="subpage-eyebrow">All products</p>
+          <h1 class="subpage-title" id="catalog-page-title">Tất cả sản phẩm</h1>
         </div>
+      </section>
+
+      <div class="subpage-body">
+        <div class="breadcrumb">
+          <span>Góc Desk</span>
+          <span>/</span>
+          <span>Sản phẩm</span>
+        </div>
+
+        <div class="catalog-top" id="catalog">
+          <div>
+            <span class="eyebrow">ĐƯỢC CHỌN CHO GÓC CỦA BẠN</span>
+            <h2>Tất cả sản phẩm <span>08</span></h2>
+          </div>
+          <p>Ít bừa bộn hơn. Nhiều cảm hứng hơn.</p>
+        </div>
+
+        <div class="catalog-layout">
+          <aside class="filters" aria-label="Lọc sản phẩm">
+            <form id="catalog-filters">
+              <div class="filter-title">
+                <h2>Bộ lọc</h2>
+                <button type="button" class="filter-clear" data-clear-filters>
+                  Xóa lọc
+                </button>
+              </div>
+
+              <fieldset>
+                <legend>Danh mục</legend>
+                <label
+                  ><input type="checkbox" name="category" value="keyboard" />
+                  Bàn phím <span>1</span></label
+                >
+                <label
+                  ><input type="checkbox" name="category" value="mouse" /> Chuột
+                  máy tính <span>1</span></label
+                >
+                <label
+                  ><input type="checkbox" name="category" value="lamp" /> Đèn
+                  bàn <span>1</span></label
+                >
+                <label
+                  ><input type="checkbox" name="category" value="stand" /> Giá
+                  đỡ laptop <span>1</span></label
+                >
+                <label
+                  ><input type="checkbox" name="category" value="pad" /> Pad
+                  chuột &amp; lót bàn <span>1</span></label
+                >
+                <label
+                  ><input type="checkbox" name="category" value="organize" /> Kệ
+                  &amp; sắp xếp <span>3</span></label
+                >
+              </fieldset>
+
+              <fieldset>
+                <legend>Khoảng giá</legend>
+                <label
+                  ><input type="radio" name="price" value="all" checked /> Tất
+                  cả mức giá</label
+                >
+                <label
+                  ><input type="radio" name="price" value="under300" /> Dưới
+                  300.000 ₫</label
+                >
+                <label
+                  ><input type="radio" name="price" value="300to700" /> 300.000
+                  – 700.000 ₫</label
+                >
+                <label
+                  ><input type="radio" name="price" value="over700" /> Trên
+                  700.000 ₫</label
+                >
+              </fieldset>
+
+              <fieldset>
+                <legend>Thương hiệu</legend>
+                <label
+                  ><input type="checkbox" name="brand" value="HyperWork" />
+                  HyperWork</label
+                >
+              </fieldset>
+
+              <fieldset>
+                <legend>Màu sắc</legend>
+                <label
+                  ><input type="checkbox" name="color" value="black" /><i
+                    class="filter-color"
+                    style="--swatch: #28292b"
+                    aria-hidden="true"
+                  ></i>
+                  Đen</label
+                >
+                <label
+                  ><input type="checkbox" name="color" value="cream" /><i
+                    class="filter-color"
+                    style="--swatch: #e8dfcf"
+                    aria-hidden="true"
+                  ></i>
+                  Kem</label
+                >
+                <label
+                  ><input type="checkbox" name="color" value="white" /><i
+                    class="filter-color"
+                    style="--swatch: #f1f0e9"
+                    aria-hidden="true"
+                  ></i>
+                  Trắng</label
+                >
+                <label
+                  ><input type="checkbox" name="color" value="sage" /><i
+                    class="filter-color"
+                    style="--swatch: #879b83"
+                    aria-hidden="true"
+                  ></i>
+                  Xanh sage</label
+                >
+                <label
+                  ><input type="checkbox" name="color" value="brown" /><i
+                    class="filter-color"
+                    style="--swatch: #91613f"
+                    aria-hidden="true"
+                  ></i>
+                  Nâu</label
+                >
+                <label
+                  ><input type="checkbox" name="color" value="oak" /><i
+                    class="filter-color"
+                    style="--swatch: #caa777"
+                    aria-hidden="true"
+                  ></i>
+                  Gỗ sáng</label
+                >
+              </fieldset>
+
+              <fieldset>
+                <legend>Nhu cầu</legend>
+                <label
+                  ><input type="checkbox" name="use" value="work" /> Làm
+                  việc</label
+                >
+                <label
+                  ><input type="checkbox" name="use" value="study" /> Học
+                  tập</label
+                >
+                <label
+                  ><input type="checkbox" name="use" value="organize" /> Sắp xếp
+                  góc bàn</label
+                >
+              </fieldset>
+            </form>
+          </aside>
+
+          <section class="results" aria-label="Danh sách sản phẩm">
+            <div class="catalog-search">
+              <label for="catalog-search">Tìm trong bộ sưu tập</label>
+              <input
+                id="catalog-search"
+                type="search"
+                placeholder="Tên sản phẩm, danh mục…"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="results-toolbar">
+              <p>Hiển thị <strong id="results-count">8</strong> sản phẩm</p>
+              <label for="catalog-sort">
+                Sắp xếp:
+                <select id="catalog-sort">
+                  <option value="default">Mặc định</option>
+                  <option value="price-asc">Giá tăng dần</option>
+                  <option value="price-desc">Giá giảm dần</option>
+                  <option value="name">Tên A–Z</option>
+                </select>
+              </label>
+            </div>
+
+            <p
+              id="catalog-status"
+              class="catalog-status"
+              role="status"
+              aria-live="polite"
+            >
+              8 / 8 sản phẩm
+            </p>
+
+            <div class="product-grid" id="catalog-products">
+              <article class="product-card" id="card-hyperone-gen-2">
+                <a class="card-link" href="product-detail.html#hyperone-gen-2">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/hyperone-gen-2.jpg"
+                      alt="Bàn phím không dây HyperWork HyperOne Gen 2 - KB1 G2"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Bàn phím · HyperWork</span>
+                    <h3>HyperOne Gen 2</h3>
+                    <p class="card-description">Êm ái từng phím gõ</p>
+                    <p class="price">680.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #28292b"></i>
+                      <i style="--swatch: #e8dfcf"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="hyperone-gen-2"
+                      data-product-color="black"
+                      data-product-name="HyperOne Gen 2"
+                      data-product-price="680000"
+                      data-detail-url="product-detail.html#hyperone-gen-2"
+                      aria-label="Thêm HyperOne Gen 2 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-silentium-gen-2">
+                <a class="card-link" href="product-detail.html#silentium-gen-2">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/silentium-gen-2.jpg"
+                      alt="Chuột không dây Silentium Gen 2"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Chuột máy tính · HyperWork</span>
+                    <h3>Silentium Gen 2</h3>
+                    <p class="card-description">Lướt êm, làm việc tập trung</p>
+                    <p class="price">649.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #28292b"></i>
+                      <i style="--swatch: #e8dfcf"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="silentium-gen-2"
+                      data-product-color="black"
+                      data-product-name="Silentium Gen 2"
+                      data-product-price="649000"
+                      data-detail-url="product-detail.html#silentium-gen-2"
+                      aria-label="Thêm Silentium Gen 2 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-nova-dl02">
+                <a class="card-link" href="product-detail.html#nova-dl02">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/nova-dl02.jpg"
+                      alt="Đèn để bàn HyperWork Nova - DL02"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Đèn bàn · HyperWork</span>
+                    <h3>Nova DL02</h3>
+                    <p class="card-description">Ánh sáng cho từng ý tưởng</p>
+                    <p class="price">570.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #f1f0e9"></i>
+                      <i style="--swatch: #879b83"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="nova-dl02"
+                      data-product-color="white"
+                      data-product-name="Nova DL02"
+                      data-product-price="570000"
+                      data-detail-url="product-detail.html#nova-dl02"
+                      aria-label="Thêm Nova DL02 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-lh01">
+                <a class="card-link" href="product-detail.html#lh01">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/lh01.jpg"
+                      alt="Kẹp laptop để dọc HyperWork LH01"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Giá đỡ laptop · HyperWork</span>
+                    <h3>Kẹp laptop LH01</h3>
+                    <p class="card-description">Đặt dọc laptop, gọn mặt bàn</p>
+                    <p class="price">515.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #91613f"></i>
+                      <i style="--swatch: #caa777"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="lh01"
+                      data-product-color="brown"
+                      data-product-name="Kẹp laptop LH01"
+                      data-product-price="515000"
+                      data-detail-url="product-detail.html#lh01"
+                      aria-label="Thêm Kẹp laptop LH01 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-corepad">
+                <a class="card-link" href="product-detail.html#corepad">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/corepad.jpg"
+                      alt="Pad chuột HyperWork Core Pad"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow"
+                      >Pad chuột &amp; lót bàn · HyperWork</span
+                    >
+                    <h3>CorePad</h3>
+                    <p class="card-description">Một bề mặt, nhiều cảm hứng</p>
+                    <p class="price">69.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #28292b"></i>
+                      <i style="--swatch: #879b83"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="corepad"
+                      data-product-color="black"
+                      data-product-name="CorePad"
+                      data-product-price="69000"
+                      data-detail-url="product-detail.html#corepad"
+                      aria-label="Thêm CorePad vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-ds02">
+                <a class="card-link" href="product-detail.html#ds02">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/ds02.jpg"
+                      alt="Kệ màn hình HyperWork - DS02"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Kệ &amp; sắp xếp · HyperWork</span>
+                    <h3>Kệ màn hình DS02</h3>
+                    <p class="card-description">
+                      Thêm khoảng trống để sáng tạo
+                    </p>
+                    <p class="price">1.050.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #91613f"></i>
+                      <i style="--swatch: #caa777"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="ds02"
+                      data-product-color="brown"
+                      data-product-name="Kệ màn hình DS02"
+                      data-product-price="1050000"
+                      data-detail-url="product-detail.html#ds02"
+                      aria-label="Thêm Kệ màn hình DS02 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-hs01">
+                <a class="card-link" href="product-detail.html#hs01">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/hs01.jpg"
+                      alt="Giá đỡ tai nghe HyperWork - HS01"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Kệ &amp; sắp xếp · HyperWork</span>
+                    <h3>Giá đỡ tai nghe HS01</h3>
+                    <p class="card-description">Một chỗ riêng cho tai nghe</p>
+                    <p class="price">410.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #91613f"></i>
+                      <i style="--swatch: #caa777"></i>
+                    </span>
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="hs01"
+                      data-product-color="brown"
+                      data-product-name="Giá đỡ tai nghe HS01"
+                      data-product-price="410000"
+                      data-detail-url="product-detail.html#hs01"
+                      aria-label="Thêm Giá đỡ tai nghe HS01 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+
+              <article class="product-card" id="card-cm02">
+                <a class="card-link" href="product-detail.html#cm02">
+                  <div class="card-image">
+                    <img
+                      src="images/product-pages/cm02.jpg"
+                      alt="Khay đi dây nam châm HyperWork - CM02"
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                    />
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div class="card-copy">
+                    <span class="eyebrow">Kệ &amp; sắp xếp · HyperWork</span>
+                    <h3>Khay đi dây CM02</h3>
+                    <p class="card-description">Giấu dây gọn, giữ góc thoáng</p>
+                    <p class="price">89.000 ₫</p>
+                    <span class="variant">2 màu để khám phá</span>
+                    <span class="card-swatches" aria-hidden="true">
+                      <i style="--swatch: #28292b"></i>
+                      <i style="--swatch: #e8dfcf"></i>
+                    </span>
+
+                    <button
+                      type="button"
+                      class="card-add-to-cart"
+                      data-product-id="cm02"
+                      data-product-color="black"
+                      data-product-name="Khay đi dây CM02"
+                      data-product-price="89000"
+                      data-detail-url="product-detail.html#cm02"
+                      aria-label="Thêm Khay đi dây CM02 vào giỏ hàng"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path
+                          d="M1 1h4l2.7 13.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"
+                        />
+                        <path d="M16 8v5m-2.5-2.5h5" />
+                      </svg>
+                      <span>Thêm vào giỏ hàng</span>
+                    </button>
+                  </div>
+                </a>
+              </article>
+            </div>
+
+            <div id="catalog-empty" class="catalog-empty" hidden>
+              <h3>Chưa tìm thấy mảnh ghép phù hợp</h3>
+              <p>Thử đổi từ khóa hoặc bớt một vài điều kiện lọc.</p>
+              <button type="button" class="btn" data-clear-filters>
+                Xóa tất cả bộ lọc
+              </button>
+            </div>
+
+            <div class="catalog-end" id="catalog-end">
+              <span></span>
+              <p>Khám phá đủ 8 mảnh ghép cho góc bàn</p>
+              <span></span>
+            </div>
+
+            <p class="price-note">
+              Giá tham khảo cho phiên bản gốc. Phối màu bổ sung là ảnh minh họa
+              thiết kế.
+            </p>
+          </section>
+        </div>
+      </div>
     </main>
 
     <div id="site-footer-slot"></div>
 
-</body>
+    <script>
+      // Quick add uses the SAME cart store loaded by product-detail.html.
+      // IMPORTANT: data-add-to-cart alone is not an API; product-detail.js
+      // attaches its own handlers only to elements that it initializes.
+      (function () {
+        "use strict";
+        const METHOD_NAMES = [
+          "add",
+          "addItem",
+          "addProduct",
+          "addToCart",
+          "addCartItem",
+        ];
+        const STORES = ["GocDeskCart", "CartStore", "cartStore"];
+
+        function resolveAddMethod() {
+          for (const key of STORES) {
+            const store = window[key];
+            if (!store) continue;
+            for (const name of METHOD_NAMES) {
+              if (typeof store[name] === "function") {
+                return { store, fn: store[name], name, key };
+              }
+            }
+          }
+          return null;
+        }
+
+        function feedback(button, message, success) {
+          const label = button.querySelector("span");
+          if (success) {
+            if (label) label.textContent = "Đã thêm vào giỏ hàng";
+            button.classList.add("is-added");
+            button.setAttribute("aria-label", message);
+            window.setTimeout(() => {
+              if (!button.isConnected) return;
+              button.classList.remove("is-added");
+              if (label) label.textContent = "Thêm vào giỏ hàng";
+              button.setAttribute(
+                "aria-label",
+                "Thêm " + button.dataset.productName + " vào giỏ hàng",
+              );
+            }, 1800);
+          }
+          let note = button.parentElement.querySelector(".card-cart-feedback");
+          if (!note) {
+            note = document.createElement("p");
+            note.className = "card-cart-feedback";
+            note.setAttribute("role", "status");
+            note.setAttribute("aria-live", "polite");
+            button.insertAdjacentElement("afterend", note);
+          }
+          note.textContent = success ? "" : message;
+        }
+
+        document.addEventListener("click", async function (event) {
+          const button = event.target.closest(".card-add-to-cart");
+          if (!button) return;
+          event.preventDefault();
+          event.stopPropagation();
+          if (button.disabled) return;
+
+          const resolved = resolveAddMethod();
+          if (!resolved) {
+            const error =
+              "Chưa xác định được hàm thêm giỏ hàng từ js/cart-store.js.";
+            console.error(error, {
+              GocDeskCart: window.GocDeskCart,
+              CartStore: window.CartStore,
+              cartStore: window.cartStore,
+            });
+            feedback(button, error, false);
+            return; // no navigation, no false success message
+          }
+
+          const id = button.dataset.productId;
+          const color = button.dataset.productColor;
+          const item = {
+            id,
+            productId: id,
+            name: button.dataset.productName,
+            price: Number(button.dataset.productPrice),
+            color,
+            quantity: 1,
+          };
+          try {
+            button.disabled = true;
+            // Known store conventions: add(item) or add(id, color, qty).
+            // If your cart-store.js has a different signature, edit this one call.
+            const result =
+              resolved.fn.length >= 2
+                ? await resolved.fn.call(resolved.store, id, color, 1)
+                : await resolved.fn.call(resolved.store, item);
+            if (result === false || result?.success === false) {
+              throw new Error("Cart store từ chối thêm sản phẩm");
+            }
+            ["cart:updated", "cart-updated", "gocdesk:cart-updated"].forEach(
+              (name) => {
+                document.dispatchEvent(
+                  new CustomEvent(name, { detail: { productId: id } }),
+                );
+              },
+            );
+            feedback(button, "Đã thêm " + item.name + " vào giỏ hàng", true);
+          } catch (error) {
+            console.error("Thêm vào giỏ thất bại:", error);
+            feedback(
+              button,
+              "Không thể thêm vào giỏ hàng. Kiểm tra js/cart-store.js.",
+              false,
+            );
+          } finally {
+            button.disabled = false;
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>

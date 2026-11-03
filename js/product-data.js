@@ -38,7 +38,7 @@ const products = [
       "work",
       "study"
     ],
-    "price": 679000,
+    "price": 680000,
     "image": "images/product-pages/hyperone-gen-2.jpg",
     "source": "https://hyperwork.vn/products/hyperone-gen-2",
     "features": [
