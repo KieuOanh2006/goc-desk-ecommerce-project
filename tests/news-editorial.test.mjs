@@ -4,12 +4,12 @@ import vm from 'node:vm';
 
 function mockPage(source, { selected = 'all', hash = '' } = {}) {
   const filters = [];
-  for (const [value, label] of [['all', 'Tất cả 06'], ['setup', 'Cảm hứng setup 02'], ['guide', 'Mẹo thực hành 02'], ['product', 'Chọn phụ kiện 01'], ['experience', 'Trải nghiệm 3D 01']]) {
+  for (const [value, label] of [['all', 'Tất cả 11'], ['setup', 'Cảm hứng setup 04'], ['guide', 'Mẹo thực hành 03'], ['product', 'Chọn phụ kiện 02'], ['experience', 'Trải nghiệm 3D 02']]) {
     const input = { value, events: {}, nextElementSibling: { textContent: label }, addEventListener(type, handler) { this.events[type] = handler; } };
     Object.defineProperty(input, 'checked', { get() { return selected === value; }, set(checked) { if (checked) selected = value; } });
     filters.push(input);
   }
-  const topics = ['setup', 'guide', 'product', 'experience'].map(topic => ({ dataset: { topic }, hidden: false, querySelectorAll() { return Array(topic === 'setup' || topic === 'guide' ? 2 : 1).fill({}); } }));
+  const topics = ['setup', 'guide', 'product', 'experience'].map(topic => ({ dataset: { topic }, hidden: false, querySelectorAll() { return Array({ setup: 4, guide: 3, product: 2, experience: 2 }[topic]).fill({}); } }));
   class Details {
     constructor(id, topic) { this.id = id; this.topic = topics.find(group => group.dataset.topic === topic); this.open = false; this.focused = false; this.scrolled = false; }
     closest() { return this.topic; }
@@ -44,10 +44,10 @@ export async function run() {
 
   check('News filters update groups and preserve 3D in the visible topic label', () => {
     const page = mockPage(source);
-    assert.equal(page.status.textContent, '6 bài viết · Tất cả chủ đề');
+    assert.equal(page.status.textContent, '11 bài viết · Tất cả chủ đề');
     page.select('guide'); assert.deepEqual(page.topics.map(topic => topic.hidden), [true, false, true, true]);
-    assert.equal(page.status.textContent, '2 bài viết · Mẹo thực hành');
-    page.select('experience'); assert.equal(page.status.textContent, '1 bài viết · Trải nghiệm 3D');
+    assert.equal(page.status.textContent, '3 bài viết · Mẹo thực hành');
+    page.select('experience'); assert.equal(page.status.textContent, '2 bài viết · Trải nghiệm 3D');
     page.select('all'); assert.ok(page.topics.every(topic => !topic.hidden));
   });
   check('Deep links reveal filtered articles; repeated reading links reopen native details', () => {
@@ -57,7 +57,7 @@ export async function run() {
     page.articles[0].open = false;
     assert.ok(page.clickArticle('news-keyboard-choice')); assert.ok(page.articles[0].open); assert.ok(page.articles[0].focused);
     page.location.hash = '#%invalid'; assert.doesNotThrow(() => page.window.events.hashchange());
-    assert.equal((html.match(/<details class="journal-reading\b/g) || []).length, 7);
+    assert.equal((html.match(/<details class="journal-reading\b/g) || []).length, 12);
     assert.match(html, /<details[^>]*id="news-keyboard-choice"/);
     assert.match(html, /<summary>[\s\S]*?Đọc bài viết/);
   });

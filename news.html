@@ -19,41 +19,58 @@
     <script src="js/layout.js"></script>
 
     <main id="main-content" class="journal-main">
-        <section class="journal-feature journal-wrap" aria-labelledby="news-page-title">
+        <section class="journal-feature journal-wrap" id="news-desk-story" aria-labelledby="news-page-title">
             <div class="journal-feature-copy">
-                <p class="journal-eyebrow">Góc Desk Journal <span aria-hidden="true">/</span> Góc nhìn biên tập</p>
-                <h1 id="news-page-title">Đẹp trên ảnh,<br>đã hợp với bạn?</h1>
-                <p class="journal-feature-deck">Hãy bắt đầu từ một ngày sử dụng.</p>
-                <p class="journal-feature-intro">Trước khi chọn một phong cách, thử nhìn lại cách bạn học, làm việc và dùng từng món trên bàn.</p>
-                <details class="journal-reading journal-feature-reading" id="news-featured-article">
-                    <summary><span class="journal-reading-closed">Đọc bài viết</span><span class="journal-reading-open">Thu gọn</span><span class="journal-reading-arrow" aria-hidden="true">↗</span></summary>
-                    <div class="journal-reading-body"><p>Một góc bàn đẹp trong ảnh có thể thiếu chỗ cho cuốn giáo trình bạn luôn mở bên cạnh laptop. Cũng có thể bàn phím lớn đang chiếm phần diện tích bạn cần để viết. Hãy thử dùng góc bàn hiện tại trọn một buổi và ghi lại ba điều: món nào được chạm tới nhiều nhất, chỗ nào thường bị chật, món nào gần như không dùng.</p>
-                    <p>Từ đó, chọn một việc cần cải thiện trước, chẳng hạn dành thêm chỗ viết hoặc gom các vật nhỏ vào khay. Khi bố cục đã thuận tay, bạn mới thêm màu sắc hay một chi tiết cá nhân. Một góc bàn đáng ngồi vào mỗi ngày nên phản ánh thói quen của chính bạn.</p></div>
+                <p class="journal-eyebrow">Góc Desk Journal <span aria-hidden="true">/</span> Câu chuyện Góc Desk</p>
+                <h1 id="news-page-title">Mỗi góc bàn là một câu chuyện.</h1>
+                <p class="journal-feature-deck">Góc riêng của bạn. Cảm hứng của chúng mình.</p>
+                <p class="journal-feature-intro">Cùng xem video Góc Desk và tìm cảm hứng sắp xếp góc học tập, làm việc từ những không gian rất riêng.</p>
+                <details class="journal-reading journal-feature-reading" id="news-desk-story-reading">
+                    <summary><span class="journal-reading-closed">Đọc câu chuyện</span><span class="journal-reading-open">Thu gọn</span><span class="journal-reading-arrow" aria-hidden="true">↗</span></summary>
+                    <div class="journal-reading-body">
+                        <p>Mỗi góc bàn lưu lại một phần nhịp sống: buổi học đầu ngày, những trang ghi chú hay một ý tưởng vừa nảy ra. Không cần một không gian thật lớn, chỉ vài món đồ vừa vặn và một khoảng trống dễ chịu cũng đủ để bắt đầu.</p>
+                        <p>Hãy bắt đầu từ thói quen của bạn: đặt những món thường dùng trong tầm tay, dành chỗ cho việc học và làm việc, rồi thêm một chi tiết khiến bạn muốn ngồi lại. Một góc nhỏ mang dấu ấn riêng sẽ dần hình thành từ những lựa chọn ấy.</p>
+                        <p>Video Góc Desk là lời mời bạn tìm cảm hứng cho góc của mình. Thử một thay đổi nhỏ hôm nay và để câu chuyện tiếp tục theo cách của bạn.</p>
+                    </div>
                 </details>
             </div>
-            <a class="journal-feature-media" href="#news-featured-article" data-read-article aria-label="Đọc bài viết: Đẹp trên ảnh, đã hợp với bạn?">
-                <img src="images/news-editorial-hero.jpg" alt="Góc làm việc hiện đại với bàn trắng, đèn xanh cobalt và vật dụng cá nhân" width="1672" height="941" fetchpriority="high" decoding="async">
-                <span class="journal-photo-caption">Góc nhỏ, thói quen riêng.</span>
-            </a>
+            <div class="journal-feature-media journal-feature-media--video">
+                <video class="journal-feature-video" controls autoplay muted loop playsinline preload="metadata" width="2700" height="2160" aria-label="Video TikTok Góc Desk: Mỗi góc bàn là một câu chuyện">
+                    <source src="images/TIKTOK%20gocdesk%20tintuc.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video. <a href="images/TIKTOK%20gocdesk%20tintuc.mp4">Mở video Góc Desk</a>.
+                </video>
+            </div>
         </section>
 
         <div class="journal-index journal-wrap" id="news-index">
             <div class="journal-index-heading">
                 <div><p class="journal-eyebrow">Đọc một ý tưởng, thử một thay đổi</p><h2 id="news-latest-title">Chuyện ở góc bàn</h2></div>
-                <p>Mười góc nhìn nhỏ cho một không gian<br>học tập, làm việc mang dấu ấn của bạn.</p>
+                <p>Mười một góc nhìn nhỏ cho một không gian<br>học tập, làm việc mang dấu ấn của bạn.</p>
             </div>
             <fieldset class="journal-filters" aria-describedby="journal-filter-status">
                 <legend class="journal-visually-hidden">Lọc bài viết theo chủ đề</legend>
-                <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-all" value="all" checked><label for="news-filter-all">Tất cả <sup>10</sup></label>
-                <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-setup" value="setup"><label for="news-filter-setup">Cảm hứng setup <sup>03</sup></label>
+                <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-all" value="all" checked><label for="news-filter-all">Tất cả <sup>11</sup></label>
+                <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-setup" value="setup"><label for="news-filter-setup">Cảm hứng setup <sup>04</sup></label>
                 <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-guide" value="guide"><label for="news-filter-guide">Mẹo thực hành <sup>03</sup></label>
                 <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-product" value="product"><label for="news-filter-product">Chọn phụ kiện <sup>02</sup></label>
                 <input class="journal-filter-input" type="radio" name="news-filter" id="news-filter-experience" value="experience"><label for="news-filter-experience">Trải nghiệm 3D <sup>02</sup></label>
             </fieldset>
-            <p class="journal-filter-status" id="journal-filter-status" aria-live="polite">10 bài viết · Tất cả chủ đề</p>
+            <p class="journal-filter-status" id="journal-filter-status" aria-live="polite">11 bài viết · Tất cả chủ đề</p>
             <section class="journal-topic" data-topic="setup" aria-labelledby="news-topic-setup">
                 <div class="journal-topic-heading"><p class="journal-topic-number">01 <span aria-hidden="true">/</span></p><h2 id="news-topic-setup">Cảm hứng setup</h2><p>Một cách nhìn mới cho những món đồ đã quen.</p></div>
                 <div class="journal-articles">
+                <article class="journal-article" data-category="setup">
+                    <a class="journal-image-link" href="#news-featured-article" data-read-article aria-label="Đọc: Đẹp trên ảnh, đã hợp với bạn?"><img class="journal-article-image" src="images/news-editorial-hero.jpg" alt="Góc làm việc hiện đại với bàn trắng và đèn xanh cobalt" width="1672" height="941" loading="lazy" decoding="async"></a>
+                    <p class="journal-article-meta">Góc nhìn biên tập · 1 phút đọc</p>
+                    <h3><a href="#news-featured-article" data-read-article>Đẹp trên ảnh, đã hợp với bạn?</a></h3>
+                    <p class="journal-article-teaser">Bắt đầu từ thói quen sử dụng để tìm một góc bàn phù hợp với chính bạn.</p>
+                    <details class="journal-reading" id="news-featured-article">
+                    <summary><span class="journal-reading-closed">Đọc bài viết</span><span class="journal-reading-open">Thu gọn</span><span class="journal-reading-arrow" aria-hidden="true">↗</span></summary>
+                    <div class="journal-reading-body"><p>Một góc bàn đẹp trong ảnh có thể thiếu chỗ cho cuốn giáo trình bạn luôn mở bên cạnh laptop. Cũng có thể bàn phím lớn đang chiếm phần diện tích bạn cần để viết. Hãy thử dùng góc bàn hiện tại trọn một buổi và ghi lại ba điều: món nào được chạm tới nhiều nhất, chỗ nào thường bị chật, món nào gần như không dùng.</p>
+                    <p>Từ đó, chọn một việc cần cải thiện trước, chẳng hạn dành thêm chỗ viết hoặc gom các vật nhỏ vào khay. Khi bố cục đã thuận tay, bạn mới thêm màu sắc hay một chi tiết cá nhân. Một góc bàn đáng ngồi vào mỗi ngày nên phản ánh thói quen của chính bạn.</p></div>
+                </details>
+                </article>
+
                 <article class="journal-article" data-category="setup">
                     <a class="journal-image-link" href="#news-small-workspace" data-read-article aria-label="Đọc: Một chiếc bàn, hai công việc: học trên máy, viết trên giấy"><img class="journal-article-image" src="images/một chiếc bàn 2 cv.jpg" alt="Bàn học và làm việc gọn gàng cho nhiều công việc" width="1586" height="992" loading="lazy" decoding="async"></a>
                     <p class="journal-article-meta">Không gian nhỏ <span aria-hidden="true">·</span> <time datetime="2026-10-30">30/10/2026</time> · 1 phút đọc</p>

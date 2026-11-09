@@ -95,3 +95,11 @@
   .product-information .spec-panel, .review-form { padding: 20px; }
   .reviews-empty { padding: 22px; }
 }
+
+/* Khung sản phẩm gọn hơn, nền tự lấp phần trống quanh ảnh. */
+:is(.page-products, .page-detail) main.wrap {
+  width: min(1280px, calc(100% - var(--gd-page-gutter) * 2));
+}
+.card-image, .detail-image { background: #f0f0f0; }
+.card-image img { padding: 12%; mix-blend-mode: darken; }
+.detail-image img { padding: 10%; mix-blend-mode: darken; }
