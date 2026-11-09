@@ -469,6 +469,7 @@
 }
 
 .home-page .category-image {
+    aspect-ratio: 1;
     overflow: hidden;
     border-radius: 11px;
     background: #f0ede7;
@@ -476,10 +477,9 @@
 
 .home-page .category-tile img {
     width: 100%;
-    aspect-ratio: 1.72;
+    height: 100%;
     object-fit: contain;
-    mix-blend-mode: multiply;
-    transition: transform 350ms ease;
+    object-position: center;
 }
 
 .home-page .category-tile h3 {
@@ -510,7 +510,6 @@
     box-shadow: 0 13px 28px rgb(78 59 46 / 8%);
 }
 
-.home-page .category-tile:hover img { transform: scale(1.035); }
 
 .home-page .category-tile:hover h3 span {
     transform: translate(2px, -2px);
@@ -538,11 +537,13 @@
     gap: 26px 20px;
 }
 
-.home-page .arrival-card { min-width: 0; }
+.home-page .arrival-card { display: flex; flex-direction: column; min-width: 0; }
 
 .home-page .arrival-image {
     position: relative;
     display: block;
+    flex-shrink: 0;
+    aspect-ratio: 1;
     overflow: hidden;
     border-radius: 13px;
     background: #eeeae3;
@@ -550,12 +551,11 @@
 
 .home-page .arrival-image img {
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    transition: transform 350ms ease;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
-.home-page .arrival-image:hover img { transform: scale(1.045); }
 
 .home-page .product-badge {
     position: absolute;
@@ -576,6 +576,8 @@
 }
 
 .home-page .arrival-card h3 {
+    flex-grow: 1;
+    overflow-wrap: anywhere;
     margin: 0 0 6px;
     color: var(--gd-brown, #4e3b2e);
     font-size: 15px;
@@ -607,7 +609,10 @@
 
 .home-page .bestseller-banner {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 20px;
+    padding: 28px;
     min-height: 330px;
     align-items: center;
     overflow: hidden;
@@ -625,8 +630,10 @@
 .home-page .bestseller-copy {
     position: relative;
     z-index: 1;
-    width: 61%;
-    padding: 30px 0 30px 32px;
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .home-page .bestseller-copy .section-eyebrow {
@@ -663,16 +670,20 @@
     font-weight: 600;
 }
 
-.home-page .bestseller-photo {
-    position: absolute;
-    z-index: 0;
-    top: 50%;
-    right: 13px;
-    width: 39%;
-    max-height: 86%;
-    object-fit: contain;
-    transform: translateY(-50%);
+.home-page .bestseller-image {
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
     border-radius: 12px;
+}
+
+.home-page .bestseller-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .home-page .bestseller-banner .bestseller-variant-note {
@@ -1363,6 +1374,8 @@
 /* 15. TABLET NHỎ */
 @media (max-width: 900px) {
 
+    .home-page .bestseller-grid { grid-template-columns: 1fr; }
+
     .home-page .hero-card { min-height: 670px; height: 86svh; }
     .home-page .hero-copy { width: 58%; }
 
@@ -1470,7 +1483,6 @@
         border-radius: 11px;
     }
 
-    .home-page .category-tile img { aspect-ratio: 1.22; }
 
     .home-page .category-tile h3 {
         min-height: 42px;
@@ -1509,17 +1521,22 @@
     .home-page .bestseller-banner { min-height: 280px; }
 
     .home-page .bestseller-copy {
-        width: 62%;
-        padding: 22px 0 22px 20px;
+        grid-column: 1;
+        grid-row: 2;
     }
 
     .home-page .bestseller-copy h3 { font-size: 25px; }
 
     .home-page .bestseller-copy > p:not(.section-eyebrow) { font-size: 10px; }
 
-    .home-page .bestseller-photo {
-        right: 8px;
-        width: 38%;
+    .home-page .bestseller-banner {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+
+    .home-page .bestseller-image {
+        grid-column: 1;
+        grid-row: 1;
     }
 
     .home-page .home-studio-section { padding-block: 48px; }

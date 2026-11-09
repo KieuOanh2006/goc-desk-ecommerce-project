@@ -43,5 +43,21 @@
     return `<article class="arrival-card"><a href="${productUrl(product)}" class="arrival-image"><img src="${product.image}" width="600" height="600" alt="${escapeHtml(product.fullName)}" loading="lazy" decoding="async"><span class="product-badge">${product.colors.length} màu</span></a>
       <p class="arrival-type">${escapeHtml(categoryName(product.category))}</p><h3><a href="${productUrl(product)}">${escapeHtml(product.name)}</a></h3><p class="arrival-price">${money(product.price)}</p></article>`;
   }
-  Object.assign(catalog, { escapeHtml, normalize, money, categoryName, productUrl, setupUrl, filterProducts, card, homeCard });
+  const categoryUrl = (category) => 'products.html?category=' + encodeURIComponent(category.id) + '#catalog';
+
+  function categoryCard(category) {
+    const product = catalog.products.find((product) => product.category === category.id);
+    if (!product) return '';
+    return `<a href="${categoryUrl(category)}" class="category-tile">
+      <div class="category-image"><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.fullName)}" width="600" height="600" loading="lazy" decoding="async"></div>
+      <h3>${escapeHtml(category.name)} <span aria-hidden="true">↗</span></h3></a>`;
+  }
+
+  function featuredCard(product, colorId) {
+    const color = product.colors.find((color) => color.id === colorId) || product.colors[0];
+    const url = productUrl(product, color.id);
+    return `<a class="bestseller-image" href="${url}"><img class="bestseller-photo" src="${escapeHtml(color.image)}" alt="${escapeHtml(product.name + ' — ' + color.name)}" width="600" height="600" loading="lazy" decoding="async"></a>
+      <div class="bestseller-copy"><p class="section-eyebrow">${escapeHtml(categoryName(product.category) + ' · ' + color.name)}</p><h3><a href="${url}">${escapeHtml(product.name)}</a></h3><p>${escapeHtml(product.description)}. Chọn mảnh ghép phù hợp với góc riêng của bạn.</p><a href="${url}" class="btn btn-primary">Khám phá sản phẩm <span aria-hidden="true">↗</span></a><p class="bestseller-variant-note">${color.generated ? 'Phối màu minh họa thiết kế' : 'Ảnh sản phẩm gốc'}</p></div>`;
+  }
+  Object.assign(catalog, { escapeHtml, normalize, money, categoryName, productUrl, setupUrl, filterProducts, card, homeCard, categoryUrl, categoryCard, featuredCard });
 })(globalThis.GocDeskCatalog);

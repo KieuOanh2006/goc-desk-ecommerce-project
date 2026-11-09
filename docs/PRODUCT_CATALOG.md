@@ -4,6 +4,19 @@ Cập nhật mới nhất về bảo hành, banner sản phẩm, tích điểm v
 
 Dùng Live Server của VS Code để mở website: các trang cần cùng địa chỉ website để chia sẻ giỏ hàng. Có thể mở file trực tiếp để xem giao diện, nhưng trình duyệt có thể tách localStorage theo từng file. Nếu trang đang mở, nhấn Ctrl + Shift + R để tải lại JavaScript và CSS.
 
+## Chuẩn hóa thẻ trang chủ (09/11/2026)
+
+- Sáu danh mục lấy tên từ `categories` và ảnh của sản phẩm đầu tiên thuộc danh mục trong `js/product-data.js`, thay các ảnh cũ không đồng bộ. Các liên kết giữ bộ lọc `category` và dẫn đến danh sách sản phẩm.
+- Danh mục và danh sách sản phẩm dùng khung vuông, ảnh căn giữa với `object-fit: contain`, không phóng ảnh khi hover để tránh cắt sản phẩm. Thẻ danh sách dùng bố cục cột để căn giá ở cuối thẻ.
+- Hai thẻ nổi bật dùng chung tên, mô tả, danh mục và ảnh màu từ dữ liệu sản phẩm. Ảnh, tiêu đề và nút đều dẫn đến cùng sản phẩm và màu trong trang chi tiết. Giữ chú thích cho ảnh màu minh họa.
+- Ảnh và nội dung nổi bật chia cột riêng; trên màn hình từ 640 px trở xuống, ảnh nằm trên nội dung. HTML giữ nội dung dự phòng khi JavaScript không chạy.
+
+Các tệp triển khai: `index.html`, `css/home.css`, `js/catalog-utils.js`, `js/home-products.js`. Kiểm thử bổ sung tại `tests/catalog.test.mjs`.
+
+Đã chạy bằng Node.js trên mã nguồn hiện tại: 19 kiểm thử danh mục đạt. Bộ kiểm thử giỏ hàng dừng vì DOM mô phỏng thiếu `document.addEventListener`, trong khi mã badge hiện tại dùng sự kiện `site-shell:loaded`; các tệp giỏ hàng và kiểm thử tương ứng không thay đổi trong lượt này. Chưa kiểm tra trực quan trên trình duyệt vì công cụ trình duyệt không kết nối.
+
+Để xem kết quả, mở `index.html` bằng Live Server và nhấn **Ctrl + Shift + R**. Kiểm tra ở desktop và mobile: sáu ảnh danh mục, tám thẻ sản phẩm, hai thẻ nổi bật; bấm danh mục để kiểm tra lọc và bấm ảnh/tên/nút nổi bật để kiểm tra đúng sản phẩm, màu.
+
 ## Thay đổi
 
 - Trang chủ và trang sản phẩm dùng chung tám sản phẩm trong `js/product-data.js`: tên, giá tham khảo, danh mục, thông số, ảnh và màu. Mọi thẻ sản phẩm dẫn đến đúng ID trong trang chi tiết.

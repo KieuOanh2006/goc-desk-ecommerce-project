@@ -61,6 +61,48 @@ export async function run() {
     assert.equal(setup.searchParams.get('product'), p.id); assert.equal(setup.searchParams.get('color'), p.colors[1].id);
   }
   passed.push('Every product has two existing color photos, correct home/catalog/detail links and a 3D route');
+  check('Home category tiles use catalog images and valid category filters', () => {
+    for (const category of c.categories) {
+      const product = c.products.find((product) => product.category === category.id);
+      const tile = c.categoryCard(category);
+      assert.ok(tile.includes('src="' + product.image + '"'));
+      assert.ok(tile.includes('href="' + c.categoryUrl(category) + '"'));
+      assert.ok(html['index.html'].includes(tile));
+      assert.ok(c.filterProducts({ categories: [category.id] }).length > 0);
+    }
+    assert.equal(c.categoryCard({ id: 'missing', name: 'Missing' }), '');
+  });
+  check('Featured images, titles and buttons link to the same product and color', () => {
+    for (const [id, colorId] of [['hyperone-gen-2', 'cream'], ['nova-dl02', 'sage']]) {
+      const product = c.products.find((product) => product.id === id);
+      const color = product.colors.find((color) => color.id === colorId);
+      const banner = c.featuredCard(product, colorId);
+      assert.ok(banner.includes('src="' + color.image + '"'));
+      assert.equal((banner.match(/href="([^"]+)"/g) || []).length, 3);
+      for (const [, href] of banner.matchAll(/href="([^"]+)"/g)) assert.equal(href, c.productUrl(product, colorId));
+      assert.ok(banner.includes('Phối màu minh họa thiết kế'));
+      assert.ok(html['index.html'].includes(banner));
+    }
+    const fallback = c.featuredCard(c.products[0], 'missing');
+    assert.ok(fallback.includes(c.productUrl(c.products[0], c.products[0].colors[0].id)));
+    assert.ok(fallback.includes('Ảnh sản phẩm gốc'));
+  });
+  check('Home rendering refreshes all sections from shared data and retains unknown banners', () => {
+    const categories = element(); const grid = element();
+    const banner = { ...element(), dataset: { featuredProduct: c.products[0].id, featuredColor: 'cream' } };
+    const unknown = { ...element(), innerHTML: 'fallback', dataset: { featuredProduct: 'missing' } };
+    const homeCatalog = { ...c, products: c.products.map((product) => ({ ...product, name: product.name + ' cập nhật' })) };
+    const homeContext = vm.createContext({ GocDeskCatalog: homeCatalog, document: {
+      getElementById: (id) => ({ 'home-categories': categories, 'home-products': grid })[id],
+      querySelectorAll: () => [banner, unknown],
+    } });
+    vm.runInContext(sources['home-products'], homeContext);
+    assert.equal(categories.innerHTML, c.categories.map(c.categoryCard).join(''));
+    assert.equal((grid.innerHTML.match(/class="arrival-card"/g) || []).length, c.products.length);
+    assert.ok(grid.innerHTML.includes('HyperOne Gen 2 cập nhật'));
+    assert.ok(banner.innerHTML.includes('HyperOne Gen 2 cập nhật'));
+    assert.equal(unknown.innerHTML, 'fallback');
+  });
   check('Old description removed; every 3D link is enabled', () => {
     assert.ok(!html['product-detail.html'].includes('Hiểu thêm về'));
     assert.equal((html['product-detail.html'].match(/data-setup-link/g) || []).length, 8);
