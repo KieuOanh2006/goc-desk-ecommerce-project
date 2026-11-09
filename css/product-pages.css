@@ -264,15 +264,15 @@ h2 {
     color 0.18s ease,
     transform 0.18s ease;
 }
-.product-card .card-add-to-cart:hover,
+.product-card, .arrival-card .card-add-to-cart:hover,
 .product-card .card-add-to-cart:focus-visible {
   background: #262626;
   color: #fff;
 }
-.product-card .card-add-to-cart:active {
+.product-card, .arrival-card .card-add-to-cart:active {
   transform: translateY(1px);
 }
-.product-card .card-add-to-cart svg {
+.product-card, .arrival-card .card-add-to-cart svg {
   flex: 0 0 18px;
 }
 .product-card .card-add-to-cart.is-added {

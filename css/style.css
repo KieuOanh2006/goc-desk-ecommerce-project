@@ -1343,4 +1343,56 @@ button {
     }
 
 }
+/* Nút thêm vào giỏ hàng - Arrival Card */
+.arrival-card .card-add-to-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: calc(100% - 28px);
+  min-height: 44px;
+  margin: 22px 14px 16px;
+  padding: 11px 14px;
+  border: 1px solid #262626;
+  border-radius: 9px;
+  background: transparent;
+  color: #262626;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
 
+/* Hover: nền đen, chữ trắng */
+.arrival-card .card-add-to-cart:hover {
+  background: #262626;
+  color: #fff;
+}
+
+/* Focus */
+.arrival-card .card-add-to-cart:focus-visible {
+  outline: 2px solid #262626;
+  outline-offset: 3px;
+}
+
+/* Khi nhấn */
+.arrival-card .card-add-to-cart:active {
+  transform: translateY(1px);
+}
+
+/* Icon giỏ hàng */
+.arrival-card .card-add-to-cart svg {
+  flex: 0 0 18px;
+}
+
+/* Khi thêm vào giỏ thành công */
+.arrival-card .card-add-to-cart.is-added {
+  background: #e6efe7;
+  border-color: #74947b;
+  color: #235a35;
+}
