@@ -5,6 +5,7 @@
 
   function selectColor(article, product, color, saveUrl = false) {
     selectedColors.set(product.id, color.id);
+    article.querySelector('.detail-price').textContent = catalog.money(product.price);
     const image = article.querySelector('[data-gallery-image]');
     image.src = color.image;
     image.alt = product.name + ' — ' + color.name;
