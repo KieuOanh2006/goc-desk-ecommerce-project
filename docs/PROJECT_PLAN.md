@@ -20,133 +20,86 @@ Bảng 1. Phân công vai trò dự án
 | Backend & Database – Nghiệp vụ TMĐT          | Nguyễn Huy Hoàng      | Xử lý nghiệp vụ giá, tồn kho, giỏ hàng, voucher, khuyến mãi, đơn hàng, vận chuyển, trạng thái thanh toán và dữ liệu Dashboard.  |
 | Tích hợp chức năng & quản trị website        | Lê Bảo Ngọc           | Tích hợp Frontend–Backend, xây dựng giao diện quản trị và Dashboard, phối hợp tích hợp thanh toán sandbox, email và dịch vụ AI. |
 
+
 ## 3. Các giai đoạn triển khai
 
-Bảng 2. Các giai đoạn triển khai
+**Bảng 2. Các giai đoạn triển khai dự án**
 
-| **Giai đoạn**                                  | **Thời gian** | **Nội dung chính**                                                                                | **Kết quả cần đạt**                                                                |
-| ---------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| 1. Khảo sát và xác định yêu cầu                | Tuần 1        | Khảo sát đối thủ, chốt phạm vi, user flow, repository và quy ước làm việc.                        | Yêu cầu và danh sách chức năng được thống nhất, repository và Issues đã thiết lập. |
-| 2. Thiết kế giao diện và dữ liệu               | Tuần 2        | Thiết kế Figma, ERD, dữ liệu mẫu, hợp đồng API và kiến trúc 3D/AI.                                | Thiết kế giao diện, cơ sở dữ liệu và quy ước API được thống nhất.                  |
-| 3. Phát triển Frontend và Backend nền tảng     | Tuần 3–4      | Phát triển giao diện mua hàng, tài khoản, API sản phẩm, tài khoản, giỏ hàng và thử nghiệm 3D sớm. | Các module nền tảng chạy với dữ liệu mẫu/API, có bản thử nghiệm 3D.                |
-| 4. Hoàn thiện nghiệp vụ TMĐT và trải nghiệm 3D | Tuần 5        | Hoàn thiện đặt hàng, voucher, vận chuyển, lưu và mua bộ setup.                                    | Luồng mua hàng và luồng setup cơ bản hoạt động xuyên suốt.                         |
-| 5. Tích hợp AI, quản trị và thanh toán         | Tuần 6        | Tích hợp chatbot, tạo ảnh AI, giao diện quản trị, Dashboard, thanh toán sandbox và email.         | Các chức năng chính được tích hợp, có kết quả kiểm thử ban đầu.                    |
-| 6. Kiểm thử và hoàn thiện                      | Tuần 7        | Kiểm thử chức năng, phân quyền, dữ liệu, responsive và xử lý lỗi.                                 | Các lỗi quan trọng được sửa, có checklist kiểm thử cập nhật.                       |
-| 7. Triển khai và nghiệm thu                    | Tuần 8        | Triển khai demo, hoàn thiện tài liệu, rà soát repository và chuẩn bị trình bày.                   | Bản demo, README, hướng dẫn chạy và báo cáo cuối.                                  |
+| Giai đoạn | Thời gian | Nội dung chính | Kết quả cần đạt | Trạng thái |
+|---|---|---|---|---|
+| 1. Khảo sát và xác định yêu cầu | Tuần 1 | Khảo sát đối thủ, xác định phạm vi, chức năng và user flow. | Thống nhất yêu cầu và repository dự án. | Hoàn thành |
+| 2. Thiết kế và xây dựng giao diện | Tuần 2 | Thiết kế UI/UX, xây dựng HTML, CSS và responsive. | Hoàn thiện giao diện website. | Hoàn thành |
+| 3. Phát triển Frontend | Tuần 3 | Tích hợp JavaScript, dữ liệu sản phẩm, tìm kiếm, lọc, giỏ hàng, LocalStorage và tương tác 3D. | Hoàn thiện các chức năng phía giao diện với dữ liệu mẫu. | Hoàn thành |
+| 4. Phát triển Backend và cơ sở dữ liệu | Tuần 4–5 | Xây dựng máy chủ, cơ sở dữ liệu, API và xử lý tài khoản, sản phẩm, đơn hàng. | Hoàn thiện Backend và các API nền tảng. | Dự kiến |
+| 5. Tích hợp và hoàn thiện nghiệp vụ | Tuần 6 | Kết nối Frontend – Backend, hoàn thiện đăng nhập, đặt hàng, voucher, vận chuyển và quản trị. | Các nghiệp vụ chính hoạt động đồng bộ. | Dự kiến |
+| 6. Tích hợp nâng cao và kiểm thử | Tuần 7 | Tích hợp AI, chatbot, thanh toán thử nghiệm; kiểm thử và sửa lỗi. | Hoàn thiện chức năng và xử lý lỗi quan trọng. | Dự kiến |
+| 7. Triển khai và nghiệm thu | Tuần 8 | Triển khai demo, hoàn thiện tài liệu và chuẩn bị thuyết trình. | Website và tài liệu sẵn sàng nghiệm thu. | Dự kiến |
 
 ## 4. Danh sách công việc
 
-Bảng 3. Danh sách công việc theo tuần
+**Bảng 3. Danh sách công việc và tiến độ thực hiện**
 
-*Trạng thái sử dụng: Chưa bắt đầu · Đang thực hiện · Cần xử lý · Hoàn thành.*
+*Trạng thái: Chưa bắt đầu – Đang thực hiện – Cần xử lý – Hoàn thành.*
 
-| **Mã công việc** | **Công việc**                                                     | **Người phụ trách**                                                            | **Kết quả cần đạt**                                                                   | **Thời hạn** | **Trạng thái** |
-| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ------------ | -------------- |
-| GD-01            | Chốt yêu cầu, phạm vi, quy trình nghiệp vụ và tiêu chí nghiệm thu | Sạch Thị Phương Trinh, Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng                     | Tài liệu yêu cầu và danh sách chức năng được nhóm thống nhất                          | Tuần 1       | Hoàn thành     |
-| GD-02            | Khảo sát đối thủ và xây dựng user flow                            | Hoàng Huyền Nhi, Nguyễn Hoàng Nhi, Lê Bảo Ngọc                                 | Bảng phân tích đối thủ và luồng người dùng                                            | Tuần 1       | Hoàn thành     |
-| GD-03            | Thiết lập repository, Issues và quy ước làm việc                  | Nguyễn Kiều Oanh                                                               | Repository có README, danh sách Issues và quy ước nhánh/commit                        | Tuần 1       | Hoàn thành     |
-| GD-04            | Thiết kế giao diện và thống nhất hệ thống thiết kế                | Hoàng Huyền Nhi, Phương Trinh, Hoàng Nhi, Bảo Ngọc phối hợp                    | Figma các trang chính, màu sắc, kiểu chữ và thành phần giao diện                      | Tuần 2       | Chưa bắt đầu   |
-| GD-05            | Thiết kế cơ sở dữ liệu và chuẩn bị dữ liệu mẫu                    | Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng                                            | ERD, cấu trúc bảng và dữ liệu mẫu cho sản phẩm, tài khoản, đơn hàng, bộ setup         | Tuần 2       | Chưa bắt đầu   |
-| GD-06            | Lập kế hoạch triển khai và thống nhất API                         | Nguyễn Kiều Oanh, Hùng, Hoàng và nhóm phối hợp                                 | Backlog công việc, GitHub Issues và quy ước trao đổi dữ liệu giữa Frontend và Backend | Tuần 2       | Chưa bắt đầu   |
-| GD-07            | Xây dựng giao diện trang chủ, danh mục và tìm kiếm                | Sạch Thị Phương Trinh, Hoàng Nhi, Huyền Nhi phối hợp                           | Giao diện trang chủ, danh mục, tìm kiếm, bộ lọc và sắp xếp responsive                 | Tuần 3       | Chưa bắt đầu   |
-| GD-08            | Xây dựng giao diện chi tiết sản phẩm và tài khoản                 | Nguyễn Hoàng Nhi, Phương Trinh phối hợp                                        | Trang chi tiết sản phẩm, đăng ký, đăng nhập, hồ sơ và yêu thích                       | Tuần 3       | Chưa bắt đầu   |
-| GD-09            | Xây dựng API sản phẩm, danh mục, tài khoản và phân quyền          | Nguyễn Hoàng Hưng                                                              | API hoạt động và cung cấp dữ liệu cho các giao diện chính                             | Tuần 3       | Chưa bắt đầu   |
-| GD-10            | Xây dựng API giỏ hàng, giá và tồn kho                             | Nguyễn Huy Hoàng, Hùng phối hợp                                                | API giỏ hàng, xử lý số lượng và kiểm tra giá, tồn kho phía server                     | Tuần 3       | Chưa bắt đầu   |
-| GD-11            | Tích hợp giao diện với API và kiểm tra dữ liệu                    | Lê Bảo Ngọc, Oanh, Trinh, Hoàng Nhi, Hùng, Hoàng phối hợp                      | Các trang chính kết nối được với Backend, Issues tích hợp được ghi nhận               | Tuần 3       | Chưa bắt đầu   |
-| GD-12            | Xây dựng giao diện đặt hàng, voucher và theo dõi đơn              | Sạch Thị Phương Trinh, Nguyễn Hoàng Nhi                                        | Giao diện giỏ hàng, voucher, đặt hàng và theo dõi trạng thái đơn                      | Tuần 4       | Chưa bắt đầu   |
-| GD-13            | Xây dựng API voucher, đơn hàng và vận chuyển                      | Nguyễn Huy Hoàng, Nguyễn Hoàng Hưng phối hợp                                   | API đặt hàng, tính phí vận chuyển, áp dụng voucher và cập nhật trạng thái             | Tuần 4       | Chưa bắt đầu   |
-| GD-14            | Xây dựng bối cảnh góc phòng và thư viện sản phẩm 3D               | Nguyễn Hoàng Nhi, Lê Bảo Ngọc, Hùng hỗ trợ dữ liệu                             | Góc phòng có tường, sàn, bàn làm việc và mô hình các phụ kiện mẫu                     | Tuần 4       | Chưa bắt đầu   |
-| GD-15            | Hoàn thiện Figma và rà soát tiến độ các module                    | Hoàng Huyền Nhi, Nguyễn Kiều Oanh điều phối, toàn nhóm phối hợp                | Giao diện thống nhất, tài nguyên thiết kế đầy đủ và danh sách công việc cần bổ sung   | Tuần 4       | Chưa bắt đầu   |
-| GD-16            | Phát triển thao tác bố trí sản phẩm trong không gian 3D           | Nguyễn Hoàng Nhi, Lê Bảo Ngọc, Hùng hỗ trợ dữ liệu                             | Thêm, di chuyển, xoay, xóa sản phẩm và giới hạn vùng đặt trên bàn                     | Tuần 5       | Chưa bắt đầu   |
-| GD-17            | Xây dựng chức năng lưu và mua bộ setup                            | Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng, Nguyễn Hoàng Nhi                          | Lưu và mở lại bố cục, tính tổng giá và chuyển sản phẩm vào giỏ hàng                   | Tuần 5       | Chưa bắt đầu   |
-| GD-18            | Tích hợp chatbot AI và dịch vụ tạo ảnh AI                         | Lê Bảo Ngọc, Nguyễn Hoàng Nhi, Hùng, Hoàng hỗ trợ API                          | Chatbot tư vấn dựa trên dữ liệu sản phẩm và công cụ tạo ảnh có xử lý lỗi              | Tuần 5       | Chưa bắt đầu   |
-| GD-19            | Hoàn thiện giao diện responsive và trải nghiệm người dùng         | Sạch Thị Phương Trinh, Nguyễn Hoàng Nhi, Hoàng Huyền Nhi                       | Các trang chính hoạt động phù hợp trên desktop và mobile                              | Tuần 5       | Chưa bắt đầu   |
-| GD-20            | Xây dựng giao diện quản trị cửa hàng                              | Lê Bảo Ngọc, Hùng, Hoàng hỗ trợ API                                            | Quản lý sản phẩm, danh mục, người dùng, đơn hàng, voucher và tài nguyên 3D            | Tuần 6       | Chưa bắt đầu   |
-| GD-21            | Tích hợp thanh toán sandbox, email và vận chuyển                  | Lê Bảo Ngọc, Nguyễn Huy Hoàng, Hùng phối hợp                                   | Luồng thanh toán thử nghiệm, cập nhật trạng thái và email xác nhận                    | Tuần 6       | Chưa bắt đầu   |
-| GD-22            | Xây dựng Dashboard thống kê                                       | Lê Bảo Ngọc, Nguyễn Huy Hoàng, Hùng hỗ trợ dữ liệu                             | Thống kê doanh thu đơn hoàn tất, số đơn và sản phẩm bán chạy                          | Tuần 6       | Chưa bắt đầu   |
-| GD-23            | Kiểm thử các API và nghiệp vụ TMĐT                                | Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng, Kiều Oanh theo dõi                        | Kết quả kiểm thử tài khoản, phân quyền, giá, tồn kho, voucher và đơn hàng             | Tuần 6       | Chưa bắt đầu   |
-| GD-24            | Tích hợp toàn bộ chức năng và rà soát tiến độ                     | Lê Bảo Ngọc, Nguyễn Kiều Oanh, toàn nhóm phối hợp                              | Các module kết nối trên một phiên bản thống nhất, danh sách lỗi và phần còn thiếu     | Tuần 7       | Chưa bắt đầu   |
-| GD-25            | Kiểm thử thiết kế 3D, lưu bộ setup và các chức năng AI            | Nguyễn Hoàng Nhi, Lê Bảo Ngọc, Nguyễn Hoàng Hưng                               | Các luồng 3D, mua bộ setup, chatbot và tạo ảnh được kiểm thử                          | Tuần 7       | Chưa bắt đầu   |
-| GD-26            | Kiểm thử giao diện và sửa lỗi toàn hệ thống                       | Toàn nhóm, Nguyễn Kiều Oanh điều phối                                          | Checklist kiểm thử, danh sách lỗi, kết quả sửa lỗi và kiểm thử lại                    | Tuần 7       | Chưa bắt đầu   |
-| GD-27            | Hoàn thiện các chức năng còn thiếu và kiểm tra bảo mật cơ bản     | Nguyễn Kiều Oanh, Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng, các thành viên phối hợp | Các lỗi ưu tiên được xử lý, kiểm tra phân quyền, dữ liệu đầu vào và luồng mua hàng    | Tuần 7       | Chưa bắt đầu   |
-| GD-28            | Triển khai bản demo và kiểm tra lần cuối                          | Lê Bảo Ngọc, Nguyễn Kiều Oanh, toàn nhóm phối hợp                              | Website chạy được trong môi trường demo và các luồng chính hoạt động ổn định          | Tuần 8       | Chưa bắt đầu   |
-| GD-29            | Hoàn thiện README, hướng dẫn cài đặt và tài liệu kỹ thuật         | Nguyễn Kiều Oanh, Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng, Lê Bảo Ngọc             | Tài liệu hướng dẫn chạy dự án, cấu hình, cơ sở dữ liệu và API                         | Tuần 8       | Chưa bắt đầu   |
-| GD-30            | Hoàn thiện báo cáo và tài liệu sử dụng                            | Hoàng Huyền Nhi, Sạch Thị Phương Trinh, Nguyễn Hoàng Nhi, Kiều Oanh tổng hợp   | Báo cáo kết quả, hình ảnh giao diện, mô tả chức năng và hướng dẫn sử dụng             | Tuần 8       | Chưa bắt đầu   |
-| GD-31            | Chuẩn bị kịch bản demo và thuyết trình cuối kỳ                    | Toàn nhóm, Nguyễn Kiều Oanh điều phối                                          | Kịch bản trình diễn, phân công người trình bày và bản demo hoàn chỉnh                 | Tuần 8       | Chưa bắt đầu   |
+| Mã công việc | Công việc | Người phụ trách | Kết quả cần đạt | Thời hạn | Trạng thái |
+|---|---|---|---|---|---|
+| GD-01 | Khảo sát, xác định yêu cầu và phạm vi dự án | Toàn nhóm | Thống nhất yêu cầu và chức năng website | Tuần 1 | Hoàn thành |
+| GD-02 | Thiết lập repository và tổ chức mã nguồn | Kiều Oanh | Repository GitHub và cấu trúc dự án | Tuần 1–2 | Hoàn thành |
+| GD-03 | Xây dựng giao diện HTML, CSS và responsive | Toàn nhóm | Hoàn thiện các trang giao diện | Tuần 2 | Hoàn thành |
+| GD-04 | Cải thiện trang chủ và hình ảnh sản phẩm | Hoàng Nhi | Trang chủ hoàn thiện, bố cục và hình ảnh đồng bộ | Tuần 3 | Hoàn thành |
+| GD-05 | Chuẩn hóa dữ liệu và hiển thị sản phẩm động | Huyền Nhi | Dữ liệu sản phẩm dùng chung và hiển thị bằng JavaScript | Tuần 3 | Hoàn thành |
+| GD-06 | Hoàn thiện tìm kiếm, lọc và sắp xếp | Phương Trinh | Các chức năng tìm kiếm và xử lý danh sách sản phẩm | Tuần 3 | Hoàn thành |
+| GD-07 | Xây dựng giỏ hàng và LocalStorage | Hoàng Hưng | Thêm, xóa, thay đổi số lượng, tính tiền và lưu giỏ hàng | Tuần 3 | Hoàn thành |
+| GD-08 | Cải thiện giao diện và tương tác thiết kế 3D | Huy Hoàng | Hoàn thiện giao diện và các thao tác thiết kế 3D | Tuần 3 | Hoàn thành |
+| GD-09 | Kiểm thử và chỉnh sửa hệ thống | Bảo Ngọc | Kiểm tra chức năng, giao diện và ghi nhận lỗi | Tuần 3 | Hoàn thành |
+| GD-10 | Quản lý mã nguồn và tổng hợp tài liệu | Kiều Oanh | Theo dõi GitHub, README và minh chứng dự án | Tuần 3 | Hoàn thành |
+| GD-11 | Thiết kế cơ sở dữ liệu và xây dựng Backend nền tảng | Hoàng Hưng, Huy Hoàng | Cơ sở dữ liệu và máy chủ Backend | Tuần 4–5 | Chưa bắt đầu |
+| GD-12 | Xây dựng API sản phẩm, tài khoản và đơn hàng | Hoàng Hưng, Huy Hoàng | API phục vụ các chức năng chính | Tuần 4–5 | Chưa bắt đầu |
+| GD-13 | Tích hợp Frontend với Backend | Bảo Ngọc và nhóm phối hợp | Các giao diện kết nối với API | Tuần 6 | Chưa bắt đầu |
+| GD-14 | Hoàn thiện nghiệp vụ mua hàng, voucher và vận chuyển | Nhóm phát triển | Các luồng nghiệp vụ TMĐT hoạt động | Tuần 6 | Chưa bắt đầu |
+| GD-15 | Tích hợp chức năng nâng cao và kiểm thử tổng thể | Toàn nhóm | Các chức năng nâng cao được tích hợp và kiểm tra | Tuần 7 | Chưa bắt đầu |
+| GD-16 | Triển khai demo và hoàn thiện báo cáo | Kiều Oanh và toàn nhóm | Website demo, README và báo cáo cuối kỳ | Tuần 8 | Chưa bắt đầu |
 
 ## 5. Rủi ro và phương án xử lý
 
-Bảng 4. Đánh giá rủi ro và phương án xử lý
+**Bảng 4. Đánh giá rủi ro và phương án xử lý**
 
-| **Rủi ro**                               | **Ảnh hưởng**                   | **Phương án xử lý**                                                                                                          | **Người theo dõi**                      |
-| ---------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Phạm vi chức năng lớn                    | Có thể trễ tiến độ              | Ưu tiên luồng mua hàng, 3D và lưu setup, chia nhỏ Issues, các tính năng nâng cao chỉ thực hiện khi chức năng cốt lõi ổn định | Nguyễn Kiều Oanh                        |
-| Mô hình 3D khó tích hợp hoặc tải chậm    | Trải nghiệm 3D không ổn định    | Thử nghiệm từ Tuần 3–4, giới hạn 8–10 mô hình và tối ưu dung lượng                                                           | Nguyễn Hoàng Nhi, Lê Bảo Ngọc           |
-| Dịch vụ AI lỗi hoặc phát sinh chi phí    | Chatbot/tạo ảnh gián đoạn       | Thử nghiệm API sớm, giới hạn lượt, bảo vệ API key phía server và không chặn luồng mua hàng khi AI lỗi                        | Lê Bảo Ngọc                             |
-| Frontend và Backend không thống nhất API | Chậm tích hợp                   | Chốt cấu trúc API sớm, dùng dữ liệu mẫu và tích hợp theo từng module                                                         | Nguyễn Hoàng Hưng, Nguyễn Huy Hoàng     |
-| Sai giá, tồn kho hoặc voucher            | Đơn hàng không chính xác        | Xác minh ở server, kiểm thử hết hàng, hết hạn và áp dụng lặp                                                                 | Nguyễn Huy Hoàng                        |
-| Thanh toán sandbox không ổn định         | Không hoàn thành luồng đặt hàng | Tích hợp và thử nghiệm trước Tuần 7, kiểm thử thành công, thất bại và hủy                                                    | Lê Bảo Ngọc, Nguyễn Huy Hoàng           |
-| Xung đột mã nguồn hoặc chậm cập nhật     | Ảnh hưởng tiến độ nhóm          | Dùng nhánh riêng, Pull Request, Issues và cập nhật tiến độ định kỳ                                                           | Nguyễn Kiều Oanh                        |
-| Giao diện lỗi trên mobile                | Trải nghiệm không tốt khi demo  | Kiểm thử responsive theo từng giai đoạn và sửa lỗi trước Tuần 8                                                              | Sạch Thị Phương Trinh, Nguyễn Hoàng Nhi |
+| Rủi ro | Ảnh hưởng | Phương án xử lý | Người theo dõi |
+|---|---|---|---|
+| Phạm vi chức năng lớn | Có thể chậm tiến độ | Ưu tiên chức năng cốt lõi và chia nhỏ công việc. | Kiều Oanh |
+| Dữ liệu sản phẩm không thống nhất | Lỗi hiển thị và giỏ hàng | Sử dụng nguồn dữ liệu sản phẩm dùng chung. | Huyền Nhi |
+| Xung đột mã nguồn | Khó tích hợp | Thống nhất quy trình GitHub, commit và branch. | Kiều Oanh |
+| Frontend và Backend không tương thích | Chậm tích hợp | Thống nhất cấu trúc dữ liệu và API trước khi kết nối. | Hoàng Hưng, Huy Hoàng |
+| Mô hình 3D hoạt động chưa ổn định | Ảnh hưởng trải nghiệm | Giới hạn số lượng mô hình và kiểm tra hiệu suất. | Huy Hoàng |
+| Dịch vụ AI hoặc thanh toán gặp lỗi | Gián đoạn chức năng | Kiểm thử riêng và chuẩn bị phương án xử lý khi dịch vụ không khả dụng. | Bảo Ngọc |
+| Giao diện lỗi trên thiết bị nhỏ | Trải nghiệm không tốt | Kiểm thử responsive và sửa lỗi theo từng kích thước. | Bảo Ngọc |
 
-## 6. Kế hoạch triển khai Buổi 2 – HTML5 và CSS3
+## 6. Kế hoạch triển khai Buổi 3 – JavaScript
 
 ### 6.1. Mục tiêu
 
-Kế thừa yêu cầu và kết quả Buổi 1 để xây dựng giao diện website Góc Desk bằng HTML5 và CSS3. Website cần có giao diện nhất quán, liên kết điều hướng giữa các trang và hiển thị phù hợp trên máy tính, máy tính bảng và điện thoại.
+Kế thừa giao diện HTML5 và CSS3 từ Buổi 1, Buổi 2 để tích hợp JavaScript, phát triển các chức năng tương tác cho website Góc Desk.
 
-Phạm vi Buổi 2 tập trung vào giao diện. Chưa triển khai JavaScript, backend, cơ sở dữ liệu, giỏ hàng hoạt động hoặc thanh toán trực tuyến.
+### 6.2. Phạm vi triển khai
 
-### 6.2. Danh sách trang
+- Chuẩn hóa dữ liệu và hiển thị sản phẩm động.
+- Tìm kiếm, lọc và sắp xếp sản phẩm.
+- Hiển thị chi tiết sản phẩm theo ID.
+- Thêm, xóa, thay đổi số lượng và tính tổng tiền giỏ hàng.
+- Lưu và khôi phục giỏ hàng bằng LocalStorage.
+- Cải thiện giao diện và tương tác thiết kế 3D.
+- Kiểm thử, sửa lỗi và tích hợp mã nguồn trên GitHub.
 
-| Trang | File | Nội dung chính |
-|---|---|---|
-| Trang chủ | `index.html` | Logo, menu, banner và sản phẩm nổi bật |
-| Danh sách sản phẩm | `products.html` | Tối thiểu 8 sản phẩm, hình ảnh, tên, giá và liên kết xem chi tiết |
-| Chi tiết sản phẩm | `product-detail.html` | Hình ảnh, tên, giá, mô tả, thuộc tính và nút mua hàng dạng giao diện |
-| Giới thiệu cửa hàng | `about.html` | Giới thiệu Góc Desk, khách hàng mục tiêu, điểm nổi bật và thông tin liên hệ |
-| Thiết kế góc làm việc | `setup-3d.html` | Giao diện tĩnh minh họa không gian bàn làm việc, danh sách phụ kiện và thông tin bộ setup |
+### 6.3. Quy trình thực hiện
 
-Lưu ý: Bốn trang đầu là yêu cầu của bài tập Buổi 2. Trang `setup-3d.html` là phần mở rộng do nhóm đề xuất, chỉ làm giao diện minh họa bằng HTML5 và CSS3, chưa triển khai 3D tương tác thực tế.
+Rà soát mã nguồn → Phân công nhiệm vụ → Phát triển JavaScript → Commit/Push → Tích hợp → Kiểm thử.
 
-### 6.3. Thành phần dùng chung
+### 6.4. Tiêu chí hoàn thành
 
-- Header gồm tên thương hiệu và menu điều hướng.
-- Footer gồm thông tin cửa hàng và các liên kết phù hợp.
-- Bảng màu, kiểu chữ, khoảng cách và kiểu nút được thống nhất.
-- Thẻ sản phẩm có cách trình bày nhất quán.
-- CSS dùng chung trong `css/style.css`.
-- Bổ sung hover, focus và responsive.
-
-### 6.4. Thứ tự thực hiện
-
-1. Rà soát yêu cầu Buổi 1 và chốt thiết kế giao diện.
-2. Tổ chức cấu trúc thư mục và tạo các file HTML, CSS, hình ảnh.
-3. Xây dựng nội dung và bố cục từng trang.
-4. Hoàn thiện CSS chung, Flexbox/Grid, hover và focus.
-5. Kiểm tra giao diện ở độ rộng 1366 px, 768 px và 390 px.
-6. Tích hợp các trang, kiểm tra liên kết và hình ảnh.
-7. Cập nhật README, tài liệu kiểm thử và mã nguồn GitHub.
-
-### 6.5. Tiêu chí hoàn thành
-
-- Có đủ bốn trang HTML bắt buộc và trang giao diện tĩnh mở rộng nếu nhóm thực hiện.
-- Trang danh sách có ít nhất 8 sản phẩm.
-- Các trang có phong cách thống nhất và liên kết điều hướng đúng.
-- Giao diện có hover, focus và được kiểm tra responsive.
-- Có ảnh minh chứng, danh sách lỗi và kết quả kiểm thử.
-- Mã nguồn và tài liệu được cập nhật trên repository GitHub.
-
-### 6.6. Rủi ro và phương án xử lý
-
-| Rủi ro | Phương án xử lý |
-|---|---|
-| Các trang không thống nhất giao diện | Thống nhất thiết kế và CSS chung trước khi hoàn thiện |
-| Sai đường dẫn ảnh hoặc liên kết | Thống nhất tên file và kiểm tra đường dẫn tương đối |
-| Xung đột CSS khi tích hợp | Thống nhất tên class và trao đổi trước khi sửa CSS chung |
-| Giao diện lỗi trên điện thoại | Kiểm thử ở ba kích thước và sửa lỗi responsive |
-| Chậm tiến độ | Chia nhỏ công việc, cập nhật Issues và tích hợp sớm |
-
-### 6.7. Nguyên tắc phối hợp
-
-Mỗi công việc có người phụ trách chính, sản phẩm bàn giao và tiêu chí hoàn thành. Các thành viên theo dõi nhiệm vụ bằng GitHub Issues, cập nhật mã nguồn lên repository chung và phối hợp kiểm thử trước khi bàn giao.
+- Danh sách sản phẩm được hiển thị từ dữ liệu JavaScript.
+- Tìm kiếm, lọc và sắp xếp hoạt động.
+- Trang chi tiết hiển thị đúng sản phẩm được chọn.
+- Giỏ hàng hỗ trợ thêm, xóa, thay đổi số lượng và tính tổng tiền.
+- LocalStorage lưu và khôi phục dữ liệu.
+- Website hoạt động phù hợp trên các kích thước màn hình.
+- Mã nguồn và tài liệu được cập nhật trên GitHub.

@@ -1,3 +1,4 @@
+
 # Góc Desk
 
 **Đề tài:** Xây dựng website bán phụ kiện góc làm việc tích hợp thiết kế 3D và tạo ảnh minh họa.
@@ -10,7 +11,7 @@ Website cho phép mua từng món hoặc mua những sản phẩm đã chọn tr
 
 ### Vấn đề kinh doanh
 
-Vấn đề trọng tâm là khách khó lựa chọn nhóm phụ kiện phù hợp nhu cầu, không gian và tổng ngân sách. Nhóm dự kiến kiểm chứng các khó khăn sau qua khảo sát khách hàng và phân tích website tương tự ở các nhiệm vụ tiếp theo:
+Vấn đề trọng tâm là khách khó lựa chọn nhóm phụ kiện phù hợp nhu cầu, không gian và tổng ngân sách. Nhóm dự kiến kiểm chứng các khó khăn sau qua khảo sát khách hàng và phân tích website tương tự:
 
 - **Khó hình dung bố cục:** Ảnh từng sản phẩm chưa giúp khách hình dung rõ vị trí, màu sắc và mức độ chiếm chỗ khi đặt nhiều món trên cùng một bàn.
 - **Khó kiểm soát tổng chi phí:** Khi chọn từng món riêng, khách phải tự cộng giá; việc thay một món có thể khiến tổng ngân sách thay đổi.
@@ -63,7 +64,7 @@ Phiên bản đầu dự kiến hoàn thiện chức năng mua hàng và quản 
 | F10 | Thiết kế góc 3D | Một góc mẫu và 8–10 sản phẩm có mô hình; thêm, di chuyển, xoay, xóa, đổi góc nhìn và giới hạn vùng đặt. |
 | F11 | Lưu và mua bộ setup | Lưu và mở lại bố cục, xem tổng giá, kiểm tra điều kiện tương thích có dữ liệu và thêm các món đã chọn vào giỏ. |
 
-Chi tiết yêu cầu, mức độ ưu tiên, các điều kiện chờ nhóm chốt và tiêu chí nghiệm thu nằm trong [REQUIREMENTS.md](REQUIREMENTS.md). Các nội dung trên mô tả chức năng dự kiến, chưa phải xác nhận đã triển khai.
+Chi tiết yêu cầu, mức độ ưu tiên, các điều kiện chờ nhóm chốt và tiêu chí nghiệm thu nằm trong [REQUIREMENTS.md](docs/REQUIREMENTS.md). Các nội dung trên mô tả chức năng dự kiến, chưa phải xác nhận đã triển khai.
 
 Giao diện phải sử dụng được trên desktop và mobile. Dữ liệu đầu vào cần được kiểm tra; khách hàng và quản trị viên được phân quyền; giá, tồn kho, voucher và thanh toán được xác minh phía máy chủ. Nhóm kiểm thử các luồng chính, dữ liệu biên và trường hợp lỗi trước khi triển khai.
 
@@ -71,29 +72,29 @@ Thứ tự triển khai dự kiến: luồng mua hàng → công cụ 3D và lư
 
 ### Hướng phát triển sau
 
-Theo bản cập nhật Nhiệm vụ 1, tạo ảnh AI minh họa, dựng phòng từ ảnh thật và AR được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử. Nếu tích hợp tạo ảnh, hệ thống sử dụng ảnh chụp bố cục 3D, danh sách sản phẩm và phong cách lựa chọn để tạo ảnh tham khảo. Tìm kiếm bằng ảnh và flash sale nâng cao vẫn nằm ngoài phạm vi phiên bản đầu theo [quy trình nghiệp vụ](docs/business-workflow.md#6-phạm-vi-phiên-bản-đầu-và-giới-hạn).
+Theo bản cập nhật Nhiệm vụ 1, tạo ảnh AI minh họa, dựng phòng từ ảnh thật và AR được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử. Nếu tích hợp tạo ảnh, hệ thống sử dụng ảnh chụp bố cục 3D, danh sách sản phẩm và phong cách lựa chọn để tạo ảnh tham khảo. Tìm kiếm bằng ảnh và flash sale nâng cao vẫn nằm ngoài phạm vi phiên bản đầu theo [quy trình nghiệp vụ](docs/business-workflow.md).
 
 ## 4. Công nghệ dự kiến
 
 | STT | Hạng mục | Công nghệ | Vai trò và chức năng trong Góc Desk |
 |:---:|---|---|---|
-| 1 | Frontend – Cấu trúc website | HTML5 | Xây dựng cấu trúc các trang như Trang chủ, Danh sách sản phẩm, Chi tiết sản phẩm, Tích điểm, Bảo hành, Tin tức và Thiết kế góc làm việc. Hiển thị văn bản, hình ảnh, giá sản phẩm, menu và các thành phần giao diện. |
-| 2 | Frontend – Thiết kế giao diện | CSS3 | Thiết kế màu sắc thương hiệu, font chữ, kích thước, khoảng cách, bố cục, thẻ sản phẩm và hiệu ứng hover. Hỗ trợ giao diện responsive trên máy tính, máy tính bảng và điện thoại. |
-| 3 | Frontend – Xử lý tương tác | JavaScript thuần | Xử lý sự kiện người dùng, thao tác với sản phẩm, thay đổi số lượng, cập nhật giỏ hàng và tính tổng tiền ở phía trình duyệt. |
+| 1 | Frontend – Cấu trúc website | HTML5 | Xây dựng cấu trúc các trang như Trang chủ, Danh sách sản phẩm, Chi tiết sản phẩm, Tích điểm, Bảo hành, Tin tức và Thiết kế góc làm việc. |
+| 2 | Frontend – Thiết kế giao diện | CSS3 | Thiết kế màu sắc thương hiệu, font chữ, kích thước, khoảng cách, bố cục, thẻ sản phẩm và hiệu ứng hover; hỗ trợ responsive. |
+| 3 | Frontend – Xử lý tương tác | JavaScript thuần | Xử lý sự kiện người dùng, thao tác với sản phẩm, thay đổi số lượng, cập nhật giỏ hàng và tính tổng tiền phía trình duyệt. |
 | 4 | Công cụ phát triển frontend | Vite | Khởi chạy máy chủ phát triển cục bộ, hỗ trợ cập nhật trang khi mã nguồn thay đổi và đóng gói frontend khi triển khai. |
 | 5 | Backend – Xử lý nghiệp vụ | Node.js + Express.js | Xây dựng máy chủ và API để tiếp nhận yêu cầu từ frontend, xử lý đăng nhập, truy xuất sản phẩm, tạo đơn hàng và lưu cấu hình thiết kế góc làm việc. |
-| 6 | Hệ quản trị cơ sở dữ liệu | MySQL | Lưu trữ dữ liệu có cấu trúc, bao gồm tài khoản, danh mục, sản phẩm, giá bán, giỏ hàng, đơn hàng, chi tiết đơn hàng và thông tin thiết kế. |
+| 6 | Hệ quản trị cơ sở dữ liệu | MySQL | Lưu trữ tài khoản, danh mục, sản phẩm, giá bán, giỏ hàng, đơn hàng, chi tiết đơn hàng và thông tin thiết kế. |
 | 7 | Thư viện kết nối cơ sở dữ liệu | mysql2 | Kết nối backend Node.js với MySQL, hỗ trợ thực hiện các truy vấn đọc, thêm, sửa và xóa dữ liệu. |
-| 8 | Dịch vụ triển khai cơ sở dữ liệu | Railway – MySQL | Dự kiến sử dụng để triển khai cơ sở dữ liệu trực tuyến, cho phép backend truy cập dữ liệu khi website hoạt động trên môi trường mạng. Railway là dịch vụ triển khai, không phải hệ quản trị cơ sở dữ liệu riêng. |
-| 9 | Công nghệ không gian 3D | Three.js | Xây dựng không gian làm việc 3D, hiển thị bàn và phụ kiện, hỗ trợ xoay góc nhìn, lựa chọn vật dụng và thay đổi cách bố trí trong không gian. |
-| 10 | Quản lý mã nguồn và cộng tác | GitHub | Lưu trữ mã nguồn, quản lý lịch sử commit, theo dõi lỗi và công việc thông qua Issues, đồng thời hỗ trợ các thành viên phối hợp phát triển dự án. |
-| 11 | Môi trường viết mã | Visual Studio Code | Soạn thảo HTML, CSS, JavaScript và mã backend; quản lý tệp dự án, sử dụng terminal và kiểm tra lỗi trong quá trình phát triển. |
-| 12 | Kiểm thử giao diện | Google Chrome | Kiểm tra giao diện website, khả năng responsive, liên kết và các chức năng tương tác; sử dụng Developer Tools để hỗ trợ phát hiện lỗi. |
+| 8 | Dịch vụ triển khai cơ sở dữ liệu | Railway – MySQL | Dự kiến sử dụng để triển khai cơ sở dữ liệu trực tuyến. Railway là dịch vụ triển khai, không phải hệ quản trị cơ sở dữ liệu riêng. |
+| 9 | Công nghệ không gian 3D | Three.js | Xây dựng không gian làm việc 3D, hiển thị bàn và phụ kiện, hỗ trợ xoay góc nhìn, lựa chọn vật dụng và thay đổi cách bố trí. |
+| 10 | Quản lý mã nguồn và cộng tác | GitHub | Lưu trữ mã nguồn, quản lý lịch sử commit, theo dõi công việc và hỗ trợ các thành viên phối hợp phát triển dự án. |
+| 11 | Môi trường viết mã | Visual Studio Code | Soạn thảo HTML, CSS, JavaScript và mã backend; quản lý tệp dự án, sử dụng terminal và kiểm tra lỗi. |
+| 12 | Kiểm thử giao diện | Google Chrome | Kiểm tra giao diện, responsive, liên kết và chức năng tương tác; sử dụng Developer Tools để phát hiện lỗi. |
 
 ## 5. Thành viên và vai trò
 
 | Thành viên | Vai trò |
-| --- | --- |
+|---|---|
 | Nguyễn Kiều Oanh | Trưởng nhóm / BA |
 | Nguyễn Hoàng Nhi | Frontend – Tài khoản và trải nghiệm mua hàng |
 | Lê Bảo Ngọc | Tích hợp chức năng và quản trị website |
@@ -102,14 +103,18 @@ Theo bản cập nhật Nhiệm vụ 1, tạo ảnh AI minh họa, dựng phòng
 | Nguyễn Hoàng Hưng | Backend & Database – Dữ liệu và hệ thống |
 | Sạch Thị Phương Trinh | Frontend – Giao diện mua hàng |
 
-Trách nhiệm và kế hoạch công việc chi tiết nằm trong [PROJECT_PLAN.md](PROJECT_PLAN.md).
+Trách nhiệm và kế hoạch công việc chi tiết nằm trong [PROJECT_PLAN.md](docs/PROJECT_PLAN.md).
 
-## 6. Liên kết
+## 6. Liên kết tài liệu
 
-- [Bảng yêu cầu](REQUIREMENTS.md)
-- [Kế hoạch dự án](PROJECT_PLAN.md)
+- [Bảng yêu cầu chức năng](docs/REQUIREMENTS.md)
+- [Kế hoạch dự án](docs/PROJECT_PLAN.md)
 - [Phân tích website tham khảo](docs/competitor-analysis.md)
 - [Quy trình nghiệp vụ](docs/business-workflow.md)
 - [Vai trò người dùng](docs/user-roles.md)
-- [Nhật ký sử dụng AI](AI_USAGE_LOG.md)
+- [Nhật ký sử dụng AI](docs/AI_USAGE_LOG.md)
+- [Danh mục sản phẩm](docs/PRODUCT_CATALOG.md)
+- [Rà soát danh mục sản phẩm](docs/catalog-audit.md)
+- [Điều chỉnh chức năng giỏ hàng](docs/CART_REFACTOR.md)
+- [Cải tiến giao diện](docs/PAGE_REDESIGN.md)
 - [Danh sách công việc trên GitHub](https://github.com/KieuOanh2006/goc-desk-ecommerce-project/issues)
