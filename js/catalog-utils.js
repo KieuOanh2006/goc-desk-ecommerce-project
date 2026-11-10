@@ -41,7 +41,7 @@
 
   function homeCard(product) {
     return `<article class="arrival-card"><a href="${productUrl(product)}" class="arrival-image"><img src="${product.image}" width="600" height="600" alt="${escapeHtml(product.fullName)}" loading="lazy" decoding="async"><span class="product-badge">${product.colors.length} màu</span></a>
-      <p class="arrival-type">${escapeHtml(categoryName(product.category))}</p><h3><a href="${productUrl(product)}">${escapeHtml(product.name)}</a></h3><p class="arrival-price">${money(product.price)}</p></article>`;
+      <p class="arrival-type">${escapeHtml(categoryName(product.category))}</p><h3><a href="${productUrl(product)}">${escapeHtml(product.name)}</a></h3><p class="arrival-price">${money(product.price)}</p><span data-cart-product="${escapeHtml(product.id)}"></span></article>`;
   }
   const categoryUrl = (category) => 'products.html?category=' + encodeURIComponent(category.id) + '#catalog';
 

@@ -539,7 +539,21 @@
     gap: 26px 20px;
 }
 
-.home-page .arrival-card { display: flex; flex-direction: column; min-width: 0; height: 486px; }
+.home-page .arrival-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 486px;
+    overflow: hidden;
+    border: 1px solid #ded6ca;
+    border-radius: 12px;
+    background: #fff;
+    transition: box-shadow 0.22s ease;
+}
+
+.home-page .arrival-card:hover {
+    box-shadow: 0 8px 22px #4e3b2e13;
+}
 
 .home-page .arrival-image {
     position: relative;
@@ -547,7 +561,7 @@
     flex-shrink: 0;
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 13px;
+    border-radius: 0;
     background: #f0f0f0;
 }
 
@@ -574,7 +588,7 @@
 }
 
 .home-page .arrival-type {
-    margin: 14px 0 4px;
+    margin: 14px 14px 4px;
     color: #887967;
     font-size: 11px;
 }
@@ -582,7 +596,7 @@
 .home-page .arrival-card h3 {
     flex-grow: 1;
     overflow-wrap: anywhere;
-    margin: 0 0 6px;
+    margin: 0 14px 6px;
     color: var(--gd-brown, #4e3b2e);
     font-size: 15px;
     font-weight: 600;
@@ -592,10 +606,14 @@
 .home-page .arrival-card h3 a:hover { color: #9a633f; }
 
 .home-page .arrival-price {
-    margin: 0;
+    margin: 0 14px;
     color: #9a5739;
     font-size: 16px;
     font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-page .arrival-card { transition: none; }
 }
 
 .home-page .catalog-note {
