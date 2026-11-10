@@ -7,7 +7,7 @@
   const money = (value) => new Intl.NumberFormat('vi-VN').format(value) + ' ₫';
   const categoryName = (id) => catalog.categories.find((category) => category.id === id)?.name || '';
   const productUrl = (product, color) => 'product-detail.html' + (color ? '?color=' + encodeURIComponent(color) : '') + '#' + product.id;
-  const setupUrl = (product, color) => 'setup-3d.html?product=' + encodeURIComponent(product.id) + '&color=' + encodeURIComponent(color || product.colors[0].id) + '#setup-workspace';
+  const setupUrl = (product, color) => 'setup-3d-cap-nhat.html?product=' + encodeURIComponent(product.id) + '&color=' + encodeURIComponent(color || product.colors[0].id) + '#setup-workspace';
 
   function filterProducts(criteria = {}, items = catalog.products) {
     const selected = (values, value) => !values?.length || values.includes(value);
@@ -41,7 +41,7 @@
 
   function homeCard(product) {
     return `<article class="arrival-card"><a href="${productUrl(product)}" class="arrival-image"><img src="${product.image}" width="600" height="600" alt="${escapeHtml(product.fullName)}" loading="lazy" decoding="async"><span class="product-badge">${product.colors.length} màu</span></a>
-      <p class="arrival-type">${escapeHtml(categoryName(product.category))}</p><h3><a href="${productUrl(product)}">${escapeHtml(product.name)}</a></h3><p class="arrival-price">${money(product.price)}</p></article>`;
+      <p class="arrival-type">${escapeHtml(categoryName(product.category))}</p><h3><a href="${productUrl(product)}">${escapeHtml(product.name)}</a></h3><p class="arrival-price">${money(product.price)}</p><span data-cart-product="${escapeHtml(product.id)}"></span></article>`;
   }
   const categoryUrl = (category) => 'products.html?category=' + encodeURIComponent(category.id) + '#catalog';
 

@@ -248,6 +248,7 @@ h2 {
   justify-content: center;
   gap: 9px;
   width: calc(100% - 28px);
+  min-height: 44px;
   margin: 22px 14px 16px;
   padding: 11px 14px;
   border: 1px solid #262626;
@@ -264,10 +265,13 @@ h2 {
     color 0.18s ease,
     transform 0.18s ease;
 }
-.product-card .card-add-to-cart:hover,
-.product-card .card-add-to-cart:focus-visible {
+.product-card .card-add-to-cart:hover {
   background: #262626;
   color: #fff;
+}
+.product-card .card-add-to-cart:focus-visible {
+  outline: 2px solid #262626;
+  outline-offset: 3px;
 }
 .product-card .card-add-to-cart:active {
   transform: translateY(1px);

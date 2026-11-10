@@ -14,6 +14,8 @@
     return;
   }
 
+  globalThis.GocDeskCartButtons.mount(grid);
+
   // Keep original DOM nodes instead of replacing them with catalog.card().
   // This preserves the Quick Add buttons through filtering and sorting.
   const cards = new Map(

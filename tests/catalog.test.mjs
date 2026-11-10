@@ -89,14 +89,17 @@ export async function run() {
   });
   check('Home rendering refreshes all sections from shared data and retains unknown banners', () => {
     const categories = element(); const grid = element();
+    let mountedGrid;
     const banner = { ...element(), dataset: { featuredProduct: c.products[0].id, featuredColor: 'cream' } };
     const unknown = { ...element(), innerHTML: 'fallback', dataset: { featuredProduct: 'missing' } };
     const homeCatalog = { ...c, products: c.products.map((product) => ({ ...product, name: product.name + ' cập nhật' })) };
-    const homeContext = vm.createContext({ GocDeskCatalog: homeCatalog, document: {
+    const homeContext = vm.createContext({ GocDeskCatalog: homeCatalog,
+      GocDeskCartButtons: { mount(container) { mountedGrid = container; } }, document: {
       getElementById: (id) => ({ 'home-categories': categories, 'home-products': grid })[id],
       querySelectorAll: () => [banner, unknown],
     } });
     vm.runInContext(sources['home-products'], homeContext);
+    assert.equal(mountedGrid, grid);
     assert.equal(categories.innerHTML, c.categories.map(c.categoryCard).join(''));
     assert.equal((grid.innerHTML.match(/class="arrival-card"/g) || []).length, c.products.length);
     assert.ok(grid.innerHTML.includes('HyperOne Gen 2 cập nhật'));

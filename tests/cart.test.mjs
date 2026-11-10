@@ -71,6 +71,7 @@ export async function run() {
   const articles = new Map(); const nodes = new Map(); const link = element();
   for (const p of catalog.products) {
     const article = element(); const fields = new Map();
+    fields.set('.detail-price', element());
     for (const name of ['data-gallery-image', 'data-gallery-label', 'data-color-name', 'data-spec-color', 'data-gallery-note', 'data-setup-link', 'data-review-list', 'data-review-summary', 'data-review-form', 'data-review-status', 'data-purchase-quantity', 'data-cart-status']) fields.set('[' + name + ']', element());
     const form = fields.get('[data-review-form]'); form.reportValidity = () => true; form.reset = () => {};
     const quantity = fields.get('[data-purchase-quantity]'); quantity.value = '1'; quantity.reportValidity = () => true;
@@ -79,6 +80,7 @@ export async function run() {
     article.fields = fields; articles.set(p.id, article);
   }
   const doc = { getElementById: (id) => articles.get(id) || nodes.get(id), title: '', activeElement: null,
+    readyState: 'complete', addEventListener() {},
     querySelectorAll: () => [link], createElement: () => element() };
   const win = { location: new URL('https://goc.test/product-detail.html?color=sage#nova-dl02'), localStorage: storage,
     history: { replaceState(_s, _t, url) { win.location = new URL(url); } }, matchMedia: () => ({ matches: true }), addEventListener() {} };

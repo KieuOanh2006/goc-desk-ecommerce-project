@@ -87,7 +87,7 @@
                 <li><a href="points.html">Tích điểm</a></li>
                 <li><a href="warranty.html">Bảo hành</a></li>
                 <li><a href="news.html">Tin tức</a></li>
-                <li><a href="setup-3d.html">Thiết kế 3D</a></li>
+                <li><a href="setup-3d-cap-nhat.html">Thiết kế 3D</a></li>
             </ul>
         </nav>
     </div>
@@ -115,7 +115,7 @@
                 <ul>
                     <li><a href="products.html">Tất cả sản phẩm</a></li>
                     <li><a href="index.html#shop-categories">Danh mục sản phẩm</a></li>
-                    <li><a href="setup-3d.html">Thiết kế góc 3D</a></li>
+                    <li><a href="setup-3d-cap-nhat.html">Thiết kế góc 3D</a></li>
                     <li><a href="news.html">Góc cảm hứng</a></li>
                 </ul>
             </div>
