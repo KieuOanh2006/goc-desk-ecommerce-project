@@ -43,7 +43,7 @@ Thứ tự triển khai dự kiến: hoàn thiện luồng mua hàng, tiếp đ�
 
 Các chức năng này được cân nhắc cho giai đoạn sau theo thời gian, nguồn lực và kết quả kiểm thử. Nếu tích hợp tạo ảnh, hệ thống gửi ảnh chụp bố cục 3D, danh sách sản phẩm và phong cách lựa chọn đến dịch vụ AI; hiển thị trạng thái xử lý và cho phép thử lại khi có lỗi. Ảnh chỉ minh họa, có thể khác chi tiết hoặc vị trí so với thiết kế và không thay thế thông số kích thước hoặc căn cứ tính tiền.
 
-**Điểm cần nhóm thống nhất:** Bản cập nhật Nhiệm vụ 1 xếp tạo ảnh AI minh họa vào giai đoạn sau, trong khi [PROJECT_PLAN.md](PROJECT_PLAN.md) vẫn đưa chức năng này vào phiên bản đầu. [Quy trình nghiệp vụ](docs/business-workflow.md) coi đây là hạng mục tích hợp bổ sung sau khi kiểm tra luồng mua hàng và 3D. Cần đồng bộ kế hoạch trước khi cam kết triển khai chức năng tạo ảnh.
+**Điểm cần nhóm thống nhất:** Bản cập nhật Nhiệm vụ 1 xếp tạo ảnh AI minh họa vào giai đoạn sau, trong khi [PROJECT_PLAN.md](PROJECT_PLAN.md) vẫn đưa chức năng này vào phiên bản đầu. [Quy trình nghiệp vụ](business-workflow.md) coi đây là hạng mục tích hợp bổ sung sau khi kiểm tra luồng mua hàng và 3D. Cần đồng bộ kế hoạch trước khi cam kết triển khai chức năng tạo ảnh.
 
 ## 3. Người dùng
 
