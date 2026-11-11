@@ -7,7 +7,7 @@
   const money = (value) => new Intl.NumberFormat('vi-VN').format(value) + ' ₫';
   const categoryName = (id) => catalog.categories.find((category) => category.id === id)?.name || '';
   const productUrl = (product, color) => 'product-detail.html' + (color ? '?color=' + encodeURIComponent(color) : '') + '#' + product.id;
-  const setupUrl = (product, color) => 'setup-3d-cap-nhat.html?product=' + encodeURIComponent(product.id) + '&color=' + encodeURIComponent(color || product.colors[0].id) + '#setup-workspace';
+  const setupUrl = (product, color) => 'setup-3d.html?product=' + encodeURIComponent(product.id) + '&color=' + encodeURIComponent(color || product.colors[0].id) + '#setup-workspace';
 
   function filterProducts(criteria = {}, items = catalog.products) {
     const selected = (values, value) => !values?.length || values.includes(value);

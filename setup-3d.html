@@ -2,15 +2,12 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      window.location.replace("setup-3d-cap-nhat.html" + window.location.search + window.location.hash);
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Tự lên ý tưởng bố trí góc học tập, làm việc cùng Góc Desk."
+      content="Bố trí sản phẩm và nội thất trong ba khung cảnh phòng 3D cùng Góc Desk."
     />
-    <title>Thiết kế góc làm việc | Góc Desk</title>
+    <title>Thiết kế góc làm việc 3D | Góc Desk</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/site-shell.css" />
@@ -21,193 +18,240 @@
     <script src="js/cart-store.js" defer></script>
     <script src="js/cart-badge.js" defer></script>
     <link rel="stylesheet" href="css/page-hero.css" />
-    <link rel="stylesheet" href="css/setup-3d-scene.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"
-      defer
-    ></script>
-    <script src="js/setup-3d-scene.js" defer></script>
+    <link rel="stylesheet" href="css/setup-3d-scene.css?v=20261111-unified" />
+    <link rel="stylesheet" href="css/setup-3d-hero.css" />
+    <link rel="preload" as="image" type="image/webp" href="images/setup-3d-hero-cinematic.webp" />
+    <script src="js/setup-3d-hero.js" defer></script>
+    <script src="js/setup-3d-presets.js" defer></script>
+    <script src="js/setup-3d-state.js" defer></script>
+    <script src="js/setup-3d-scene.js?v=20261111-unified" defer></script>
   </head>
   <body class="has-photo-header page-studio">
     <a class="site-skip-link" href="#main-content">Đến nội dung chính</a>
     <div id="site-header-slot"></div>
-    <script src="js/layout.js?v=20261111"></script>
+    <script src="js/layout.js?v=20261111-canonical3d"></script>
 
     <main id="main-content">
-      <section class="subpage-hero" aria-labelledby="setup-page-title">
-        <div class="subpage-hero-content">
-          <p class="subpage-eyebrow">Tính năng trải nghiệm</p>
-          <h1 class="subpage-title" id="setup-page-title">
-            Tự thiết kế góc làm việc 3D
-          </h1>
-          <p class="subpage-description">
-            Sản phẩm trong giỏ sẽ nằm sẵn trong tủ. Kéo món bạn muốn ra bàn để
-            thử cách sắp xếp trong không gian 3D.
-          </p>
-          <div class="subpage-actions">
-            <a class="subpage-action" href="#setup-workspace"
-              >Bắt đầu bố trí <span aria-hidden="true">&nbsp;↗</span></a
-            >
+      <section class="studio-hero studio-design-hero" aria-labelledby="setup-page-title">
+        <figure class="studio-hero-visual">
+          <div class="studio-hero-parallax"><div class="studio-hero-camera">
+            <img class="studio-hero-room" src="images/setup-3d-hero-cinematic.webp" alt="Phối cảnh phòng 3D cắt lớp: góc bàn gỗ với bàn phím đen, đèn trắng, ghế và kệ sách, phía sau là giường cùng cửa mở ra ban công xanh." width="1920" height="800" fetchpriority="high" decoding="async">
+            <div class="studio-hero-focus" aria-hidden="true"><span>Góc bàn của bạn</span><i></i></div>
+          </div></div>
+          <figcaption class="studio-hero-caption">Phối cảnh minh họa · Tự bố trí ở bên dưới</figcaption>
+        </figure>
+        <div class="studio-hero-layout">
+          <div class="studio-hero-copy">
+            <p class="studio-hero-kicker">Thiết kế góc làm việc 3D</p>
+            <h1 id="setup-page-title">Một góc nhỏ.<br>Đúng chất riêng.</h1>
+            <p class="studio-hero-description">Chọn khung phòng, đặt các món trong giỏ và xoay góc nhìn. Hình dung góc làm việc của bạn trước khi sắp xếp thật.</p>
+            <a class="studio-hero-start" href="#setup-workspace">Bắt đầu bố trí <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M7 19h12V7"/></svg></a>
+            <p class="studio-hero-note">Ba khung phòng. Một góc dành riêng cho bạn.</p>
           </div>
         </div>
       </section>
-      <div class="subpage-body">
-        <section
-          id="setup-workspace"
-          class="studio-workspace container"
-          aria-label="Sắp xếp sản phẩm trong không gian làm việc 3D"
-        >
-          <aside
-            class="studio-inventory"
-            aria-labelledby="studio-inventory-title"
-          >
-            <div class="studio-panel-heading">
-              <span class="studio-eyebrow">TỦ ĐỒ CỦA BẠN</span>
-              <h2 id="studio-inventory-title">Sản phẩm trong giỏ</h2>
-              <span
-                class="studio-count"
-                id="studio-cart-count"
-                aria-live="polite"
-                >0 món</span
-              >
-            </div>
-            <p class="studio-help">
-              Kéo món ra bàn hoặc xuống sàn để đặt vào góc phòng. Bố cục được
-              lưu trên thiết bị này.
-            </p>
-            <section
-              id="setup-selection"
-              class="setup-selection"
-              aria-label="Sản phẩm đang xem"
-              hidden
-            ></section>
-            <div
-              class="studio-inventory-list"
-              id="studio-inventory-list"
-              aria-live="polite"
-            ></div>
-            <a class="studio-cart-link" href="cart.html"
-              >Xem giỏ hàng <span aria-hidden="true">↗</span></a
-            >
-            <p
-              class="studio-status"
-              id="studio-status"
-              role="status"
-              aria-live="polite"
-            >
-              Đang tải không gian 3D…
-            </p>
-          </aside>
 
-          <section
-            class="studio-scene-panel"
-            aria-labelledby="studio-scene-title"
-          >
+      <div class="subpage-body">
+        <section id="setup-workspace" class="studio-workspace container" aria-label="Không gian làm việc 3D">
+          <section class="studio-scene-panel" aria-labelledby="studio-scene-title">
             <div class="studio-scene-heading">
               <div>
-                <span class="studio-eyebrow">KHÔNG GIAN CỦA BẠN</span>
-                <h2 id="studio-scene-title">Kéo thả để sắp xếp</h2>
+                <span class="studio-eyebrow">GÓC LÀM VIỆC</span>
+                <h2 id="studio-scene-title">Bố trí sản phẩm</h2>
               </div>
-              <span class="studio-live-badge"
-                ><i aria-hidden="true"></i> 3D tương tác</span
-              >
+              <span class="studio-live-badge"><i aria-hidden="true"></i> 3D tương tác</span>
             </div>
+
+            <p class="studio-status" id="studio-status" role="status" aria-atomic="true">
+              Không gian 3D sẽ tải khi đến gần khung xem.
+            </p>
+
+            <div class="studio-scene-picker" role="group" aria-label="Chọn khung cảnh phòng">
+              <button type="button" class="studio-button studio-scene-choice" data-scene="bedroom" aria-pressed="true" disabled>
+                <img class="studio-scene-thumb" src="images/setup-3d-bedroom.png" alt="" width="160" height="100">
+                <span><strong>Phòng kín</strong><small>Phòng ngủ khép kín</small></span>
+              </button>
+              <button type="button" class="studio-button studio-scene-choice" data-scene="window" aria-pressed="false" disabled>
+                <img class="studio-scene-thumb" src="images/setup-3d-window.png" alt="" width="160" height="100">
+                <span><strong>Có cửa sổ</strong><small>Bàn cạnh cửa sổ</small></span>
+              </button>
+              <button type="button" class="studio-button studio-scene-choice" data-scene="balcony" aria-pressed="false" disabled>
+                <img class="studio-scene-thumb" src="images/setup-3d-balcony.png" alt="" width="160" height="100">
+                <span><strong>Cửa sổ &amp; ban công</strong><small>Ban công làm bối cảnh</small></span>
+              </button>
+            </div>
+            <p class="studio-scene-save-note">Mỗi phòng lưu bố cục riêng trên thiết bị này.</p>
+
+            <div class="studio-scene-body">
+            <div class="studio-stage">
             <div class="studio-canvas-wrap" id="studio-canvas-wrap">
               <canvas
                 id="studio-canvas"
-                aria-label="Không gian làm việc 3D có tủ chứa sản phẩm và mặt bàn để sắp xếp"
+                tabindex="0"
+                aria-label="Không gian 3D gồm bàn, tủ, giường, ghế và sàn để bố trí sản phẩm"
+                aria-describedby="studio-canvas-help"
+                aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight + - 0 Escape"
               ></canvas>
-              <div
-                class="studio-canvas-hint"
-                id="studio-canvas-hint"
-                aria-hidden="true"
-              >
-                Kéo nền để xoay góc nhìn · Kéo món đồ xuống sàn, kể cả vào góc
-                phòng
+              <div class="studio-canvas-loading" id="studio-canvas-loading" aria-hidden="true">
+                <span class="studio-loader"></span>
+                <span>Đang tải không gian 3D…</span>
               </div>
-              <div class="studio-canvas-error" id="studio-canvas-error" hidden>
-                Không thể tải đồ họa 3D. Hãy kiểm tra kết nối mạng rồi tải lại
-                trang.
+              <div class="studio-canvas-fallback" id="studio-canvas-fallback" hidden>
+                <img
+                  src="images/setup-3d-fallback.svg"
+                  alt="Minh họa góc làm việc gồm bàn, kệ và sản phẩm"
+                  width="960"
+                  height="560"
+                />
+                <div class="studio-fallback-copy">
+                  <strong id="studio-error-title">Không thể mở không gian 3D</strong>
+                  <p id="studio-error-message">Kiểm tra kết nối mạng hoặc WebGL, sau đó thử tải lại.</p>
+                  <button type="button" id="studio-retry" class="studio-button studio-button-primary">Thử tải lại 3D</button>
+                </div>
               </div>
             </div>
-            <div class="studio-scene-controls">
-              <label for="studio-desk-color">Màu mặt bàn</label>
-              <select id="studio-desk-color">
-                <option value="oak">Gỗ sáng</option>
-                <option value="walnut">Gỗ óc chó</option>
-                <option value="white">Trắng</option>
-              </select>
-              <button type="button" id="studio-reset-view">
-                Đặt lại góc nhìn
-              </button>
-              <button type="button" id="studio-clear-layout">
-                Cất sản phẩm vào tủ
-              </button>
-            </div>
-            <div
-              class="studio-furniture-controls"
-              aria-label="Điều khiển bàn và tủ"
-            >
-              <label for="studio-furniture-select">Chọn vật thể</label>
-              <select id="studio-furniture-select">
-                <option value="desk">Bàn làm việc</option>
-                <option value="cabinet">Tủ đựng đồ</option>
-              </select>
-              <button type="button" id="studio-move-mode" aria-pressed="false">
-                Bật kéo vật thể đã chọn
-              </button>
-              <div
-                class="studio-move-pad"
-                role="group"
-                aria-label="Di chuyển vật thể đã chọn"
-              >
-                <button
-                  type="button"
-                  data-move="forward"
-                  aria-label="Di chuyển ra phía trước"
-                >
-                  ↑
-                </button>
-                <button
-                  type="button"
-                  data-move="left"
-                  aria-label="Di chuyển sang trái"
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  data-move="back"
-                  aria-label="Di chuyển ra phía sau"
-                >
-                  ↓
-                </button>
-                <button
-                  type="button"
-                  data-move="right"
-                  aria-label="Di chuyển sang phải"
-                >
-                  →
-                </button>
+
+
+
+            <div class="studio-canvas-controls">
+              <p class="studio-canvas-help" id="studio-canvas-help">
+                Bật “Tương tác 3D” · Kéo nền để xoay phòng · Chọn món rồi kéo để di chuyển · Cuộn hoặc chụm hai ngón để thu phóng · Tường tự ẩn theo góc nhìn.
+              </p>
+              <div class="studio-camera-presets" role="group" aria-label="Góc nhìn nhanh">
+                <span class="studio-control-label">Góc nhìn nhanh</span>
+                <button type="button" class="studio-button" data-camera="room" aria-pressed="true" disabled>Toàn phòng</button>
+                <button type="button" class="studio-button" data-camera="desk" aria-pressed="false" disabled>Góc bàn</button>
+                <button type="button" class="studio-button" data-camera="top" aria-pressed="false" disabled>Từ trên xuống</button>
+                <span class="studio-camera-note" id="studio-camera-desk-hint" hidden>Thêm bàn vào phòng để bật góc nhìn này.</span>
               </div>
-              <button type="button" id="studio-rotate-left">
-                Xoay trái 90°
-              </button>
-              <button type="button" id="studio-rotate-right">
-                Xoay phải 90°
-              </button>
-              <button type="button" id="studio-reset-furniture">
-                Đặt lại bàn và tủ
-              </button>
+              <div class="studio-interaction-row">
+                <button type="button" id="studio-interaction-toggle" class="studio-button studio-interaction-toggle" aria-pressed="false" disabled>Tương tác 3D: tắt</button>
+                <span class="studio-interaction-note" id="studio-interaction-note">Bật để kéo vật thể và xoay camera. Khi tắt, khung 3D cho phép cuộn trang.</span>
+              </div>
+              <section class="studio-selected-tools" id="studio-product-tools" aria-labelledby="studio-product-tools-title" hidden>
+                <div>
+                  <span class="studio-control-label">Sản phẩm đang chọn</span>
+                  <h3 id="studio-product-tools-title">Chưa chọn sản phẩm</h3>
+                </div>
+                <div class="studio-product-actions">
+                  <div class="studio-move-pad" role="group" aria-label="Di chuyển sản phẩm đang chọn">
+                    <button type="button" data-product-move="forward" aria-label="Di chuyển lên phía trước" disabled>↑</button>
+                    <button type="button" data-product-move="left" aria-label="Di chuyển sang trái" disabled>←</button>
+                    <button type="button" data-product-move="back" aria-label="Di chuyển ra sau" disabled>↓</button>
+                    <button type="button" data-product-move="right" aria-label="Di chuyển sang phải" disabled>→</button>
+                  </div>
+                  <button type="button" class="studio-button" data-product-rotate="-1" aria-label="Xoay sản phẩm trái 90 độ" disabled>↶ 90°</button>
+                  <button type="button" class="studio-button" data-product-rotate="1" aria-label="Xoay sản phẩm phải 90 độ" disabled>↷ 90°</button>
+                  <button type="button" class="studio-button studio-button-primary" data-place-surface="desk" disabled>Đặt lên bàn</button>
+                  <button type="button" class="studio-button" data-place-surface="floor" disabled>Đặt xuống sàn</button>
+                  <button type="button" class="studio-button studio-button-danger" id="studio-put-away" disabled>Cất sản phẩm</button>
+                </div>
+              </section>
+              <section class="studio-selected-tools studio-furniture-tools" id="studio-furniture-tools" aria-labelledby="studio-furniture-tools-title" hidden>
+                <div>
+                  <span class="studio-control-label">Nội thất đang chọn</span>
+                  <h3 id="studio-furniture-tools-title">Chọn nội thất trong thư viện</h3>
+                </div>
+                <div class="studio-furniture-actions">
+                  <div class="studio-move-pad" role="group" aria-label="Di chuyển nội thất đang chọn">
+                    <button type="button" data-move="forward" aria-label="Di chuyển ra trước" disabled>↑</button>
+                    <button type="button" data-move="left" aria-label="Di chuyển sang trái" disabled>←</button>
+                    <button type="button" data-move="back" aria-label="Di chuyển ra sau" disabled>↓</button>
+                    <button type="button" data-move="right" aria-label="Di chuyển sang phải" disabled>→</button>
+                  </div>
+                  <button type="button" class="studio-button" data-rotate="-1" aria-label="Xoay nội thất trái 90 độ" disabled>↶ 90°</button>
+                  <button type="button" class="studio-button" data-rotate="1" aria-label="Xoay nội thất phải 90 độ" disabled>↷ 90°</button>
+                  <button type="button" class="studio-button studio-button-danger" id="studio-remove-furniture" disabled>Bỏ khỏi phòng</button>
+                </div>
+              </section>
             </div>
+
+            <div class="studio-toolbar">
+              <div class="studio-control-block">
+                <span class="studio-control-label">Chế độ</span>
+                <div class="studio-mode-group" role="group" aria-label="Chế độ thao tác trong không gian">
+                  <button type="button" class="studio-button studio-mode-button" data-mode="view" aria-pressed="true" disabled>Góc nhìn</button>
+                  <button type="button" class="studio-button studio-mode-button" data-mode="products" aria-pressed="false" disabled>Sản phẩm</button>
+                  <button type="button" class="studio-button studio-mode-button" data-mode="furniture" aria-pressed="false" disabled>Nội thất</button>
+                </div>
+              </div>
+
+              <div class="studio-control-block studio-color-block">
+                <span class="studio-control-label" id="studio-desk-color-label">Màu mặt bàn</span>
+                <div class="studio-color-swatches" role="group" aria-labelledby="studio-desk-color-label">
+                  <button type="button" class="studio-swatch" data-color="oak" aria-label="Mặt bàn gỗ sáng" aria-pressed="true" disabled><span class="studio-swatch-oak" aria-hidden="true"></span></button>
+                  <button type="button" class="studio-swatch" data-color="walnut" aria-label="Mặt bàn gỗ óc chó" aria-pressed="false" disabled><span class="studio-swatch-walnut" aria-hidden="true"></span></button>
+                  <button type="button" class="studio-swatch" data-color="white" aria-label="Mặt bàn trắng" aria-pressed="false" disabled><span class="studio-swatch-white" aria-hidden="true"></span></button>
+                </div>
+                <span class="studio-control-label" id="studio-cabinet-color-label">Màu tủ</span>
+                <div class="studio-color-swatches" role="group" aria-labelledby="studio-cabinet-color-label">
+                  <button type="button" class="studio-swatch" data-cabinet-color="oak" aria-label="Tủ gỗ sáng" aria-pressed="true" disabled><span class="studio-swatch-oak" aria-hidden="true"></span></button>
+                  <button type="button" class="studio-swatch" data-cabinet-color="walnut" aria-label="Tủ gỗ óc chó" aria-pressed="false" disabled><span class="studio-swatch-walnut" aria-hidden="true"></span></button>
+                  <button type="button" class="studio-swatch" data-cabinet-color="white" aria-label="Tủ trắng" aria-pressed="false" disabled><span class="studio-swatch-white" aria-hidden="true"></span></button>
+                </div>
+              </div>
+
+              <div class="studio-control-block studio-camera-controls" role="group" aria-label="Điều khiển góc nhìn">
+                <span class="studio-control-label">Góc nhìn</span>
+                <div class="studio-button-row">
+                  <button type="button" class="studio-button studio-zoom-button" data-zoom="in" aria-label="Phóng to không gian" disabled>+</button>
+                  <button type="button" class="studio-button studio-zoom-button" data-zoom="out" aria-label="Thu nhỏ không gian" disabled>−</button>
+                  <button type="button" id="studio-focus" class="studio-button" disabled>Tập trung</button>
+                  <button type="button" id="studio-reset-view" class="studio-button" disabled>Đặt lại góc nhìn</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="studio-scene-footer">
+              <button type="button" class="studio-button studio-button-danger" id="studio-clear-layout" disabled>Cất toàn bộ sản phẩm</button>
+              <button type="button" class="studio-button" id="studio-reset-layout" disabled>Đặt lại phòng này</button>
+              <span class="studio-save-note">Bố cục và màu nội thất tự lưu riêng cho từng phòng trên thiết bị này.</span>
+            </div>
+
             <p class="studio-disclaimer">
-              Mô hình 3D tương tác theo tỉ lệ tham khảo; hình dáng và kích thước
-              không thay thế bản vẽ/CAD chính thức của hãng.
+              Mô hình dùng kích thước tham khảo để bố trí; hình dáng và kích thước không thay thế bản vẽ/CAD chính thức của hãng.
             </p>
+            </div>
+            <aside class="studio-inventory" aria-labelledby="studio-inventory-title">
+              <div class="studio-panel-heading">
+                <div>
+                  <span class="studio-eyebrow">THƯ VIỆN CỦA BẠN</span>
+                  <h2 id="studio-inventory-title">Sản phẩm trong giỏ</h2>
+                </div>
+                <span class="studio-count" id="studio-cart-count">0 món</span>
+              </div>
+              <p class="studio-help">Chọn sản phẩm trong giỏ để đưa vào phòng. Màu sản phẩm khớp với biến thể đã chọn.</p>
+              <section id="setup-selection" class="setup-selection" aria-label="Sản phẩm đang xem" hidden></section>
+              <div class="studio-inventory-list" id="studio-inventory-list" aria-label="Danh sách sản phẩm trong giỏ"></div>
+              <section class="studio-furniture-library" aria-labelledby="studio-library-title">
+                <div class="studio-panel-heading">
+                  <div>
+                    <span class="studio-eyebrow">NỘI THẤT PHÒNG</span>
+                    <h3 id="studio-library-title">Thư viện nội thất</h3>
+                  </div>
+                  <span class="studio-count">Tối đa 1 món mỗi loại</span>
+                </div>
+                <div class="studio-furniture-library-list" id="studio-furniture-library-list" aria-label="Nội thất có thể bố trí"></div>
+              </section>
+              <a class="studio-cart-link" href="cart.html">Xem giỏ hàng <span aria-hidden="true">↗</span></a>
+            </aside>
+            </div>
+
+
           </section>
+
         </section>
       </div>
     </main>
+
+    <dialog class="studio-confirm-dialog" id="studio-confirm-dialog" aria-labelledby="studio-confirm-title" aria-describedby="studio-confirm-copy">
+      <h2 id="studio-confirm-title">Xác nhận thay đổi</h2>
+      <p id="studio-confirm-copy"></p>
+      <div class="studio-button-row">
+        <button type="button" class="studio-button" id="studio-confirm-cancel">Quay lại</button>
+        <button type="button" class="studio-button studio-button-danger" id="studio-confirm-accept">Tiếp tục</button>
+      </div>
+    </dialog>
 
     <div id="site-footer-slot"></div>
   </body>

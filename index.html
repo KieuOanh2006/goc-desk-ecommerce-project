@@ -10,8 +10,7 @@
     <title>Góc Desk - Trang chủ | Góc nhỏ, cảm hứng lớn</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="preload" as="image" href="images/hero-laptop-expanded.png" />
-    <style>
+<style>
       /* Nội dung trang chủ; header và footer dùng chung trong css/site-shell.css. */
       h1,
       h2,
@@ -555,7 +554,7 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/home.css?v=20261111-hero2" />
     <link rel="stylesheet" href="css/site-shell.css" />
     <script src="js/product-data.js" defer></script>
     <script src="js/catalog-utils.js" defer></script>
@@ -568,20 +567,31 @@
   <body class="home-page">
     <a class="site-skip-link" href="#main-content">Đến nội dung chính</a>
     <div id="site-header-slot"></div>
-    <script src="js/layout.js?v=20261111"></script>
+    <script src="js/layout.js?v=20261111-canonical3d"></script>
     <main id="main-content">
       <!-- BANNER CHÍNH -->
-      <section class="hero-section" aria-labelledby="hero-title">
+      <section class="hero-section" id="desk-studio" aria-labelledby="hero-title">
         <div class="container">
-          <div class="hero-card">
-            <img
-              class="hero-photo"
-              src="images/hero-laptop-expanded.png"
-              width="1672"
-              height="941"
-              fetchpriority="high"
-              alt="Góc học tập với laptop trên giá đỡ, bàn phím và đèn bàn cạnh cửa sổ"
-            />
+          <div class="hero-card home-studio-gallery home-studio-hero" data-studio-carousel>
+            <div class="home-studio-viewport" data-studio-viewport>
+              <div class="home-studio-track" data-studio-track>
+                <article class="home-studio-slide" data-studio-slide data-scene="focus">
+                  <div class="home-studio-slide-frame">
+                    <img src="images/home-studio-focus.webp" width="1600" height="1000" loading="eager" fetchpriority="high" decoding="async" alt="Phối cảnh cắt lớp phòng nhỏ với bàn gỗ, phụ kiện đen, đèn trắng và kệ sách trong ánh sáng ấm" />
+                  </div>
+                </article>
+                <article class="home-studio-slide" data-studio-slide data-scene="window">
+                  <div class="home-studio-slide-frame">
+                    <img src="images/home-studio-window.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Phối cảnh phòng với bàn làm việc cạnh cửa sổ lớn, rèm mỏng và nắng xuyên qua cây xanh" />
+                  </div>
+                </article>
+                <article class="home-studio-slide" data-studio-slide data-scene="balcony">
+                  <div class="home-studio-slide-frame">
+                    <img src="images/home-studio-balcony.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Phối cảnh góc bàn gỗ hướng ra ban công xanh qua cửa kính, bên giường có chăn màu xanh dịu" />
+                  </div>
+                </article>
+              </div>
+            </div>
             <div class="hero-content">
               <div class="hero-copy">
                 <div class="hero-tags">
@@ -600,12 +610,21 @@
                   <a href="products.html" class="btn btn-primary"
                     >Khám phá sản phẩm →</a
                   >
-                  <a href="setup-3d-cap-nhat.html" class="btn btn-outline"
+                  <a href="setup-3d.html" class="btn btn-outline"
                     >Thử thiết kế 3D</a
                   >
                 </div>
               </div>
             </div>
+            <div class="home-studio-controls" data-studio-controls hidden>
+              <div class="home-studio-dots" role="group" aria-label="Chọn không gian">
+                  <button type="button" data-studio-dot="0" aria-label="Xem Góc tập trung" aria-current="true"><span></span></button>
+                  <button type="button" data-studio-dot="1" aria-label="Xem Đón nắng bên cửa sổ"><span></span></button>
+                  <button type="button" data-studio-dot="2" aria-label="Xem Chạm khoảng xanh"><span></span></button>
+                </div>
+              <button class="home-studio-toggle" type="button" data-studio-toggle><span data-studio-toggle-label>Tạm dừng</span><svg class="home-studio-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14" /></svg><svg class="home-studio-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" /></svg></button>
+            </div>
+            <div class="home-studio-progress" aria-hidden="true"><span data-studio-progress></span></div>
             <a class="hero-scroll" href="#shop-categories">
               <span>KHÁM PHÁ THÊM</span>
               <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -656,7 +675,7 @@
                 <article class="home-promo-slide" data-carousel-slide>
                   <a
                     class="home-promo-card"
-                    href="setup-3d-cap-nhat.html"
+                    href="setup-3d.html"
                     aria-label="Thử thiết kế góc làm việc 3D"
                   >
                     <img
@@ -868,7 +887,7 @@
           </div>
           <p class="category-description">
             Từng món nhỏ, một góc riêng hài hòa.
-            <a href="setup-3d-cap-nhat.html"
+            <a href="setup-3d.html"
               >Thử phối bộ setup của bạn <span aria-hidden="true">↗</span></a
             >
           </p>
@@ -1137,119 +1156,6 @@
         </div>
       </section>
 
-      <!-- THIẾT KẾ GÓC 3D: KHUNG XEM TRƯỚC + LIÊN KẾT ĐẾN CÔNG CỤ -->
-      <section
-        class="section-block home-studio-section"
-        id="desk-studio"
-        aria-labelledby="studio-title"
-      >
-        <div class="container">
-          <div class="home-studio-layout">
-            <a
-              class="home-studio-preview"
-              href="setup-3d-cap-nhat.html"
-              aria-label="Mở công cụ thiết kế góc làm việc 3D"
-            >
-              <div class="home-studio-preview-topbar">
-                <span
-                  ><span class="home-studio-preview-icon" aria-hidden="true"
-                    >◇</span
-                  >
-                  Góc học tập của mình</span
-                >
-                <span class="home-studio-preview-label">Minh họa 3D</span>
-              </div>
-              <div
-                class="home-studio-illustration"
-                role="img"
-                aria-label="Minh họa góc làm việc với bàn, màn hình, đèn bàn, kệ và cây xanh"
-              >
-                <svg
-                  viewBox="0 0 760 390"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <g
-                    fill="none"
-                    stroke="#b78b68"
-                    stroke-width="2.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M130 92h126M510 75h125" stroke-width="4" />
-                    <path
-                      d="M145 88V51h21v37M177 88V38h20v50M209 88l8-28 18 6-8 28M535 72V42h28v30M584 72l8-21 18 4-5 17"
-                    />
-                    <path
-                      d="M190 274V172l50-40-17-17M223 113l28-25 30 14-38 34M178 276h32M190 173l-26 14"
-                    />
-                    <path
-                      d="M310 144h150v96H310zM320 154h130v76H320zM385 240v24m-28 0h56M365 264h40"
-                    />
-                    <path
-                      d="M90 285h550l38 24H120z"
-                      fill="#eadfce"
-                      fill-opacity=".42"
-                    />
-                    <path
-                      d="M120 309v78m518-78v78M260 309v42m0 0h12m210-42v42m0 0h12"
-                    />
-                    <path
-                      d="M330 278h105l18 12H314zM452 275c14-8 28-3 30 8 1 9-8 15-22 14-13-1-18-12-8-22z"
-                    />
-                    <path
-                      d="M338 282h78m-68 5v-4m15 4v-4m15 4v-4m15 4v-4m15 4v-4"
-                      stroke-width="1.1"
-                    />
-                    <path
-                      d="M565 284h48l-6 31h-36zM588 284c-4-34-24-38-31-27 1 17 17 26 31 27Zm0-2c4-35 25-43 33-29-2 17-17 28-33 29Zm0 1c-1-28-4-44-1-56"
-                    />
-                    <path
-                      d="M485 269h30v43h-30zM491 269l-3-24m16 24 2-33m9 33 8-25"
-                    />
-                    <path
-                      d="M220 277h68l18 10h-69zM237 281l48 1"
-                      stroke-width="1.2"
-                    />
-                  </g>
-                  <g fill="#d9c7ae" opacity=".55">
-                    <circle cx="147" cy="117" r="4" />
-                    <circle cx="603" cy="106" r="4" />
-                  </g>
-                </svg>
-              </div>
-              <div class="home-studio-preview-bottom">
-                <span>◇ Bản xem trước · Không gian góc nhỏ</span>
-                <span class="home-studio-preview-open">Mở trải nghiệm ↗</span>
-              </div>
-            </a>
-            <div class="home-studio-copy">
-              <p class="home-studio-eyebrow">THỬ SẮP XẾP TRƯỚC KHI CHỌN MUA</p>
-              <h2 id="studio-title">Góc mơ ước, nhìn thấy trước.</h2>
-              <p class="home-studio-description">
-                Không cần đoán món đồ có hợp nhau không. Thử bố trí phụ kiện
-                trên bàn, quan sát tổng thể và tham khảo chi phí cho góc của
-                bạn.
-              </p>
-              <ol class="home-studio-steps">
-                <li><span>1</span> Chọn kích thước và màu bàn phù hợp</li>
-                <li><span>2</span> Thêm, di chuyển và sắp xếp phụ kiện</li>
-                <li>
-                  <span>3</span> Xem tổng thể góc bàn trước khi quyết định
-                </li>
-              </ol>
-              <a href="setup-3d-cap-nhat.html" class="home-studio-button"
-                >Thiết kế góc 3D
-                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 12h16m-6-6 6 6-6 6" /></svg
-              ></a>
-              <p class="home-studio-note">
-                Trải nghiệm miễn phí · Không cần cài đặt phần mềm
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- CỘNG ĐỒNG: VIDEO BÊN TRÁI + NỘI DUNG BÊN PHẢI -->
       <section
@@ -1525,6 +1431,6 @@
     <!-- FOOTER GỌN: THƯƠNG HIỆU / KHÁM PHÁ / HỖ TRỢ / BẢN TIN -->
     <div id="site-footer-slot"></div>
 
-    <script src="js/home.js" defer></script>
+    <script src="js/home.js?v=20261111-hero2" defer></script>
   </body>
 </html>
