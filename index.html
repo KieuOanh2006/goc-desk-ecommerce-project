@@ -10,6 +10,7 @@
     <title>Góc Desk - Trang chủ | Góc nhỏ, cảm hứng lớn</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preload" as="image" href="images/hero-laptop-expanded.png" />
 <style>
       /* Nội dung trang chủ; header và footer dùng chung trong css/site-shell.css. */
       h1,
@@ -572,26 +573,15 @@
       <!-- BANNER CHÍNH -->
       <section class="hero-section" id="desk-studio" aria-labelledby="hero-title">
         <div class="container">
-          <div class="hero-card home-studio-gallery home-studio-hero" data-studio-carousel>
-            <div class="home-studio-viewport" data-studio-viewport>
-              <div class="home-studio-track" data-studio-track>
-                <article class="home-studio-slide" data-studio-slide data-scene="focus">
-                  <div class="home-studio-slide-frame">
-                    <img src="images/home-studio-focus.webp" width="1600" height="1000" loading="eager" fetchpriority="high" decoding="async" alt="Phối cảnh cắt lớp phòng nhỏ với bàn gỗ, phụ kiện đen, đèn trắng và kệ sách trong ánh sáng ấm" />
-                  </div>
-                </article>
-                <article class="home-studio-slide" data-studio-slide data-scene="window">
-                  <div class="home-studio-slide-frame">
-                    <img src="images/home-studio-window.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Phối cảnh phòng với bàn làm việc cạnh cửa sổ lớn, rèm mỏng và nắng xuyên qua cây xanh" />
-                  </div>
-                </article>
-                <article class="home-studio-slide" data-studio-slide data-scene="balcony">
-                  <div class="home-studio-slide-frame">
-                    <img src="images/home-studio-balcony.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Phối cảnh góc bàn gỗ hướng ra ban công xanh qua cửa kính, bên giường có chăn màu xanh dịu" />
-                  </div>
-                </article>
-              </div>
-            </div>
+          <div class="hero-card">
+            <img
+              class="hero-photo"
+              src="images/hero-laptop-expanded.png"
+              width="1672"
+              height="941"
+              fetchpriority="high"
+              alt="Góc học tập với laptop trên giá đỡ, bàn phím và đèn bàn cạnh cửa sổ"
+            />
             <div class="hero-content">
               <div class="hero-copy">
                 <div class="hero-tags">
@@ -616,15 +606,6 @@
                 </div>
               </div>
             </div>
-            <div class="home-studio-controls" data-studio-controls hidden>
-              <div class="home-studio-dots" role="group" aria-label="Chọn không gian">
-                  <button type="button" data-studio-dot="0" aria-label="Xem Góc tập trung" aria-current="true"><span></span></button>
-                  <button type="button" data-studio-dot="1" aria-label="Xem Đón nắng bên cửa sổ"><span></span></button>
-                  <button type="button" data-studio-dot="2" aria-label="Xem Chạm khoảng xanh"><span></span></button>
-                </div>
-              <button class="home-studio-toggle" type="button" data-studio-toggle><span data-studio-toggle-label>Tạm dừng</span><svg class="home-studio-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14" /></svg><svg class="home-studio-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" /></svg></button>
-            </div>
-            <div class="home-studio-progress" aria-hidden="true"><span data-studio-progress></span></div>
             <a class="hero-scroll" href="#shop-categories">
               <span>KHÁM PHÁ THÊM</span>
               <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
