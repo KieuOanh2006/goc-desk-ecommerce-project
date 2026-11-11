@@ -84,6 +84,39 @@
   .filters form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
   .filters .filter-title { grid-column: 1 / -1; }
 }
+/* Bộ lọc tablet: chữ dễ đọc hơn, giảm khoảng trống trong khung. */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .page-products .filters {
+    padding: 14px;
+  }
+
+  .page-products .filters form {
+    gap: 8px 24px;
+  }
+
+  .page-products .filters fieldset {
+    padding: 8px 0 10px;
+  }
+
+  .page-products .filters legend {
+    margin-bottom: 6px;
+    padding-top: 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .page-products .filters label {
+    min-height: 30px;
+    margin: 2px 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .page-products .filters label span {
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+}
 @media (max-width: 599px) {
   .filters label { font-size: 13px; }
   .filters fieldset { padding-bottom: 14px; }

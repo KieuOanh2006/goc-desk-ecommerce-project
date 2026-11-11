@@ -878,6 +878,35 @@ main.wrap,
     }
 }
 
+@media (min-width: 761px) and (max-width: 1100px) {
+    .site-shell-header > .container {
+        grid-template-columns: 100px minmax(0, 1fr) auto;
+        gap: 12px 18px;
+        padding-bottom: 16px;
+    }
+    .site-shell-header .brand-logo {
+        width: 100px;
+    }
+    .site-shell-header .main-nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+    .site-shell-header .nav-list {
+        justify-content: space-between;
+    }
+    .site-shell-header .nav-list a {
+        font-size: 13px;
+    }
+    .site-shell-header .search-bar {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    .site-shell-header .header-icons {
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
+
 @media (max-width: 760px) {
     :root {
         --gd-page-gutter: 20px;

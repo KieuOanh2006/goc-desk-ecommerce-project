@@ -1212,6 +1212,22 @@
     .home-page .bestseller-banner { min-height: 300px; }
 }
 
+@media (min-width: 641px) and (max-width: 1100px) {
+    .home-page .category-tile {
+        padding: 6px;
+    }
+
+    .home-page .category-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .home-page .category-tile h3 {
+        min-height: 38px;
+        padding: 7px 2px 2px;
+        font-size: 14px;
+    }
+}
+
 /* 15. TABLET NHỎ */
 @media (max-width: 900px) {
 
