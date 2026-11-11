@@ -126,13 +126,13 @@ body.page-studio .studio-design-hero {
   .studio-hero-caption { right: 32px; font-size: 10px; }
 }
 @media (max-width: 760px) {
-  .studio-design-hero .studio-hero-layout { width: calc(100% - 40px); min-height: 0; padding-top: 290px; }
-  .studio-hero-copy { width: 100%; padding: 26px 0 58px; }
-  .studio-hero-kicker { margin-bottom: 16px; font-size: 10px; }
-  .studio-hero-copy h1 { font-size: clamp(36px, 7vw, 48px); letter-spacing: -1px; margin-bottom: 18px; }
-  .studio-hero-description { max-width: 42ch; font-size: 15px; margin-bottom: 22px; }
-  .studio-hero-note { margin-top: 16px; }
-  .studio-hero-parallax { inset: -12px -12px auto; height: 355px; }
+  .studio-design-hero .studio-hero-layout { width: calc(100% - 40px); min-height: 0; padding-top: 210px; }
+  .studio-hero-copy { width: 100%; padding: 18px 0 36px; }
+  .studio-hero-kicker { margin-bottom: 12px; font-size: 10px; }
+  .studio-hero-copy h1 { font-size: clamp(32px, 7vw, 40px); letter-spacing: -1px; margin-bottom: 12px; }
+  .studio-hero-description { max-width: 42ch; font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+  .studio-hero-note { margin-top: 12px; }
+  .studio-hero-parallax { inset: -12px -12px auto; height: 275px; }
   .studio-hero-camera { transform-origin: 76% 50%; }
   .studio-hero-room { object-position: right center; }
   .studio-design-hero::after { background: linear-gradient(0deg, #202822 0%, #202822 calc(100% - 300px), rgb(32 40 34 / 70%) calc(100% - 270px), transparent calc(100% - 190px)); }

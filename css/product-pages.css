@@ -1237,3 +1237,158 @@ h2 {
     font-size: 12px;
   }
 }
+
+@media (max-width: 599px) {
+  .page-products .catalog-layout {
+    gap: 13px;
+  }
+
+  .page-products .filters {
+    padding: 12px;
+  }
+
+  .page-products .filters form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px;
+  }
+
+  .page-products .filter-title {
+    margin-bottom: 0;
+  }
+
+  .page-products .filters fieldset {
+    padding: 0 0 8px;
+  }
+
+  .page-products .filters legend {
+    margin-bottom: 4px;
+    padding-top: 0;
+    line-height: 1.4;
+  }
+
+  .page-products .filters label {
+    min-height: 34px;
+    gap: 6px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .page-products .filters input {
+    width: 18px;
+    height: 18px;
+  }
+
+  .page-products .filters label span {
+    flex-shrink: 0;
+  }
+
+  .page-products .filter-colors {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+  }
+
+  .page-products .filter-colors label {
+    width: calc((100% - 20px) / 3);
+  }
+
+  .page-products .filter-colors .filter-color {
+    width: 12px;
+    height: 12px;
+  }
+
+  .page-products .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 10px;
+  }
+
+  .page-products .card-image {
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .page-products .card-copy {
+    padding: 10px 9px 8px;
+  }
+
+  .page-products .card-copy .eyebrow {
+    font-size: 8px;
+    letter-spacing: .45px;
+    line-height: 1.4;
+  }
+
+  .page-products .card-copy h3 {
+    margin: 5px 0 4px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .page-products .card-description {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .page-products .card-copy .price {
+    margin-top: 7px;
+    padding-top: 6px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .page-products .variant {
+    font-size: 9px;
+  }
+
+  .page-products .card-swatches {
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  .page-products .card-swatches i {
+    width: 10px;
+    height: 10px;
+  }
+
+  .page-products .product-card .card-add-to-cart {
+    width: calc(100% - 12px);
+    min-height: 42px;
+    gap: 4px;
+    margin: 8px 6px;
+    padding: 7px 4px;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .page-products .card-add-to-cart svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 359px) {
+  .page-products .product-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .page-products .product-card .card-link {
+    display: grid;
+    grid-template-columns: minmax(100px, 38%) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .page-products .card-image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .page-products .card-copy {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 10px 8px;
+  }
+}

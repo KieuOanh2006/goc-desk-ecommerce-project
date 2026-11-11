@@ -5,9 +5,9 @@ body.page-products .subpage-hero { justify-content: center; padding-top: 145px; 
 .page-products .subpage-hero-content { text-align: center; }
 .page-products .subpage-eyebrow { margin-bottom: 24px; color: #fff; font-size: 17px; letter-spacing: 0; text-transform: none; }
 .page-products .subpage-title { max-width: none; margin: 0; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -1.2px; }
-@media (max-width: 1200px) { body.page-products .subpage-hero { padding-top: 200px; } }
+@media (max-width: 1200px) { body.page-products .subpage-hero { padding-top: 140px; } }
 @media (max-width: 700px) {
-  body.page-products .subpage-hero { padding-top: 235px; padding-bottom: 65px; }
-  .page-products .subpage-eyebrow { margin-bottom: 16px; font-size: 14px; }
-  .page-products .subpage-title { font-size: 37px; }
+  body.page-products .subpage-hero { padding-top: 30px; padding-bottom: 24px; }
+  .page-products .subpage-eyebrow { margin-bottom: 12px; font-size: 13px; }
+  .page-products .subpage-title { font-size: clamp(30px, 8.3vw, 36px); }
 }

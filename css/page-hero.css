@@ -233,8 +233,8 @@ body.has-photo-header > main {
 
 @media (max-width: 1000px) {
     body.has-photo-header {
-        --page-hero-size: 47svh;
-        --page-hero-min: 450px;
+        --page-hero-size: clamp(350px, 42svh, 430px);
+        --page-hero-min: clamp(350px, 42svh, 430px);
     }
 }
 
@@ -265,12 +265,13 @@ body.has-photo-header > main {
 @media (max-width: 640px) {
     body.has-photo-header {
         --gd-page-gutter: 18px;
-        --page-hero-min: 470px;
+        --page-hero-size: clamp(320px, 40svh, 350px);
+        --page-hero-min: clamp(320px, 40svh, 350px);
     }
 
     .has-photo-header .subpage-hero {
-        padding-top: 45px;
-        padding-bottom: 28px;
+        padding-top: 30px;
+        padding-bottom: 24px;
     }
 
     .subpage-hero .subpage-title {

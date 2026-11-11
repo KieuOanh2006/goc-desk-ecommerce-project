@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <nav class="main-nav" aria-label="Menu điều hướng chính">
+        <nav class="main-nav" id="site-primary-nav" aria-label="Menu điều hướng chính">
             <ul class="nav-list">
                 <li><a href="index.html">Trang chủ</a></li>
                 <li><a href="products.html">Sản phẩm</a></li>
@@ -253,7 +253,8 @@
 
     // Trang không có mục menu riêng thì làm sáng mục cha.
     const navAliases = {
-        "product-detail.html": "products.html"
+        "product-detail.html": "products.html",
+        "setup-3d.html": "setup-3d-cap-nhat.html"
     };
 
     function setActiveNavigation() {

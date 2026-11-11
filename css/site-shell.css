@@ -1002,3 +1002,44 @@ main.wrap,
         animation: none;
     }
 }
+
+@media (max-width: 760px) {
+    .site-shell-header > .container {
+        grid-template-columns: clamp(76px, 22vw, 86px) minmax(0, 1fr) auto;
+        row-gap: 8px;
+        padding-bottom: 12px;
+    }
+
+    .site-shell-header .brand-logo {
+        width: clamp(76px, 22vw, 86px);
+    }
+
+    .site-shell-header .main-nav {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    .site-shell-header .nav-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+        gap: 0 10px;
+        justify-content: stretch;
+        padding: 3px 0 2px;
+    }
+
+    .site-shell-header .nav-list > li {
+        min-width: 0;
+    }
+
+    .site-shell-header .nav-list a {
+        width: fit-content;
+        min-height: 36px;
+        padding: 8px 0 6px;
+        font-size: 13px;
+        line-height: 1.4;
+        white-space: normal;
+    }
+}

@@ -92,7 +92,7 @@ body.editorial-news { background: #f7f4eb; color: #42382f; }
 }
 @media (max-width: 850px) {
   .journal-wrap { width: calc(100% - 64px); }
-  .journal-feature { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .journal-feature { grid-template-columns: 1fr 1fr; gap: 28px; padding-block: 38px 48px; }
   .journal-feature h1 { font-size: 48px; letter-spacing: -1.8px; }
   .journal-feature-deck { font-size: 16px; }
   .journal-feature-intro { font-size: 13px; }
@@ -111,12 +111,14 @@ body.editorial-news { background: #f7f4eb; color: #42382f; }
 @media (max-width: 620px) {
   .journal-main { padding-bottom: 58px; }
   .journal-wrap { width: calc(100% - 40px); }
-  .journal-feature { grid-template-columns: 1fr; gap: 34px; padding-block: 42px 58px; }
+  .journal-feature { grid-template-columns: 1fr; gap: 22px; padding-block: 24px 34px; }
   .journal-feature-copy { padding-block: 0; }
-  .journal-feature .journal-eyebrow { margin-bottom: 24px; font-size: 9px; letter-spacing: 1.2px; }
-  .journal-feature h1 { margin-bottom: 22px; font-size: clamp(48px, 11.6vw, 66px); letter-spacing: -2px; }
-  .journal-feature-deck { font-size: 17px; }
-  .journal-feature-intro { max-width: 44ch; font-size: 13px; }
+  .journal-feature .journal-eyebrow { margin-bottom: 12px; font-size: 9px; letter-spacing: 1.2px; }
+  .journal-feature h1 { margin-bottom: 14px; font-size: clamp(40px, 10.5vw, 48px); letter-spacing: -1.6px; }
+  .journal-feature-deck { margin-bottom: 10px; font-size: 15px; }
+  .journal-feature-intro { max-width: 44ch; font-size: 12px; line-height: 1.65; }
+  .journal-feature-reading { margin-top: 16px; }
+  .journal-feature-reading > summary { gap: 24px; font-size: 11px; }
   .journal-feature-media img { aspect-ratio: 1.12; }
   .journal-photo-caption { right: 14px; bottom: 12px; font-size: 9px; }
   .journal-index-heading { display: block; margin-bottom: 20px; }

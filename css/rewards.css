@@ -87,12 +87,12 @@ body.rewards-page { --rewards-brown: #3b291f; background: #f7f4eb; color: #30282
 }
 @media (max-width: 700px) {
   .reward-wrap { width: calc(100% - 40px); }
-  .rewards-hero { min-height: 450px; padding-block: 48px; }
+  .rewards-hero { min-height: 365px; padding-block: 32px; }
   .rewards-hero-art { object-position: 70% center; opacity: .27; }
   .rewards-hero::before { background: linear-gradient(90deg, #3b291ff2, #3b291f80); }
   .rewards-hero-copy { width: 100%; }
-  .rewards-hero h1 { margin-bottom: 27px; font-size: clamp(29px, 7.4vw, 43px); line-height: 1.45; letter-spacing: .1px; }
-  .rewards-hero-copy > p:first-child { margin-bottom: 22px; font-size: 14px; }
+  .rewards-hero h1 { margin-bottom: 18px; font-size: clamp(28px, 7.2vw, 36px); line-height: 1.25; letter-spacing: 0; }
+  .rewards-hero-copy > p:first-child { margin-bottom: 16px; font-size: 13px; }
   .rewards-nav { gap: 12px 22px; justify-content: flex-start; }
   .rewards-nav a { font-size: 12px; }
   .rewards-section { padding-top: 48px; }

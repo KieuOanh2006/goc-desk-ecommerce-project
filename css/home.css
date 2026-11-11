@@ -1345,7 +1345,7 @@
 
     .home-page .bestseller-grid { grid-template-columns: 1fr; }
 
-    .home-page .hero-card { min-height: 670px; height: 86svh; }
+    .home-page .hero-card { min-height: 600px; height: clamp(600px, 68svh, 700px); }
     .home-page .hero-copy { width: 58%; }
 
     .home-page .home-studio-layout,
@@ -1363,7 +1363,7 @@
         --home-section-space: 48px;
     }
 
-    .home-page .hero-card { min-height: 700px; height: 88svh; }
+    .home-page .hero-card { min-height: 520px; height: clamp(520px, 68svh, 590px); }
     .home-page .hero-photo { object-position: 32% center; }
 
     .home-page .hero-content {

@@ -47,8 +47,8 @@
         /* HERO */
         .warranty-hero {
             position: relative;
-            width: 100vw;
-            margin: 0 calc(50% - 50vw);
+            width: 100%;
+            margin: 0;
             padding: 54px 56px;
             overflow: hidden;
             border-radius: 0;
@@ -491,9 +491,9 @@
             .warranty-step-number { top: 28px; left: 28px; }
         }
         @media (max-width: 600px) {
-            .warranty-hero-main { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; }
+            .warranty-hero-main { grid-template-columns: 1fr; min-height: 0; padding: 24px 18px; gap: 14px; }
             .warranty-hero-art { width: min(100%, 280px); justify-self: center; }
-            .warranty-shield { width: 220px; }
+            .warranty-shield { width: 160px; }
             .warranty-art-note { font-size: 11px; }
             .warranty-step { display: block; padding: 20px; }
             .warranty-step-art { height: 170px; }
