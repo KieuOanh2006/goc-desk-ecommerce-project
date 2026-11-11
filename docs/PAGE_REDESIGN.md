@@ -87,3 +87,38 @@ Kiểm tra: máy chủ xem trước trả HTTP 200 cho cả hai trang với ngu�
 Sửa `css/home.css` và `css/news-editorial.css`: đặt tỷ lệ 5:4 trên khung chứa để khớp video 2700×2160. Video chiếm toàn bộ chiều rộng và chiều cao khung; bỏ giới hạn chiều cao 460px/560px vốn làm video bị chèn khoảng nền dư khi cột rộng. Tỷ lệ khung được giữ khi màn hình thay đổi, không cắt hình; giữ video, âm thanh và điều khiển hiện có.
 
 Đã kiểm tra CSS cân bằng ngoặc; chưa kiểm tra trực quan trong trình duyệt. File sửa: hai CSS trên và tài liệu này. Xem trang chủ `index.html#community` hoặc `news.html#news-desk-story`, nhấn Ctrl+Shift+R.
+
+## Carousel ảnh ở hero đầu trang chủ (11/11/2026)
+
+Theo vị trí người dùng xác nhận, ba ảnh phòng thay ảnh nền cũ ngay trong hero đầu trang. Giữ nguyên hai nhãn Góc học tập/Góc làm việc, H1 “Sắp xếp góc riêng. Khơi nguồn cảm hứng.”, đoạn giới thiệu, hai nút Khám phá sản phẩm/Thử thiết kế 3D và liên kết Khám phá thêm của hero. Xóa toàn bộ khối giới thiệu 3D ở giữa trang. Hero dùng `section.hero-section#desk-studio` và `.hero-card.home-studio-gallery.home-studio-hero`; phần điều khiển gồm ba chấm và biểu tượng dừng/phát ở góc dưới trái, thanh tiến trình ở đáy. Các ảnh chỉ mang phần hình, không có tiêu đề, chú thích, bộ đếm hoặc CTA bổ sung trên trang.
+
+Ba phối cảnh được tạo sẵn bằng AI, lưu thành tài nguyên tĩnh; website chỉ tải ảnh và không gọi dịch vụ tạo ảnh khi sử dụng. Phạm vi mã nguồn là `index.html`, `css/home.css`, `js/home.js` cùng ba ảnh WebP 1600×1000:
+
+| File | Dung lượng |
+| --- | ---: |
+| `images/home-studio-focus.webp` | 172.318 byte |
+| `images/home-studio-window.webp` | 217.566 byte |
+| `images/home-studio-balcony.webp` | 238.124 byte |
+
+Carousel dùng JavaScript thuần: giữ ảnh 5 giây, chuyển trong 800ms và lặp vòng bằng bản sao được ẩn khỏi công cụ hỗ trợ. Ba chấm chọn ảnh, biểu tượng dừng/phát và vuốt ngang dùng chung trạng thái. Tự chuyển ảnh dừng khi rê chuột, đặt focus trong hero, chuyển tab, cuộn hero khỏi màn hình hoặc người dùng bấm tạm dừng. Khi bật giảm chuyển động, người dùng đổi ảnh bằng thao tác và hiệu ứng dừng. Lớp chữ phủ trên ảnh cho thao tác vuốt đi qua; hai nút hero tiếp tục nhận nhấp chuột và bàn phím.
+
+Ảnh đầu tải ngay với ưu tiên cao; hai ảnh sau khai báo tải lười và được chuẩn bị khi carousel khởi tạo. Giới hạn tải/giải mã là 10 giây mỗi ảnh. Ảnh lỗi bị loại khỏi vòng, còn tối đa một ảnh thì ẩn điều khiển. Nếu tất cả ảnh lỗi, nội dung và hai nút hero vẫn dùng được trên nền màu dự phòng. Khi tắt JavaScript, ảnh đầu và toàn bộ nội dung hero vẫn hiển thị. Nút Thử thiết kế 3D tới trang chuẩn `setup-3d.html`. URL CSS/JS trang chủ dùng phiên bản `20261111-hero2`.
+
+### Xem trước và xác minh
+
+Mở [hero trên máy cục bộ](http://127.0.0.1:5504/index.html?v=20261111-hero2), nhấn Ctrl+Shift+R. Địa chỉ chỉ dùng trên máy đang chạy máy chủ xem trước. Có thể mở bằng VS Code Live Server với cổng tương ứng.
+
+[Kết quả hero](../plans/261111-0238-home-studio-carousel/reports/home-hero-browser-results.json) lúc `2026-11-11T03:14:25.240Z` ghi **19 trường hợp đạt, 0 lỗi, không có lỗi JavaScript trang**. Sau khi phát hiện lỗi căn giữa qua breakpoint, mã theo dõi kích thước viewport/slide và tính lại vị trí khi kích thước thực thay đổi. Lượt tập trung sau sửa xác minh 320/360/390/768/1366/1920px, đổi kích thước giữa chuyển cảnh và khôi phục sau `pagehide`/`pageshow`, sai lệch tâm tối đa 0,242px. Kiểm tra độc lập qua chuỗi 320→768→1366→768→320 ghi sai lệch tối đa 0,35px và observer ổn định.
+
+Đã đối chiếu chính xác nội dung/link hero gốc, vị trí đầu trang và việc bỏ khối giữa; kiểm tra tải ảnh, hai vòng lặp, chấm chọn/bàn phím, dừng/phát, giảm chuyển động, ảnh lỗi, tắt JavaScript, hai CTA gốc, promo và thêm nhanh vào giỏ. Thao tác cảm ứng CDP xác minh vuốt qua cả ảnh lẫn chữ tiêu đề và cuộn dọc. [Ảnh desktop](../plans/261111-0238-home-studio-carousel/reports/hero-desktop.png) và [ảnh mobile](../plans/261111-0238-home-studio-carousel/reports/hero-mobile.png) dùng cho duyệt hero. Có thể chạy lại bằng `node plans/261111-0238-home-studio-carousel/reports/home-hero-browser.cjs` với máy chủ cổng 5504 và Playwright; đặt `PLAYWRIGHT_PATH` nếu đường dẫn module khác máy hiện tại.
+
+Giới hạn: kiểm tra Chrome headless, chưa kiểm tra Safari/Firefox hoặc điện thoại thật. Trạng thái ẩn/hiện và vòng đời trang dùng sự kiện mô phỏng; chuyển tab nền thật/BFCache chưa được xác minh. Video cộng đồng được chặn vì ngoài phạm vi. Ảnh chụp ẩn header/thông báo chỉ trong lúc chụp để xem riêng hero. Bộ `home-studio-browser*`, `home-studio-verification.md` và ảnh `studio-*` được giữ làm bằng chứng lịch sử của phiên bản giữa trang.
+
+
+## Chuẩn hóa trang thiết kế 3D (11/11/2026)
+
+Chuyển giao diện 3D mới vào `setup-3d.html` để menu, trang chủ, trang sản phẩm, tài khoản và tin tức đều dùng một URL chuẩn. Giữ nội dung và tính năng 3D hiện hành, nhưng đưa CSS/JavaScript và ảnh về tên ổn định không có hậu tố `cap-nhat`; loại trang HTML và các bản CSS/JS cũ chỉ dùng bởi luồng trước. Phiên bản URL của menu được cập nhật để trình duyệt không tiếp tục dùng menu cũ đã cache. Favicon chung `images/favicon.png` được dùng trên trang chủ và trang 3D.
+
+Các khóa lưu thiết kế hiện có (`goc-desk:studio-layout:cap-nhat:v2`, `goc-desk:studio-layout:cap-nhat:v1` và `goc-desk:studio-layout:v1`) được giữ nguyên để bố cục đã lưu vẫn còn khi người dùng cập nhật trang. URL 3D vẫn giữ query sản phẩm/màu và fragment `#setup-workspace`.
+
+Đã chạy 22 kiểm tra Node.js gồm luồng 3D, khôi phục bố cục, liên kết danh mục và giỏ hàng; tất cả đạt. Trình duyệt Chrome mở trực tiếp `setup-3d.html` với tham số sản phẩm/màu, khởi tạo canvas 3D 861×360, chuyển qua ba cảnh, tải favicon và không ghi nhận lỗi JavaScript hay HTTP cục bộ. Kiểm tra hero trang chủ chạy lại sau khi đổi CTA, đạt 19/19 và không có lỗi JavaScript. Các kiểm tra trình duyệt dùng Chrome headless; chưa kiểm tra Safari/Firefox hoặc thiết bị thật. Three.js vẫn được tải từ CDN nên cần kết nối mạng khi mở công cụ 3D.
