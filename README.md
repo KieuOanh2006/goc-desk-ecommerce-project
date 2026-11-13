@@ -1,7 +1,7 @@
 
 # Góc Desk
 
-**Đề tài:** Xây dựng website bán phụ kiện góc làm việc tích hợp thiết kế 3D và tạo ảnh minh họa.
+**Đề tài:** Website bán phụ kiện góc làm việc tích hợp thiết kế 3D
 
 ## 1. Giới thiệu
 
