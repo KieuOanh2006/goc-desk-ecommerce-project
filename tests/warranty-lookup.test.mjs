@@ -23,7 +23,17 @@ export async function run() {
   new vm.Script(source, { filename: 'warranty-lookup.js' });
   const ids = ['warranty-lookup-form', 'warranty-serial', 'warranty-serial-error', 'warranty-lookup-result', 'warranty-result-message'];
   const nodes = new Map(ids.map((id) => [id, element()]));
-  const context = vm.createContext({ document: { getElementById: (id) => nodes.get(id) } });
+  const supportLink = element();
+  const traveler = { classList: { add() {}, remove() {} } };
+  const journey = { ...element(), querySelector: () => traveler };
+  nodes.set('warranty-journey', journey);
+  nodes.set('warranty-journey-status', element());
+  for (let step = 1; step <= 3; step += 1) nodes.set('warranty-milestone-' + step, element());
+  nodes.get('warranty-lookup-result').querySelector = () => supportLink;
+  const context = vm.createContext({
+    document: { getElementById: (id) => nodes.get(id) },
+    setTimeout: () => 1, clearTimeout() {},
+  });
   vm.runInContext(source, context);
   const form = nodes.get('warranty-lookup-form');
   const input = nodes.get('warranty-serial');
@@ -74,13 +84,35 @@ export async function run() {
     assert.equal(error.hidden, true);
     assert.equal(input.attributes['aria-invalid'], undefined);
   });
+  check('Journey follows validation, support viewing and code edits', () => {
+    assertInvalid('');
+    assert.equal(journey.attributes['data-step'], '1');
+    supportLink.events.click();
+    assert.equal(journey.attributes['data-step'], '1');
+    submit('GD-1234');
+    assert.equal(journey.attributes['data-step'], '2');
+    const secondPose = journey.attributes['data-pose'];
+    assert.ok(['wave', 'sit', 'walk'].includes(secondPose));
+    assert.equal(nodes.get('warranty-milestone-2').attributes['aria-current'], 'step');
+    supportLink.events.click();
+    assert.equal(journey.attributes['data-step'], '3');
+    assert.notEqual(journey.attributes['data-pose'], secondPose);
+    assert.equal(nodes.get('warranty-milestone-2').attributes['aria-current'], undefined);
+    assert.equal(nodes.get('warranty-milestone-3').attributes['aria-current'], 'step');
+    input.events.input();
+    assert.equal(journey.attributes['data-step'], '1');
+    supportLink.events.click();
+    assert.equal(journey.attributes['data-step'], '1');
+  });
   check('The page contains all lookup controls, support anchor and retained cart scripts', () => {
     for (const id of ids) assert.ok(html.includes(`id="${id}"`));
     assert.ok(html.includes('id="warranty-request"'));
     for (const script of ['product-data', 'cart-store', 'cart-badge']) assert.ok(html.includes(`src="js/${script}.js"`));
     assert.ok(html.includes('aria-live="polite"'));
     assert.ok(css.includes('.warranty-main [hidden] { display: none; }'));
-    assert.ok(!html.includes('has-photo-header'));
+    assert.ok(html.includes('has-photo-header'));
+    assert.ok(html.includes('css/page-hero.css'));
+    assert.ok(html.includes('class="subpage-hero warranty-banner"'));
   });
   return { passed: passed.length, checks: passed };
 }
