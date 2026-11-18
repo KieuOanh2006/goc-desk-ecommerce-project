@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard quản trị | Góc Desk</title><link rel="icon" href="images/favicon.png"><link rel="stylesheet" href="css/admin.css"><link rel="stylesheet" href="css/admin-dashboard.css?v=calendar-1"><script src="js/admin-auth.js" defer></script><script src="js/admin-dashboard-data.js" defer></script><script src="js/admin-dashboard.js" defer></script></head>
+<body class="page-admin-dashboard"><a class="admin-skip" href="#dashboard-main">Đến báo cáo</a>
+<main id="admin-area" data-admin-role="dashboard" hidden>
+<aside class="admin-sidebar"><a class="admin-brand" href="index.html" aria-label="Góc Desk — Xem cửa hàng"><img src="images/logo1.png" width="156" alt="Góc Desk"><span class="admin-brand-caption">TRUNG TÂM QUẢN TRỊ</span></a><p class="admin-sidebar-label">ĐIỀU HÀNH CỬA HÀNG</p><nav aria-label="Các báo cáo dashboard" id="dashboard-nav">
+<details class="dashboard-nav-section" open><summary>Phân tích bán hàng</summary><div>
+<button type="button" data-view="overview" aria-current="page">Tổng quan</button>
+<button type="button" data-view="products">Tình hình bán sản phẩm</button>
+<button type="button" data-view="sales">Doanh thu & đơn hàng</button>
+<button type="button" data-view="traffic">Lượt xem & truy cập</button>
+<button type="button" data-view="conversion">Giỏ hàng & chuyển đổi</button>
+</div></details>
+<details class="dashboard-nav-section" open><summary>Chăm sóc khách hàng</summary><div>
+<button type="button" data-view="customers">Phân tích khách hàng</button>
+<button type="button" data-view="support">Hiệu quả phản hồi</button>
+<button type="button" data-view="reviews">Đánh giá khách hàng</button>
+</div></details>
+<details class="dashboard-nav-section" open><summary>Dịch vụ sau bán hàng</summary><div>
+<button type="button" data-view="complaints">Phân tích khiếu nại</button>
+<button type="button" data-view="warranties">Phân tích bảo hành</button>
+</div></details>
+</nav><div class="admin-sidebar-bottom"><span class="admin-role">Admin Dashboard</span><a href="index.html">Xem cửa hàng ↗</a><button id="admin-logout" type="button">Đăng xuất <span aria-hidden="true">↗</span></button></div></aside>
+<section class="admin-content" id="dashboard-main" tabindex="-1">
+<header class="dashboard-topbar"><span>Không gian quản trị <span aria-hidden="true">/</span> <strong id="dashboard-breadcrumb">Tổng quan</strong></span><span class="dashboard-demo-badge"><i></i>Dữ liệu mẫu</span></header>
+<div class="dashboard-heading"><div><p class="admin-eyebrow">GÓC NHÌN TOÀN CẢNH</p><h1 id="dashboard-title">Tổng quan cửa hàng</h1><p id="dashboard-description">Theo dõi hiệu quả kinh doanh và trải nghiệm khách hàng.</p></div><button id="dashboard-export" class="dashboard-export" type="button">Xuất CSV <span aria-hidden="true">↓</span></button></div>
+<nav class="dashboard-report-tabs" id="dashboard-tabs" aria-label="Báo cáo trong danh mục"></nav>
+<form id="dashboard-filters" class="dashboard-filters" novalidate>
+<label for="dashboard-period">Khoảng thời gian</label><select id="dashboard-period"><option value="custom">Tự chọn thời gian</option><option value="7">7 ngày gần nhất</option><option value="30" selected>30 ngày gần nhất</option><option value="90">90 ngày gần nhất</option></select>
+<div class="dashboard-date-field"><label for="dashboard-date-start">Từ ngày</label><input id="dashboard-date-start" type="date" required aria-describedby="dashboard-date-error"></div>
+<div class="dashboard-date-field"><label for="dashboard-date-end">Đến ngày</label><input id="dashboard-date-end" type="date" required aria-describedby="dashboard-date-error"></div>
+<button class="dashboard-date-apply" type="submit">Áp dụng</button>
+<span id="dashboard-date-caption" class="sr-only"></span><span class="dashboard-comparison"></span>
+<p id="dashboard-date-error" class="dashboard-date-error" role="alert" hidden></p>
+</form><p id="dashboard-range-note" class="dashboard-range-note" role="status" hidden></p>
+<p class="dashboard-source">Bản xem trước · Số liệu mô phỏng đến 18/11/2026, chưa kết nối dữ liệu cửa hàng.</p>
+<div id="dashboard-report" aria-live="polite" aria-busy="false"></div><p id="dashboard-feedback" class="dashboard-feedback" role="status"></p>
+<footer class="dashboard-footer">Góc Desk Analytics <span>Dành cho vai trò Dashboard · Chỉ xem báo cáo</span></footer>
+</section></main></body></html>
