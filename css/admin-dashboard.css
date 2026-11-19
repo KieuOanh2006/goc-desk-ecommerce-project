@@ -170,3 +170,94 @@
   .dashboard-date-field input { min-width: 0; width: 70%; }
   .dashboard-date-apply { width: 100%; }
 }
+
+/* Tăng tương phản nội dung, giữ nền trang và nền danh mục hiện tại. */
+.page-admin-dashboard { color: #243448; }
+.dashboard-heading h1, .dashboard-panel h2 { color: #172b45; }
+.dashboard-heading p:last-child, .dashboard-panel-heading p { color: #58677b; }
+.dashboard-kpi, .dashboard-panel { background: #fff; border-color: #d5dce4; box-shadow: 0 2px 6px #172b4505; }
+.dashboard-kpi { border-top: 3px solid #237e9b; }
+.dashboard-kpi:nth-child(2) { border-top-color: #365c9b; }
+.dashboard-kpi:nth-child(3) { border-top-color: #b46b22; }
+.dashboard-kpi:nth-child(4) { border-top-color: #6d58a1; }
+.dashboard-kpi > .metric-label { color: #40526b; }
+.dashboard-kpi > strong { color: #122b46; font-weight: 700; }
+.dashboard-kpi small.positive { color: #146c43; }
+.dashboard-kpi small.negative { color: #b42318; }
+.dashboard-kpi small.neutral, .dashboard-kpi small > span { color: #59697d; }
+.metric-info { color: #50657f; }
+.metric-info:hover, .metric-info[aria-expanded="true"] { background: #e8eff7; color: #173451; }
+.dashboard-metric-tooltip { background: #173451; color: #fff; border-color: #173451; }
+.dashboard-bars .dashboard-bar-track { background: #e8edf3; }
+.dashboard-bars .dashboard-bar-track > span { background: #237e9b; }
+.dashboard-bar-row > div:first-child, .dashboard-bar-row strong { color: #354b65; }
+.dashboard-actions button { color: #334e6b; border-bottom-color: #e0e6ec; }
+.dashboard-actions button:hover { color: #166b8c; }
+.dashboard-actions small { color: #617188; }
+.dashboard-actions strong { color: #163c5c; }
+.dashboard-table-scroll th { background: #edf1f6; color: #40536b; border-color: #dbe2e9; font-weight: 600; }
+.dashboard-table-scroll td { color: #405168; border-color: #e6ebf0; }
+.dashboard-table-scroll td:nth-child(1) { color: #173451; }
+.dashboard-table-scroll tbody tr:hover { background: #f1f6fb; }
+.dashboard-status.green { background: #def1e6; color: #19643e; }
+.dashboard-status.red { background: #fee7e5; color: #a82e26; }
+.dashboard-status.amber { background: #fff0d3; color: #875400; }
+.dashboard-table-count, .dashboard-topbar strong, .dashboard-topbar { color: #53647b; }
+.dashboard-table-count button, .dashboard-export { border-color: #bbc8d5; color: #244762; background: #fff; }
+.dashboard-export { background: #173451; border-color: #173451; color: #fff; }
+.dashboard-export:hover { background: #244d70; }
+.dashboard-filters { margin-bottom: 24px; border-color: #d5dce4; background: #fff; color: #53647b; }
+.dashboard-filters > label, .dashboard-date-field label { color: #3b4c62; }
+.dashboard-filters select, .dashboard-date-field input, .dashboard-table-controls :is(select,input) { border-color: #bdc9d6; color: #263e58; background: #fff; }
+.dashboard-date-apply { background: #173451; border-color: #173451; color: #fff; }
+.dashboard-date-apply:hover { background: #244d70; }
+.dashboard-comparison { color: #63738a; }
+.dashboard-report-tabs button { color: #506176; }
+.dashboard-report-tabs button[aria-current], .dashboard-report-tabs button:hover { color: #175b7a; }
+.dashboard-report-tabs button[aria-current] { border-bottom-color: #237e9b; }
+.page-admin-dashboard #dashboard-nav .dashboard-nav-section button { color: #5b4c3c; }
+.page-admin-dashboard #dashboard-nav .dashboard-nav-section button[aria-current] { color: #75471e; }
+.dashboard-demo-badge { color: #576679; }
+.dashboard-demo-badge i { background: #237e9b; }
+.dashboard-empty-chart, .dashboard-table-controls input::placeholder { color: #65768b; }
+
+/* Nâu – trắng – be, tăng tương phản trong cùng nhận diện Góc Desk. */
+.page-admin-dashboard { color: #493326; }
+.dashboard-heading h1, .dashboard-panel h2 { color: #362318; }
+.dashboard-heading p:last-child, .dashboard-panel-heading p { color: #75604e; }
+.dashboard-kpi, .dashboard-panel { background: #fff; border-color: #d9cabb; box-shadow: 0 2px 6px #50321c08; }
+.dashboard-kpi { border-top-color: #875430; }
+.dashboard-kpi:nth-child(2) { border-top-color: #5c3b28; }
+.dashboard-kpi:nth-child(3) { border-top-color: #b0804e; }
+.dashboard-kpi:nth-child(4) { border-top-color: #957353; }
+.dashboard-kpi > .metric-label { color: #6b4b34; }
+.dashboard-kpi > strong { color: #362318; }
+.dashboard-kpi small.neutral, .dashboard-kpi small > span { color: #79624f; }
+.metric-info { color: #8a684b; }
+.metric-info:hover, .metric-info[aria-expanded="true"] { color: #54351f; background: #f1e6d7; }
+.dashboard-metric-tooltip { background: #4c3221; color: #fffaf2; border-color: #4c3221; }
+.dashboard-bars .dashboard-bar-track { background: #eee5d9; }
+.dashboard-bars .dashboard-bar-track > span { background: #956139; }
+.dashboard-bar-row > div:first-child, .dashboard-bar-row strong { color: #67472f; }
+.dashboard-actions button { color: #67472f; border-bottom-color: #e8ddd0; }
+.dashboard-actions button:hover { color: #8a5128; }
+.dashboard-actions small { color: #806955; }
+.dashboard-actions strong { color: #54351f; }
+.dashboard-table-scroll th { background: #f0e8de; color: #63472f; border-color: #dfd0bf; }
+.dashboard-table-scroll td { color: #6c503a; border-color: #eee4d8; }
+.dashboard-table-scroll td:nth-child(1) { color: #4c3221; }
+.dashboard-table-scroll tbody tr:hover { background: #faf5ed; }
+.dashboard-table-count, .page-admin-dashboard .dashboard-topbar, .dashboard-topbar strong { color: #79614b; }
+.dashboard-table-count button { border-color: #cbb79f; color: #67472f; background: #fff; }
+.dashboard-export, .dashboard-date-apply { background: #54351f; border-color: #54351f; color: #fffaf2; }
+.dashboard-export:hover, .dashboard-date-apply:hover { background: #754b2d; }
+.dashboard-filters { border-color: #d9cabb; color: #79614b; }
+.dashboard-filters > label, .dashboard-date-field label { color: #64472f; }
+.dashboard-filters select, .dashboard-date-field input, .dashboard-table-controls :is(select,input) { border-color: #cbb79f; color: #543b29; background: #fff; }
+.dashboard-comparison { color: #856d57; }
+.dashboard-report-tabs button { color: #79614b; }
+.dashboard-report-tabs button[aria-current], .dashboard-report-tabs button:hover { color: #754522; }
+.dashboard-report-tabs button[aria-current] { border-bottom-color: #956139; }
+.dashboard-demo-badge { color: #79614b; }
+.dashboard-demo-badge i { background: #956139; }
+.dashboard-empty-chart, .dashboard-table-controls input::placeholder { color: #856d57; }
