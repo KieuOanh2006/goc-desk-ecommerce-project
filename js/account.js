@@ -124,7 +124,8 @@
             const statusId = {
                 login: 'login-status',
                 register: 'register-status',
-                forgot: 'forgot-status'
+                forgot: 'forgot-status',
+                admin: 'admin-login-status'
             };
 
             if (statusId[target]) {
@@ -375,4 +376,5 @@
     );
 
 
+    if (window.location.hash === '#admin') showAuthPanel('admin');
 })();
