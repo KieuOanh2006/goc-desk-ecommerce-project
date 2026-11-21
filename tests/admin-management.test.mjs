@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import vm from 'node:vm';
+const root=new URL('../',import.meta.url);
+const scripts=await Promise.all(['js/product-data.js','js/admin-dashboard-data.js','js/admin-management-store.js'].map(p=>fs.readFile(new URL(p,root),'utf8')));
+function setup(role='products', storage=new Map(), fail=false){
+ const context=vm.createContext({window:{},document:{getElementById:()=>({dataset:{adminRole:role}})},sessionStorage:{getItem:()=>JSON.stringify({role,expires:Date.now()+60000})},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>{if(fail)throw Error('quota');storage.set(k,v);}}});
+ for(const code of scripts)vm.runInContext(code,context);
+ return {api:context.window.GDAdminManagement,storage,context};
+}
+const {api,storage}=setup();const initial=api.read();const p=initial.products[0];const fields={...p};
+api.saveProduct(p.id,{...fields,name:'Bàn phím đã cập nhật',price:710000});
+assert.equal(api.read().products[0].price,710000);
+assert.equal(setup('products',storage).api.read().products[0].name,'Bàn phím đã cập nhật');
+assert.deepEqual(api.read().orders,initial.orders,'Product edits must preserve saved order prices');
+assert.throws(()=>api.saveProduct(p.id,{...fields,price:-1}));
+assert.throws(()=>api.saveProduct(p.id,{...fields,category:'missing'}));
+assert.throws(()=>api.saveProduct(p.id,{...fields,image:'javascript:alert(1)'}));
+api.setVisibility(p.id);assert.equal(api.read().products[0].status,'Đang ẩn');api.setVisibility(p.id);assert.equal(api.read().products[0].status,'Đang bán');
+api.adjustStock(p.id,{stock:7,threshold:9,reason:'Kiểm kê kho mẫu'});assert.equal(api.read().products[0].stock,7);assert.ok(api.read().history[0].detail.includes('42 → 7'));
+assert.throws(()=>api.adjustStock(p.id,{stock:-1,threshold:10,reason:'Kiểm kê kho'}));
+assert.throws(()=>api.adjustStock(p.id,{stock:1.5,threshold:10,reason:'Kiểm kê kho'}));
+assert.throws(()=>api.adjustStock(p.id,{stock:2,threshold:10,reason:''}));
+api.saveCategory('', 'Danh mục thử nghiệm');const category=api.read().categories.at(-1);api.saveCategory(category.id,'Danh mục đã đổi tên');assert.equal(api.read().categories.at(-1).name,'Danh mục đã đổi tên');
+assert.throws(()=>api.saveCategory('',api.read().categories[0].name));
+api.saveProduct('',{...fields,name:'Sản phẩm mới',stock:3});assert.equal(api.read().products[0].name,'Sản phẩm mới');assert.equal(api.read().products[0].stock,3);
+assert.throws(()=>api.saveReview(initial.reviews[0].id,'Không đúng vai trò'));
+const customer=setup('customers',storage).api;const c=customer.read().customers[0];customer.saveCustomer(c.id,{...c,note:'Cần hỗ trợ vào buổi sáng'});assert.equal(customer.read().customers[0].note,'Cần hỗ trợ vào buổi sáng');
+assert.throws(()=>customer.saveCustomer(c.id,{...c,email:'invalid'}));
+const ticket=customer.read().tickets.find(t=>t.status==='Chưa phản hồi');assert.throws(()=>customer.saveTicket(ticket.id,{reply:'',status:'Đã giải quyết'}));
+customer.saveTicket(ticket.id,{reply:'Góc Desk đã kiểm tra và sẽ hỗ trợ bạn.',status:'Đang xử lý'});let updated=customer.read().tickets.find(t=>t.id===ticket.id);assert.equal(updated.messages.length,1);assert.ok(updated.response>=0);
+customer.saveTicket(ticket.id,{reply:'Yêu cầu đã được xử lý xong.',status:'Đã giải quyết'});updated=customer.read().tickets.find(t=>t.id===ticket.id);assert.equal(updated.status,'Đã giải quyết');assert.equal(updated.messages.length,2);
+assert.throws(()=>customer.saveTicket(ticket.id,{reply:'',status:'Chưa phản hồi'}));
+const review=customer.read().reviews[0];assert.throws(()=>customer.saveReview(review.id,''));customer.saveReview(review.id,'Cảm ơn bạn đã chia sẻ trải nghiệm.');assert.equal(customer.read().reviews[0].status,'Đã phản hồi');
+assert.throws(()=>customer.adjustStock(p.id,{stock:1,threshold:1,reason:'Sai vai trò'}));
+const failed=setup('products',new Map(),true).api;const before=failed.read();assert.throws(()=>failed.setVisibility(before.products[0].id));assert.deepEqual(failed.read(),before,'Storage failure must not mutate in-memory data');
+const expired=setup();expired.context.sessionStorage.getItem=()=>JSON.stringify({role:'products',expires:0});assert.throws(()=>expired.api.setVisibility(p.id));
+console.log('Passed: product CRUD, visibility, categories, inventory/history, customer profiles, support/review replies, persistence, unchanged order prices, validation, role isolation and failed-storage rollback.');
