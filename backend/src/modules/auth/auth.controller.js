@@ -1,4 +1,6 @@
 const authService = require('./auth.service').createService();
+const staffService = require('../admin/staff.service').createService();
+const passwordService = require('./password.service').createPasswordService();
 const { COOKIE_NAME } = require('../../middlewares/auth-session');
 const { clearSessionCookie, parseSessionCookie, sessionCookieOptions } = require('./auth.security');
 
@@ -10,6 +12,17 @@ async function register(req, res, next) {
   try {
     const data = await authService.register(req.validated.body);
     return res.status(201).json({ success: true, message: 'Đăng ký thành công. Vui lòng xác minh email.', data });
+  } catch (error) { return next(error); }
+}
+
+async function acceptInvitation(req, res, next) {
+  try {
+    const user = await staffService.acceptInvitation(req.validated.body);
+    return res.json({
+      success: true,
+      message: 'Đã xác nhận lời mời. Bạn có thể đăng nhập bằng mật khẩu vừa tạo.',
+      data: { user },
+    });
   } catch (error) { return next(error); }
 }
 
@@ -99,4 +112,27 @@ async function logoutAll(req, res, next) {
   } catch (error) { return next(error); }
 }
 
-module.exports = { listSessions, login, logout, logoutAll, logoutOthers, me, register, resendVerification, revokeSession, verifyEmail };
+async function changePassword(req, res, next) {
+  try {
+    const data = await passwordService.changePassword(req.auth.user.id, req.validated.body);
+    clearSessionCookie(res);
+    return res.json({ success: true, message: 'Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại.', data });
+  } catch (error) { return next(error); }
+}
+
+async function forgotPassword(req, res, next) {
+  try {
+    const data = await passwordService.requestReset(req.validated.body.email);
+    return res.status(202).json({ success: true, message: data.message, data: { accepted: true } });
+  } catch (error) { return next(error); }
+}
+
+async function resetPassword(req, res, next) {
+  try {
+    const data = await passwordService.resetPassword(req.validated.body);
+    clearSessionCookie(res);
+    return res.json({ success: true, message: 'Mật khẩu đã được đặt lại. Vui lòng đăng nhập.', data: { user: data.user } });
+  } catch (error) { return next(error); }
+}
+
+module.exports = { acceptInvitation, changePassword, forgotPassword, listSessions, login, logout, logoutAll, logoutOthers, me, register, resendVerification, resetPassword, revokeSession, verifyEmail };

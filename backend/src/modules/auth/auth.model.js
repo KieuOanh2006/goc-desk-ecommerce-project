@@ -39,6 +39,10 @@ function toSafeUser(row) {
   };
 }
 
+function isMemberRegistrationToken(token) {
+  return token?.purpose === 'member_registration';
+}
+
 async function acquireRegistrationLocks(connection, names) {
   const lockNames = [...new Set(names)]
     .map((name) => `authreg:${createHash('sha256').update(name).digest('hex').slice(0, 56)}`)
@@ -186,7 +190,7 @@ async function consumeVerificationToken({ tokenHash, session }) {
          AND expires_at > CURRENT_TIMESTAMP LIMIT 1 FOR UPDATE`, [tokenHash],
     );
     const token = tokenRows[0];
-    if (!token) return null;
+    if (!isMemberRegistrationToken(token)) return null;
 
     const [userRows] = await connection.execute(
       `SELECT id, full_name, email, phone, role, account_status, email_verified_at
@@ -194,8 +198,7 @@ async function consumeVerificationToken({ tokenHash, session }) {
     );
     const user = userRows[0];
     if (!user || user.account_status !== 'pending' || user.email_verified_at !== null) return null;
-    if (token.purpose === 'member_registration' && user.role !== 'member') return null;
-    if (token.purpose === 'staff_invitation' && user.role === 'member') return null;
+    if (user.role !== 'member') return null;
 
     await connection.execute(
       `UPDATE email_verification_tokens SET consumed_at = CURRENT_TIMESTAMP
@@ -243,13 +246,21 @@ async function getActiveSession(tokenHash) {
     await connection.execute(
       `UPDATE auth_sessions AS s
        INNER JOIN users AS u ON u.id = s.user_id
-       SET s.last_activity_at = CURRENT_TIMESTAMP,
-           s.idle_expires_at = LEAST(DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? SECOND), s.absolute_expires_at)
+       SET s.absolute_expires_at = LEAST(
+             s.absolute_expires_at,
+             DATE_ADD(s.created_at, INTERVAL ? SECOND)
+           ),
+           s.last_activity_at = CURRENT_TIMESTAMP,
+           s.idle_expires_at = LEAST(
+             DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? SECOND),
+             s.absolute_expires_at,
+             DATE_ADD(s.created_at, INTERVAL ? SECOND)
+           )
        WHERE s.id = ? AND s.revoked_at IS NULL
          AND s.idle_expires_at > CURRENT_TIMESTAMP AND s.absolute_expires_at > CURRENT_TIMESTAMP
          AND u.account_status = 'active' AND u.email_verified_at IS NOT NULL
          AND u.role IN ('member', 'admin', 'product_content_staff', 'order_support_staff')`,
-      [policy.idleSeconds, session.id],
+      [policy.absoluteSeconds, policy.idleSeconds, policy.absoluteSeconds, session.id],
     );
     const [expiryRows] = await connection.execute(
       `SELECT GREATEST(0, TIMESTAMPDIFF(SECOND, CURRENT_TIMESTAMP, idle_expires_at)) AS idle_remaining_seconds,
@@ -332,9 +343,111 @@ async function revokeSessionByHash(tokenHash, reason) {
   });
 }
 
+async function getPasswordCredentialByUserId(userId) {
+  return withConnection(async (connection) => {
+    const [rows] = await connection.execute(
+      `SELECT id, password_hash, role, account_status, email_verified_at
+       FROM users WHERE id = ? AND role IN ('member', 'admin', 'product_content_staff', 'order_support_staff') LIMIT 1`, [userId],
+    );
+    return rows[0] || null;
+  });
+}
+
+async function updatePasswordAndRevokeSessions({ userId, passwordHash }) {
+  return withTransaction(async (connection) => {
+    const [users] = await connection.execute(
+      `SELECT id FROM users WHERE id = ? AND account_status = 'active'
+         AND email_verified_at IS NOT NULL LIMIT 1 FOR UPDATE`, [userId],
+    );
+    if (!users[0]) return false;
+    await connection.execute('UPDATE users SET password_hash = ? WHERE id = ?', [passwordHash, userId]);
+    await connection.execute(
+      `UPDATE password_reset_tokens SET consumed_at = CURRENT_TIMESTAMP
+       WHERE user_id = ? AND consumed_at IS NULL`, [userId],
+    );
+    await connection.execute(
+      `UPDATE auth_sessions SET revoked_at = CURRENT_TIMESTAMP, revoked_reason = 'password_changed'
+       WHERE user_id = ? AND revoked_at IS NULL`, [userId],
+    );
+    return true;
+  });
+}
+
+async function createPasswordResetToken({ userId, tokenHash, maxTokensPerHour, lifetimeMinutes }) {
+  return withTransaction(async (connection) => {
+    const [users] = await connection.execute(
+      `SELECT id FROM users WHERE id = ? AND account_status = 'active'
+         AND email_verified_at IS NOT NULL LIMIT 1 FOR UPDATE`, [userId],
+    );
+    if (!users[0]) return false;
+    const [counts] = await connection.execute(
+      `SELECT COUNT(*) AS token_count FROM password_reset_tokens
+       WHERE user_id = ? AND created_at >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR)`, [userId],
+    );
+    if (Number(counts[0]?.token_count || 0) >= maxTokensPerHour) return false;
+    await connection.execute(
+      `UPDATE password_reset_tokens SET consumed_at = CURRENT_TIMESTAMP
+       WHERE user_id = ? AND consumed_at IS NULL`, [userId],
+    );
+    await connection.execute(
+      `INSERT INTO password_reset_tokens (user_id, token_hash, expires_at)
+       VALUES (?, ?, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? MINUTE))`,
+      [userId, tokenHash, lifetimeMinutes],
+    );
+    return true;
+  });
+}
+
+async function revokePasswordResetTokens(userId) {
+  await withConnection((connection) => connection.execute(
+    `UPDATE password_reset_tokens SET consumed_at = CURRENT_TIMESTAMP
+     WHERE user_id = ? AND consumed_at IS NULL`, [userId],
+  ));
+}
+
+async function consumePasswordResetToken({ tokenHash, passwordHash }) {
+  return withTransaction(async (connection) => {
+    const [tokens] = await connection.execute(
+      `SELECT id, user_id FROM password_reset_tokens
+       WHERE token_hash = ? AND consumed_at IS NULL AND expires_at > CURRENT_TIMESTAMP
+       LIMIT 1 FOR UPDATE`, [tokenHash],
+    );
+    const token = tokens[0];
+    if (!token) return null;
+    const [users] = await connection.execute(
+      `SELECT id, full_name, email, phone, role, account_status, email_verified_at
+       FROM users WHERE id = ? AND account_status = 'active' AND email_verified_at IS NOT NULL
+       LIMIT 1 FOR UPDATE`, [token.user_id],
+    );
+    const user = users[0];
+    if (!user || !['member', 'admin', 'product_content_staff', 'order_support_staff'].includes(user.role)) return null;
+    const [consumed] = await connection.execute(
+      `UPDATE password_reset_tokens SET consumed_at = CURRENT_TIMESTAMP
+       WHERE id = ? AND consumed_at IS NULL`, [token.id],
+    );
+    if (consumed.affectedRows !== 1) return null;
+    await connection.execute('UPDATE users SET password_hash = ? WHERE id = ?', [passwordHash, user.id]);
+    await connection.execute(
+      `UPDATE password_reset_tokens SET consumed_at = CURRENT_TIMESTAMP
+       WHERE user_id = ? AND id <> ? AND consumed_at IS NULL`, [user.id, token.id],
+    );
+    await connection.execute(
+      `UPDATE auth_sessions SET revoked_at = CURRENT_TIMESTAMP, revoked_reason = 'password_reset'
+       WHERE user_id = ? AND revoked_at IS NULL`, [user.id],
+    );
+    return toSafeUser(user);
+  });
+}
+
 module.exports = {
   createPendingMember, createResentVerificationToken, createSession,
   consumeVerificationToken, findUserByEmail, findUserByPhone,
   getActiveSession, listActiveSessions, revokeAllSessions, revokeOtherSessions,
   revokeSession, revokeSessionByHash,
+  isMemberRegistrationToken,
+  getPasswordCredentialByUserId,
+  updatePasswordAndRevokeSessions,
+  createPasswordResetToken,
+  revokePasswordResetTokens,
+  consumePasswordResetToken,
 };

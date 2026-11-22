@@ -27,6 +27,24 @@ test('Express health routes remain available and Auth rejects unsafe inputs with
   const meResponse = await fetch(`${baseUrl}/api/auth/me`);
   assert.equal(meResponse.status, 401);
 
+  const guestStaffResponse = await fetch(`${baseUrl}/api/admin/staff`);
+  assert.equal(guestStaffResponse.status, 401);
+  assert.equal((await guestStaffResponse.json()).error.code, 'UNAUTHENTICATED');
+
+  for (const endpoint of ['/api/users/me', '/api/users/me/addresses', '/api/loyalty/me', '/api/loyalty/transactions']) {
+    const response = await fetch(`${baseUrl}${endpoint}`);
+    assert.equal(response.status, 401, `guest access should be rejected for ${endpoint}`);
+    assert.equal((await response.json()).error.code, 'UNAUTHENTICATED');
+  }
+
+  const invalidInvitationResponse = await fetch(`${baseUrl}/api/auth/accept-invitation`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', origin },
+    body: JSON.stringify({ token: 'invalid-token', password: 'password123' }),
+  });
+  assert.equal(invalidInvitationResponse.status, 422);
+  assert.equal((await invalidInvitationResponse.json()).error.code, 'VALIDATION_ERROR');
+
   const csrfResponse = await fetch(`${baseUrl}/api/auth/logout`, {
     method: 'POST',
     headers: { origin: 'https://untrusted.example' },

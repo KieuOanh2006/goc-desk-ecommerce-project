@@ -32,15 +32,26 @@ const verifyEmailSchema = z.object({
 }).strict();
 
 const resendVerificationSchema = z.object({ email: emailSchema }).strict();
+const acceptInvitationSchema = z.object({
+  token: z.string().regex(/^[a-f0-9]{64}$/i),
+  password: passwordSchema,
+}).strict();
 
 const sessionIdSchema = z.object({
   sessionId: z.string().regex(/^[1-9][0-9]{0,19}$/),
 });
+const changePasswordSchema = z.object({ currentPassword: z.string().min(1).max(128), newPassword: passwordSchema }).strict();
+const forgotPasswordSchema = z.object({ email: emailSchema }).strict();
+const resetPasswordSchema = z.object({ token: z.string().regex(/^[a-f0-9]{64}$/i), newPassword: passwordSchema }).strict();
 
 module.exports = {
   loginSchema,
+  acceptInvitationSchema,
   registerSchema,
   resendVerificationSchema,
   sessionIdSchema,
   verifyEmailSchema,
+  changePasswordSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
 };

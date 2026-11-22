@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quản lý nhân viên | GÓC Desk</title><link rel="stylesheet" href="css/admin.css"><link rel="stylesheet" href="css/admin-staff.css"><script src="js/admin-staff.js" defer></script></head>
+<body class="page-admin-dashboard"><main class="staff-main">
+<a class="staff-back" href="admin-customers.html">← Quay lại quản trị</a>
+<section class="staff-card"><p class="admin-eyebrow">GÓC DESK / QUẢN TRỊ</p><h1>Quản lý nhân viên</h1><p id="staff-auth-state" role="status">Đang kiểm tra phiên Admin…</p>
+<form id="staff-login" hidden><label>Email hoặc số điện thoại<input name="identity" autocomplete="username" required></label><label>Mật khẩu<input name="password" type="password" autocomplete="current-password" required></label><button class="ops-button" type="submit">Đăng nhập Admin</button></form>
+<div id="staff-app" hidden><form id="staff-create" class="staff-grid"><label>Họ tên<input name="fullName" maxlength="120" required></label><label>Email<input name="email" type="email" required></label><label>Vai trò<select name="role"><option value="product_content_staff">Product Content Staff</option><option value="order_support_staff">Order Support Staff</option></select></label><button class="ops-button" type="submit">Tạo và gửi lời mời</button></form><p id="staff-feedback" role="status" aria-live="polite"></p><div class="staff-table-wrap"><table><thead><tr><th>Nhân viên</th><th>Email</th><th>Quyền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody id="staff-rows"></tbody></table></div></div>
+</section></main></body></html>

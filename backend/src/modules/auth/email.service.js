@@ -110,4 +110,47 @@ async function sendVerificationEmail({ email, fullName, token }) {
   }
 }
 
-module.exports = { assertConfigured, createTransport, getMailConfiguration, getSmtpConfiguration, sendVerificationEmail };
+async function sendStaffInvitationEmail({ email, fullName, token }) {
+  const config = getMailConfiguration();
+  const invitationUrl = new URL(config.verificationUrl);
+  invitationUrl.searchParams.set('invitation', token);
+  const transport = createTransport(config);
+
+  try {
+    await transport.sendMail({
+      from: config.from,
+      to: email,
+      subject: 'Lời mời tham gia đội ngũ GÓC Desk',
+      text: `Xin chào ${fullName},\n\nBạn được mời tham gia đội ngũ GÓC Desk. Mở liên kết sau trong vòng 24 giờ để xác nhận lời mời và đặt mật khẩu ban đầu:\n${invitationUrl.toString()}\n\nNếu bạn không mong đợi lời mời này, hãy bỏ qua email.`,
+    });
+  } finally {
+    transport.close();
+  }
+}
+
+async function sendPasswordResetEmail({ email, fullName, token }) {
+  const config = getMailConfiguration();
+  const resetUrl = new URL(config.verificationUrl);
+  resetUrl.searchParams.set('resetPassword', token);
+  const transport = createTransport(config);
+  try {
+    await transport.sendMail({
+      from: config.from,
+      to: email,
+      subject: '[GÓC Desk] Đặt lại mật khẩu',
+      text: `Xin chào ${fullName},\n\nMở liên kết sau trong vòng 60 phút để đặt lại mật khẩu GÓC Desk:\n${resetUrl.toString()}\n\nNếu bạn không yêu cầu đặt lại mật khẩu, hãy bỏ qua email này.`,
+    });
+  } finally {
+    transport.close();
+  }
+}
+
+module.exports = {
+  assertConfigured,
+  createTransport,
+  getMailConfiguration,
+  getSmtpConfiguration,
+  sendStaffInvitationEmail,
+  sendPasswordResetEmail,
+  sendVerificationEmail,
+};

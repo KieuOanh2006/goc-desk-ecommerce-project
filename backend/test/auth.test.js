@@ -13,6 +13,7 @@ const { createService, normalizeLoginIdentity } = require('../src/modules/auth/a
 const emailService = require('../src/modules/auth/email.service');
 const { loginSchema, registerSchema } = require('../src/modules/auth/auth.schemas');
 const { normalizeVietnamMobilePhone } = require('../src/modules/auth/phone');
+const { isMemberRegistrationToken } = require('../src/modules/auth/auth.model');
 
 const activeMember = {
   id: 42,
@@ -89,6 +90,12 @@ test('registration validation rejects a Client supplied role', () => {
     name: 'Member Test', email: 'member@example.test', phone: '+84901234567', password: 'password123', role: 'admin',
   });
   assert.equal(result.success, false);
+});
+
+test('public email verification cannot consume a staff invitation token', () => {
+  assert.equal(isMemberRegistrationToken({ purpose: 'member_registration' }), true);
+  assert.equal(isMemberRegistrationToken({ purpose: 'staff_invitation' }), false);
+  assert.equal(isMemberRegistrationToken(null), false);
 });
 
 test('SMTP configuration is required and missing configuration is never treated as delivered email', () => {

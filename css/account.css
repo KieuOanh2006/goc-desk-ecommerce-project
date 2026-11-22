@@ -10,6 +10,7 @@
 
 /* LOGIN / REGISTER */
 .account-auth-layout { display: grid; grid-template-columns: minmax(0, 760px); justify-content: center; margin-top: 24px; }
+.account-auth-layout[hidden] { display: none !important; }
 .account-auth-card { width: 100%; min-width: 0; padding: clamp(25px, 4vw, 48px); border: 1px solid var(--gd-border); border-radius: 16px; background: #fff; box-shadow: 0 14px 40px #4e3b2e0c; }
 .account-eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 13px; color: #98734f; font-size: 9px; font-weight: 800; letter-spacing: 1.8px; line-height: 1.5; }
 .auth-card-heading h2 {
@@ -32,6 +33,7 @@
 .account-tab:is(:hover, .is-active) { color: var(--gd-brown); background: #fff; box-shadow: 0 2px 8px #4e3b2e12; }
 .account-tab.is-active { border-color: #e9dfd3; }
 .auth-panel[hidden], .account-dashboard[hidden], .account-view[hidden] { display: none !important; }
+.account-session-status[hidden], .account-retry-session[hidden], .resend-verification-form[hidden] { display: none !important; }
 
 /* FORMS */
 .account-form { display: grid; gap: 9px; }
@@ -53,10 +55,15 @@
 .account-submit { display: flex; width: 100%; min-height: 48px; align-items: center; justify-content: space-between; gap: 14px; margin-top: 4px; padding: 12px 17px; border: 1px solid var(--gd-brown); border-radius: 8px; color: #fff; background: var(--gd-brown); font-size: 12px; font-weight: 700; transition: .18s; }
 .account-submit span { font-size: 17px; font-weight: 400; }
 .account-submit:hover { transform: translateY(-2px); background: #382a21; box-shadow: 0 8px 18px #4e3b2e1d; }
+.account-submit:disabled { cursor: wait; opacity: .72; transform: none; box-shadow: none; }
+.account-form input[readonly], .account-form textarea[readonly] { color: #766b61; background: #f5f2ee; cursor: default; }
 .form-status { min-height: 18px; margin: 1px 0 0; color: #7a6f64; font-size: 10px; line-height: 1.6; }
 .form-status.is-error { color: #a54f42; }
 .form-status.is-success { color: #54724f; }
 .auth-switch-note { margin: 17px 0 0; color: #82776c; font-size: 10px; text-align: center; }
+.account-session-status { margin: 12px 0 0; padding: 10px 12px; border-radius: 7px; background: #faf7f1; }
+.account-retry-session { margin-top: 6px; }
+.resend-verification-form { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gd-border); }
 .auth-switch-note .account-text-button { font-size: 10px; }
 .auth-preview-link { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; margin-top: 23px; padding-top: 18px; border-top: 1px solid #eee8e1; color: #92877b; font-size: 10px; }
 .auth-preview-link button { padding: 0; border: 0; color: #826247; background: transparent; font-size: 10px; font-weight: 700; cursor: pointer; }
