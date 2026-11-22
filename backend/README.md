@@ -47,6 +47,49 @@ xây dựng hoặc tích hợp endpoint mới.
 - Sử dụng truy vấn có tham số khi làm việc với MySQL.
 - Các thao tác quan trọng như tạo đơn hàng, thanh toán, sử dụng voucher và cộng/trừ điểm cần đảm bảo tính nhất quán dữ liệu.
 
+### Auth Core
+
+Auth API dùng các bảng `users`, `auth_sessions` và `email_verification_tokens` đã có trong
+`database/schema.sql`; không tự chạy lại schema hoặc migration trên database đang có dữ liệu.
+
+Các endpoint hiện có trong module Auth:
+
+| Method | Endpoint | Mục đích |
+|---|---|---|
+| POST | `/api/auth/register` | Đăng ký Member đang chờ xác minh email |
+| POST | `/api/auth/verify-email` | Xác minh token một lần và đăng nhập Member |
+| POST | `/api/auth/verify-email/resend` | Gửi lại email xác minh với response chống dò email |
+| POST | `/api/auth/login` | Đăng nhập bằng email hoặc số di động Việt Nam; tạo session theo thiết bị |
+| POST | `/api/auth/logout` | Thu hồi session hiện tại |
+| GET | `/api/auth/me` | Lấy thông tin an toàn của tài khoản hiện tại |
+| GET | `/api/auth/sessions` | Liệt kê session đang hoạt động của chính tài khoản |
+| DELETE | `/api/auth/sessions/:sessionId` | Thu hồi một session thuộc chính tài khoản |
+| POST | `/api/auth/sessions/logout-others` | Thu hồi các session khác |
+| POST | `/api/auth/sessions/logout-all` | Thu hồi mọi session |
+
+Session ID ngẫu nhiên nằm trong cookie HttpOnly; Database chỉ lưu SHA-256 hash.
+Mọi request có cookie xác thực phải kiểm tra lại role và trạng thái tài khoản từ Database.
+`CLIENT_ORIGIN` hỗ trợ danh sách origin phân cách bằng dấu phẩy; yêu cầu thay đổi dữ liệu
+Auth phải có Origin/Referer khớp danh sách này để chống CSRF.
+Client trình duyệt cần gửi cookie bằng `credentials: 'include'`. Gửi lại xác minh bị giới
+hạn tối đa 5 yêu cầu mỗi IP mỗi giờ trong một tiến trình và tối đa 3 token mỗi user mỗi giờ
+(có thể gồm token đăng ký mới tạo trong cùng giờ).
+
+Số điện thoại di động Việt Nam được chuẩn hóa và lưu theo E.164 (`+84` và 9 chữ số thuê bao).
+Đăng nhập và kiểm tra trùng sử dụng cùng quy tắc chuẩn hóa.
+
+Email xác minh cần cấu hình `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`,
+`SMTP_PASSWORD` và `MAIL_FROM`. Với Gmail, dùng App Password 16 ký tự; service loại bỏ
+khoảng trắng phân nhóm trước khi xác thực. `EMAIL_VERIFICATION_URL` là tùy chọn; mặc định
+link dùng `CLIENT_ORIGIN/account.html`. Không điền thông tin thật vào `.env.example`; đặt
+cấu hình thật trong `.env` local.
+Khi SMTP chưa cấu hình hoặc gửi lỗi, API trả lỗi dịch vụ an toàn, không trả token.
+Email URL chỉ đưa token một lần; Frontend cần tích hợp gọi `/api/auth/verify-email` sau
+khi người dùng mở URL.
+
+Chạy kiểm thử Backend bằng `npm test` trong thư mục `backend`.
+Kiểm tra kết nối Gmail và gửi email thử đến tài khoản `SMTP_USER` bằng `npm run email:test`.
+
 ### Các quy tắc nghiệp vụ cần tuân thủ
 
 1. Guest lưu giỏ hàng và thiết kế 3D bằng `localStorage`; Member lưu dữ liệu tương ứng trong MySQL.
@@ -157,7 +200,7 @@ Cả 4 thành viên phối hợp:
 
 ## 7. Các lưu ý cần thống nhất trước khi triển khai
 
-1. Bảng `users.role` hiện có giới hạn `VARCHAR(20)`, cần điều chỉnh độ dài và cập nhật các vai trò nhân viên trước khi hoàn thiện phân quyền.
+1. `users.role` trong schema hiện dùng `VARCHAR(30)` với các role `member`, `admin`, `product_content_staff` và `order_support_staff`; Backend phải kiểm tra quyền theo role ở máy chủ.
 2. `product_views` hiện chỉ lưu lịch sử xem của Member; chưa hỗ trợ lưu lịch sử xem Guest trong MySQL.
 3. `setup_furniture` hiện chưa hỗ trợ nhiều bản sao của cùng một món nội thất trong một thiết kế.
 4. Góc chat trực tiếp với nhân viên CSKH là yêu cầu bổ sung. Schema hiện tại chưa có bảng hội thoại và tin nhắn; cần thống nhất cách lưu trữ và triển khai trước khi làm chức năng này.

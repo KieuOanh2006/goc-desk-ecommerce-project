@@ -40,6 +40,7 @@
 
     // Các khu vực nội dung trong Dashboard.
     const dashboardPanels = document.querySelectorAll('[data-account-panel]');
+    let memberAuthenticated = false;
 
 
     // ======================================================
@@ -54,6 +55,63 @@
 
         element.classList.toggle('is-error', type === 'error');
         element.classList.toggle('is-success', type === 'success');
+    }
+
+    function getAuthEndpoint(endpoint) {
+        const apiBase = window.GOCDESK_API_BASE_URL
+            || `${window.location.protocol}//${window.location.hostname}:3000`;
+        return new URL(`/api/auth/${endpoint}`, apiBase);
+    }
+
+    function parseVietnamPhoneInput(value) {
+        const compact = value.trim().replace(/[\s().-]/g, '');
+        let nationalNumber;
+
+        if (/^0[0-9]*$/.test(compact)) nationalNumber = compact.slice(1);
+        else if (/^\+?84[0-9]*$/.test(compact)) nationalNumber = compact.replace(/^\+?84/, '');
+        else if (/^[0-9]*$/.test(compact)) nationalNumber = compact;
+        else return { error: 'Số điện thoại chỉ được chứa chữ số và mã +84 hợp lệ.' };
+
+        if (nationalNumber.length < 9) return { error: 'Vui lòng nhập đủ 9 chữ số.' };
+        if (nationalNumber.length > 9) return { error: 'Số điện thoại chỉ được gồm 9 chữ số sau mã +84.' };
+        if (!/^[35789][0-9]{8}$/.test(nationalNumber)) {
+            return { error: 'Định dạng số di động Việt Nam không hợp lệ.' };
+        }
+
+        return { nationalNumber, phone: `+84${nationalNumber}` };
+    }
+
+    const registerPhoneInput = document.getElementById('register-phone');
+    const registerPhoneError = document.getElementById('register-phone-error');
+
+    function validateRegisterPhone(showError = true) {
+        if (!registerPhoneInput) return null;
+        const parsed = parseVietnamPhoneInput(registerPhoneInput.value);
+        const error = parsed.error || '';
+        registerPhoneInput.setCustomValidity(error);
+        registerPhoneInput.setAttribute('aria-invalid', String(Boolean(error)));
+        registerPhoneInput.closest('.register-phone-control')?.classList.toggle('is-invalid', Boolean(error));
+        if (registerPhoneError) {
+            registerPhoneError.textContent = error;
+            registerPhoneError.hidden = !showError || !error;
+        }
+        return error ? null : parsed;
+    }
+
+    if (registerPhoneInput) {
+        registerPhoneInput.addEventListener('input', () => {
+            const parsed = validateRegisterPhone();
+            if (parsed) registerPhoneInput.value = parsed.nationalNumber;
+        });
+        registerPhoneInput.addEventListener('paste', (event) => {
+            const pasted = event.clipboardData?.getData('text') || '';
+            const parsed = parseVietnamPhoneInput(pasted);
+            event.preventDefault();
+            if (!parsed.error) registerPhoneInput.value = parsed.nationalNumber;
+            else registerPhoneInput.value = pasted.slice(0, registerPhoneInput.maxLength);
+            validateRegisterPhone();
+        });
+        registerPhoneInput.addEventListener('blur', () => validateRegisterPhone());
     }
 
 
@@ -81,7 +139,6 @@
             }
         });
     }
-
 
     // ======================================================
     // 4. CHUYỂN CÁC MỤC TRONG DASHBOARD
@@ -178,7 +235,7 @@
 
     document.getElementById('login-form')?.addEventListener(
         'submit',
-        (event) => {
+        async (event) => {
 
             // Ngăn form tải lại trang.
             event.preventDefault();
@@ -188,11 +245,34 @@
             // Kiểm tra các trường bắt buộc.
             if (!form.reportValidity()) return;
 
-            // Chưa có Backend xác thực.
-            setStatus(
-                document.getElementById('login-status'),
-                'Giao diện chưa kết nối API xác thực. Thông tin đăng nhập chưa được gửi hoặc lưu lại.'
-            );
+            const status = document.getElementById('login-status');
+            const submitButton = form.querySelector('[type="submit"]');
+            const identity = form.elements.identity.value.trim();
+            const passwordInput = form.elements.password;
+            const password = passwordInput.value;
+            const rememberMe = document.getElementById('remember-login').checked;
+            if (submitButton) submitButton.disabled = true;
+            setStatus(status, 'Đang đăng nhập…');
+
+            try {
+                const response = await fetch(getAuthEndpoint('login'), {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identity, password, rememberMe }),
+                });
+                const payload = await readApiPayload(response);
+                if (!response.ok) throw new Error(payload.message || 'Thông tin đăng nhập không hợp lệ.');
+
+                const user = await loadCurrentMember();
+                if (!user) throw new Error('Đăng nhập thành công nhưng trình duyệt chưa nhận được phiên. Hãy kiểm tra kết nối và thử lại.');
+                showMemberDashboard(user, `Xin chào ${user.fullName || 'thành viên'}. Bạn đang đăng nhập.`, true);
+            } catch (error) {
+                setStatus(status, error.message || 'Không thể kết nối máy chủ xác thực. Vui lòng thử lại.', 'error');
+            } finally {
+                passwordInput.value = '';
+                if (submitButton) submitButton.disabled = false;
+            }
         }
     );
 
@@ -203,11 +283,17 @@
 
     document.getElementById('register-form')?.addEventListener(
         'submit',
-        (event) => {
+        async (event) => {
 
             event.preventDefault();
 
             const form = event.currentTarget;
+
+            const phone = validateRegisterPhone();
+            if (!phone) {
+                registerPhoneInput?.reportValidity();
+                return;
+            }
 
             // Kiểm tra dữ liệu bắt buộc.
             if (!form.reportValidity()) return;
@@ -235,13 +321,39 @@
                 return;
             }
 
-            // Chỉ kiểm tra hợp lệ ở Frontend.
-            // Không tạo tài khoản thật.
-            setStatus(
-                document.getElementById('register-status'),
-                'Thông tin đã hợp lệ ở phía trình duyệt. Chưa tạo tài khoản thật vì API đăng ký chưa được kết nối.',
-                'success'
-            );
+            const status = document.getElementById('register-status');
+            const submitButton = form.querySelector('[type="submit"]');
+            if (submitButton) submitButton.disabled = true;
+            setStatus(status, 'Đang gửi yêu cầu đăng ký…');
+
+            try {
+                const response = await fetch(getAuthEndpoint('register'), {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: document.getElementById('register-name').value.trim(),
+                        email: document.getElementById('register-email').value.trim(),
+                        phone: phone.phone,
+                        password,
+                    }),
+                });
+                const payload = await response.json().catch(() => ({}));
+                if (!response.ok) throw new Error(payload.message || 'Chưa thể đăng ký. Vui lòng kiểm tra thông tin và thử lại.');
+                setStatus(status, payload.message || 'Đăng ký thành công. Vui lòng kiểm tra email để xác minh tài khoản.', 'success');
+                form.reset();
+                registerPhoneInput.setCustomValidity('');
+                registerPhoneInput.removeAttribute('aria-invalid');
+                registerPhoneInput.closest('.register-phone-control')?.classList.remove('is-invalid');
+                if (registerPhoneError) {
+                    registerPhoneError.textContent = '';
+                    registerPhoneError.hidden = true;
+                }
+            } catch (error) {
+                setStatus(status, error.message || 'Không thể kết nối dịch vụ đăng ký. Vui lòng thử lại sau.', 'error');
+            } finally {
+                if (submitButton) submitButton.disabled = false;
+            }
         }
     );
 
@@ -279,6 +391,11 @@
 
         // Hiển thị Dashboard.
         dashboard.hidden = false;
+        memberAuthenticated = false;
+        const previewLabel = dashboard.querySelector('.preview-label');
+        if (previewLabel) previewLabel.hidden = false;
+        const exitButton = document.getElementById('exit-preview');
+        if (exitButton) exitButton.textContent = '← Thoát bản xem trước';
 
         // Mặc định mở mục Thông tin cá nhân.
         showDashboardView('profile');
@@ -288,6 +405,99 @@
             behavior: 'smooth',
             block: 'start'
         });
+    }
+
+    async function readApiPayload(response) {
+        return response.json().catch(() => ({}));
+    }
+
+    async function loadCurrentMember() {
+        const response = await fetch(getAuthEndpoint('me'), { credentials: 'include' });
+        const payload = await readApiPayload(response);
+        if (response.status === 401) return null;
+        if (!response.ok) throw new Error(payload.message || 'Không thể kiểm tra phiên đăng nhập.');
+        return payload.data?.user || null;
+    }
+
+    function showMemberDashboard(user, message, scrollIntoView = false) {
+        if (!user) return;
+        memberAuthenticated = true;
+        authLayout.hidden = true;
+        dashboard.hidden = false;
+        showDashboardView('profile');
+
+        const fullName = user.fullName || user.full_name || 'Thành viên Góc Desk';
+        const userCard = dashboard.querySelector('.dashboard-user-card');
+        if (userCard) {
+            const name = userCard.querySelector('strong');
+            const state = userCard.querySelector('span:not(.dashboard-avatar)');
+            if (name) name.textContent = fullName;
+            if (state) state.textContent = user.accountStatus === 'active' ? 'Đã đăng nhập · Đã xác minh' : 'Đã đăng nhập';
+        }
+
+        const profileValues = {
+            'profile-name': fullName,
+            'profile-email': user.email || '',
+            'profile-phone': user.phone || '',
+        };
+        for (const [id, value] of Object.entries(profileValues)) {
+            const input = document.getElementById(id);
+            if (input) input.value = value;
+        }
+
+        const previewLabel = dashboard.querySelector('.preview-label');
+        if (previewLabel) previewLabel.hidden = true;
+        const exitButton = document.getElementById('exit-preview');
+        if (exitButton) exitButton.textContent = 'Đăng xuất';
+        setStatus(document.getElementById('profile-status'), message || `Xin chào ${fullName}. Bạn đang đăng nhập.`, 'success');
+        if (scrollIntoView) dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function verifyEmailFromLink() {
+        const pageUrl = new URL(window.location.href);
+        const token = pageUrl.searchParams.get('token');
+        if (!token) return false;
+
+        showAuthPanel('login');
+        const status = document.getElementById('login-status');
+        setStatus(status, 'Đang xác minh email…');
+
+        try {
+            const response = await fetch(getAuthEndpoint('verify-email'), {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token }),
+            });
+            if (response.ok || response.status < 500) {
+                pageUrl.searchParams.delete('token');
+                window.history.replaceState(null, '', `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`);
+            }
+
+            const payload = await readApiPayload(response);
+            if (!response.ok) throw new Error(payload.message || 'Liên kết xác minh không hợp lệ hoặc đã hết hạn.');
+
+            const user = await loadCurrentMember();
+            if (!user) throw new Error('Email đã được xác minh, nhưng chưa thể khôi phục phiên đăng nhập. Hãy đăng nhập lại.');
+            showMemberDashboard(user, 'Email đã xác minh. Tài khoản đã kích hoạt và bạn đang đăng nhập.', true);
+        } catch (error) {
+            setStatus(status, error.message || 'Không thể kết nối máy chủ để xác minh email. Hãy thử lại khi kết nối ổn định.', 'error');
+        }
+        return true;
+    }
+
+    async function initializeMemberSession() {
+        if (new URL(window.location.href).searchParams.has('token')) {
+            await verifyEmailFromLink();
+            return;
+        }
+
+        try {
+            const user = await loadCurrentMember();
+            if (user) showMemberDashboard(user, `Xin chào ${user.fullName || 'thành viên'}. Phiên đăng nhập đã được khôi phục.`);
+        } catch (error) {
+            setStatus(document.getElementById('login-status'), error.message || 'Không thể kiểm tra phiên đăng nhập.', 'error');
+        }
     }
 
 
@@ -320,7 +530,33 @@
 
     document.getElementById('exit-preview')?.addEventListener(
         'click',
-        () => {
+        async () => {
+
+            if (memberAuthenticated) {
+                const button = document.getElementById('exit-preview');
+                if (button) button.disabled = true;
+                try {
+                    const response = await fetch(getAuthEndpoint('logout'), {
+                        method: 'POST',
+                        credentials: 'include',
+                    });
+                    const payload = await readApiPayload(response);
+                    if (!response.ok) throw new Error(payload.message || 'Không thể đăng xuất. Vui lòng thử lại.');
+                    if (await loadCurrentMember()) throw new Error('Phiên vẫn còn hiệu lực. Vui lòng thử đăng xuất lại.');
+
+                    memberAuthenticated = false;
+                    dashboard.hidden = true;
+                    authLayout.hidden = false;
+                    showAuthPanel('login');
+                    setStatus(document.getElementById('login-status'), payload.message || 'Đăng xuất thành công.', 'success');
+                    authLayout.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } catch (error) {
+                    setStatus(document.getElementById('profile-status'), error.message || 'Không thể kết nối máy chủ để đăng xuất.', 'error');
+                } finally {
+                    if (button) button.disabled = false;
+                }
+                return;
+            }
 
             // Ẩn Dashboard.
             dashboard.hidden = true;
@@ -352,7 +588,9 @@
 
             setStatus(
                 document.getElementById('profile-status'),
-                'Đây là bản xem trước; thông tin chưa được lưu vào tài khoản.'
+                memberAuthenticated
+                    ? 'Chức năng cập nhật hồ sơ chưa được kết nối API.'
+                    : 'Đây là bản xem trước; thông tin chưa được lưu vào tài khoản.'
             );
         }
     );
@@ -377,4 +615,5 @@
 
 
     if (window.location.hash === '#admin') showAuthPanel('admin');
+    initializeMemberSession();
 })();

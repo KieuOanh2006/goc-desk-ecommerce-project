@@ -257,14 +257,21 @@
                                         Số điện thoại
                                     </label>
 
-                                    <input
-                                        id="register-phone"
-                                        name="phone"
-                                        type="tel"
-                                        autocomplete="tel"
-                                        inputmode="tel"
-                                        placeholder="Nhập số điện thoại"
-                                        required>
+                                    <div class="register-phone-control">
+                                        <span class="register-phone-prefix" aria-hidden="true">+84</span>
+                                        <input
+                                            id="register-phone"
+                                            name="phone"
+                                            type="tel"
+                                            autocomplete="tel-national"
+                                            inputmode="numeric"
+                                            maxlength="12"
+                                            aria-describedby="register-phone-hint register-phone-error"
+                                            placeholder="Nhập 9 chữ số, không nhập số 0 đầu tiên"
+                                            required>
+                                    </div>
+                                    <small class="register-phone-hint" id="register-phone-hint">Nhập 9 chữ số, không nhập số 0 đầu tiên</small>
+                                    <small class="register-phone-error" id="register-phone-error" role="alert" hidden></small>
                                 </div>
 
                             </div>
