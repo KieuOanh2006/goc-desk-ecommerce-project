@@ -2,12 +2,13 @@
 
 const express = require('express');
 const cors = require('cors');
+const { corsOrigin } = require('./config/cors');
 const routes = require('./routes');
 const { errorHandler, notFoundHandler } = require('./middlewares/error-handler');
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
+app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json());
 app.use('/api', routes);
 app.use(notFoundHandler);

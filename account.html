@@ -68,6 +68,9 @@
 
                     </div>
 
+                    <p class="form-status account-session-status" id="session-status" role="status" aria-live="polite" hidden></p>
+                    <button type="button" class="account-text-button account-retry-session" id="retry-session-check" hidden>Thử kiểm tra phiên lại</button>
+
                     <!-- TAB ĐĂNG NHẬP / ĐĂNG KÝ -->
                     <div class="account-tabs"
                          role="tablist"
@@ -175,7 +178,7 @@
                             </label>
 
                             <button class="account-submit" type="submit">
-                                Đăng nhập
+                                <span class="account-submit-label">Đăng nhập</span>
                                 <span aria-hidden="true">↗</span>
                             </button>
 
@@ -205,8 +208,10 @@
                     <div class="auth-panel" id="admin-panel" data-auth-panel="admin" hidden>
                         <div class="admin-login-intro"><h3>Đăng nhập dành cho admin</h3><p>Nhập mật khẩu được cấp để vào khu vực quản trị của bạn.</p></div>
                         <form class="account-form" id="admin-login-form" novalidate>
+                            <label for="admin-identity">Email Admin</label>
+                            <input id="admin-identity" name="identity" type="email" autocomplete="username" placeholder="admin@example.com" required>
                             <label for="admin-password">Mật khẩu admin</label>
-                            <div class="password-field"><input id="admin-password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu admin" required aria-describedby="admin-login-status"><button class="password-toggle" type="button" data-toggle-password="admin-password" aria-label="Hiện mật khẩu" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                            <div class="password-field"><input id="admin-password" name="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu admin" required aria-describedby="admin-login-status"><button class="password-toggle" type="button" data-toggle-password="admin-password" aria-label="Hiện mật khẩu" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
                             <button type="submit" class="account-submit">Đăng nhập admin <span aria-hidden="true">↗</span></button>
                             <p id="admin-login-status" class="form-status" role="status" aria-live="polite"></p>
                         </form>
@@ -257,14 +262,21 @@
                                         Số điện thoại
                                     </label>
 
-                                    <input
-                                        id="register-phone"
-                                        name="phone"
-                                        type="tel"
-                                        autocomplete="tel"
-                                        inputmode="tel"
-                                        placeholder="Nhập số điện thoại"
-                                        required>
+                                    <div class="register-phone-control">
+                                        <span class="register-phone-prefix" aria-hidden="true">+84</span>
+                                        <input
+                                            id="register-phone"
+                                            name="phone"
+                                            type="tel"
+                                            autocomplete="tel-national"
+                                            inputmode="numeric"
+                                            maxlength="12"
+                                            aria-describedby="register-phone-hint register-phone-error"
+                                            placeholder="Nhập 9 chữ số, không nhập số 0 đầu tiên"
+                                            required>
+                                    </div>
+                                    <small class="register-phone-hint" id="register-phone-hint">Nhập 9 chữ số, không nhập số 0 đầu tiên</small>
+                                    <small class="register-phone-error" id="register-phone-error" role="alert" hidden></small>
                                 </div>
 
                             </div>
@@ -315,7 +327,7 @@
                                 required>
 
                             <button class="account-submit" type="submit">
-                                Tạo tài khoản
+                                <span class="account-submit-label">Tạo tài khoản</span>
                                 <span aria-hidden="true">↗</span>
                             </button>
 
@@ -326,6 +338,16 @@
                                 aria-live="polite">
                             </p>
 
+                        </form>
+
+                        <form class="account-form resend-verification-form" id="resend-verification-form" novalidate hidden>
+                            <label for="resend-verification-email">Gửi lại email xác minh</label>
+                            <input id="resend-verification-email" name="email" type="email" autocomplete="email" placeholder="Email đã đăng ký" required>
+                            <button class="account-submit" type="submit">
+                                <span class="account-submit-label">Gửi lại email</span>
+                                <span aria-hidden="true">↗</span>
+                            </button>
+                            <p class="form-status" id="resend-verification-status" role="status" aria-live="polite"></p>
                         </form>
 
                         <p class="auth-switch-note">
@@ -355,9 +377,8 @@
                               novalidate>
 
                             <p class="forgot-intro">
-                                Nhập email đã đăng ký. Khi hệ thống tài khoản
-                                được kết nối, hướng dẫn khôi phục sẽ được gửi
-                                đến bạn.
+                                Nhập email đã đăng ký. Nếu tài khoản hợp lệ,
+                                hướng dẫn đặt lại mật khẩu sẽ được gửi đến bạn.
                             </p>
 
                             <label for="forgot-email">
@@ -397,22 +418,6 @@
 
                     </div>
 
-                    <!-- XEM TRƯỚC DASHBOARD -->
-                    <div class="auth-preview-link">
-
-                        <span>
-                            Muốn xem bố cục sau khi đăng nhập?
-                        </span>
-
-                        <button
-                            type="button"
-                            id="preview-dashboard">
-                            Xem giao diện mẫu
-                            <span aria-hidden="true">↗</span>
-                        </button>
-
-                    </div>
-
                 </div>
 
             </section>
@@ -430,11 +435,6 @@
                         <p class="account-eyebrow">KHÔNG GIAN THÀNH VIÊN</p>
                         <h2 id="dashboard-title">Tài khoản của bạn</h2>
                         <p>Quản lý thông tin và những mảnh ghép cho góc làm việc.</p>
-                    </div>
-
-                    <div class="preview-label">
-                        <span></span>
-                        BẢN XEM TRƯỚC GIAO DIỆN
                     </div>
 
                 </div>
@@ -507,8 +507,8 @@
                         <button
                             type="button"
                             class="dashboard-logout"
-                            id="exit-preview">
-                            ← Thoát bản xem trước
+                            id="logout-member">
+                            Đăng xuất
                         </button>
 
                     </aside>
@@ -540,17 +540,17 @@
 
                                     <div>
                                         <label for="profile-name">Họ và tên</label>
-                                        <input id="profile-name" name="name" placeholder="Nhập họ tên">
+                                    <input id="profile-name" name="name" placeholder="Nhập họ tên" required maxlength="120">
                                     </div>
 
                                     <div>
                                         <label for="profile-email">Email</label>
-                                        <input id="profile-email" name="email" type="email" placeholder="example@email.com">
+                                    <input id="profile-email" name="email" type="email" placeholder="example@email.com" readonly>
                                     </div>
 
                                     <div>
                                         <label for="profile-phone">Số điện thoại</label>
-                                        <input id="profile-phone" name="phone" type="tel" placeholder="Nhập số điện thoại">
+                                    <input id="profile-phone" name="phone" type="tel" placeholder="+84912345678" required>
                                     </div>
 
                                 </div>
@@ -565,7 +565,8 @@
 
                                     <button
                                         type="submit"
-                                        class="account-submit account-submit-small">
+                                        class="account-submit account-submit-small"
+                                        >
                                         Lưu thay đổi
                                     </button>
 
@@ -576,7 +577,7 @@
                             <div class="dashboard-note">
                                 <span>i</span>
                                 <p>
-                                    Thông tin tài khoản sẽ được cập nhật sau khi bạn đăng nhập.
+                                    Email đăng ký hiện chưa thể thay đổi tại đây.
                                 </p>
                             </div>
 
@@ -600,8 +601,8 @@
 
                             <div class="account-empty-state">
                                 <span class="empty-state-icon">▤</span>
-                                <h4>Chưa có dữ liệu đơn hàng</h4>
-                                <p>Khi tài khoản được kết nối, các đơn hàng của bạn sẽ xuất hiện tại đây.</p>
+                                <h4>Đơn hàng chưa khả dụng</h4>
+                                    <p>API lịch sử đơn hàng của tài khoản chưa khả dụng.</p>
                                 <a href="products.html" class="account-inline-link">
                                     Khám phá sản phẩm <span aria-hidden="true">↗</span>
                                 </a>
@@ -631,12 +632,12 @@
 
                                     <div>
                                         <label for="address-recipient">Người nhận</label>
-                                        <input id="address-recipient" name="recipient" placeholder="Tên người nhận">
+                                        <input id="address-recipient" name="recipient" placeholder="Tên người nhận" required maxlength="120">
                                     </div>
 
                                     <div>
                                         <label for="address-phone">Số điện thoại</label>
-                                        <input id="address-phone" name="phone" type="tel" placeholder="Số điện thoại nhận hàng">
+                                        <input id="address-phone" name="phone" type="tel" placeholder="+84912345678" required>
                                     </div>
 
                                     <div class="form-field-full">
@@ -645,8 +646,14 @@
                                             id="address-detail"
                                             name="address"
                                             rows="3"
-                                            placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+                                            placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"
+                                            required maxlength="300"></textarea>
                                     </div>
+
+                                    <div><label for="address-ward">Phường / xã</label><input id="address-ward" name="ward" maxlength="100"></div>
+                                    <div><label for="address-district">Quận / huyện</label><input id="address-district" name="district" required maxlength="100"></div>
+                                    <div><label for="address-province">Tỉnh / thành phố</label><input id="address-province" name="province" required maxlength="100"></div>
+                                    <label class="account-check"><input id="address-default" type="checkbox"><span>Đặt làm địa chỉ mặc định</span></label>
 
                                 </div>
 
@@ -656,18 +663,21 @@
                                        id="address-status"
                                        role="status"
                                        aria-live="polite">
-                                        Thông tin chỉ dùng để xem trước bố cục.
+                                        Quản lý địa chỉ giao hàng.
                                     </p>
 
                                     <button
                                         type="submit"
-                                        class="account-submit account-submit-small">
+                                        class="account-submit account-submit-small"
+                                        >
                                         Lưu địa chỉ
                                     </button>
+                                    <button type="button" id="address-cancel-edit" class="account-text-button" hidden>Hủy sửa</button>
 
                                 </div>
 
                             </form>
+                            <div id="address-list" aria-live="polite"></div>
 
                         </section>
 
@@ -689,8 +699,8 @@
 
                             <div class="account-empty-state">
                                 <span class="empty-state-icon">◷</span>
-                                <h4>Chưa có lịch sử xem</h4>
-                                <p>Lịch sử sản phẩm sẽ được ghi nhận và hiển thị tại đây sau khi tích hợp.</p>
+                                <h4>Lịch sử xem chưa khả dụng</h4>
+                                    <p>API lịch sử sản phẩm đã xem của tài khoản chưa khả dụng.</p>
                                 <a href="products.html" class="account-inline-link">
                                     Khám phá sản phẩm <span aria-hidden="true">↗</span>
                                 </a>
@@ -715,11 +725,12 @@
                             </div>
 
                             <div class="points-preview-card">
-                                <span>ĐIỂM THƯỞNG HIỆN CÓ</span>
-                                <strong>— — —</strong>
-                                <p>Số dư điểm sẽ hiển thị khi dữ liệu tài khoản được kết nối.</p>
+                                <span>ĐIỂM THƯỞNG</span>
+                                <strong id="loyalty-balance">Đang tải…</strong>
+                                <p id="loyalty-tier">Hạng thành viên</p>
                                 <a href="points.html">Tìm hiểu chương trình tích điểm ↗</a>
                             </div>
+                            <div id="loyalty-rewards"></div><div id="loyalty-history"></div>
 
                         </section>
 
@@ -741,8 +752,8 @@
 
                             <div class="account-empty-state">
                                 <span class="empty-state-icon">▦</span>
-                                <h4>Chưa có bộ setup được lưu</h4>
-                                <p>Đăng nhập và lưu thiết kế để có thể xem lại tại đây.</p>
+                                <h4>Bộ setup đã lưu chưa khả dụng</h4>
+                                <p>API danh sách bộ setup đã lưu của tài khoản chưa khả dụng.</p>
                                 <a href="setup-3d.html" class="account-inline-link">
                                     Bắt đầu thiết kế 3D <span aria-hidden="true">↗</span>
                                 </a>

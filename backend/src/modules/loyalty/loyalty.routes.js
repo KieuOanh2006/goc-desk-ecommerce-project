@@ -1,0 +1,16 @@
+const express = require('express');
+const validate = require('../../middlewares/validate');
+const { requireAuthSession } = require('../../middlewares/auth-session');
+const { authorizeRoles } = require('../../middlewares/authorization');
+const requireTrustedOrigin = require('../../middlewares/require-trusted-origin');
+const controller = require('./loyalty.controller');
+const { redeemSchema } = require('./loyalty.schemas');
+const router = express.Router();
+router.get('/tiers', controller.getTiers);
+router.get('/rewards', controller.getRewards);
+router.use(requireAuthSession, authorizeRoles('member'));
+router.get('/me', controller.getOverview);
+router.get('/transactions', controller.getTransactions);
+router.get('/redemptions', controller.getRedemptions);
+router.post('/redeem', requireTrustedOrigin, validate({ body: redeemSchema }), controller.redeem);
+module.exports = router;

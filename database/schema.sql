@@ -1,4 +1,4 @@
--- Góc Desk | MySQL 8.0.16+ | 38 bảng | Dùng cho database trống.
+-- Góc Desk | MySQL 8.0.16+ | 40 bảng | Dùng cho database trống.
 -- Guest lưu giỏ và bản thiết kế trong localStorage. Member lưu trong MySQL.
 -- API lấy user_id từ phiên đăng nhập cho các thao tác riêng của Member.
 -- Khi đăng nhập, API gộp giỏ theo biến thể và chỉ xóa giỏ cục bộ sau khi ghi thành công.
@@ -31,7 +31,7 @@ CREATE TABLE users (
   email VARCHAR(254) NOT NULL,
   phone VARCHAR(30) NULL,
   password_hash VARCHAR(255) NOT NULL,
-  role VARCHAR(30) NOT NULL DEFAULT 'member' COMMENT 'member or admin; guest has no account row',
+  role VARCHAR(30) NOT NULL DEFAULT 'member' COMMENT 'member, admin, product_content_staff, or order_support_staff; guest has no account row',
   account_status VARCHAR(20) NOT NULL DEFAULT 'active',
   email_verified_at DATETIME NULL,
   points_balance BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Cached spendable balance; point_transactions is the ledger',
@@ -40,10 +40,54 @@ CREATE TABLE users (
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_users_email (email),
-  KEY ix_users_phone (phone),
+  UNIQUE KEY uq_users_phone (phone),
   KEY ix_users_membership_tier_id (membership_tier_id),
   CONSTRAINT fk_users_membership_tier FOREIGN KEY (membership_tier_id)
     REFERENCES membership_tiers (id) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Store only SHA-256 token hashes; never store the raw session cookie token.
+-- A session is valid only while not revoked and both expiry timestamps are in the future.
+-- session_data must contain non-sensitive application state only (no passwords or secrets).
+CREATE TABLE auth_sessions (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id BIGINT UNSIGNED NOT NULL,
+  token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  session_data JSON NULL,
+  user_agent VARCHAR(512) NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_activity_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  idle_expires_at DATETIME NOT NULL,
+  absolute_expires_at DATETIME NOT NULL,
+  remember_me BOOLEAN NOT NULL DEFAULT FALSE,
+  revoked_at DATETIME NULL,
+  revoked_reason VARCHAR(100) NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_auth_sessions_token_hash (token_hash),
+  KEY ix_auth_sessions_user_active (user_id, revoked_at, idle_expires_at, absolute_expires_at),
+  KEY ix_auth_sessions_expiry_cleanup (idle_expires_at, absolute_expires_at, revoked_at),
+  KEY ix_auth_sessions_absolute_expiry (absolute_expires_at, revoked_at),
+  CONSTRAINT fk_auth_sessions_user FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Email token lifetime is 24 hours; each token is consumed once by the Auth service.
+-- Resending must revoke any still-valid token for the same user and purpose first.
+CREATE TABLE email_verification_tokens (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id BIGINT UNSIGNED NOT NULL,
+  purpose ENUM('member_registration', 'staff_invitation') NOT NULL,
+  token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  expires_at DATETIME NOT NULL,
+  consumed_at DATETIME NULL,
+  revoked_at DATETIME NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_email_verification_tokens_token_hash (token_hash),
+  KEY ix_email_verification_tokens_lookup (user_id, purpose, consumed_at, revoked_at, expires_at),
+  KEY ix_email_verification_tokens_rate_limit (user_id, purpose, created_at),
+  CONSTRAINT fk_email_verification_tokens_user FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE categories (

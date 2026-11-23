@@ -5,6 +5,9 @@ const app = require('./app');
 const pool = require('./config/database');
 
 const port = Number(process.env.PORT || 3000);
+const host = process.env.NODE_ENV === 'production'
+  ? undefined
+  : (process.env.HOST?.trim() || '0.0.0.0');
 const server = http.createServer(app);
 let isShuttingDown = false;
 
@@ -45,6 +48,9 @@ server.on('error', (error) => {
 process.on('SIGINT', () => closeServer('SIGINT'));
 process.on('SIGTERM', () => closeServer('SIGTERM'));
 
-server.listen(port, () => {
+const onListening = () => {
   console.log(`Goc Desk API is listening on port ${port}.`);
-});
+};
+
+if (host) server.listen(port, host, onListening);
+else server.listen(port, onListening);
