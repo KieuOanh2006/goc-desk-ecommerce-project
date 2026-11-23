@@ -22,6 +22,67 @@ Quy ước API, response, validation, xử lý lỗi và Git dùng chung đượ
 [API_CONVENTIONS.md](API_CONVENTIONS.md). Thành viên cần theo tài liệu này khi
 xây dựng hoặc tích hợp endpoint mới.
 
+### Chạy Backend trên máy cá nhân
+
+Tạo `backend/.env` từ mẫu bên dưới và điền cấu hình MySQL của máy bạn. Điền
+các biến SMTP khi cần gửi email xác minh. `CLIENT_ORIGIN` phải khớp địa chỉ
+Frontend đang chạy. Giữ thông tin đăng nhập trong `.env` trên máy cá nhân.
+
+```dotenv
+NODE_ENV=development
+PORT=3000
+CLIENT_ORIGIN=http://127.0.0.1:5500
+
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_NAME=goc_desk
+DB_USER=root
+DB_PASSWORD=
+DB_CONNECTION_LIMIT=10
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=
+SMTP_PASSWORD=
+MAIL_FROM=
+```
+
+Để chạy thử qua mạng LAN, đặt `HOST=0.0.0.0` và cập nhật `CLIENT_ORIGIN` theo
+địa chỉ Frontend truy cập từ thiết bị thử nghiệm. Sau khi cấu hình, chạy từ
+thư mục gốc của dự án.
+
+```bash
+cd backend
+npm ci
+npm run dev
+```
+
+### Hosting cho bản demo
+
+Demo trên máy cá nhân hoặc trong cùng mạng LAN có thể dùng Frontend, Backend
+và MySQL đang chạy trên máy nhóm. Nếu cần gửi link cho người ngoài mạng,
+triển khai website qua HTTPS. Trình duyệt tải Frontend và gọi `/api` để
+Backend đọc hoặc ghi dữ liệu vào MySQL.
+
+Phương án đề xuất cho Góc Desk là dùng một địa chỉ HTTPS cho Frontend và
+`/api` để phù hợp với cookie đăng nhập hiện tại. Có thể cấu hình Express phục
+vụ các file Frontend từ một thư mục công khai riêng. Nếu triển khai Frontend
+và Backend thành hai dịch vụ, có thể cấu hình proxy chuyển `/api` đến Backend.
+Khi triển khai, cấu hình Frontend gọi API qua địa chỉ công khai, đặt
+`CLIENT_ORIGIN` bằng địa chỉ website và khai báo các biến `DB_*` trong phần
+cấu hình môi trường của dịch vụ Backend.
+
+Có thể thử chạy Express và MySQL trên Railway Free bằng tên miền do Railway
+cấp. Gói Free có hạn mức tài nguyên và dịch vụ có thể ngủ khi rảnh.
+[Railway Free Plan](https://docs.railway.com/pricing/free-plan)
+
+Luồng email xác minh hiện dùng Gmail SMTP. Railway chỉ cho phép gửi qua SMTP
+từ gói Pro. Nếu cần demo đăng ký và xác minh email trực tuyến trên gói thấp
+hơn, nhóm cần chuyển chức năng gửi mail sang dịch vụ hỗ trợ API HTTPS hoặc
+chọn nơi chạy Backend có hỗ trợ SMTP.
+[Railway Outbound Networking](https://docs.railway.com/networking/outbound-networking)
+
 ## 2. Phân công nhiệm vụ
 
 | Thành viên | Vai trò | Phạm vi phụ trách |
@@ -81,8 +142,7 @@ Số điện thoại di động Việt Nam được chuẩn hóa và lưu theo E
 Email xác minh cần cấu hình `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`,
 `SMTP_PASSWORD` và `MAIL_FROM`. Với Gmail, dùng App Password 16 ký tự; service loại bỏ
 khoảng trắng phân nhóm trước khi xác thực. `EMAIL_VERIFICATION_URL` là tùy chọn; mặc định
-link dùng `CLIENT_ORIGIN/account.html`. Không điền thông tin thật vào `.env.example`; đặt
-cấu hình thật trong `.env` local.
+link dùng `CLIENT_ORIGIN/account.html`.
 Khi SMTP chưa cấu hình hoặc gửi lỗi, API trả lỗi dịch vụ an toàn, không trả token.
 Email URL chỉ đưa token một lần; Frontend cần tích hợp gọi `/api/auth/verify-email` sau
 khi người dùng mở URL.
@@ -123,7 +183,6 @@ Kiểm tra kết nối Gmail và gửi email thử đến tài khoản `SMTP_USE
 | Branch | Mục đích |
 |---|---|
 | `main` | Phiên bản chính thức, ổn định |
-| `testing` | Tích hợp và kiểm thử toàn bộ Backend |
 | `feature/backend-auth-core` | Backend tài khoản, xác thực và Loyalty |
 | `feature/backend-product-content` | Backend sản phẩm và nội dung |
 | `feature/backend-order-cart` | Backend giỏ hàng, đơn hàng và CSKH |
@@ -133,11 +192,12 @@ Kiểm tra kết nối Gmail và gửi email thử đến tài khoản `SMTP_USE
 
 **Bước 1 – Đồng bộ mã nguồn**
 
-Trước khi bắt đầu công việc, thành viên lấy phiên bản mới nhất từ `testing`.
+Trước khi bắt đầu công việc, cập nhật `main` từ `origin/main`. Nếu cần tạo
+nhánh chức năng mới, tạo nhánh từ `main` đã cập nhật.
 
 **Bước 2 – Code trên branch cá nhân**
 
-Mỗi thành viên chỉ phát triển chức năng trên branch được phân công. Không code trực tiếp trên `main` hoặc `testing`.
+Mỗi thành viên phát triển và kiểm thử chức năng trên branch được phân công.
 
 **Bước 3 – Commit và Push**
 
@@ -155,7 +215,7 @@ Truy cập GitHub → Pull requests → New pull request.
 
 Chọn:
 
-- Base: `testing`
+- Base: `main`.
 - Compare: branch chức năng của thành viên.
 
 Pull Request cần mô tả chức năng đã làm, file đã thay đổi và kết quả kiểm thử.
@@ -167,15 +227,7 @@ Pull Request cần mô tả chức năng đã làm, file đã thay đổi và k�
 - Chỉ Merge khi Pull Request đã được Kiều Oanh duyệt.
 - Không tự ý Merge Pull Request của chính mình.
 
-**Bước 6 – Tích hợp lên main**
-
-Sau khi các chức năng đã được Merge vào `testing` và kiểm thử ổn định:
-
-- Tạo Pull Request với Base: `main`.
-- Compare: `testing`.
-- Thực hiện review cuối cùng và Merge khi đạt yêu cầu.
-
-**Quy định bắt buộc:** Không Push trực tiếp lên `main`. Không tự ý Merge code chưa được review vào `testing`.
+**Quy định bắt buộc.** Mọi thay đổi vào `main` phải qua Pull Request đã được duyệt.
 
 ## 6. Tích hợp và kiểm thử
 
@@ -209,5 +261,3 @@ Cả 4 thành viên phối hợp:
 ---
 
 **Người phụ trách quản lý và duyệt Backend: Kiều Oanh**
-
-**Quy trình chung: Code trên branch cá nhân → Pull Request vào testing → Review → Merge → Kiểm thử → Pull Request vào main.**

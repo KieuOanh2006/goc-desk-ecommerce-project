@@ -128,25 +128,23 @@ Backend lấy danh tính và role từ phiên/token đã xác thực. Không tin
 | Branch | Người/phạm vi |
 | --- | --- |
 | `main` | Phiên bản ổn định |
-| `testing` | Tích hợp và kiểm thử Backend |
 | `feature/backend-auth-core` | Kiều Oanh — tài khoản, xác thực, Loyalty |
 | `feature/backend-product-content` | Huyền Nhi — sản phẩm và nội dung |
 | `feature/backend-order-cart` | Bảo Ngọc — giỏ hàng, đơn hàng, CSKH |
 | `feature/backend-recommendation-3d` | Huy Hoàng — gợi ý và 3D |
 
-- Cập nhật `testing`, rồi tạo feature branch được giao từ `testing`; mỗi thành viên chỉ code trên branch đó.
-- Tạo Pull Request từ feature branch về `testing`. Kiều Oanh review và duyệt trước khi merge; không tự merge PR của mình.
-- Sau khi tích hợp và kiểm thử ổn định, tạo PR từ `testing` về `main` để review cuối.
-- Không push trực tiếp vào `main`; không merge code chưa review vào `testing`.
-- Không commit `.env`, `node_modules/`, mật khẩu, token, API key hoặc dữ liệu nhạy cảm. Giữ `.env.example` không chứa bí mật.
+- Cập nhật `main` từ `origin/main` và tạo feature branch từ `main` nếu cần nhánh mới. Thành viên phát triển và kiểm thử trên branch được phân công.
+- Tạo Pull Request từ feature branch vào `main` và ghi kết quả kiểm thử trong PR. Kiều Oanh review và duyệt trước khi merge. Không tự merge PR của mình.
+- Mọi thay đổi vào `main` phải qua Pull Request đã được duyệt.
+- Không commit `.env`, `node_modules/`, mật khẩu, token, API key hoặc dữ liệu nhạy cảm.
 - Không tự thay đổi Branch Rulesets trên GitHub.
 
-Ví dụ bắt đầu nhánh:
+Ví dụ tạo nhánh chức năng mới
 
 ```bash
-git switch testing
-git pull origin testing
-git switch -c feature/backend-product-content
+git switch main
+git pull --ff-only origin main
+git switch -c feature/backend-ten-chuc-nang
 ```
 
 ## 10. Ví dụ lỗi
