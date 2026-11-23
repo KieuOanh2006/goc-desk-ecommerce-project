@@ -16,8 +16,8 @@
     <script src="js/product-data.js" defer></script>
     <script src="js/cart-store.js" defer></script>
     <script src="js/cart-badge.js" defer></script>
-    <script src="js/account.js" defer></script>
     <script src="js/admin-auth.js" defer></script>
+    <script src="js/account.js" defer></script>
 </head>
 
 <body class="page-account">
@@ -202,17 +202,17 @@
                             </button>
                         </p>
 
-                        <div class="admin-login-entry"><span>Bạn là thành viên quản trị?</span><button type="button" class="account-text-button" data-auth-tab="admin">Đăng nhập dành cho admin <span aria-hidden="true">↗</span></button></div>
+                        <div class="admin-login-entry"><span>Bạn là thành viên quản trị?</span><button type="button" class="account-text-button" data-auth-tab="admin">Đăng nhập quản trị <span aria-hidden="true">↗</span></button></div>
                     </div>
 
                     <div class="auth-panel" id="admin-panel" data-auth-panel="admin" hidden>
-                        <div class="admin-login-intro"><h3>Đăng nhập dành cho admin</h3><p>Nhập mật khẩu được cấp để vào khu vực quản trị của bạn.</p></div>
+                        <div class="admin-login-intro"><h3>Đăng nhập quản trị</h3><p>Dùng email và mật khẩu được cấp cho Admin hoặc nhân viên.</p></div>
                         <form class="account-form" id="admin-login-form" novalidate>
-                            <label for="admin-identity">Email Admin</label>
-                            <input id="admin-identity" name="identity" type="email" autocomplete="username" placeholder="admin@example.com" required>
-                            <label for="admin-password">Mật khẩu admin</label>
-                            <div class="password-field"><input id="admin-password" name="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu admin" required aria-describedby="admin-login-status"><button class="password-toggle" type="button" data-toggle-password="admin-password" aria-label="Hiện mật khẩu" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
-                            <button type="submit" class="account-submit">Đăng nhập admin <span aria-hidden="true">↗</span></button>
+                            <label for="admin-identity">Email tài khoản quản trị</label>
+                            <input id="admin-identity" name="identity" type="email" autocomplete="username" required>
+                            <label for="admin-password">Mật khẩu</label>
+                            <div class="password-field"><input id="admin-password" name="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required aria-describedby="admin-login-status"><button class="password-toggle" type="button" data-toggle-password="admin-password" aria-label="Hiện mật khẩu" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                            <button type="submit" class="account-submit">Đăng nhập quản trị <span aria-hidden="true">↗</span></button>
                             <p id="admin-login-status" class="form-status" role="status" aria-live="polite"></p>
                         </form>
                         <p class="auth-switch-note"><button type="button" class="account-text-button" data-auth-tab="login">← Quay về đăng nhập khách hàng</button></p>

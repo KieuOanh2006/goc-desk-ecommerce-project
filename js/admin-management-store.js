@@ -4,7 +4,6 @@
  const catalog=globalThis.GocDeskCatalog, demo=window.GDAdminDashboardData;
  if(!catalog||!demo)return;
  const clone=value=>JSON.parse(JSON.stringify(value));
- const role=()=>{try{const active=document.getElementById('admin-area')?.dataset.adminRole;const session=JSON.parse(sessionStorage.getItem('gocdesk.admin.preview'));return session&&session.role===active&&session.expires>Date.now()?active:null;}catch{return null;}};
  const clean=(value,max=1000)=>String(value??'').trim().slice(0,max);
  const money=value=>{const n=Number(value);if(!Number.isSafeInteger(n)||n<0||n>1e12)throw Error('Giá phải là số nguyên từ 0 đến 1.000 tỷ đồng.');return n;};
  const count=value=>{const n=Number(value);if(!Number.isSafeInteger(n)||n<0||n>1e7)throw Error('Số lượng phải là số nguyên không âm, tối đa 10 triệu.');return n;};
@@ -16,7 +15,7 @@
  let state;
  try{const raw=localStorage.getItem(key);if(raw){const parsed=JSON.parse(raw);if(parsed.version===1&&['categories','products','customers','orders','tickets','reviews','history'].every(k=>Array.isArray(parsed[k])))state=parsed;}}catch{}
  if(!state)state=seed();
- function change(allowed,action){if(role()!==allowed)throw Error('Vai trò hiện tại không được thực hiện thao tác này.');const next=clone(state);const result=action(next);try{localStorage.setItem(key,JSON.stringify(next));}catch{throw Error('Không thể lưu trên trình duyệt. Kiểm tra dung lượng hoặc quyền lưu trữ rồi thử lại.');}state=next;return result;}
+ function change(allowed,action){if(!window.GDAdminAuth?.canManage(allowed))throw Error('Vai trò hiện tại không được thực hiện thao tác này.');const next=clone(state);const result=action(next);try{localStorage.setItem(key,JSON.stringify(next));}catch{throw Error('Không thể lưu trên trình duyệt. Kiểm tra dung lượng hoặc quyền lưu trữ rồi thử lại.');}state=next;return result;}
  function find(rows,id){const row=rows.find(r=>r.id===id);if(!row)throw Error('Không tìm thấy dữ liệu.');return row;}
  function audit(s,action,target,detail){s.history.unshift({id:'LOG-'+Date.now()+'-'+s.history.length,date:new Date().toISOString(),action,target,detail});}
  const api={read:()=>clone(state),

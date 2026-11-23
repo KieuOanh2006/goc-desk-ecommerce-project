@@ -351,6 +351,11 @@
 
                 const user = await loadCurrentMember();
                 if (!user) throw new Error('Đăng nhập thành công nhưng trình duyệt chưa nhận được phiên. Hãy kiểm tra kết nối và thử lại.');
+                const adminHome = window.GDAdminAuth.homeFor(user.role);
+                if (adminHome) {
+                    window.location.assign(adminHome);
+                    return;
+                }
                 showMemberDashboard(user, `Xin chào ${user.fullName || 'thành viên'}. Bạn đang đăng nhập.`, true);
             } catch (error) {
                 setStatus(status, error.message || 'Không thể kết nối máy chủ xác thực. Vui lòng thử lại.', 'error');
@@ -368,8 +373,9 @@
         const status = document.getElementById('admin-login-status');
         const button = form.querySelector('[type="submit"]');
         const passwordInput = form.elements.password;
-        setButtonLoading(button, true, 'Đăng nhập admin');
-        setStatus(status, 'Đang xác thực tài khoản Admin…');
+        authStateRevision += 1;
+        setButtonLoading(button, true, 'Đăng nhập quản trị');
+        setStatus(status, 'Đang xác thực tài khoản quản trị…');
         try {
             const response = await fetch(getAuthEndpoint('login'), {
                 method: 'POST', credentials: 'include',
@@ -377,20 +383,20 @@
                 body: JSON.stringify({ identity: form.elements.identity.value.trim(), password: passwordInput.value, rememberMe: false }),
             });
             const payload = await readApiPayload(response);
-            if (!response.ok) throw new Error(payload.message || 'Không thể đăng nhập Admin.');
+            if (!response.ok) throw new Error(payload.message || 'Không thể đăng nhập quản trị.');
             const user = await loadCurrentMember();
             if (!user) throw new Error('Backend chưa xác nhận được phiên đăng nhập.');
-            if (user.role !== 'admin') {
+            const adminHome = window.GDAdminAuth.homeFor(user.role);
+            if (!adminHome) {
                 await fetch(getAuthEndpoint('logout'), { method: 'POST', credentials: 'include' });
-                throw new Error('Tài khoản này không có role Admin. Phiên đăng nhập đã được đóng.');
+                throw new Error('Tài khoản này không có quyền quản trị.');
             }
-            passwordInput.value = '';
-            window.location.href = new URL('admin-staff.html', window.location.href).toString();
+            window.location.assign(adminHome);
         } catch (error) {
             setStatus(status, error.message || 'Không thể kết nối Backend Auth.', 'error');
         } finally {
             passwordInput.value = '';
-            setButtonLoading(button, false, 'Đăng nhập admin');
+            setButtonLoading(button, false, 'Đăng nhập quản trị');
         }
     });
 
@@ -689,6 +695,11 @@
         try {
             const user = await loadCurrentMember();
             if (revision !== authStateRevision) return;
+            const adminHome = window.GDAdminAuth.homeFor(user?.role);
+            if (adminHome) {
+                window.location.replace(adminHome);
+                return;
+            }
             if (user) showMemberDashboard(user, `Xin chào ${user.fullName || 'thành viên'}. Phiên đăng nhập đã được khôi phục.`, false, memberAuthenticated);
             else showGuest();
         } catch (error) {

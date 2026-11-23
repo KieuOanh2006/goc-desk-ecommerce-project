@@ -2,8 +2,6 @@
   'use strict';
   const api = (path) => new URL(`/api/${path}`, window.GOCDESK_API_BASE_URL || `${location.protocol}//${location.hostname}:3000`);
   const state = document.getElementById('staff-auth-state');
-  const login = document.getElementById('staff-login');
-  const app = document.getElementById('staff-app');
   const feedback = document.getElementById('staff-feedback');
   async function request(path, options = {}) {
     const response = await fetch(api(path), { credentials: 'include', ...options, headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...options.headers } });
@@ -12,10 +10,6 @@
     return payload.data;
   }
   function say(message, error = false) { feedback.textContent = message; feedback.className = error ? 'staff-error' : 'staff-success'; }
-  async function checkAdmin() {
-    try { const result = await request('auth/me'); if (result.user?.role !== 'admin') throw new Error('Chỉ Admin mới được quản lý nhân viên.'); login.hidden = true; app.hidden = false; state.textContent = `Đang đăng nhập: ${result.user.fullName}`; await loadStaff(); }
-    catch { login.hidden = false; app.hidden = true; state.textContent = 'Đăng nhập bằng tài khoản Admin để tiếp tục.'; }
-  }
   async function loadStaff() {
     try {
       const { staff } = await request('admin/staff'); const root = document.getElementById('staff-rows'); root.replaceChildren();
@@ -34,7 +28,10 @@
       }
     } catch (error) { say(error.message,true); }
   }
-  login.addEventListener('submit', async (event) => { event.preventDefault(); const form=event.currentTarget; const password=form.elements.password.value; try { await request('auth/login',{method:'POST',body:JSON.stringify({identity:form.elements.identity.value.trim(),password,rememberMe:false})}); form.elements.password.value=''; await checkAdmin(); } catch(error){form.elements.password.value='';state.textContent=error.message;} });
   document.getElementById('staff-create').addEventListener('submit',async(event)=>{event.preventDefault();const form=event.currentTarget;try{await request('admin/staff',{method:'POST',body:JSON.stringify({fullName:form.elements.fullName.value.trim(),email:form.elements.email.value.trim(),role:form.elements.role.value})});say('Đã tạo tài khoản và gửi lời mời.');form.reset();await loadStaff();}catch(error){say(error.message,true);}});
-  checkAdmin();
+  window.GDAdminAuth.ready.then((user) => {
+    if (!user) return;
+    state.textContent = `Đang đăng nhập: ${user.fullName}`;
+    return loadStaff();
+  });
 })();

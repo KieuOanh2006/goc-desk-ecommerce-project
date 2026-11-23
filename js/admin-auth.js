@@ -1,56 +1,119 @@
-/* Đăng nhập frontend mẫu. API quản trị phải xác thực và phân quyền ở máy chủ. */
 (() => {
-  const sessionKey = 'gocdesk.admin.preview';
-  const roles = {
-  "c1a79fb99d0fc8f799684a371fe5f9bbe9d9b226a25a0e9c1ae2abb68f39be26": {
-    "role": "dashboard",
-    "url": "admin-dashboard.html"
-  },
-  "8a0d7ed1e6e06b08d94d2a50a70a015596d9e0106df7c4425ade8ae76ab68961": {
-    "role": "customers",
-    "url": "admin-customers.html"
-  },
-  "a31002dddadc48f9c85fcd9a3870a8bead0b452212169a4db4c64e5b640724b2": {
-    "role": "products",
-    "url": "admin-products.html"
-  }
-};
-  const form = document.getElementById('admin-login-form');
-  if (form) {
-    const password = document.getElementById('admin-password');
-    const status = document.getElementById('admin-login-status');
-    const submit = form.querySelector('button[type="submit"]');
-    password.addEventListener('input', () => { status.textContent = ''; password.removeAttribute('aria-invalid'); });
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      status.textContent = '';
-      password.removeAttribute('aria-invalid');
-      if (!password.value) { status.textContent = 'Vui lòng nhập mật khẩu admin.'; password.setAttribute('aria-invalid', 'true'); password.focus(); return; }
-      submit.disabled = true;
-      try {
-        const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password.value));
-        const digest = Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, '0')).join('');
-        const match = roles[digest];
-        if (!match) { status.textContent = 'Mật khẩu admin không đúng. Vui lòng thử lại.'; password.setAttribute('aria-invalid', 'true'); password.focus(); return; }
-        sessionStorage.setItem(sessionKey, JSON.stringify({ role: match.role, expires: Date.now() + 8 * 60 * 60 * 1000 }));
-        password.value = '';
-        window.location.assign(match.url);
-      } catch { status.textContent = 'Chưa thể mở phiên đăng nhập. Vui lòng thử lại trên trình duyệt có bật lưu trữ phiên.'; }
-      finally { submit.disabled = false; }
-    });
-  }
-  const area = document.getElementById('admin-area');
-  if (area) {
-    let session;
-    try { session = JSON.parse(sessionStorage.getItem(sessionKey)); } catch {}
-    if (!session || session.role !== area.dataset.adminRole || session.expires <= Date.now()) {
-      window.location.replace('account.html#admin');
-      return;
+    const sections = new Map([
+        ['dashboard', { url: 'admin-dashboard.html', label: 'Dashboard' }],
+        ['products', { url: 'admin-products.html', label: 'Sản phẩm' }],
+        ['customers', { url: 'admin-customers.html', label: 'Khách hàng' }],
+        ['staff', { url: 'admin-staff.html', label: 'Nhân viên' }],
+    ]);
+    const roles = new Map([
+        ['admin', { home: 'dashboard', label: 'Admin', sections: [...sections.keys()] }],
+        ['product_content_staff', { home: 'products', label: 'Nhân viên sản phẩm và nội dung', sections: ['products'] }],
+        ['order_support_staff', { home: 'customers', label: 'Nhân viên hỗ trợ đơn hàng', sections: ['customers'] }],
+    ]);
+    const loginUrl = 'account.html#admin';
+    const area = document.querySelector('[data-admin-role]');
+    const section = area?.dataset.adminRole;
+    let currentRole;
+
+    function homeFor(role) {
+        return sections.get(roles.get(role)?.home)?.url;
     }
-    area.hidden = false;
-    document.getElementById('admin-logout').addEventListener('click', () => {
-      sessionStorage.removeItem(sessionKey);
-      window.location.replace('account.html#admin');
+
+    function canManage(target) {
+        return section === target && roles.get(currentRole)?.sections.includes(target) === true;
+    }
+
+    function endpoint(path) {
+        const base = window.GOCDESK_API_BASE_URL || `${location.protocol}//${location.hostname}:3000`;
+        return new URL(`/api/auth/${path}`, base);
+    }
+
+    function renderNavigation(role) {
+        const sidebar = area.querySelector('.admin-sidebar-bottom');
+        if (!sidebar) return;
+
+        sidebar.querySelector('.admin-role').textContent = role.label;
+        if (role.sections.length < 2) return;
+
+        const navigation = document.createElement('nav');
+        navigation.className = 'admin-section-nav';
+        navigation.setAttribute('aria-label', 'Khu vực quản trị');
+        for (const key of role.sections) {
+            const { url, label } = sections.get(key);
+            const link = document.createElement('a');
+            link.href = url;
+            link.textContent = label;
+            if (key === section) link.setAttribute('aria-current', 'page');
+            navigation.append(link);
+        }
+        sidebar.querySelector('.admin-role').after(navigation);
+    }
+
+    async function openSection() {
+        const status = document.getElementById('admin-auth-status');
+        const message = status.querySelector('[role="status"]');
+        const retry = status.querySelector('button');
+        retry.addEventListener('click', () => location.reload());
+
+        let user;
+        try {
+            const response = await fetch(endpoint('me'), { credentials: 'include', cache: 'no-store' });
+            if (response.status === 401) {
+                location.replace(loginUrl);
+                return null;
+            }
+            if (!response.ok) throw new Error('Không thể kiểm tra phiên.');
+            user = (await response.json()).data?.user;
+        } catch {
+            message.textContent = 'Không thể kiểm tra phiên quản trị. Hãy kiểm tra backend rồi thử lại.';
+            retry.hidden = false;
+            return null;
+        }
+
+        const role = roles.get(user?.role);
+        if (!role?.sections.includes(section)) {
+            location.replace(homeFor(user?.role) || loginUrl);
+            return null;
+        }
+
+        const logout = document.getElementById('admin-logout');
+        logout.addEventListener('click', async () => {
+            if (logout.disabled) return;
+            logout.disabled = true;
+            const previousRole = currentRole;
+            currentRole = undefined;
+            try {
+                const response = await fetch(endpoint('logout'), { method: 'POST', credentials: 'include' });
+                if (!response.ok) throw new Error('Không thể đăng xuất.');
+                area.hidden = true;
+                location.replace(loginUrl);
+            } catch {
+                currentRole = previousRole;
+                logout.disabled = false;
+                status.hidden = false;
+                message.textContent = 'Chưa thể đăng xuất. Vui lòng thử lại.';
+            }
+        });
+
+        renderNavigation(role);
+        currentRole = user.role;
+        status.hidden = true;
+        area.hidden = false;
+        return user;
+    }
+
+    if (area) {
+        window.addEventListener('pageshow', (event) => {
+            if (!event.persisted) return;
+            currentRole = undefined;
+            area.hidden = true;
+            location.reload();
+        });
+    }
+
+    window.GDAdminAuth = Object.freeze({
+        homeFor,
+        canManage,
+        ready: area ? openSection() : Promise.resolve(null),
     });
-  }
 })();

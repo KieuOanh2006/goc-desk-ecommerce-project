@@ -4,7 +4,7 @@ import vm from 'node:vm';
 const root=new URL('../',import.meta.url);
 const scripts=await Promise.all(['js/product-data.js','js/admin-dashboard-data.js','js/admin-management-store.js'].map(p=>fs.readFile(new URL(p,root),'utf8')));
 function setup(role='products', storage=new Map(), fail=false){
- const context=vm.createContext({window:{},document:{getElementById:()=>({dataset:{adminRole:role}})},sessionStorage:{getItem:()=>JSON.stringify({role,expires:Date.now()+60000})},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>{if(fail)throw Error('quota');storage.set(k,v);}}});
+ const context=vm.createContext({window:{GDAdminAuth:{canManage:section=>section===role}},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>{if(fail)throw Error('quota');storage.set(k,v);}}});
  for(const code of scripts)vm.runInContext(code,context);
  return {api:context.window.GDAdminManagement,storage,context};
 }
@@ -34,5 +34,5 @@ assert.throws(()=>customer.saveTicket(ticket.id,{reply:'',status:'Chưa phản h
 const review=customer.read().reviews[0];assert.throws(()=>customer.saveReview(review.id,''));customer.saveReview(review.id,'Cảm ơn bạn đã chia sẻ trải nghiệm.');assert.equal(customer.read().reviews[0].status,'Đã phản hồi');
 assert.throws(()=>customer.adjustStock(p.id,{stock:1,threshold:1,reason:'Sai vai trò'}));
 const failed=setup('products',new Map(),true).api;const before=failed.read();assert.throws(()=>failed.setVisibility(before.products[0].id));assert.deepEqual(failed.read(),before,'Storage failure must not mutate in-memory data');
-const expired=setup();expired.context.sessionStorage.getItem=()=>JSON.stringify({role:'products',expires:0});assert.throws(()=>expired.api.setVisibility(p.id));
+const unauthenticated=setup();delete unauthenticated.context.window.GDAdminAuth;assert.throws(()=>unauthenticated.api.setVisibility(p.id));
 console.log('Passed: product CRUD, visibility, categories, inventory/history, customer profiles, support/review replies, persistence, unchanged order prices, validation, role isolation and failed-storage rollback.');
