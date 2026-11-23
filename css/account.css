@@ -10,6 +10,7 @@
 
 /* LOGIN / REGISTER */
 .account-auth-layout { display: grid; grid-template-columns: minmax(0, 760px); justify-content: center; margin-top: 24px; }
+.account-auth-layout[hidden] { display: none !important; }
 .account-auth-card { width: 100%; min-width: 0; padding: clamp(25px, 4vw, 48px); border: 1px solid var(--gd-border); border-radius: 16px; background: #fff; box-shadow: 0 14px 40px #4e3b2e0c; }
 .account-eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 13px; color: #98734f; font-size: 9px; font-weight: 800; letter-spacing: 1.8px; line-height: 1.5; }
 .auth-card-heading h2 {
@@ -32,6 +33,7 @@
 .account-tab:is(:hover, .is-active) { color: var(--gd-brown); background: #fff; box-shadow: 0 2px 8px #4e3b2e12; }
 .account-tab.is-active { border-color: #e9dfd3; }
 .auth-panel[hidden], .account-dashboard[hidden], .account-view[hidden] { display: none !important; }
+.account-session-status[hidden], .account-retry-session[hidden], .resend-verification-form[hidden] { display: none !important; }
 
 /* FORMS */
 .account-form { display: grid; gap: 9px; }
@@ -53,10 +55,15 @@
 .account-submit { display: flex; width: 100%; min-height: 48px; align-items: center; justify-content: space-between; gap: 14px; margin-top: 4px; padding: 12px 17px; border: 1px solid var(--gd-brown); border-radius: 8px; color: #fff; background: var(--gd-brown); font-size: 12px; font-weight: 700; transition: .18s; }
 .account-submit span { font-size: 17px; font-weight: 400; }
 .account-submit:hover { transform: translateY(-2px); background: #382a21; box-shadow: 0 8px 18px #4e3b2e1d; }
+.account-submit:disabled { cursor: wait; opacity: .72; transform: none; box-shadow: none; }
+.account-form input[readonly], .account-form textarea[readonly] { color: #766b61; background: #f5f2ee; cursor: default; }
 .form-status { min-height: 18px; margin: 1px 0 0; color: #7a6f64; font-size: 10px; line-height: 1.6; }
 .form-status.is-error { color: #a54f42; }
 .form-status.is-success { color: #54724f; }
 .auth-switch-note { margin: 17px 0 0; color: #82776c; font-size: 10px; text-align: center; }
+.account-session-status { margin: 12px 0 0; padding: 10px 12px; border-radius: 7px; background: #faf7f1; }
+.account-retry-session { margin-top: 6px; }
+.resend-verification-form { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gd-border); }
 .auth-switch-note .account-text-button { font-size: 10px; }
 .auth-preview-link { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; margin-top: 23px; padding-top: 18px; border-top: 1px solid #eee8e1; color: #92877b; font-size: 10px; }
 .auth-preview-link button { padding: 0; border: 0; color: #826247; background: transparent; font-size: 10px; font-weight: 700; cursor: pointer; }
@@ -72,6 +79,7 @@
 .dashboard-heading h2 { margin: 0 0 5px; color: var(--gd-brown); font-size: clamp(27px, 3vw, 36px); font-weight: 600; letter-spacing: -1px; }
 .dashboard-heading p:not(.account-eyebrow) { margin: 0; color: var(--gd-muted); font-size: 12px; }
 .preview-label { display: inline-flex; align-items: center; gap: 8px; padding: 8px 11px; border: 1px solid #d9c9b3; border-radius: 999px; color: #806548; background: #f4ede3; font-size: 8px; font-weight: 800; letter-spacing: .9px; white-space: nowrap; }
+.preview-label[hidden] { display: none !important; }
 .preview-label span { width: 6px; height: 6px; border-radius: 50%; background: #d49a60; }
 .dashboard-layout { display: grid; grid-template-columns: 245px minmax(0, 1fr); gap: 18px; align-items: start; }
 .dashboard-sidebar, .dashboard-content { min-width: 0; border: 1px solid var(--gd-border); border-radius: 13px; background: #fff; box-shadow: 0 10px 30px #4e3b2e09; }
@@ -155,3 +163,17 @@
 @media (prefers-reduced-motion: reduce) {
     .page-account *, .page-account *::before, .page-account *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+.admin-login-entry { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:22px; padding-top:20px; border-top:1px solid #eee8e1; color:#82776c; font-size:12px; }
+.admin-login-intro { margin:26px 0 22px; }
+.admin-login-intro h3 { margin:0 0 8px; color:#4e3b2e; font-size:22px; }
+.admin-login-intro p { margin:0; color:#82776c; font-size:13px; line-height:1.7; }
+
+.register-phone-control { display:flex; align-items:stretch; min-height:46px; margin-bottom:2px; border:1px solid #e4ddd4; border-radius:8px; background:#fcfbf9; transition:.18s; }
+.register-phone-control:focus-within { border-color:#b08968; background:#fff; box-shadow:0 0 0 3px #b089681a; }
+.register-phone-prefix { display:flex; align-items:center; padding:0 12px; border-right:1px solid #e4ddd4; color:#645648; font-size:12px; font-weight:700; }
+.account-form .register-phone-control input { min-height:44px; margin:0; border:0; border-radius:0 8px 8px 0; outline:0; background:transparent; box-shadow:none; }
+.register-phone-hint,.register-phone-error { display:block; margin:-4px 0 5px; font-size:10px; line-height:1.5; }
+.register-phone-hint { color:#82776c; }
+.register-phone-error { color:#b42318; }
+.register-phone-control.is-invalid { border-color:#b42318; }
