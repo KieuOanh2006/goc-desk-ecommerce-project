@@ -1,0 +1,8 @@
+.setup-selection { padding: 16px; margin-bottom: 24px; border: 1px solid var(--gd-border); border-radius: 12px; background: var(--gd-cream); }
+.setup-selection[hidden] { display: none; }
+.setup-selection .setup-selection-label { margin: 0 0 12px; color: var(--gd-muted); font-size: 11px; }
+.setup-selection-product { display: flex; gap: 12px; align-items: center; }
+.setup-selection-product img { width: 70px; height: 70px; object-fit: contain; border-radius: 8px; background: #f0f0f0; }
+.setup-selection-product strong { display: block; color: var(--gd-brown); font-size: 13px; }
+.setup-selection-product span { display: block; margin-top: 3px; color: var(--gd-muted); font-size: 10px; }
+.setup-selection > a { display: inline-block; margin-top: 14px; color: var(--gd-brown); font-size: 11px; text-decoration: underline; text-underline-offset: 4px; }

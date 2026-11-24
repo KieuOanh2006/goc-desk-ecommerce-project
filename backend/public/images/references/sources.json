@@ -1,0 +1,19 @@
+{
+  "productBanner": {
+    "file": "products-collage.svg",
+    "source": "https://hyperwork.vn/cdn/shop/files/s_11zon.svg?v=1740120053&width=5000"
+  },
+  "rewardsArtwork": {
+    "file": "rewards-line-art.svg",
+    "source": "https://hyperwork.vn/cdn/shop/files/test2.svg?v=1725938075&width=4045",
+    "derived": {
+      "file": "rewards-line-art-brown.svg",
+      "changes": "Background #191919 to #3b291f; accent #f26c33 to #c89c6d; original drawing preserved"
+    }
+  },
+  "designReferences": [
+    "https://hyperwork.vn/collections/all",
+    "https://hyperwork.vn/pages/rewards",
+    "https://cocoonvietnam.com/bai-viet"
+  ]
+}
