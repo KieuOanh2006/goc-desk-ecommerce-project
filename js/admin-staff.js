@@ -1,10 +1,10 @@
 (() => {
   'use strict';
-  const api = (path) => new URL(`/api/${path}`, window.GOCDESK_API_BASE_URL || `${location.protocol}//${location.hostname}:3000`);
+  const { getApiEndpoint } = window.GDAdminAuth;
   const state = document.getElementById('staff-auth-state');
   const feedback = document.getElementById('staff-feedback');
   async function request(path, options = {}) {
-    const response = await fetch(api(path), { credentials: 'include', ...options, headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...options.headers } });
+    const response = await fetch(getApiEndpoint(path), { credentials: 'include', ...options, headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...options.headers } });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(payload.message || `Yêu cầu thất bại (${response.status}).`);
     return payload.data;

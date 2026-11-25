@@ -13,7 +13,9 @@ const { createService, normalizeLoginIdentity } = require('../src/modules/auth/a
 const emailService = require('../src/modules/auth/email.service');
 const { loginSchema, registerSchema } = require('../src/modules/auth/auth.schemas');
 const { normalizeVietnamMobilePhone } = require('../src/modules/auth/phone');
-const { isMemberRegistrationToken } = require('../src/modules/auth/auth.model');
+const pool = require('../src/config/database');
+const { getActiveSession, isMemberRegistrationToken } = require('../src/modules/auth/auth.model');
+const { createPasswordService } = require('../src/modules/auth/password.service');
 
 const activeMember = {
   id: 42,
@@ -324,6 +326,49 @@ test('authenticated requests hash the cookie token before loading the session', 
   assert.equal(storedHash, hashToken(sessionToken));
   assert.equal(auth.cookieMaxAgeSeconds, 60);
   assert.equal('sessionToken' in auth, false);
+});
+
+test('password change uses the account ID even when the session ID differs', async (t) => {
+  const sessionId = 700;
+  t.mock.method(pool, 'getConnection', async () => ({
+    async beginTransaction() {},
+    async commit() {},
+    release() {},
+    async execute(sql, parameters) {
+      if (sql.includes('SELECT s.id')) {
+        return [[{ ...activeMember, id: sessionId, user_id: activeMember.id, remember_me: false }]];
+      }
+      if (sql.includes('UPDATE auth_sessions')) {
+        assert.equal(parameters.at(-1), sessionId);
+        return [{ affectedRows: 1 }];
+      }
+      assert.match(sql, /AS idle_remaining_seconds/);
+      assert.deepEqual(parameters, [sessionId]);
+      return [[{ idle_remaining_seconds: 100, absolute_remaining_seconds: 200 }]];
+    },
+  }));
+
+  const auth = await createService({ model: { getActiveSession } }).authenticate(createOpaqueToken());
+  assert.equal(auth.id, String(sessionId));
+
+  const currentPassword = 'test-password';
+  const newPassword = 'new-test-password';
+  const currentHash = await argon2.hash(currentPassword);
+  const service = createPasswordService({
+    model: {
+      async getPasswordCredentialByUserId(id) {
+        return id === String(activeMember.id) ? { password_hash: currentHash } : null;
+      },
+      async updatePasswordAndRevokeSessions({ userId, passwordHash }) {
+        assert.equal(userId, String(activeMember.id));
+        assert.equal(await argon2.verify(passwordHash, newPassword), true);
+        return true;
+      },
+    },
+  });
+  assert.deepEqual(await service.changePassword(auth.user.id, { currentPassword, newPassword }), {
+    changed: true, sessionsRevoked: true,
+  });
 });
 
 test('failed email delivery returns a safe service error without exposing the token', async () => {

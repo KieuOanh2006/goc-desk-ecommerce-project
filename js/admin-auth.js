@@ -23,9 +23,12 @@
         return section === target && roles.get(currentRole)?.sections.includes(target) === true;
     }
 
-    function endpoint(path) {
-        const base = window.GOCDESK_API_BASE_URL || `${location.protocol}//${location.hostname}:3000`;
-        return new URL(`/api/auth/${path}`, base);
+    function getApiEndpoint(path) {
+        const defaultBase = location.protocol === 'https:'
+            ? location.origin
+            : `http://${location.hostname}:3000`;
+        const apiBase = window.GOCDESK_API_BASE_URL || defaultBase;
+        return new URL(`/api/${path}`, apiBase);
     }
 
     function renderNavigation(role) {
@@ -57,7 +60,7 @@
 
         let user;
         try {
-            const response = await fetch(endpoint('me'), { credentials: 'include', cache: 'no-store' });
+            const response = await fetch(getApiEndpoint('auth/me'), { credentials: 'include', cache: 'no-store' });
             if (response.status === 401) {
                 location.replace(loginUrl);
                 return null;
@@ -83,7 +86,7 @@
             const previousRole = currentRole;
             currentRole = undefined;
             try {
-                const response = await fetch(endpoint('logout'), { method: 'POST', credentials: 'include' });
+                const response = await fetch(getApiEndpoint('auth/logout'), { method: 'POST', credentials: 'include' });
                 if (!response.ok) throw new Error('Không thể đăng xuất.');
                 area.hidden = true;
                 location.replace(loginUrl);
@@ -112,6 +115,7 @@
     }
 
     window.GDAdminAuth = Object.freeze({
+        getApiEndpoint,
         homeFor,
         canManage,
         ready: area ? openSection() : Promise.resolve(null),

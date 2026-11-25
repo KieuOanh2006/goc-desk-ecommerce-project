@@ -271,7 +271,7 @@ async function getActiveSession(tokenHash) {
     if (!expiryRows[0]) return null;
     return {
       id: String(session.id),
-      user: toSafeUser(session),
+      user: toSafeUser({ ...session, id: session.user_id }),
       rememberMe: Boolean(session.remember_me),
       idleRemainingSeconds: Number(expiryRows[0].idle_remaining_seconds),
       absoluteRemainingSeconds: Number(expiryRows[0].absolute_remaining_seconds),
