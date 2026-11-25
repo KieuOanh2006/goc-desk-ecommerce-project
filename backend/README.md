@@ -150,6 +150,8 @@ khi người dùng mở URL.
 Chạy kiểm thử Backend bằng `npm test` trong thư mục `backend`.
 Kiểm tra kết nối Gmail và gửi email thử đến tài khoản `SMTP_USER` bằng `npm run email:test`.
 
+Để kiểm tra API với MySQL local thật, đặt `NODE_ENV=development`, `DB_HOST=127.0.0.1` hoặc `localhost` và cung cấp ba biến `BOOTSTRAP_ADMIN_PASSWORD`, `BOOTSTRAP_CONTENT_STAFF_PASSWORD`, `BOOTSTRAP_ORDER_STAFF_PASSWORD` trong môi trường local, rồi chạy `node scripts/test-local-backend.js` từ `backend`. Script tạo ba tài khoản test nếu cả ba chưa tồn tại; nếu đã tồn tại, dùng mật khẩu tương ứng và không sửa tài khoản. Script mở HTTP server trên cổng tạm, gọi API bằng session thật, tạo fixture riêng và dọn fixture sau khi chạy; ba tài khoản test được giữ lại. Báo cáo HTML/JSON được lưu tại `plans/261125-0228-backend-catalog-content-3d/reports/local-backend-live-results.*` tính từ gốc dự án. Không đưa mật khẩu vào script hoặc báo cáo.
+
 ### Các quy tắc nghiệp vụ cần tuân thủ
 
 1. Guest lưu giỏ hàng và thiết kế 3D bằng `localStorage`; Member lưu dữ liệu tương ứng trong MySQL.
@@ -261,3 +263,13 @@ Cả 4 thành viên phối hợp:
 ---
 
 **Người phụ trách quản lý và duyệt Backend: Kiều Oanh**
+
+## 8. API danh mục
+
+API catalog công khai gồm `/api/categories`, `/api/brands` và `/api/use-cases`. API danh sách hỗ trợ `q`, `page`, `limit` và `sort`; category/brand hidden không xuất hiện trong API catalog công khai. `use_cases` không có cột trạng thái.
+
+Nhân viên nội dung và Admin quản lý catalog qua `/api/admin/categories`, `/api/admin/brands` và `/api/admin/use-cases`. Mọi thao tác ghi cần session hợp lệ và Origin tin cậy. Xem chi tiết response, sort, lỗi xung đột và giới hạn xóa tại [API_CONVENTIONS.md](API_CONVENTIONS.md).
+
+API nội dung gồm `/api/article-categories`, `/api/articles` và `/api/contents`; public chỉ đọc nội dung đã xuất bản. Nhân viên nội dung/Admin có thể tạo nháp, xuất bản hoặc ẩn qua các endpoint `/api/admin` tương ứng. Body được phục vụ dạng văn bản thuần; media dùng URL HTTPS hoặc asset đã có, không có upload API. Xem hợp đồng tại [API_CONVENTIONS.md](API_CONVENTIONS.md).
+
+API dữ liệu Studio 3D gồm `/api/studio/rooms`, `/api/studio/furniture-assets` và `/api/studio/product-models`; public chỉ đọc dữ liệu đang bật và product models đi kèm biến thể đang bán, giá cùng tồn kho từ database. Admin quản lý tại `/api/admin/studio`; ghi bố trí nội thất thay toàn bộ trong một transaction. Kích thước dùng mét, góc dùng radian, và checkout phải xác minh lại variant/giá/tồn kho. Frontend hiện chưa đọc các API này và chưa tải GLB; xem chi tiết contract, quyền và giới hạn trong [API_CONVENTIONS.md](API_CONVENTIONS.md).
