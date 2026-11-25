@@ -139,7 +139,7 @@ async function runLocalBackendTest() {
     const scene = presets.scenes[0];
     const config = { room: presets.ROOM, backWindow: scene.backWindow, balcony: scene.balcony, cameraPresets: scene.cameraPresets };
     const { label, ...dimensions } = presets.FURNITURE.desk;
-    let room, asset, product, model;
+    let room, asset, product, comparisonProduct, model;
     await check('Create real room and furniture metadata from existing presets', async () => {
       room = await create('room_templates', '/admin/studio/rooms', { name: 'Local API check', slug: suffix, roomConfig: config });
       asset = await create('furniture_assets', '/admin/studio/furniture-assets', { name: 'Local API check desk', assetCode: suffix, furnitureType: 'desk', rendererType: 'procedural', rendererKey: 'desk', dimensions });
@@ -174,6 +174,39 @@ async function runLocalBackendTest() {
     else keyboardCategory = await create('categories', '/admin/categories', { name: 'Local keyboard test fixture', slug: 'keyboard' });
     await check('Create temporary product and variants through existing product API', async () => {
       product = await create('products', '/admin/products', { name: 'Local API fixture (not catalog merchandise)', slug: suffix, categorySlug: 'keyboard', variants: [{ sku: suffix, colorName: 'Black', colorHex: '#222222', price: 680000, stockQuantity: 3 }] });
+      comparisonProduct = await create('products', '/admin/products', { name: 'Local API fixture comparison (not catalog merchandise)', slug: `${suffix}-comparison`, categorySlug: 'keyboard', variants: [{ sku: `${suffix}-comparison`, colorName: 'Black', price: 600000, stockQuantity: 3 }] });
+      await pool.execute(
+        'UPDATE product_variants SET sale_price = ?, sale_starts_at = CURRENT_TIMESTAMP - INTERVAL 1 DAY, sale_ends_at = CURRENT_TIMESTAMP + INTERVAL 1 DAY WHERE product_id = ?',
+        [550000, product.id],
+      );
+    });
+    await check('Public product listing filters on active sale price', async () => {
+      const r = await request('GET', `/products?search=Local%20API%20fixture&maxPrice=600000`);
+      const listed = r.data.find((item) => item.slug === suffix);
+      assert.ok(listed, 'currently discounted product should match maxPrice=600000');
+      assert.equal(Number(listed.priceFrom), 550000);
+      const sorted = await request('GET', '/products?search=Local%20API%20fixture&sort=price_asc');
+      assert.deepEqual(sorted.data.slice(0, 2).map(item => item.slug), [`${suffix}`, `${suffix}-comparison`]);
+    });
+    await check('Future and expired sales use base price; null dates allow an active sale', async () => {
+      const [variants] = await pool.execute('SELECT id FROM product_variants WHERE product_id = ?', [product.id]);
+      const variantId = variants[0].id;
+      await pool.execute('UPDATE product_variants SET sale_starts_at = CURRENT_TIMESTAMP + INTERVAL 1 DAY WHERE id = ?', [variantId]);
+      let r = await request('GET', `/products?search=Local%20API%20fixture&maxPrice=600000`);
+      assert.ok(!r.data.some(item => item.slug === suffix));
+      await pool.execute('UPDATE product_variants SET sale_starts_at = CURRENT_TIMESTAMP - INTERVAL 2 DAY, sale_ends_at = CURRENT_TIMESTAMP - INTERVAL 1 DAY WHERE id = ?', [variantId]);
+      r = await request('GET', `/products?search=Local%20API%20fixture&maxPrice=600000`);
+      assert.ok(!r.data.some(item => item.slug === suffix));
+      await pool.execute('UPDATE product_variants SET sale_starts_at = NULL, sale_ends_at = NULL WHERE id = ?', [variantId]);
+      r = await request('GET', `/products?search=Local%20API%20fixture&maxPrice=600000`);
+      assert.ok(r.data.some(item => item.slug === suffix));
+    });
+    await check('Product detail exposes base and effective sale prices', async () => {
+      const r = await request('GET', `/products/${suffix}`);
+      assert.equal(Number(r.data.variants[0].price), 680000);
+      assert.equal(Number(r.data.variants[0].salePrice), 550000);
+      assert.equal(Number(r.data.variants[0].effectivePrice), 550000);
+      await pool.execute('UPDATE product_variants SET sale_price = NULL, sale_starts_at = NULL, sale_ends_at = NULL WHERE product_id = ?', [product.id]);
     });
     await check('Attach procedural product model and read live variant price/stock', async () => {
       model = await create('product_3d_models', '/admin/studio/product-models', { productId: product.id, rendererType: 'procedural', rendererKey: 'keyboard', width: 0.43, depth: 0.145, height: 0.05 });
@@ -205,6 +238,26 @@ async function runLocalBackendTest() {
     await check('Hide model removes it from public detail', async () => {
       await request('PATCH', `/admin/studio/product-models/${model.id}`, { actor: 'admin', body: { isActive: false } });
       await request('GET', `/studio/product-models/${model.id}`, { expected: 404 });
+    });
+    await check('Hidden product and inactive variant remain editable through admin detail', async () => {
+      const publicDetail = await request('GET', `/products/${suffix}`);
+      const variantId = publicDetail.data.variants[0].id;
+      await pool.execute('UPDATE product_variants SET status = ? WHERE id = ?', ['inactive', variantId]);
+      await request('PATCH', `/admin/products/${product.id}/status`, { actor: 'admin', body: { status: 'hidden' } });
+      await request('GET', `/products/${suffix}`, { expected: 404 });
+      const detail = await request('GET', `/admin/products/${product.id}`, { actor: 'content' });
+      assert.equal(detail.data.status, 'hidden');
+      assert.equal(detail.data.variants[0].id, variantId);
+      assert.equal(detail.data.variants[0].status, 'inactive');
+      assert.equal(Number(detail.data.variants[0].price), 700000);
+      await request('PATCH', `/admin/products/${product.id}/variants/${variantId}`, { actor: 'content', body: { price: 690000, stockQuantity: 2 } });
+      const updated = await request('GET', `/admin/products/${product.id}`, { actor: 'content' });
+      assert.equal(Number(updated.data.variants[0].price), 690000);
+      assert.equal(Number(updated.data.variants[0].stockQuantity), 2);
+      await request('GET', '/admin/products/0', { actor: 'content', expected: 422 });
+      await request('GET', '/admin/products/18446744073709551616', { actor: 'content', expected: 422 });
+      await request('GET', '/admin/products/999999999999', { actor: 'content', expected: 404 });
+      await request('GET', `/admin/products/${product.id}`, { actor: 'order', expected: 403 });
     });
     await check('Referenced product category cannot be deleted (409)', () => request('DELETE', `/admin/categories/${keyboardCategory.id}`, { actor: 'admin', expected: 409 }));
 

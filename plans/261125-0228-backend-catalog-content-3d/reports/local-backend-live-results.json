@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-11-25T04:05:22.602Z",
+  "startedAt": "2026-11-25T08:29:22.159Z",
   "checks": [
     {
       "name": "MySQL health returns 200",
@@ -134,6 +134,18 @@
       "passed": true
     },
     {
+      "name": "Public product listing filters on active sale price",
+      "passed": true
+    },
+    {
+      "name": "Future and expired sales use base price; null dates allow an active sale",
+      "passed": true
+    },
+    {
+      "name": "Product detail exposes base and effective sale prices",
+      "passed": true
+    },
+    {
       "name": "Attach procedural product model and read live variant price/stock",
       "passed": true
     },
@@ -154,6 +166,10 @@
       "passed": true
     },
     {
+      "name": "Hidden product and inactive variant remain editable through admin detail",
+      "passed": true
+    },
+    {
       "name": "Referenced product category cannot be deleted (409)",
       "passed": true
     }
@@ -162,7 +178,7 @@
     "Loyalty listTiers: ER_BAD_FIELD_ERROR; membership_tiers.description is absent from schema. Existing owner handoff."
   ],
   "cleanup": true,
-  "finishedAt": "2026-11-25T04:05:25.685Z",
-  "passed": 39,
+  "finishedAt": "2026-11-25T08:29:24.820Z",
+  "passed": 43,
   "failed": 0
 }
