@@ -25,13 +25,20 @@ function createProductModel(database = pool) {
        JOIN categories AS c ON c.id = p.category_id
        LEFT JOIN brands AS b ON b.id = p.brand_id
        LEFT JOIN (
-         SELECT v.product_id, MIN(v.price) AS price_from
-         FROM product_variants AS v
-         WHERE v.status = 'active'
-           AND (? = '' OR v.color_name = ?)
-           AND (? IS NULL OR v.price >= CAST(? AS DECIMAL(12,2)))
-           AND (? IS NULL OR v.price <= CAST(? AS DECIMAL(12,2)))
-         GROUP BY v.product_id
+         SELECT priced.product_id, MIN(priced.effective_price) AS price_from
+         FROM (
+           SELECT v.product_id, v.color_name,
+                  CASE WHEN v.sale_price IS NOT NULL
+                         AND (v.sale_starts_at IS NULL OR v.sale_starts_at <= CURRENT_TIMESTAMP)
+                         AND (v.sale_ends_at IS NULL OR v.sale_ends_at >= CURRENT_TIMESTAMP)
+                       THEN v.sale_price ELSE v.price END AS effective_price
+           FROM product_variants AS v
+           WHERE v.status = 'active'
+         ) AS priced
+         WHERE (? = '' OR priced.color_name = ?)
+           AND (? IS NULL OR priced.effective_price >= CAST(? AS DECIMAL(12,2)))
+           AND (? IS NULL OR priced.effective_price <= CAST(? AS DECIMAL(12,2)))
+         GROUP BY priced.product_id
        ) AS pv ON pv.product_id = p.id
        WHERE p.status = 'active'
          AND LOCATE(?, p.name) > 0
@@ -68,7 +75,12 @@ function createProductModel(database = pool) {
                     p.short_description, p.description, p.specifications,
               b.name AS brand_name, c.name AS category_name,
               v.id AS variant_id, v.sku, v.color_name, v.color_hex,
-              v.price, v.stock_quantity,
+              v.price, v.sale_price, v.sale_starts_at, v.sale_ends_at,
+              CASE WHEN v.sale_price IS NOT NULL
+                     AND (v.sale_starts_at IS NULL OR v.sale_starts_at <= CURRENT_TIMESTAMP)
+                     AND (v.sale_ends_at IS NULL OR v.sale_ends_at >= CURRENT_TIMESTAMP)
+                   THEN v.sale_price ELSE v.price END AS effective_price,
+              v.stock_quantity,
               COALESCE(
                 (SELECT i.image_url
                  FROM product_images AS i
@@ -112,12 +124,54 @@ function createProductModel(database = pool) {
           colorHex: row.color_hex,
           imageUrl: row.image_url,
           price: row.price,
+          salePrice: row.sale_price,
+          saleStartsAt: row.sale_starts_at,
+          saleEndsAt: row.sale_ends_at,
+          effectivePrice: row.effective_price,
           stockQuantity: row.stock_quantity,
         })),
     };
   }
 
-  return { listProducts, getProductBySlug };
+  async function getAdminProductById(productId) {
+    const [rows] = await database.execute(
+      `SELECT CAST(p.id AS CHAR) AS id, p.name, p.slug, p.short_description AS shortDescription,
+              p.description, p.specifications, p.status,
+              CAST(v.id AS CHAR) AS variantId, v.sku,
+              v.color_name AS colorName, v.color_hex AS colorHex,
+              v.status AS variantStatus, v.price, v.stock_quantity AS stockQuantity
+       FROM products p
+       LEFT JOIN product_variants v ON v.product_id = p.id
+       WHERE p.id = ?
+       ORDER BY v.id`,
+      [productId],
+    );
+
+    if (rows.length === 0) return null;
+
+    const product = {
+      id: rows[0].id,
+      name: rows[0].name,
+      slug: rows[0].slug,
+      shortDescription: rows[0].shortDescription,
+      description: rows[0].description,
+      specifications: rows[0].specifications,
+      status: rows[0].status,
+      variants: rows.filter((row) => row.variantId !== null).map((row) => ({
+        id: row.variantId,
+        sku: row.sku,
+        colorName: row.colorName,
+        colorHex: row.colorHex,
+        status: row.variantStatus,
+        price: row.price,
+        stockQuantity: row.stockQuantity,
+      })),
+    };
+
+    return product;
+  }
+
+  return { listProducts, getProductBySlug, getAdminProductById };
 }
 
 module.exports = { createProductModel };

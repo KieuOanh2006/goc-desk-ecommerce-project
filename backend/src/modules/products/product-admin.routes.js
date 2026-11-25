@@ -6,8 +6,11 @@ const { requireAuthSession } = require('../../middlewares/auth-session');
 const { authorizeRoles } = require('../../middlewares/authorization');
 const requireTrustedOrigin = require('../../middlewares/require-trusted-origin');
 const { createApiError } = require('../../middlewares/error-handler');
+const { createProductController } = require('./product.controller');
+const { adminProductParamsSchema } = require('./product.schemas');
 
 const router = express.Router();
+const productController = createProductController();
 
 const slugSchema = z.string().trim().min(1).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
@@ -190,6 +193,14 @@ router.patch(
     }
   }
 );
+router.get(
+  '/:productId',
+  requireAuthSession,
+  authorizeRoles('admin', 'product_content_staff'),
+  validate({ params: adminProductParamsSchema }),
+  productController.getAdminProduct,
+);
+
 router.get(
   '/',
   requireAuthSession,
