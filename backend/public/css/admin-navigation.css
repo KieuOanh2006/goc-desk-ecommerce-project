@@ -1,0 +1,55 @@
+﻿/* Điều hướng dùng chung: phân cấp bằng cỡ chữ, khoảng cách và độ nổi nhẹ. */
+.page-admin-dashboard #dashboard-nav { gap: 26px; }
+.page-admin-dashboard .dashboard-nav-section { border: 0; border-radius: 0; background: transparent; }
+.page-admin-dashboard .dashboard-nav-section summary {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #493323;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  box-shadow: none;
+}
+.page-admin-dashboard .dashboard-nav-section summary:hover { background: #e8e0d3; }
+.page-admin-dashboard .dashboard-nav-section summary::after { color: #9a846b; font-size: 14px; }
+.page-admin-dashboard .dashboard-nav-section > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+.page-admin-dashboard #dashboard-nav .dashboard-nav-section button {
+  min-height: 39px;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: #806a52;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  box-shadow: none;
+  transition: background 150ms, box-shadow 150ms;
+}
+.page-admin-dashboard #dashboard-nav .dashboard-nav-section button::before { display: none; }
+.page-admin-dashboard #dashboard-nav .dashboard-nav-section button:hover { background: #f7f2ea; color: #60412a; }
+.page-admin-dashboard #dashboard-nav .dashboard-nav-section button[aria-current] {
+  border-color: #e1d5c5;
+  background: #fffdf9;
+  color: #75471e;
+  font-weight: 400;
+  box-shadow: 0 3px 10px #53371f0e;
+}
+@media (max-width: 700px) {
+  .page-admin-dashboard #dashboard-nav { gap: 20px; }
+  .page-admin-dashboard .dashboard-nav-section summary { font-size: 17px; }
+  .page-admin-dashboard .dashboard-nav-section > div { margin-left: 16px; padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-admin-dashboard #dashboard-nav .dashboard-nav-section button { transition: none; }
+}

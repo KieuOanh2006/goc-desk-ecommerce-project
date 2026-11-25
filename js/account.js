@@ -77,13 +77,14 @@
     }
 
     function getAuthEndpoint(endpoint) {
-        const apiBase = window.GOCDESK_API_BASE_URL
-            || `${window.location.protocol}//${window.location.hostname}:3000`;
-        return new URL(`/api/auth/${endpoint}`, apiBase);
+        return getApiEndpoint(`auth/${endpoint}`);
     }
 
     function getApiEndpoint(path) {
-        const apiBase = window.GOCDESK_API_BASE_URL || `${window.location.protocol}//${window.location.hostname}:3000`;
+        const defaultBase = window.location.protocol === 'https:'
+            ? window.location.origin
+            : `http://${window.location.hostname}:3000`;
+        const apiBase = window.GOCDESK_API_BASE_URL || defaultBase;
         return new URL(`/api/${path}`, apiBase);
     }
 
