@@ -8,6 +8,7 @@ const loyaltyRoutes = require('../modules/loyalty/loyalty.routes');
 const router = express.Router();
 router.use(require('../modules/catalog/catalog.routes'));
 router.use(require('../modules/content/content.routes'));
+router.use(require('../modules/studio-assets/studio-assets.routes'));
 router.use('/products', require('../modules/products/product.routes'));
 router.use('/health', healthRoutes);
 router.use('/health', healthRoutes);
