@@ -1,0 +1,168 @@
+{
+  "startedAt": "2026-11-25T04:05:22.602Z",
+  "checks": [
+    {
+      "name": "MySQL health returns 200",
+      "passed": true
+    },
+    {
+      "name": "Login and real session: admin",
+      "passed": true
+    },
+    {
+      "name": "Login and real session: content",
+      "passed": true
+    },
+    {
+      "name": "Login and real session: order",
+      "passed": true
+    },
+    {
+      "name": "Guest cannot administer catalog (401)",
+      "passed": true
+    },
+    {
+      "name": "Order staff cannot administer catalog (403)",
+      "passed": true
+    },
+    {
+      "name": "Content staff cannot administer Studio (403)",
+      "passed": true
+    },
+    {
+      "name": "Untrusted origin cannot write (403)",
+      "passed": true
+    },
+    {
+      "name": "Invalid category input rejected (422)",
+      "passed": true
+    },
+    {
+      "name": "Content staff creates category in MySQL",
+      "passed": true
+    },
+    {
+      "name": "Public category is readable",
+      "passed": true
+    },
+    {
+      "name": "Duplicate category slug returns 409",
+      "passed": true
+    },
+    {
+      "name": "Category edit persists",
+      "passed": true
+    },
+    {
+      "name": "Hidden category is private but visible to admin",
+      "passed": true
+    },
+    {
+      "name": "brands: create, edit, read and delete",
+      "passed": true
+    },
+    {
+      "name": "use-cases: create, edit, read and delete",
+      "passed": true
+    },
+    {
+      "name": "Create article topic and draft with content staff",
+      "passed": true
+    },
+    {
+      "name": "Publishing empty article is rejected (422)",
+      "passed": true
+    },
+    {
+      "name": "Failed publication preserves the original draft",
+      "passed": true
+    },
+    {
+      "name": "Publish article and omit staff ID from public response",
+      "passed": true
+    },
+    {
+      "name": "Referenced article topic cannot be deleted (409)",
+      "passed": true
+    },
+    {
+      "name": "Hide article removes public visibility",
+      "passed": true
+    },
+    {
+      "name": "Create, publish and hide FAQ",
+      "passed": true
+    },
+    {
+      "name": "Unsafe media URL is rejected (422)",
+      "passed": true
+    },
+    {
+      "name": "Create real room and furniture metadata from existing presets",
+      "passed": true
+    },
+    {
+      "name": "Room placement transaction persists",
+      "passed": true
+    },
+    {
+      "name": "Out-of-bounds replacement rejected; previous layout survives",
+      "passed": true
+    },
+    {
+      "name": "Duplicate furniture IDs rejected (422)",
+      "passed": true
+    },
+    {
+      "name": "Missing furniture rejected; previous layout survives",
+      "passed": true
+    },
+    {
+      "name": "Room cannot shrink around existing furniture (409)",
+      "passed": true
+    },
+    {
+      "name": "Referenced furniture dimension/status changes rejected (409)",
+      "passed": true
+    },
+    {
+      "name": "Hidden room is not public",
+      "passed": true
+    },
+    {
+      "name": "Create temporary product and variants through existing product API",
+      "passed": true
+    },
+    {
+      "name": "Attach procedural product model and read live variant price/stock",
+      "passed": true
+    },
+    {
+      "name": "Studio lists and every supported sort execute against MySQL",
+      "passed": true
+    },
+    {
+      "name": "Variant sold-out and price edits propagate to Studio API",
+      "passed": true
+    },
+    {
+      "name": "Product model partial update round-trips",
+      "passed": true
+    },
+    {
+      "name": "Hide model removes it from public detail",
+      "passed": true
+    },
+    {
+      "name": "Referenced product category cannot be deleted (409)",
+      "passed": true
+    }
+  ],
+  "knownIssues": [
+    "Loyalty listTiers: ER_BAD_FIELD_ERROR; membership_tiers.description is absent from schema. Existing owner handoff."
+  ],
+  "cleanup": true,
+  "finishedAt": "2026-11-25T04:05:25.685Z",
+  "passed": 39,
+  "failed": 0
+}

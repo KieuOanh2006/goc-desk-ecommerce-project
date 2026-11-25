@@ -147,7 +147,7 @@ git pull --ff-only origin main
 git switch -c feature/backend-ten-chuc-nang
 ```
 
-## 10. Ví dụ lỗi
+## Ví dụ lỗi
 
 Endpoint không tồn tại (`404`):
 
@@ -170,3 +170,65 @@ Lỗi bất ngờ (`500`):
 ```
 
 Backend chỉ log status và mã lỗi an toàn; không log request body, thông tin xác thực, SQL hoặc thông báo thô từ database/driver.
+
+## 10. Catalog API
+
+Public read endpoints:
+
+| Method | Endpoint | Ghi chú |
+| --- | --- | --- |
+| GET | `/api/categories` | Chỉ trả category `active`; hỗ trợ `q`, `page`, `limit`, `sort` |
+| GET | `/api/categories/:id` | ID là chuỗi BIGINT; category hidden trả `404` |
+| GET | `/api/brands` | Chỉ trả brand `active` |
+| GET | `/api/brands/:id` | Brand hidden trả `404` |
+| GET | `/api/use-cases` | Use-case không có cột trạng thái trong schema |
+| GET | `/api/use-cases/:id` | Truy vấn theo ID |
+
+Admin và `product_content_staff` được đọc/quản lý catalog tại các đường dẫn tương ứng dưới `/api/admin`: `GET/POST /categories`, `GET/PATCH/DELETE /categories/:id`, và cùng bộ thao tác cho `/brands` và `/use-cases`. Mọi request ghi phải có Origin/Referer tin cậy.
+
+Danh sách dùng `q`, `page` (mặc định 1), `limit` (mặc định 20, tối đa 100) và sort whitelist. Category/brand hỗ trợ sort `name` hoặc `createdAt`, use-case chỉ hỗ trợ `name`; admin có thể lọc trạng thái category/brand. Category image nhận HTTPS hoặc đường dẫn asset `images/`/`Videos/` có sẵn.
+
+Xóa category, brand hoặc use-case đang được sản phẩm hay category con tham chiếu trả `409 CATALOG_RESOURCE_IN_USE`. Trùng slug lần lượt trả `CATEGORY_SLUG_EXISTS`, `BRAND_SLUG_EXISTS` hoặc `USE_CASE_SLUG_EXISTS`. Ẩn category/brand chỉ ảnh hưởng API catalog; API sản phẩm hiện tại vẫn lọc theo trạng thái sản phẩm.
+
+## 11. Content API
+
+| Method | Endpoint | Ghi chú |
+| --- | --- | --- |
+| GET | `/api/article-categories` | Danh sách chủ đề |
+| GET | `/api/article-categories/:id` | Chi tiết chủ đề theo ID |
+| GET | `/api/articles` | Chỉ bài/video đã xuất bản; lọc theo `categoryId`, `contentType` |
+| GET | `/api/articles/:slug` | Chi tiết đã xuất bản theo slug |
+| GET | `/api/contents` | Chỉ nội dung website đã xuất bản; lọc theo `contentKey`, `contentType` |
+| GET | `/api/contents/:contentKey` | Tra cứu theo khóa vị trí duy nhất |
+
+Admin và `product_content_staff` có CRUD cho `article-categories`, `articles` và `contents` tại `/api/admin`. Tác giả bài viết và người cập nhật website content lấy từ session; không nhận các ID này từ body. Trạng thái mặc định là `draft`; nội dung cần gỡ chuyển sang `hidden`.
+
+`contentType` của bài viết là `article` hoặc `video`; của website content là `banner`, `video`, `policy` hoặc `faq`. Bài `article`/policy/FAQ cần body text để xuất bản; video/banner cần `mediaUrl`. Body là văn bản thuần; client phải hiển thị bằng text API. Media chỉ nhận HTTPS hoặc đường dẫn asset dưới `images/` hay `Videos/`; API không tải file lên và không hỗ trợ rich HTML. Bản ghi draft/hidden không được trả qua public list/detail route.
+
+Slug bài viết và khóa nội dung trùng trả `409`; xóa chủ đề đang được bài viết tham chiếu trả `409 CONTENT_RESOURCE_IN_USE`. `published_at` do server đặt khi xuất bản; bài chỉ công khai khi ngày xuất bản đã đến. Public projection không trả ID nhân viên tạo bài hoặc cập nhật nội dung website.
+
+## 12. Studio 3D API
+
+Public endpoints:
+
+| Method | Endpoint | Ghi chú |
+| --- | --- | --- |
+| GET | `/api/studio/rooms` | Chỉ phòng mẫu đang bật, kèm bố trí nội thất bật và hợp lệ |
+| GET | `/api/studio/rooms/:id` | Phòng ẩn hoặc không tồn tại trả `404` |
+| GET | `/api/studio/furniture-assets` | Chỉ nội thất bật; renderer procedural chỉ nhận khóa renderer hiện có |
+| GET | `/api/studio/product-models` | Mô hình đang bật của sản phẩm/danh mục đang hoạt động, kèm biến thể đang bán |
+| GET | `/api/studio/product-models/:id` | Chi tiết mô hình và các biến thể còn hoạt động |
+
+Admin quản lý tại `/api/admin/studio`: CRUD `/rooms`, `/furniture-assets`, `/product-models`; thay toàn bộ bố trí nội thất bằng `PUT /rooms/:id/furniture`. Tất cả yêu cầu quản trị cần session role `admin`; mọi thao tác ghi cần Origin/Referer tin cậy.
+
+Danh sách phòng sắp xếp theo `name` hoặc `createdAt`; furniture theo `name` hoặc `id`; product model theo `productName` hoặc `id`, với hậu tố `:asc`/`:desc`. Hai bảng furniture/model không có cột ngày tạo trong schema, nên API không trả hoặc sắp xếp theo ngày tạo cho hai loại này.
+
+`roomConfig` theo cùng cấu trúc renderer hiện tại: `room` chứa `minX`, `maxX`, `minZ`, `maxZ`; `backWindow`, `balcony` là boolean; `cameraPresets` có `room`, `desk`, `top`, mỗi góc gồm `label`, `theta`, `phi`, `radius`, `target: {x,y,z}`. Kích thước và tọa độ dùng mét; `rotation` dùng radian. Bố trí furniture chỉ được lưu nếu asset tồn tại, đang bật và toàn bộ kích thước xoay vẫn nằm trong bounds phòng. `PUT` là thay thế toàn bộ danh sách, chạy một transaction; dữ liệu cũ được khôi phục nếu một asset không hợp lệ hoặc insert thất bại. ID luôn serialize thành chuỗi.
+
+Đổi `roomConfig` phải giữ các vị trí furniture hiện có trong bounds. Khi asset đang được phòng mẫu hoặc saved setup tham chiếu, không cho đổi kích thước, renderer, loại nội thất hoặc trạng thái; cần gỡ tham chiếu rồi cập nhật để tránh scene cũ bị sai.
+
+Renderer procedural chỉ nhận nội thất `desk`, `cabinet`, `bed`, `chair`, `rug`, `plant` và nhóm sản phẩm `keyboard`, `mouse`, `lamp`, `stand`, `pad`, `organize`. Product model procedural phải khớp slug danh mục. GLB cần URL HTTPS không chứa user/password hoặc đường dẫn `/models/*.glb`; metadata GLB chưa được trang 3D hiện tại tải vì frontend chưa có GLB loader hay API adapter.
+
+Product model công khai chỉ kèm biến thể `active`; mỗi biến thể trả ID, SKU, màu, giá hiện tại/giá sale, `effectivePrice`, `stockQuantity`, `available` và ảnh. `available` chỉ phản ánh tồn kho lúc đọc. Giỏ hàng/checkout vẫn phải gửi `variantId` và kiểm tra lại trạng thái, tồn kho và giá từ database; không dùng giá của scene làm nguồn quyết định.
+
+Schema hiện không có fixture xác minh số phòng mẫu hoặc 8–10 sản phẩm 3D. Không thêm dữ liệu mẫu giả và không xem API metadata là bằng chứng frontend 3D đã tích hợp.

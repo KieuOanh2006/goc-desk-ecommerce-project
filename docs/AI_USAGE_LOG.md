@@ -11,6 +11,7 @@ Nhật ký ghi nhận việc sử dụng công cụ AI trong quá trình phân t
 | 2 | ChatGPT ImageGen | Tạo ảnh minh họa cho trang Tin tức. | Tạo ảnh bài viết nổi bật và ảnh cho các thẻ nội dung, lưu trong `images/`. |
 | 3 | Codex, ImageGen | Làm mới nội dung và hình ảnh trang Tin tức (30/10/2026). | Cập nhật nội dung sáu bài viết và bộ ảnh minh họa mới. |
 | 4 | ImageGen trong Codex | Tạo ảnh nền cho trang Tin tức và Thiết kế 3D (30/10/2026). | Tạo `news-hero-background.png` và `setup-3d-hero-background.png`. |
+| 5 | Codex | Hỗ trợ triển khai API backend phần danh mục, nội dung và metadata Studio 3D (25/11/2026). | Thêm API theo schema hiện có, kiểm tra đầu vào/quyền/transaction, cập nhật tài liệu và test; chưa tích hợp frontend 3D hoặc xác minh dữ liệu fixture với MySQL. |
 
 ## 2. Kiểm tra và đánh giá
 
