@@ -232,3 +232,9 @@ Renderer procedural chỉ nhận nội thất `desk`, `cabinet`, `bed`, `chair`,
 Product model công khai chỉ kèm biến thể `active`; mỗi biến thể trả ID, SKU, màu, giá hiện tại/giá sale, `effectivePrice`, `stockQuantity`, `available` và ảnh. `available` chỉ phản ánh tồn kho lúc đọc. Giỏ hàng/checkout vẫn phải gửi `variantId` và kiểm tra lại trạng thái, tồn kho và giá từ database; không dùng giá của scene làm nguồn quyết định.
 
 Schema hiện không có fixture xác minh số phòng mẫu hoặc 8–10 sản phẩm 3D. Không thêm dữ liệu mẫu giả và không xem API metadata là bằng chứng frontend 3D đã tích hợp.
+
+## 13. Product API và quản trị biến thể
+
+`GET /api/products` dùng giá hiệu lực của biến thể active để tạo `priceFrom`, lọc `minPrice`/`maxPrice` và sắp xếp giá. Giá sale có hiệu lực khi `sale_price` tồn tại, `sale_starts_at` đã đến hoặc để trống, và `sale_ends_at` chưa qua hoặc để trống; thời điểm đầu/cuối được tính bao gồm theo đồng hồ MySQL. Chi tiết công khai giữ `price` là giá gốc và trả thêm `salePrice`, `saleStartsAt`, `saleEndsAt`, `effectivePrice`. Màu và các ngưỡng giá phải cùng khớp trên một biến thể active.
+
+`GET /api/admin/products/:productId` yêu cầu session role `admin` hoặc `product_content_staff`; trả chi tiết sản phẩm cùng tất cả biến thể, kể cả sản phẩm hidden và biến thể inactive, để quản trị viên có thể sửa giá/tồn kho bằng API biến thể hiện có. ID được serialize thành chuỗi; sản phẩm không tồn tại trả `404 PRODUCT_NOT_FOUND`. Endpoint công khai vẫn loại sản phẩm hidden.
